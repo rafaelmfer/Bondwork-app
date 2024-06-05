@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 // Routes imports
-const noteRoutes = require("./routes/noteRoutes");
+// const noteRoutes = require("./routes/noteRoutes");
 
 // Express App
 const app = express();
@@ -43,6 +43,6 @@ mongoose
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
-app.use("/api", noteRoutes);
+// app.use("/api", noteRoutes);
 
 module.exports = app;
