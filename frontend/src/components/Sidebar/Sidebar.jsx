@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import the Link component
-import iconHome from "./images/icon_home.svg";
-import iconChevronRight from "./images/icon_chevron_right.svg";
+import iconHome from "../../assets/images/icon_home.svg";
+import iconChevronRight from "../../assets/images/icon_chevron_right.svg";
 import styles from "./Sidebar.module.css"; // Import the CSS module
 
 const Sidebar = () => {

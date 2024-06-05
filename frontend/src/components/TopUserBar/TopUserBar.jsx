@@ -1,7 +1,7 @@
 import styles from "./TopUserBar.module.css";
-import iconBell from "./icon/bell.svg";
-import person from "./icon/person.svg";
-import menu from "./icon/menu.svg";
+import iconBell from "../../assets/images/bell.svg";
+import person from "../../assets/images/person.svg";
+import menu from "../../assets/images/menu.svg";
 
 const TopUserBar = () => {
     return (
