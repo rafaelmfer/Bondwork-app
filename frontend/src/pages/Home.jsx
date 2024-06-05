@@ -40,16 +40,7 @@ const Home = () => {
                     setTrigger={setButtonOnePopup}
                 >
                     <h3>Rewards Request Approved</h3>
-                    <div
-                        className="toDo"
-                        style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "50%",
-                            backgroundColor: "#4b9f6e",
-                            margin: "auto",
-                        }}
-                    ></div>
+                    <div className="w-8 h-8 rounded-full bg-green-700 m-auto"></div>
                     <p>
                         Employees will be notified on their rewards request
                         update.
