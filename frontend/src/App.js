@@ -10,6 +10,7 @@ import Endorsement from "./pages/Endorsement";
 import Management from "./pages/Management";
 import Responses from "./pages/Responses";
 import PopUpOneBtn from "./components/PopUpOneBtn";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -46,6 +47,7 @@ function App() {
                         </p>
                     </PopUpOneBtn>
                 </header>
+                <Sidebar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/Rewards" element={<Rewards />} />
