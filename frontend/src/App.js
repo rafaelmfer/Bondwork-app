@@ -11,6 +11,7 @@ import Management from "./pages/Management";
 import Responses from "./pages/Responses";
 import PopUpOneBtn from "./components/PopUpOneBtn";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -48,6 +49,7 @@ function App() {
                     </PopUpOneBtn>
                 </header>
                 <TopUserBar />
+                <Sidebar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/Rewards" element={<Rewards />} />
