@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 // Routes imports
 // const noteRoutes = require("./routes/noteRoutes");
 const surveyRoutes = require("./routes/surveyRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 // Express App
 const app = express();
@@ -38,6 +39,8 @@ mongoose
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
+
 app.use("/api/survey", surveyRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app;
