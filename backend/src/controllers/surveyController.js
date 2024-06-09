@@ -1,0 +1,91 @@
+// const mongoose = require("mongoose");
+const Survey = require("../models/SurveyModel");
+
+const getAllSurvey = async (req, res) => {
+    try {
+        const allSurvey = await Survey.find({});
+        return res.status(200).json(allSurvey);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+const getSingleSurvey = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const singleSurvey = await Survey.findById(id);
+        return res.status(200).json(singleSurvey);
+    } catch (error) {
+        return res.status(500).json({ messsage: error.message });
+    }
+};
+
+const getSingleSurveyID = async (req, res) => {
+    try {
+        const { surveyID } = req.params;
+        const singleSurvey = await Survey.findOne({ surveyID });
+        return res.status(200).json(singleSurvey);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+const updateSurvey = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const surveyUpdate = await Survey.findByIdAndUpdate(id, req.body);
+
+        if (!surveyUpdate) {
+            return res
+                .status(404)
+                .json({ message: `Cannot find any prodcut with id: ${id}` });
+        }
+
+        const showUpdate = await Survey.findById(id);
+        return res.status(200).json(showUpdate);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+const addSurvey = async (req, res) => {
+    const {
+        surveyID,
+        status,
+        question1,
+        question1Answer,
+        question2,
+        question2Answer,
+        question3,
+        question3Answer,
+        alreadyAnswered,
+        totalOfEmployees,
+    } = req.body;
+
+    try {
+        const newSurvey = new Survey({
+            surveyID,
+            status,
+            question1,
+            question1Answer,
+            question2,
+            question2Answer,
+            question3,
+            question3Answer,
+            alreadyAnswered,
+            totalOfEmployees,
+        });
+        await newSurvey.save();
+        return res.status(200).send("Survey Saved");
+    } catch (error) {
+        return res.status(400).send(error.message);
+    }
+};
+
+module.exports = {
+    getAllSurvey,
+    getSingleSurvey,
+    getSingleSurveyID,
+    updateSurvey,
+    addSurvey,
+};
