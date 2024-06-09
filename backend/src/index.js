@@ -6,6 +6,7 @@ dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
 
+// Routes imports
 // const noteRoutes = require("./routes/noteRoutes");
 const surveyRoutes = require("./routes/surveyRoutes");
 
@@ -32,6 +33,11 @@ mongoose
         console.error(err);
     });
 
-// app.use("/api", noteRoutes);
-app.use("/survey", surveyRoutes);
-// module.exports = app;
+// Routes
+// Basic route
+app.get("/", (req, res) => {
+    res.send("Hello World");
+});
+app.use("/api/survey", surveyRoutes);
+
+module.exports = app;
