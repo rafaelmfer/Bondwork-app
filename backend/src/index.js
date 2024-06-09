@@ -1,26 +1,21 @@
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
 
 // Routes imports
 // const noteRoutes = require("./routes/noteRoutes");
+const surveyRoutes = require("./routes/surveyRoutes");
 
 // Express App
 const app = express();
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log(req.path, req.method);
-    next();
-});
-
+console.log("BACKEND.......");
 // Database connection
 const PORT = process.env.PORT || 5000;
 mongoose
@@ -43,6 +38,6 @@ mongoose
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
-// app.use("/api", noteRoutes);
+app.use("/api/survey", surveyRoutes);
 
 module.exports = app;
