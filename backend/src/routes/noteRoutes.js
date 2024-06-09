@@ -1,13 +1,33 @@
 const express = require("express");
 
-const { getNotes, getNote } = require("../controllers/noteController");
+const {
+    getAllNote,
+    insertNote,
+    getSingleNote,
+    getSingleUserID,
+    getSingleClientID,
+} = require("../controllers/noteController");
 
-const router = express.Router();
+const router = express();
+router.use(express.json());
+
+// insert note
+router.post("/", insertNote);
 
 // Get all notes
-router.get("/:userid", getNotes);
+// localhost:5000/api/all
+router.get("/all", getAllNote);
 
-// Get single note
-router.get("/:userid/:clientid/:id", getNote);
+// Get single note from ID
+// localhost:5000/api/xxxxxxx-xxxxx-xxxxx
+router.get("/:id", getSingleNote);
+
+// Get single note from user_id
+// localhost:5000/api/userid/xxxxxxx-xxxxx-xxxxx
+router.get("/userid/:user_id", getSingleUserID);
+
+// Get single note from clientID
+// localhost:5000/api/clientid/xxxxxxx-xxxxx-xxxxx
+router.get("/clientid/:user_id", getSingleClientID);
 
 module.exports = router;
