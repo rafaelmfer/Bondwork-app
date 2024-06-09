@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const Survey = require("../models/SurveyModel");
 
 const getAllSurvey = async (req, res) => {

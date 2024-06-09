@@ -1,36 +1,53 @@
 const express = require("express");
-const User = require("../models/UserModel");
 
 // const router = express.Router();
 const router = express();
 router.use(express.json());
 
-// Create a new user
-router.post("v1/user/register", async (req, res) => {
-    const { name, email, password } = req.body;
+const {
+    addUser,
+    allUser,
+    getOneUser,
+    getEmployeeID,
+    getDepartment,
+    updateUser,
+    getHrStaff,
+    getEmployeeStaff,
+} = require("../controllers/userController");
 
-    try {
-        const newUser = new User({ name, email, password });
-        await newUser.save();
-        res.status(201).send("User registered");
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-});
+// localhost:5000/api/user/employeestaff
+router.get("/employeestaff", getEmployeeStaff);
 
-// Get all users
-router.get("v1/users", async (req, res) => {
-    try {
-        const users = await User.find();
-        res.json(users);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
+// localhost:5000/api/user/hrstaff
+router.get("/hrstaff", getHrStaff);
 
-// Get all users
-router.get("v1/teste", async (req, res) => {
-    res.send("Hello World funcionando");
-});
+router.get("/", allUser);
 
+router.get("/:id", getOneUser);
+
+router.get("/department/:department", getDepartment);
+
+// localhost:5000/api/user/employee/11
+router.get("/employee/:employeeID", getEmployeeID);
+
+router.put("/updateUser/:id", updateUser);
+
+router.post("/addUser", addUser);
+// {
+//     "email": "usuario1@uol.com.br",
+//     "password": "senhaum",
+//     "employee_ID": 11,
+//     "firstName": "primeiro Nome",
+//     "lastName": "primeiro lastName",
+//     "department": "department umm",
+//     "onBoardingDate": 2024,
+//     "jobTitle": "titulo job",
+//     "profilePicture": "foto um",
+//     "adminRights": true,
+//     "surveys": "survey um",
+//     "endorsements": "endorsementum",
+//     "points": 22,
+//     "lastAccess": 2025,
+//     "workSchedule": "survey um"
+//   }
 module.exports = router;

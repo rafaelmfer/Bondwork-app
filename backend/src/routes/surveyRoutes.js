@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const {
     getAllSurvey,
@@ -8,8 +9,18 @@ const {
     addSurvey,
 } = require("../controllers/surveyController");
 
+// const {
+//     basicAuth
+// } = require("../controllers/basicAuthentication")
+
 const router = express();
 router.use(express.json());
+
+// Use CORS middleware
+router.use(cors()); // This will enable CORS for all routes
+
+// Apply basicAuth middleware to all routes
+// router.use(basicAuth);
 
 // localhost:5000/survey
 router.get("/", getAllSurvey);
