@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 // const noteRoutes = require("./routes/noteRoutes");
 const surveyRoutes = require("./routes/surveyRoutes");
 const userRoutes = require("./routes/userRoutes");
+const endorsementRoutes = require("./routes/endorsementRoutes");
 
 // Express App
 const app = express();
@@ -42,5 +43,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/survey", surveyRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/endors", endorsementRoutes);
 
 module.exports = app;
