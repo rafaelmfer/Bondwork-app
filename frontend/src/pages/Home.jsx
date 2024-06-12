@@ -2,6 +2,9 @@ import React from "react";
 import PopUpOneBtn from "../components/PopUpOneBtn";
 import PopUpTwoBtn from "../components/PopUpTwoBtn";
 import { useState } from "react";
+import { Button, Typography, Box } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../theme/theme";
 
 const Home = () => {
     const [buttonOnePopup, setButtonOnePopup] = useState(false);
@@ -18,7 +21,28 @@ const Home = () => {
 
     return (
         <main className="grid content-center bg-gray-800 min-h-80">
-            <h2>Home</h2>
+            <ThemeProvider theme={theme}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: "30vh",
+                    }}
+                >
+                    <Typography variant="h1" className="text-white">
+                        This is Home!
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ width: 100, marginTop: 2 }}
+                    >
+                        Botón Primario
+                    </Button>
+                </Box>
+            </ThemeProvider>
             <div className="deleteMe text-white">
                 <h3>The great Greek grape growers grow great Greek grapes</h3>
                 <div className="deleteMe flex gap-2 justify-center">
