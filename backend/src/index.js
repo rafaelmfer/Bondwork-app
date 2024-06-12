@@ -12,6 +12,7 @@ const surveyRoutes = require("./routes/surveyRoutes");
 const userRoutes = require("./routes/userRoutes");
 const endorsementRoutes = require("./routes/endorsementRoutes");
 const rewardsRoutes = require("./routes/rewardsRoutes");
+const departmentsRoutes = require("./routes/departmentRoutes");
 
 // Express App
 const app = express();
@@ -46,4 +47,7 @@ app.use("/api/survey", surveyRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/endors", endorsementRoutes);
 app.use("/api/rewards", rewardsRoutes);
+app.use("/api/departments", departmentsRoutes);
+
+
 module.exports = app;
