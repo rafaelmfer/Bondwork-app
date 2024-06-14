@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "concurrently \"npm run start --prefix backend\" \"npm run start --prefix frontend\"",
-        "build": "npm run build --prefix frontend && npm run build --prefix backend",
+        "build": "npm run build --prefix frontend && npm run start --prefix backend",
         "test": "concurrently \"npm test --prefix backend\" \"npm test --prefix frontend\"",
         "prepare": "husky install",
         "format": "prettier --write \"{frontend/src/**/*.{js,jsx,ts,tsx,json,css,scss,md},backend/**/*.{js,json,css,scss,md}}\"",
