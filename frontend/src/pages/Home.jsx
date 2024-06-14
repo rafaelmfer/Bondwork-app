@@ -1,26 +1,18 @@
 import React from "react";
-import PopUpOneBtn from "../components/PopUpOneBtn";
-import PopUpTwoBtn from "../components/PopUpTwoBtn";
-import { useState } from "react";
-import { Button, Typography, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme/theme";
+import DataTable from "../components/DataTable";
+import InfoToolTips from "../components/InfoToolTips";
 
 const Home = () => {
-    const [buttonOnePopup, setButtonOnePopup] = useState(false);
-    const [buttonTwoPopup, setButtonTwoPopup] = useState(false);
-
-    // Set callback function to interact with the data base
-    const handleDelete = () => {
-        console.log("Deleted from db");
-    };
-    const handleSaveDraft = () => {
-        console.log("Saved to db");
-    };
-    // -------------------------------------------
-
+    const infoTextEg = `
+Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.
+Praesent non nunc mollis, fermentum neque at, semper arcu.
+Nullam eget est sed sem iaculis gravida eget vitae justo.
+`;
     return (
-        <main className="grid content-center bg-gray-800 min-h-80">
+        <main className="grid content-center bg-white min-h-80 text-black">
             <ThemeProvider theme={theme}>
                 <Box
                     sx={{
@@ -31,59 +23,12 @@ const Home = () => {
                         height: "30vh",
                     }}
                 >
-                    <Typography variant="h1" className="text-white">
-                        This is Home!
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        sx={{ width: 100, marginTop: 2 }}
-                    >
-                        Botón Primario
-                    </Button>
+                    <Typography variant="h1">This is Home!</Typography>
                 </Box>
             </ThemeProvider>
-            <div className="deleteMe text-white">
-                <h3>The great Greek grape growers grow great Greek grapes</h3>
-                <div className="deleteMe flex gap-2 justify-center">
-                    <button
-                        className="deleteMe inline-block bg-black text-white rounded-lg px-2 py-2 hover:bg-gray-700"
-                        onClick={() => setButtonOnePopup(true)}
-                    >
-                        Test One
-                    </button>
-                    <button
-                        className="deleteMe inline-block bg-black text-white rounded-lg px-2 py-2 hover:bg-gray-700"
-                        onClick={() => setButtonTwoPopup(true)}
-                    >
-                        Test Two
-                    </button>
-                </div>
-                <PopUpOneBtn
-                    trigger={buttonOnePopup}
-                    setTrigger={setButtonOnePopup}
-                >
-                    <h3>Rewards Request Approved</h3>
-                    <div className="w-8 h-8 rounded-full bg-green-700 m-auto"></div>
-                    <p>
-                        Employees will be notified on their rewards request
-                        update.
-                    </p>
-                </PopUpOneBtn>
-                <PopUpTwoBtn
-                    trigger={buttonTwoPopup}
-                    setTrigger={setButtonTwoPopup}
-                    btnOneText="Delete"
-                    btnOneOnClick={handleDelete}
-                    btnTwoText="Save Draft"
-                    btnTwoOnClick={handleSaveDraft}
-                >
-                    <div className="toDo bg-gray-500">Icon</div>
-                    <h3>Cancel Survey</h3>
 
-                    <p>Are you sure you want to cancel this survey?</p>
-                </PopUpTwoBtn>
-            </div>
+            <DataTable />
+            <InfoToolTips longText={infoTextEg} />
         </main>
     );
 };
