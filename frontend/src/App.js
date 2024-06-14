@@ -50,16 +50,16 @@ function App() {
         <Router>
             <div className="App">
                 {showData.length > 0 ? (
-                showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-            ) : (
-                <p>No messages to display</p>
-            )}
-            {showData.length > 0 ? (
-                showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-            ) : (
-                <p>No messages to display</p>
-            )}
-            <header className="App-header"></header>
+                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
+                ) : (
+                    <p>No messages to display</p>
+                )}
+                {showData.length > 0 ? (
+                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
+                ) : (
+                    <p>No messages to display</p>
+                )}
+                <header className="App-header"></header>
                 <TopUserBar />
                 <Sidebar />
                 <Routes>
