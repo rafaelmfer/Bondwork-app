@@ -8,15 +8,22 @@ const mongoose = require("mongoose");
 
 // Routes imports
 // const noteRoutes = require("./routes/noteRoutes");
-const surveyRoutes = require("./routes/surveyRoutes");
-const userRoutes = require("./routes/userRoutes");
-const endorsementRoutes = require("./routes/endorsementRoutes");
-const rewardsRoutes = require("./routes/rewardsRoutes");
-const departmentsRoutes = require("./routes/departmentRoutes");
+const surveyRoutes = require("./src/routes/surveyRoutes");
+const userRoutes = require("./src/routes/userRoutes");
+const endorsementRoutes = require("./src/routes/endorsementRoutes");
+const rewardsRoutes = require("./src/routes/rewardsRoutes");
+const departmentsRoutes = require("./src/routes/departmentRoutes");
 
 // Express App
 const app = express();
-app.use(cors());
+
+app.use(
+    cors({
+        origin: "*",
+        methods: ["POST", "GET", "PUT"],
+        credentials: true,
+    })
+);
 app.use(express.json());
 
 console.log("BACKEND.......");
@@ -48,6 +55,5 @@ app.use("/api/user", userRoutes);
 app.use("/api/endors", endorsementRoutes);
 app.use("/api/rewards", rewardsRoutes);
 app.use("/api/departments", departmentsRoutes);
-
 
 module.exports = app;
