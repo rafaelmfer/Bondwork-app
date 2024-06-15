@@ -23,7 +23,7 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.
                         height: "30vh",
                     }}
                 >
-                    <Typography variant="h1">This is Home!</Typography>
+                    <Typography variant="h1">Jigglypuff!</Typography>
                 </Box>
             </ThemeProvider>
 
