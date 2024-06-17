@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Rewards from "./pages/Rewards";
 import Survey from "./pages/Survey";
 import Users from "./pages/Users";
-import Endorsement from "./pages/Endorsement";
 import Management from "./pages/Management";
 import Responses from "./pages/Responses";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
@@ -67,7 +66,7 @@ function App() {
                     <Route path="/Rewards" element={<Rewards />} />
                     <Route path="/Survey" element={<Survey />} />
                     <Route path="/Users" element={<Users />} />
-                    <Route path="/Endorsement" element={<Endorsement />} />
+                    {/* <Route path="/Endorsement" element={<Endorsement />} /> */}
                     <Route path="/Management" element={<Management />} />
                     <Route path="/Responses" element={<Responses />} />
                 </Routes>
