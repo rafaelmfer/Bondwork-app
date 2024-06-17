@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "concurrently \"npm run dev --prefix backend\" \"npm run start --prefix frontend\"",
+        "start": "concurrently \"npm run start --prefix backend\" \"npm run start --prefix frontend\"",
         "build": "npm run build --prefix frontend && npm run start --prefix backend",
         "test": "concurrently \"npm test --prefix backend\" \"npm test --prefix frontend\"",
         "prepare": "husky install",
@@ -47,6 +47,8 @@
         ]
     },
     "dependencies": {
-        "react-datepicker": "^7.0.0"
+        "react-router-dom": "^6.23.1",
+        "react-scripts": "^5.0.1",
+        "web-vitals": "^4.0.1"
     }
 }

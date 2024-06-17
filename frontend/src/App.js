@@ -1,7 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
-import Endorsement from "./pages/endorsement/Endorsement";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Rewards from "./pages/Rewards";
+import Survey from "./pages/Survey";
+import Users from "./pages/Users";
+import Management from "./pages/Management";
+import Responses from "./pages/Responses";
+import TopUserBar from "./components/TopUserBar/TopUserBar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
     const [message, setMessage] = useState([]);
@@ -39,36 +46,32 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <Endorsement />
-            <h1>
-                ==================================================================
-            </h1>
-            {showData.length > 0 ? (
-                showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-            ) : (
-                <p>No messages to display</p>
-            )}
-            {showData.length > 0 ? (
-                showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-            ) : (
-                <p>No messages to display</p>
-            )}
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Router>
+            <div className="App">
+                {showData.length > 0 ? (
+                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
+                ) : (
+                    <p>No messages to display</p>
+                )}
+                {showData.length > 0 ? (
+                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
+                ) : (
+                    <p>No messages to display</p>
+                )}
+                <header className="App-header"></header>
+                <TopUserBar />
+                <Sidebar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/Rewards" element={<Rewards />} />
+                    <Route path="/Survey" element={<Survey />} />
+                    <Route path="/Users" element={<Users />} />
+                    {/* <Route path="/Endorsement" element={<Endorsement />} /> */}
+                    <Route path="/Management" element={<Management />} />
+                    <Route path="/Responses" element={<Responses />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
