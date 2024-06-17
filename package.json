@@ -45,5 +45,10 @@
             "eslint --fix",
             "prettier --write"
         ]
+    },
+    "dependencies": {
+        "react-router-dom": "^6.23.1",
+        "react-scripts": "^5.0.1",
+        "web-vitals": "^4.0.1"
     }
 }
