@@ -16,24 +16,27 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#2774BC",
-            light: "#42a5f5",
-            dark: "#1565c0",
-            contrastText: "#ffffff",
-        },
-        secondary: {
             main: "#EF6461",
+            light: "#FBFBFB", // Background color
+            contrastText: "#0B0A0A",
         },
+        secondary: { main: "#0F599F", contrastText: "#FFFEFE" },
+        error: { main: "#B23E24" },
+        warning: { main: "#F1C31E" },
+        success: { main: "#20A41E" },
+        info: { main: "#E1E1E1" },
     },
     typography: {
-        fontFamily: "Roboto, Arial, sans-serif",
-        h1: { fontSize: "2rem", fontWeight: 500, lineHeight: 1.5 },
-        h2: { fontSize: "1.75rem", fontWeight: 500, lineHeight: 1.5 },
-        h3: { fontSize: "1.5rem", fontWeight: 500, lineHeight: 1.5 },
-        body1: { fontSize: "1rem", fontWeight: 400, lineHeight: 1.5 },
-        body2: { fontSize: "0.875rem", fontWeight: 400, lineHeight: 1.5 },
-        button: { fontSize: "0.875rem", fontWeight: 500, lineHeight: 1.5 },
-        // Puedes definir otros estilos tipográficos aquí
+        fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+        h1: { fontSize: "2.027rem", fontWeight: 600, lineHeight: "120%" },
+        h2: { fontSize: "1.802rem", fontWeight: 600, lineHeight: "120%" },
+        h3: { fontSize: "1.602rem", fontWeight: 600, lineHeight: "120%" },
+        h4: { fontSize: "1.424rem", fontWeight: 400, lineHeight: "120%" },
+        h5: { fontSize: "1.266rem", fontWeight: 400, lineHeight: "120%" },
+        h6: { fontSize: "1.125rem", fontWeight: 400, lineHeight: "120%" },
+        p: { fontSize: "1rem", lineHeight: "150%" },
+        small1: { fontSize: "0.889rem", fontWeight: 400, lineHeight: "150%" },
+        small2: { fontSize: "0.79rem", fontWeight: 400, lineHeight: "150%" },
     },
     // Puedes añadir más personalizaciones aquí
 });
