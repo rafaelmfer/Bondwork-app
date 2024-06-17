@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
+import Endorsement from "./pages/endorsement/Endorsement";
 
 function App() {
     const [message, setMessage] = useState([]);
@@ -39,6 +40,10 @@ function App() {
 
     return (
         <div className="App">
+            <Endorsement />
+            <h1>
+                ==================================================================
+            </h1>
             {showData.length > 0 ? (
                 showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
             ) : (
