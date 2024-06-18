@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import { Tooltip } from "@mui/material";
 import { LuInfo } from "react-icons/lu";
 
 const CustomButton = styled(Button)(({ theme }) => ({
