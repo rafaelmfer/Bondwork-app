@@ -1,24 +1,19 @@
+// src/App.js
 import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Rewards from "./pages/Rewards";
-import Survey from "./pages/Survey";
-import Users from "./pages/Users";
-import Endorsement from "./pages/Endorsement";
-import Management from "./pages/Management";
-import Responses from "./pages/Responses";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
-import Sidebar from "./components/Sidebar/Sidebar";
+import Sidebar from "./components/Sidebar";
+import routes from "./routes/routes";
 
 function App() {
     const [message, setMessage] = useState([]);
     const [username, setUsername] = useState("admin");
     const [password, setPassword] = useState("secret");
     const [showData, setShowData] = useState([]);
+
     const fetchSurvey = async () => {
         const headers = new Headers();
-        //headers.set('Authorization', 'Basic ' + btoa(process.env.REACT_APP_USERNAME+ ':' + process.env.REACT_APP_PASSWORD));
         headers.set(
             "Authorization",
             "Basic " + btoa(username + ":" + password)
@@ -30,7 +25,6 @@ function App() {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setShowData(data);
             } else {
                 setMessage(
@@ -54,22 +48,17 @@ function App() {
                 ) : (
                     <p>No messages to display</p>
                 )}
-                {showData.length > 0 ? (
-                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-                ) : (
-                    <p>No messages to display</p>
-                )}
-                <header className="App-header"></header>
                 <TopUserBar />
-                <Sidebar />
+                <Sidebar profileName={"Izabela N."} />
+
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/Rewards" element={<Rewards />} />
-                    <Route path="/Survey" element={<Survey />} />
-                    <Route path="/Users" element={<Users />} />
-                    <Route path="/Endorsement" element={<Endorsement />} />
-                    <Route path="/Management" element={<Management />} />
-                    <Route path="/Responses" element={<Responses />} />
+                    {routes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={route.element}
+                        />
+                    ))}
                 </Routes>
             </div>
         </Router>

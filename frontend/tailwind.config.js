@@ -2,7 +2,26 @@
 module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
-        extend: {},
+        extend: {
+            width: {
+                menuWidth: "264px",
+            },
+            margin: {
+                menuMargin: "264px",
+            },
+            transitionProperty: {
+                "max-height": "max-height",
+                opacity: "opacity",
+            },
+            maxHeight: {
+                0: "0",
+                500: "500px",
+            },
+            opacity: {
+                0: "0",
+                100: "1",
+            },
+        },
         colors: {
             transparent: "transparent",
             current: "currentColor",
