@@ -416,9 +416,7 @@ const Survey = () => {
                                         ? { height: "30px" }
                                         : { height: "0px" }
                                 }
-                            >
-                                teste
-                            </div>
+                            ></div>
                         </div>
                     </div>
                 </div>
