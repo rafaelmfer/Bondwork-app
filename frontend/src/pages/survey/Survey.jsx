@@ -4,6 +4,7 @@ import { ReactComponent as ArrowDown } from "./icons/chevron-down.svg";
 import { ReactComponent as Icon } from "./icons/Icon.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { SurveyDetails } from "../../components/SurveyDetails";
 
 const Survey = () => {
     const [text, setText] = useState("");
@@ -14,6 +15,10 @@ const Survey = () => {
         setText(newText);
         setCharCount(newText.length);
     };
+
+    const [active, setActive] = useState(false);
+
+    console.log(active);
 
     return (
         <div id={styles.survey}>
@@ -34,6 +39,8 @@ const Survey = () => {
             <div className={styles.space24}></div>
             <hr />
             <div className={styles.space24}></div>
+
+            <SurveyDetails />
             <div className={styles.surveyFields}>
                 <label className={styles.roboto14} htmlFor="depart">
                     Department
@@ -136,6 +143,7 @@ const Survey = () => {
                     {charCount}/200 characters
                 </p>
             </div>
+
             <div className={styles.space24}></div>
             <p className={`${styles.title18} ${styles.satisfaction}`}>
                 Employee Satisfaction Index (ESI) <Icon />
@@ -491,12 +499,30 @@ const Survey = () => {
                 <div className={styles.employeeSatisfaction}>
                     <div className={styles.questionSatisfaction}>
                         <div className={styles.addQuestion}>
-                            <p
-                                className={`${styles.title20} ${styles.satisfaction}`}
+                            <div className={styles.addingQuestion}>
+                                <p
+                                    className={`${styles.title20} ${styles.satisfaction}`}
+                                >
+                                    Add question{" "}
+                                </p>
+                                <p
+                                    className={styles.title20}
+                                    onClick={() => setActive((e) => !e)}
+                                >
+                                    {" "}
+                                    {active ? "-" : "+"}{" "}
+                                </p>
+                            </div>
+                            <div
+                                className={styles.addNewQuestion}
+                                style={
+                                    active
+                                        ? { height: "30px" }
+                                        : { height: "0px" }
+                                }
                             >
-                                Add question{" "}
-                            </p>
-                            <p className={styles.title20}>+</p>
+                                teste
+                            </div>
                         </div>
                     </div>
                 </div>

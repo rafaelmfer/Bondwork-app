@@ -203,7 +203,8 @@ select {
 .addQuestion {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
+    flex-direction: column;
 }
 
 /* Allow Comments */
@@ -225,4 +226,18 @@ select {
 
 #survey {
     background-color: var(--background-color-inactive);
+}
+
+.addNewQuestion {
+    position: relative;
+    height: 0;
+    top: 0;
+
+    overflow: hidden;
+    transition: 1s;
+}
+
+.addingQuestion {
+    display: flex;
+    justify-content: space-between;
 }
