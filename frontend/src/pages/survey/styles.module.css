@@ -188,6 +188,10 @@ select {
     border: 1px solid var(--border-color-question);
 }
 
+hr {
+    border-top: 1px solid #dde1e6;
+}
+
 .hr20 {
     width: 40px;
     border: 1px solid black;
@@ -240,4 +244,32 @@ select {
 .addingQuestion {
     display: flex;
     justify-content: space-between;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.nav_left {
+    display: flex;
+    gap: 20px;
+}
+
+.nav_left p {
+    display: flex;
+    gap: 10px;
+    padding: 16px 0px;
+
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+}
+
+.btnDraft {
+    border: 1px solid #e5e6e8;
+    padding: 16px 32px;
+    border-radius: 5px;
 }

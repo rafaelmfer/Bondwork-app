@@ -98,11 +98,13 @@ export function SurveyDetails() {
             <div className={styles.space24}></div>
             <div className={styles.surveyFields}>
                 <p className={styles.roboto14}>Points</p>
-                <input
-                    type="text"
-                    className={styles.textField}
-                    placeholder="150"
-                />
+                <div className={styles.adjustArrowPadding}>
+                    <input
+                        type="text"
+                        className={styles.textField}
+                        placeholder="150"
+                    />
+                </div>
             </div>
             <div className={styles.space24}></div>
             <div className={styles.surveyFields}>
