@@ -18,8 +18,6 @@ const Survey = () => {
 
     const [active, setActive] = useState(false);
 
-    console.log(active);
-
     return (
         <div id={styles.survey}>
             <p className={styles.title18}>Survey Title</p>
