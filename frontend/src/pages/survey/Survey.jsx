@@ -21,7 +21,7 @@ const Survey = () => {
                         }}
                     >
                         <Pie />
-                        Survey Details
+                        Survey Detailsa
                     </p>
                     <p
                         onClick={() => setActivePage((e) => !e)}

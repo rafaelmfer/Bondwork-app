@@ -23,7 +23,7 @@ export default function SurveyHtml() {
                 </div>
             </div>
             <div className={styles.space24}></div>
-            <p className={styles.title18}>Choose the participants</p>
+            <p className={styles.title18}>Choose the participant</p>
             <div className={styles.space24}></div>
             <hr />
             <div className={styles.space24}></div>

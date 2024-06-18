@@ -3,7 +3,7 @@ export function ReviewHtml() {
         <>
             <h1>
                 PAGE REVIEW NEED TO COPY SURREY HTML OR CALL THE FUNCTION SURVEY
-                HTML
+                HTML.
             </h1>
         </>
     );
