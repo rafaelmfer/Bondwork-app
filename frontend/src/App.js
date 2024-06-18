@@ -1,6 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Rewards from "./pages/Rewards";
+import Survey from "./pages/survey/Survey";
+import Users from "./pages/Users";
+import Management from "./pages/Management";
+import Responses from "./pages/Responses";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/routes";
