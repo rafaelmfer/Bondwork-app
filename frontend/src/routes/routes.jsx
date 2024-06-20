@@ -1,9 +1,9 @@
 //routes.jsx
 import Home from "../pages/Home";
 import Rewards from "../pages/Rewards";
-import Survey from "../pages/Survey";
+import SurveyMain from "../pages/SurveyMain";
 import Users from "../pages/Users";
-import Endorsement from "../pages/Endorsement";
+import Recognition from "../pages/Recognition";
 import Management from "../pages/Management";
 import Responses from "../pages/Responses";
 import iconHome from "../assets/images/icon_home.svg";
@@ -13,14 +13,14 @@ const routes = [
     { path: "/", element: <Home />, menuLabel: "Dashboard", icon: iconHome },
     {
         path: "/recognition",
-        element: <Endorsement />,
+        element: <Recognition />,
         menuLabel: "Recognition",
         icon: iconHome,
         iconChevron: iconChevronRight,
         subItems: [
             {
                 path: "/recognition/request",
-                element: <Endorsement />,
+                element: <Recognition />,
                 menuLabel: "Request",
             },
         ],
@@ -46,7 +46,7 @@ const routes = [
     },
     {
         path: "/survey",
-        element: <Survey />,
+        element: <SurveyMain />,
         menuLabel: "Survey",
         icon: iconHome,
         iconChevron: iconChevronRight,

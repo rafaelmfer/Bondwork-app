@@ -42,11 +42,11 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {showData.length > 0 ? (
+                {/* {showData.length > 0 ? (
                     showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
                 ) : (
                     <p>No messages to display</p>
-                )}
+                )} */}
                 <TopUserBar />
                 <Sidebar profileName={"Izabela N."} />
 

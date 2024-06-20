@@ -1,23 +1,25 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 
-const useStyles = styled((theme) => ({
-    root: {
-        "& > *": {
-            marginTop: theme.spacing(2),
-        },
-    },
-}));
-
-function ThemePagination() {
-    const classes = useStyles();
-
+// This component receives:
+// count: total number of pages,
+// page: current page
+// onChange: Callback function
+function ThemePagination({ count, page, onChange }) {
     return (
-        <div className={classes.root}>
+        <Box
+            sx={{
+                marginTop: ".5rem",
+                display: "grid",
+                justifyContent: "center",
+            }}
+        >
             <Pagination
-                count={5}
+                count={count}
+                page={page}
+                onChange={onChange}
                 variant="outlined"
                 shape="rounded"
                 renderItem={(item) => {
@@ -26,7 +28,7 @@ function ThemePagination() {
                             <PaginationItem
                                 {...item}
                                 component="span"
-                                children="< Back"
+                                children={"< Back"}
                             />
                         );
                     }
@@ -35,14 +37,14 @@ function ThemePagination() {
                             <PaginationItem
                                 {...item}
                                 component="span"
-                                children="Next >"
+                                children={"Next >"}
                             />
                         );
                     }
                     return <PaginationItem {...item} />;
                 }}
             />
-        </div>
+        </Box>
     );
 }
 
