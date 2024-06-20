@@ -3,6 +3,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+    .transition-max-height {
+        transition-property: max-height;
+    }
+    .transition-opacity {
+        transition-property: opacity;
+    }
+}
 
 .App {
     text-align: center;
