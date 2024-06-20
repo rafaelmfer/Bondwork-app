@@ -1,11 +1,12 @@
 import React from "react";
 import SurveyTable from "../components/SurveyTable";
+import Chart from "../components/Charts/Chart";
 
 const SurveyMain = () => {
     return (
         <main className="ml-menuMargin mt-24">
-            <p>Component created to test the table component</p>
-            <p>Can be deleted</p>
+            <Chart />
+
             <SurveyTable />
         </main>
     );

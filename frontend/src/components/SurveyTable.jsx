@@ -371,6 +371,7 @@ export default function SurveyTable() {
                     />
                     <button className="bg-info p-2 rounded-md mx-2">
                         + Add
+                        {/* <Survey /> */}
                     </button>
                 </Box>
             </Box>

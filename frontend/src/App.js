@@ -1,12 +1,6 @@
 import "./App.css";
-import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Rewards from "./pages/Rewards";
-import Survey from "./pages/survey/Survey";
-import Users from "./pages/Users";
-import Management from "./pages/Management";
-import Responses from "./pages/Responses";
+import { useState, useEffect } from "react";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/routes";
@@ -16,7 +10,6 @@ function App() {
     const [username, setUsername] = useState("admin");
     const [password, setPassword] = useState("secret");
     const [showData, setShowData] = useState([]);
-
     const fetchSurvey = async () => {
         const headers = new Headers();
         headers.set(
@@ -48,11 +41,6 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {/* {showData.length > 0 ? (
-                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-                ) : (
-                    <p>No messages to display</p>
-                )} */}
                 <TopUserBar />
                 <Sidebar profileName={"Izabela N."} />
 
