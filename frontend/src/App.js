@@ -1,6 +1,6 @@
 import "./App.css";
-import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Rewards from "./pages/Rewards";
 import Survey from "./pages/survey/Survey";
@@ -9,12 +9,27 @@ import Management from "./pages/Management";
 import Responses from "./pages/Responses";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Chart from "./components/Charts/Chart";
+import {
+    createThemeContext,
+    createThemeContextSecond,
+} from "./context/Context";
 
 function App() {
+    const [nome, setNome] = useState("Context is working");
     const [message, setMessage] = useState([]);
     const [username, setUsername] = useState("admin");
     const [password, setPassword] = useState("secret");
     const [showData, setShowData] = useState([]);
+    const meses = [
+        "Janeiro",
+        "Fevereiro",
+        "Marco",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+    ];
     const fetchSurvey = async () => {
         const headers = new Headers();
         //headers.set('Authorization', 'Basic ' + btoa(process.env.REACT_APP_USERNAME+ ':' + process.env.REACT_APP_PASSWORD));
@@ -61,6 +76,13 @@ function App() {
                 <header className="App-header"></header>
                 <TopUserBar />
                 <Sidebar />
+
+                <createThemeContextSecond.Provider value={nome}>
+                    <createThemeContext.Provider value={meses}>
+                        <Chart />
+                    </createThemeContext.Provider>
+                </createThemeContextSecond.Provider>
+
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/Rewards" element={<Rewards />} />
