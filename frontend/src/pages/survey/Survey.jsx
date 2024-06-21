@@ -9,7 +9,7 @@ const Survey = () => {
     const [activePage, setActivePage] = useState(true);
 
     return (
-        <>
+        <main className="ml-menuMargin mt-24 px-48 py-4">
             <div className={styles.nav}>
                 <div className={styles.nav_left}>
                     <p
@@ -36,6 +36,7 @@ const Survey = () => {
                     </p>
                 </div>
                 <button className={styles.btnDraft}>Save Draft</button>
+                <button className={styles.btnDraft}>Save Draft</button>
             </div>
             {/* border-bottom: 2px solid black; */}
 
@@ -52,7 +53,7 @@ const Survey = () => {
             >
                 <SurveyHtml />
             </div>
-        </>
+        </main>
     );
 };
 
