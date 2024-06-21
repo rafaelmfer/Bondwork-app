@@ -1,9 +1,29 @@
 import "./App.css";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/routes";
+import Survey from "./pages/survey/Survey";
+
+// Method to recurservely create the routes
+const renderRoutes = (routes) => {
+    return routes.map((route, index) => {
+        if (route.subItems) {
+            return (
+                <React.Fragment key={index}>
+                    <Route path={route.path} element={route.element} />
+                    {renderRoutes(route.subItems)}
+                </React.Fragment>
+            );
+        } else {
+            return (
+                <Route key={index} path={route.path} element={route.element} />
+            );
+        }
+    });
+};
 
 function App() {
     const [message, setMessage] = useState([]);
@@ -44,14 +64,10 @@ function App() {
                 <TopUserBar />
                 <Sidebar profileName={"Izabela N."} />
 
+                {/* Call to the method to render all the routes */}
                 <Routes>
-                    {routes.map((route, index) => (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            element={route.element}
-                        />
-                    ))}
+                    {renderRoutes(routes)}
+                    <Route path="/survey/addNew" element={<Survey />} />
                 </Routes>
             </div>
         </Router>
