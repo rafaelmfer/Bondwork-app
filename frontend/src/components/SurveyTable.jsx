@@ -1,9 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
+import { useLocation } from "react-router-dom"; // for the "view all" button
 import { Box, Tabs, Tab, IconButton, TextField } from "@mui/material";
 import { Table } from "@mui/joy";
 import { MdMoreVert, MdArrowUpward, MdArrowDownward } from "react-icons/md";
 import ThemePagination from "./ThemePagination";
+import { Link } from "react-router-dom";
 
 function createData(
     id,
@@ -256,14 +258,14 @@ function stableSort(array, comparator) {
     return stabilizedThis.map((el) => el[0]);
 }
 
-const rowsPerPage = 10; // Número máximo de filas por página
-
-export default function SurveyTable() {
+export default function SurveyTable({ rowsNumber }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState("surveyName");
     const [tabValue, setTabValue] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
-    const [currentPage, setCurrentPage] = useState(1); //
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
 
     // Methon to filter and sort the rows
     const getFilteredAndSortedRows = () => {
@@ -342,11 +344,23 @@ export default function SurveyTable() {
     const totalRows = sortedRows.length;
     const totalPages = Math.ceil(totalRows / rowsPerPage);
 
+    // Check the page that is calling the component
+    const location = useLocation();
+
     return (
         <Box component="section" sx={{ m: 2, p: 2, border: "1px dashed grey" }}>
             <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
-                <h2 className="px-2 border-r-2 border-info text-h2">Surveys</h2>
-                <button className="px-2">View all </button>
+                <h2 className="px-2 text-h2">Surveys</h2>
+                <Link
+                    to="/survey/management"
+                    className={
+                        location.pathname !== "/survey/management"
+                            ? "border-l-2 border-info px-2"
+                            : "hidden"
+                    }
+                >
+                    <span>View all</span>
+                </Link>
             </Box>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Tabs
@@ -360,8 +374,9 @@ export default function SurveyTable() {
                     <Tab sx={{ textTransform: "none" }} label="Finished" />
                     <Tab sx={{ textTransform: "none" }} label="Draft" />
                 </Tabs>
-                <Box>
+                <Box className="flex content-center">
                     <TextField
+                        className="m-0"
                         id="search-bar"
                         variant="outlined"
                         placeholder="Search for ..."
@@ -369,10 +384,13 @@ export default function SurveyTable() {
                         value={searchQuery}
                         onChange={handleSearch}
                     />
-                    <button className="bg-info p-2 rounded-md mx-2">
-                        + Add
-                        {/* <Survey /> */}
-                    </button>
+
+                    <Link
+                        to="/survey/addNew"
+                        className="grid content-center bg-info px-2 rounded-md mx-2"
+                    >
+                        <span>+ Add</span>
+                    </Link>
                 </Box>
             </Box>
             <Table className="p-8">

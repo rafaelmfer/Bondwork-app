@@ -1,10 +1,10 @@
 //routes.jsx
 import Home from "../pages/Home";
 import Rewards from "../pages/Rewards";
-import SurveyMain from "../pages/SurveyMain";
+import SurveyMain from "../pages/survey/SurveyMain";
 import Users from "../pages/Users";
 import Recognition from "../pages/Recognition";
-import Management from "../pages/Management";
+import Management from "../pages/survey/Management";
 import Responses from "../pages/Responses";
 import iconHome from "../assets/images/icon_home.svg";
 import iconChevronRight from "../assets/images/icon_chevron_right.svg";
