@@ -7,13 +7,10 @@ router.use(express.json());
 router.use(cors()); // This will enable CORS for all routes
 
 const {
-    getAll,
     getCompanyName,
     getROI,
     getEmployeesID,
 } = require("../controllers/companyController");
-
-router.get("/", getAll);
 
 // localhost:5000/api/company/companyName
 router.get("/companyName", getCompanyName);
