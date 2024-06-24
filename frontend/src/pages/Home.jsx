@@ -12,7 +12,7 @@ Praesent non nunc mollis, fermentum neque at, semper arcu.
 Nullam eget est sed sem iaculis gravida eget vitae justo.
 `;
     return (
-        <main className="grid content-center bg-white min-h-80 text-black">
+        <main className="ms-menuMargin grid content-center bg-white min-h-80 text-black">
             <ThemeProvider theme={theme}>
                 <Box
                     sx={{

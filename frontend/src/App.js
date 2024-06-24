@@ -1,14 +1,29 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Rewards from "./pages/Rewards";
-import Survey from "./pages/survey/Survey";
-import Users from "./pages/Users";
-import Management from "./pages/Management";
-import Responses from "./pages/Responses";
+import { useState, useEffect } from "react";
 import TopUserBar from "./components/TopUserBar/TopUserBar";
-import Sidebar from "./components/Sidebar/Sidebar";
+import Sidebar from "./components/Sidebar";
+import routes from "./routes/routes";
+import Survey from "./pages/survey/Survey";
+
+// Method to recurservely create the routes
+const renderRoutes = (routes) => {
+    return routes.map((route, index) => {
+        if (route.subItems) {
+            return (
+                <React.Fragment key={index}>
+                    <Route path={route.path} element={route.element} />
+                    {renderRoutes(route.subItems)}
+                </React.Fragment>
+            );
+        } else {
+            return (
+                <Route key={index} path={route.path} element={route.element} />
+            );
+        }
+    });
+};
 
 function App() {
     const [message, setMessage] = useState([]);
@@ -17,7 +32,6 @@ function App() {
     const [showData, setShowData] = useState([]);
     const fetchSurvey = async () => {
         const headers = new Headers();
-        //headers.set('Authorization', 'Basic ' + btoa(process.env.REACT_APP_USERNAME+ ':' + process.env.REACT_APP_PASSWORD));
         headers.set(
             "Authorization",
             "Basic " + btoa(username + ":" + password)
@@ -29,7 +43,6 @@ function App() {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setShowData(data);
             } else {
                 setMessage(
@@ -48,27 +61,13 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {showData.length > 0 ? (
-                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-                ) : (
-                    <p>No messages to display</p>
-                )}
-                {showData.length > 0 ? (
-                    showData.map((e, index) => <p key={index}>{e.surveyID}</p>)
-                ) : (
-                    <p>No messages to display</p>
-                )}
-                <header className="App-header"></header>
                 <TopUserBar />
-                <Sidebar />
+                <Sidebar profileName={"Izabela N."} />
+
+                {/* Call to the method to render all the routes */}
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/Rewards" element={<Rewards />} />
-                    <Route path="/Survey" element={<Survey />} />
-                    <Route path="/Users" element={<Users />} />
-                    {/* <Route path="/Endorsement" element={<Endorsement />} /> */}
-                    <Route path="/Management" element={<Management />} />
-                    <Route path="/Responses" element={<Responses />} />
+                    {renderRoutes(routes)}
+                    <Route path="/survey/addNew" element={<Survey />} />
                 </Routes>
             </div>
         </Router>
