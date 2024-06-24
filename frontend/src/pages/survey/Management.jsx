@@ -3,7 +3,7 @@ import SurveyTable from "../../components/SurveyTable";
 
 const Management = () => {
     return (
-        <main className="ml-menuMargin mt-24">
+        <main className="ml-menuMargin mt-24 bg-white">
             <h2>Management</h2>
             <SurveyTable rowsNumber="15" />
         </main>

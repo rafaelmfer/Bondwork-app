@@ -10,6 +10,9 @@
     .transition-opacity {
         transition-property: opacity;
     }
+    .bg-white {
+        background-color: white;
+    }
 }
 
 .App {
@@ -52,7 +55,7 @@
     width: 100%;
     display: flex !important;
     align-items: center;
-    padding: 9px 0;
+    padding: 9px 11px;
 }
 
 .react-datepicker-wrapper {

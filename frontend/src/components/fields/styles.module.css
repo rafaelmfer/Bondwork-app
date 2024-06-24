@@ -1,0 +1,84 @@
+h2 {
+    font-size: 18px;
+}
+
+.recurrenceLabel,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+.textArea,
+.adjustArrowPadding {
+    border-bottom: 1px solid #c1c7cd !important;
+}
+
+.textField,
+.adjustArrowPadding,
+select {
+    width: 100%;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    background-color: var(--background-color-light);
+    padding: 11px;
+    outline: none;
+    border: none;
+}
+
+.textArea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+textArea {
+    resize: none;
+    padding: 22px !important;
+}
+
+.surveyFields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    text-align: left;
+}
+
+.adjustArrowPadding {
+    border-bottom: 1px solid #c1c7cd !important;
+}
+
+.adjustArrowPadding {
+    width: 100%;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    background-color: var(--background-color-light);
+    padding: 11px;
+    outline: none;
+    border: none;
+}
+
+.datePicker {
+    width: 100%;
+    background-color: var(--background-color-light);
+}
+
+.paddingDatePicker {
+    background-color: var(--background-color-light);
+    padding: 11px;
+    border-bottom: 1px solid #c1c7cd;
+}
+
+.recurrenceFields {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+}
+
+.titleIcon {
+    display: flex;
+    gap: 10px;
+}

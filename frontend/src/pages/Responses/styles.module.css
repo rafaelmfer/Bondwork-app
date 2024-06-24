@@ -1,0 +1,30 @@
+.surveyEmployee {
+    background-color: white;
+    text-align: left;
+    padding: 24px 32px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
+}
+
+.space24 {
+    width: 100%;
+    height: 24px;
+}
+
+.oneLineTwoFields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* textArea Fields */
+.textArea {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}

@@ -3,6 +3,7 @@ import { ReactComponent as Icon } from "./icons/Icon.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import { SurveyDetails } from "../../components/SurveyDetails";
 import { useState } from "react";
+import { InputType } from "../../components/fields/InputType";
 
 export default function SurveyHtml() {
     const [active, setActive] = useState(false);
@@ -12,16 +13,13 @@ export default function SurveyHtml() {
             <div className={styles.space24}></div>
             <hr />
             <div className={styles.space24}></div>
-            <div className={styles.surveyFields}>
-                <p className={styles.roboto14}>Title</p>
-                <div className={styles.adjustArrowPadding}>
-                    <input
-                        type="text"
-                        className={styles.textField}
-                        placeholder="Employee Satisfaction"
-                    />
-                </div>
-            </div>
+            <InputType
+                title={"Title"}
+                type={"text"}
+                placeholder={"Employee Satisfaction"}
+            />
+            <div className={styles.space24}></div>
+
             <div className={styles.space24}></div>
             <p className={styles.title18}>Choose the participant</p>
             <div className={styles.space24}></div>

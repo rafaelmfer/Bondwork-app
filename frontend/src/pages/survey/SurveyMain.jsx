@@ -5,7 +5,7 @@ import { Summary } from "../../components/Summary/Summary";
 
 const SurveyMain = () => {
     return (
-        <main className="ml-menuMargin mt-24">
+        <main className="ml-menuMargin mt-24 bg-white">
             <Summary />
             <Chart />
 
