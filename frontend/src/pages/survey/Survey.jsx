@@ -9,49 +9,51 @@ const Survey = () => {
     const [activePage, setActivePage] = useState(true);
 
     return (
-        <main className="ml-menuMargin mt-24 px-48 py-4">
-            <div className={styles.nav}>
-                <div className={styles.nav_left}>
-                    <p
-                        onClick={() => setActivePage((e) => !e)}
-                        style={{
-                            borderBottom: activePage
-                                ? "2px solid black"
-                                : "none",
-                        }}
-                    >
-                        <Pie />
-                        Survey Detailsa
-                    </p>
-                    <p
-                        onClick={() => setActivePage((e) => !e)}
-                        style={{
-                            borderBottom: activePage
-                                ? "none"
-                                : "2px solid black",
-                        }}
-                    >
-                        <Pie />
-                        Review
-                    </p>
+        <main className="ml-menuMargin mt-24 py-4 bg-white">
+            <div className={styles.whiteBG}>
+                <div className={styles.nav}>
+                    <div className={styles.nav_left}>
+                        <p
+                            onClick={() => setActivePage((e) => !e)}
+                            style={{
+                                borderBottom: activePage
+                                    ? "2px solid black"
+                                    : "none",
+                            }}
+                        >
+                            <Pie />
+                            Survey Details
+                        </p>
+                        <p
+                            onClick={() => setActivePage((e) => !e)}
+                            style={{
+                                borderBottom: activePage
+                                    ? "none"
+                                    : "2px solid black",
+                            }}
+                        >
+                            <Pie />
+                            Review
+                        </p>
+                    </div>
+                    <button className={styles.btnDraft}>Save Draft</button>
+                    <button className={styles.btnDraft}>Save Draft</button>
                 </div>
-                <button className={styles.btnDraft}>Save Draft</button>
-                <button className={styles.btnDraft}>Save Draft</button>
-            </div>
-            {/* border-bottom: 2px solid black; */}
+                {/* border-bottom: 2px solid black; */}
 
-            <div
-                id={styles.survey}
-                style={{ display: activePage ? "none" : "block" }}
-            >
-                <ReviewHtml />
-            </div>
+                <div
+                    id={styles.survey}
+                    style={{ display: activePage ? "none" : "block" }}
+                >
+                    <ReviewHtml />
+                </div>
 
-            <div
-                id={styles.survey}
-                style={{ display: activePage ? "block" : "none" }}
-            >
-                <SurveyHtml />
+                <div
+                    id={styles.survey}
+                    style={{ display: activePage ? "block" : "none" }}
+                >
+                    <SurveyHtml />
+                </div>
             </div>
         </main>
     );

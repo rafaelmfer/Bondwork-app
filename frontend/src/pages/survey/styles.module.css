@@ -127,6 +127,10 @@ main {
     color: var(--text-color-light);
 }
 
+.surveyDetails {
+    background-color: white;
+}
+
 /* Inputs */
 .textField,
 .adjustArrowPadding,
@@ -272,4 +276,9 @@ hr {
     border: 1px solid #e5e6e8;
     padding: 16px 32px;
     border-radius: 5px;
+}
+
+.whiteBG {
+    background-color: white;
+    padding: 24px 32px;
 }
