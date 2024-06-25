@@ -2,9 +2,9 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import TopUserBar from "./components/TopUserBar/TopUserBar";
+import TopUserBar from "./components/top-user-bar/TopUserBar";
 import Sidebar from "./components/Sidebar";
-import routes from "./routes/routes";
+import routes from "./routes/Routes";
 import Survey from "./pages/survey/Survey";
 
 // Method to recurservely create the routes

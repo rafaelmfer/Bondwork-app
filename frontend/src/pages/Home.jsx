@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme/theme";
-import DataTable from "../components/DataTable";
 import InfoToolTips from "../components/InfoToolTips";
 
 const Home = () => {
@@ -23,11 +22,10 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.
                         height: "30vh",
                     }}
                 >
-                    <Typography variant="h1">Jigglypuff!</Typography>
+                    <Typography variant="h1">HomePage</Typography>
                 </Box>
             </ThemeProvider>
 
-            <DataTable />
             <InfoToolTips longText={infoTextEg} />
         </main>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rewards = () => {
+const RewardsMain = () => {
     return (
         <main>
             <h2>Rewards</h2>
@@ -8,4 +8,4 @@ const Rewards = () => {
     );
 };
 
-export default Rewards;
+export default RewardsMain;

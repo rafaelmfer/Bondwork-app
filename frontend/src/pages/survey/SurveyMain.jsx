@@ -1,6 +1,6 @@
 import React from "react";
 import SurveyTable from "../../components/SurveyTable";
-import Summary from "../../components/Summary/Summary";
+import Summary from "../../components/summary/Summary";
 import ChartArea from "../../components/Charts/ChartArea";
 import ChartDonut from "../../components/Charts/ChartDonut";
 import ChartLine from "../../components/Charts/ChartLine";
