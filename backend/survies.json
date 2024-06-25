@@ -1,0 +1,328 @@
+{
+    "survies": [
+        {
+            "surveyName": "Customer Satisfaction Survey",
+            "createdIn": "2024-01-01",
+            "expired": "2024-01-31",
+            "status": "Ongoing",
+            "viewed": 150,
+            "completed": 100,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Employee Feedback Survey",
+            "createdIn": "2023-12-15",
+            "expired": "2024-01-15",
+            "status": "Finished",
+            "viewed": 200,
+            "completed": 180,
+            "dropouts": 10
+        },
+        {
+            "surveyName": "Market Research Survey",
+            "createdIn": "2024-02-01",
+            "expired": "2024-02-28",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Product Feedback Survey",
+            "createdIn": "2023-11-20",
+            "expired": "2023-12-20",
+            "status": "Finished",
+            "viewed": 300,
+            "completed": 250,
+            "dropouts": 30
+        },
+        {
+            "surveyName": "Website Usability Survey",
+            "createdIn": "2024-01-10",
+            "expired": "2024-01-20",
+            "status": "Ongoing",
+            "viewed": 120,
+            "completed": 90,
+            "dropouts": 15
+        },
+        {
+            "surveyName": "Event Feedback Survey",
+            "createdIn": "2024-02-10",
+            "expired": "2024-03-10",
+            "status": "Draft",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Service Quality Survey",
+            "createdIn": "2023-12-01",
+            "expired": "2023-12-31",
+            "status": "Finished",
+            "viewed": 250,
+            "completed": 200,
+            "dropouts": 25
+        },
+        {
+            "surveyName": "Customer Loyalty Survey",
+            "createdIn": "2024-01-15",
+            "expired": "2024-02-15",
+            "status": "Ongoing",
+            "viewed": 180,
+            "completed": 150,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Brand Awareness Survey",
+            "createdIn": "2023-11-01",
+            "expired": "2023-11-30",
+            "status": "Finished",
+            "viewed": 220,
+            "completed": 190,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Product Development Survey",
+            "createdIn": "2024-02-20",
+            "expired": "2024-03-20",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Customer Satisfaction Survey",
+            "createdIn": "2024-01-01",
+            "expired": "2024-01-31",
+            "status": "Ongoing",
+            "viewed": 150,
+            "completed": 100,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Employee Feedback Survey",
+            "createdIn": "2023-12-15",
+            "expired": "2024-01-15",
+            "status": "Finished",
+            "viewed": 200,
+            "completed": 180,
+            "dropouts": 10
+        },
+        {
+            "surveyName": "Market Research Survey",
+            "createdIn": "2024-02-01",
+            "expired": "2024-02-28",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Product Feedback Survey",
+            "createdIn": "2023-11-20",
+            "expired": "2023-12-20",
+            "status": "Finished",
+            "viewed": 300,
+            "completed": 250,
+            "dropouts": 30
+        },
+        {
+            "surveyName": "Website Usability Survey",
+            "createdIn": "2024-01-10",
+            "expired": "2024-01-20",
+            "status": "Ongoing",
+            "viewed": 120,
+            "completed": 90,
+            "dropouts": 15
+        },
+        {
+            "surveyName": "Event Feedback Survey",
+            "createdIn": "2024-02-10",
+            "expired": "2024-03-10",
+            "status": "Draft",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Service Quality Survey",
+            "createdIn": "2023-12-01",
+            "expired": "2023-12-31",
+            "status": "Finished",
+            "viewed": 250,
+            "completed": 200,
+            "dropouts": 25
+        },
+        {
+            "surveyName": "Customer Loyalty Survey",
+            "createdIn": "2024-01-15",
+            "expired": "2024-02-15",
+            "status": "Ongoing",
+            "viewed": 180,
+            "completed": 150,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Brand Awareness Survey",
+            "createdIn": "2023-11-01",
+            "expired": "2023-11-30",
+            "status": "Finished",
+            "viewed": 220,
+            "completed": 190,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Product Development Survey",
+            "createdIn": "2024-02-20",
+            "expired": "2024-03-20",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Community Feedback Survey",
+            "createdIn": "2024-01-05",
+            "expired": "2024-02-05",
+            "status": "Ongoing",
+            "viewed": 140,
+            "completed": 110,
+            "dropouts": 15
+        },
+        {
+            "surveyName": "Tech Trends Survey",
+            "createdIn": "2024-03-01",
+            "expired": "2024-03-31",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Health and Wellness Survey",
+            "createdIn": "2023-10-01",
+            "expired": "2023-10-31",
+            "status": "Finished",
+            "viewed": 180,
+            "completed": 150,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Travel Preferences Survey",
+            "createdIn": "2024-02-01",
+            "expired": "2024-02-28",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Food and Beverage Survey",
+            "createdIn": "2023-12-10",
+            "expired": "2024-01-10",
+            "status": "Finished",
+            "viewed": 160,
+            "completed": 130,
+            "dropouts": 25
+        },
+        {
+            "surveyName": "Environmental Awareness Survey",
+            "createdIn": "2024-02-15",
+            "expired": "2024-03-15",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Financial Literacy Survey",
+            "createdIn": "2023-11-15",
+            "expired": "2023-12-15",
+            "status": "Finished",
+            "viewed": 190,
+            "completed": 160,
+            "dropouts": 20
+        },
+        {
+            "surveyName": "Fitness Goals Survey",
+            "createdIn": "2024-01-20",
+            "expired": "2024-02-20",
+            "status": "Ongoing",
+            "viewed": 110,
+            "completed": 85,
+            "dropouts": 10
+        },
+        {
+            "surveyName": "Gaming Preferences Survey",
+            "createdIn": "2023-11-01",
+            "expired": "2023-11-30",
+            "status": "Finished",
+            "viewed": 230,
+            "completed": 200,
+            "dropouts": 15
+        },
+        {
+            "surveyName": "Home Improvement Survey",
+            "createdIn": "2024-02-10",
+            "expired": "2024-03-10",
+            "status": "Draft",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Online Learning Survey",
+            "createdIn": "2024-01-25",
+            "expired": "2024-02-25",
+            "status": "Ongoing",
+            "viewed": 130,
+            "completed": 100,
+            "dropouts": 15
+        },
+        {
+            "surveyName": "Pet Care Survey",
+            "createdIn": "2023-12-01",
+            "expired": "2023-12-31",
+            "status": "Finished",
+            "viewed": 210,
+            "completed": 170,
+            "dropouts": 25
+        },
+        {
+            "surveyName": "Public Opinion Survey",
+            "createdIn": "2024-01-05",
+            "expired": "2024-01-25",
+            "status": "Ongoing",
+            "viewed": 140,
+            "completed": 120,
+            "dropouts": 15
+        },
+        {
+            "surveyName": "Shopping Habits Survey",
+            "createdIn": "2023-10-20",
+            "expired": "2023-11-20",
+            "status": "Finished",
+            "viewed": 250,
+            "completed": 210,
+            "dropouts": 30
+        },
+        {
+            "surveyName": "Social Media Usage Survey",
+            "createdIn": "2024-02-01",
+            "expired": "2024-02-28",
+            "status": "Upcoming",
+            "viewed": 0,
+            "completed": 0,
+            "dropouts": 0
+        },
+        {
+            "surveyName": "Sports Preferences Survey",
+            "createdIn": "2024-01-15",
+            "expired": "2024-02-15",
+            "status": "Ongoing",
+            "viewed": 160,
+            "completed": 140,
+            "dropouts": 10
+        }
+    ]
+}
