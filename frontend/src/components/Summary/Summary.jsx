@@ -15,7 +15,7 @@ const summaryValues = {
     Dropouts: "5",
     Average: "5 min",
 };
-export function Summary() {
+export default function Summary() {
     return (
         <div className={styles.mainSummary}>
             <div className={styles.summary}>
