@@ -213,6 +213,8 @@ hr {
     justify-content: space-between;
     align-items: stretch;
     flex-direction: column;
+    padding: 16px;
+    border: 1px solid var(--border-color-question);
 }
 
 /* Allow Comments */
@@ -281,4 +283,24 @@ hr {
 .whiteBG {
     background-color: white;
     padding: 24px 32px;
+}
+
+.addQuestionBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: row;
+    padding: 16px;
+    border: 1px solid var(--border-color-question);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+}
+
+.Comments {
+    text-align: left;
+}
+
+.nextBtn {
+    display: flex;
+    justify-content: space-between;
 }
