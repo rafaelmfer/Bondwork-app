@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Avatar } from "@mui/material";
-import routes from "../routes/Routes2"; //Routes to the links on the menu. With exception of  the profile route
+import routes from "../routes/Routes"; //Routes to the links on the menu. With exception of  the profile route
 
 const Sidebar = ({ profileName }) => {
     // TODO: For the moment we pass the profileName through the props
