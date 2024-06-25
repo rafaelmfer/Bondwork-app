@@ -13,6 +13,7 @@ const endorsementRoutes = require("./src/routes/endorsementRoutes");
 const rewardsRoutes = require("./src/routes/rewardsRoutes");
 const departmentsRoutes = require("./src/routes/departmentRoutes");
 const companyRoutes = require("./src/routes/companyRoutes");
+const questionRoutes = require("./src/routes/questionRoutes");
 
 // Express App
 const app = express();
@@ -55,6 +56,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/endors", endorsementRoutes);
 app.use("/api/rewards", rewardsRoutes);
 app.use("/api/departments", departmentsRoutes);
+app.use("/api/questions", questionRoutes);
 app.use("/api/company", companyRoutes);
 
 module.exports = app;

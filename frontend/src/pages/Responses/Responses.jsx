@@ -6,12 +6,17 @@ import { InputTextArea } from "../../components/fields/InputTextArea/InputTextAr
 import Survey from "../survey/Survey";
 import SurveyTable from "../../components/SurveyTable";
 import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
+import { IndividualReponse } from "./IndividualResponse";
 
 const Responses = () => {
     const Recurrence = ["Weekly", "Month", "Semester", "Year"];
+
     return (
         <>
+            <IndividualReponse />
+
             <Survey />
+
             <main className="ml-menuMargin mt-24 bg-white">
                 <div className={styles.surveyEmployee}>
                     <h1>Survey: Employee Satisfaction</h1>
