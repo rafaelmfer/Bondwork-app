@@ -16,7 +16,7 @@ const SurveyMain = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(URL);
+                const res = await fetch(`http://localhost:${PORT}/api/surveys/surveys`);
                 const data = await res.json();
 
                 setSurvies(data.survies);
