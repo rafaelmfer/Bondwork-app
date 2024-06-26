@@ -100,3 +100,9 @@ h1 {
 .btnList {
     text-align: right;
 }
+
+.RequestBox {
+    display: flex;
+
+    gap: 20px;
+}
