@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import SurveyTable from "../../components/SurveyTable";
-import Summary from "../../components/teste/Summary";
+import Summary from "../../components/summary/Summary";
 import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
