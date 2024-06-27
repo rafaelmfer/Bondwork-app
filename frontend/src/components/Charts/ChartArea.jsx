@@ -1,13 +1,8 @@
-// //https://apexcharts.com/docs/chart-types/line-chart/
 import React from "react";
 import Chart from "react-apexcharts";
 import styles from "./styles.module.css";
-import { useContext } from "react";
-import { createThemeContext } from "../../../context/Context";
 
-const ChartLine = () => {
-    const months = useContext(createThemeContext);
-
+export default function ChartArea() {
     const options = {
         chart: {
             height: 200,
@@ -33,8 +28,6 @@ const ChartLine = () => {
         },
         colors: ["silver", "blue"],
         xaxis: {
-            //categories: months
-            //categories: props.dates
             categories: [
                 "01 Jan",
                 "02 Jan",
@@ -47,22 +40,15 @@ const ChartLine = () => {
         },
     };
 
-    const series = [
-        {
-            name: "Series 1",
-            data: [45, 52, 38, 45, 19, 23, 2],
-        },
-    ];
-
     return (
         <div className={styles.fullWidth}>
-            <p className={styles.title16}>Overall Satisfaction Drivers</p>
-            <Chart options={options} series={series} type="area" height={280} />
+            <p className={styles.title16}>Average Score Over Time</p>
+            <Chart
+                options={options}
+                series={options.series}
+                type="area"
+                height={280}
+            />
         </div>
     );
-};
-
-export default ChartLine;
-
-// const meses = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho'];
-// <Chart dates={meses} />
+}

@@ -1,16 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom"; // for the "view all" button
+import { useLocation, Link } from "react-router-dom";
 import { Box, Tabs, Tab, IconButton, TextField } from "@mui/material";
 import { Table } from "@mui/joy";
 import { MdMoreVert, MdArrowUpward, MdArrowDownward } from "react-icons/md";
 import ThemePagination from "./ThemePagination";
-import { Link } from "react-router-dom";
 
 function createData(
     id,
     surveyName,
-    created,
+    createdIn,
     expired,
     status,
     viewed,
@@ -20,7 +19,7 @@ function createData(
     return {
         id,
         surveyName,
-        created,
+        createdIn,
         expired,
         status,
         viewed,
@@ -29,205 +28,20 @@ function createData(
     };
 }
 
-const data = [
-    {
-        surveyName: "Aerified",
-        created: "06-01-2024",
-        expired: "02-03-2024",
-        status: "Ongoing",
-        viewed: "11",
-        completed: "7178",
-        dropouts: 1,
-    },
-    {
-        surveyName: "Fix San",
-        created: "03-08-2023",
-        expired: "12-03-2024",
-        status: "Ongoing",
-        viewed: "1555",
-        completed: "544",
-        dropouts: 2,
-    },
-    {
-        surveyName: "Stim",
-        created: "05-05-2024",
-        expired: "11-06-2024",
-        status: "Upcoming",
-        viewed: "9",
-        completed: "9659",
-        dropouts: 3,
-    },
-    {
-        surveyName: "Subin",
-        created: "10-03-2024",
-        expired: "03-09-2024",
-        status: "Upcoming",
-        viewed: "5",
-        completed: "0",
-        dropouts: 4,
-    },
-    {
-        surveyName: "Flowdesk",
-        created: "02-09-2023",
-        expired: "12-04-2024",
-        status: "Upcoming",
-        viewed: "54507",
-        completed: "68590",
-        dropouts: 5,
-    },
-    {
-        surveyName: "Zaam-Dox",
-        created: "05-06-2024",
-        expired: "09-06-2024",
-        status: "Finished",
-        viewed: "1400",
-        completed: "8230",
-        dropouts: 6,
-    },
-    {
-        surveyName: "Cardguard",
-        created: "10-10-2023",
-        expired: "10-04-2024",
-        status: "Finished",
-        viewed: "771",
-        completed: "4",
-        dropouts: 7,
-    },
-    {
-        surveyName: "Fintone",
-        created: "07-06-2023",
-        expired: "06-09-2024",
-        status: "Draft",
-        viewed: "53",
-        completed: "50",
-        dropouts: 8,
-    },
-    {
-        surveyName: "Zaam-Dox",
-        created: "02-08-2023",
-        expired: "10-09-2024",
-        status: "Draft",
-        viewed: "4097",
-        completed: "6930",
-        dropouts: 9,
-    },
-    {
-        surveyName: "Biodex",
-        created: "05-04-2024",
-        expired: "01-07-2024",
-        status: "Draft",
-        viewed: "1",
-        completed: "42",
-        dropouts: 10,
-    },
-    {
-        surveyName: "Aerified",
-        created: "06-01-2024",
-        expired: "02-03-2024",
-        status: "Ongoing",
-        viewed: "11",
-        completed: "7178",
-        dropouts: 1,
-    },
-    {
-        surveyName: "Fix San",
-        created: "03-08-2023",
-        expired: "12-03-2024",
-        status: "Ongoing",
-        viewed: "1555",
-        completed: "544",
-        dropouts: 2,
-    },
-    {
-        surveyName: "Stim",
-        created: "05-05-2024",
-        expired: "11-06-2024",
-        status: "Upcoming",
-        viewed: "9",
-        completed: "9659",
-        dropouts: 3,
-    },
-    {
-        surveyName: "Subin",
-        created: "10-03-2024",
-        expired: "03-09-2024",
-        status: "Upcoming",
-        viewed: "5",
-        completed: "0",
-        dropouts: 4,
-    },
-    {
-        surveyName: "Flowdesk",
-        created: "02-09-2023",
-        expired: "12-04-2024",
-        status: "Upcoming",
-        viewed: "54507",
-        completed: "68590",
-        dropouts: 5,
-    },
-    {
-        surveyName: "Zaam-Dox",
-        created: "05-06-2024",
-        expired: "09-06-2024",
-        status: "Finished",
-        viewed: "1400",
-        completed: "8230",
-        dropouts: 6,
-    },
-    {
-        surveyName: "Cardguard",
-        created: "10-10-2023",
-        expired: "10-04-2024",
-        status: "Finished",
-        viewed: "771",
-        completed: "4",
-        dropouts: 7,
-    },
-    {
-        surveyName: "Fintone",
-        created: "07-06-2023",
-        expired: "06-09-2024",
-        status: "Draft",
-        viewed: "53",
-        completed: "50",
-        dropouts: 8,
-    },
-    {
-        surveyName: "Zaam-Dox",
-        created: "02-08-2023",
-        expired: "10-09-2024",
-        status: "Draft",
-        viewed: "4097",
-        completed: "6930",
-        dropouts: 9,
-    },
-    {
-        surveyName: "Biodex",
-        created: "05-04-2024",
-        expired: "01-07-2024",
-        status: "Draft",
-        viewed: "1",
-        completed: "42",
-        dropouts: 10,
-    },
-];
-
 function createRows(dataArray) {
     return dataArray.map((object, index) =>
         createData(
             index + 1,
             object.surveyName,
-            new Date(object.created),
+            new Date(object.createdIn),
             new Date(object.expired),
             object.status,
-            parseInt(object.viewed),
-            parseInt(object.completed),
+            object.viewed,
+            object.completed,
             object.dropouts
         )
     );
 }
-
-const rows = createRows(data);
 
 // Sorting functions
 function descendingComparator(a, b, orderBy) {
@@ -258,7 +72,7 @@ function stableSort(array, comparator) {
     return stabilizedThis.map((el) => el[0]);
 }
 
-export default function SurveyTable({ rowsNumber }) {
+export default function SurveyTable({ rowsNumber, data }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState("surveyName");
     const [tabValue, setTabValue] = useState(0);
@@ -267,7 +81,10 @@ export default function SurveyTable({ rowsNumber }) {
 
     const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
 
-    // Methon to filter and sort the rows
+    // Create the row for the table
+    const rows = createRows(data);
+
+    // Method to filter and sort the rows
     const getFilteredAndSortedRows = () => {
         let filteredData = rows;
 
@@ -301,7 +118,7 @@ export default function SurveyTable({ rowsNumber }) {
         setCurrentPage(newPage);
     };
 
-    // Cambiar de pestaña (tab)
+    // Change tab
     const handleChangeTab = (event, newValue) => {
         setTabValue(newValue);
         setCurrentPage(1); // Set back to the initial page
@@ -352,7 +169,7 @@ export default function SurveyTable({ rowsNumber }) {
             <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
                 <h2 className="px-2 text-h2">Surveys</h2>
                 <Link
-                    to="/survey/management"
+                    to={{ pathname: "/survey/management", state: data }}
                     className={
                         location.pathname !== "/survey/management"
                             ? "border-l-2 border-info px-2"
@@ -451,7 +268,7 @@ export default function SurveyTable({ rowsNumber }) {
                         <tr key={row.id} className="text-left">
                             <td>{row.surveyName}</td>
                             <td className="dateType">
-                                {row.created.toISOString().split("T")[0]}
+                                {row.createdIn.toISOString().split("T")[0]}
                             </td>
                             <td className="dateType">
                                 {row.expired.toISOString().split("T")[0]}
