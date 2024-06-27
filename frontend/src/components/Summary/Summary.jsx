@@ -4,7 +4,7 @@ import { ReactComponent as Icon } from "./icons/users.svg";
 
 import { FrameBox } from "../FrameBox/FrameBox";
 
-export function Summary() {
+export default function Summary() {
     return (
         <div className={styles.mainSummary}>
             <div className={styles.summary}>

@@ -1,11 +1,17 @@
-//routes.jsx
 import Home from "../pages/Home";
-import Rewards from "../pages/Rewards";
+
+import RecognitionMain from "../pages/recognition/RecognitionMain";
+import RecognitionRequestList from "../pages/recognition/RecognitionRequestList";
+
+import RewardsMain from "../pages/rewards/RewardsMain";
+import RewardsManagement from "../pages/rewards/RewardsManagement";
+import RewardsRequestList from "../pages/rewards/RewardsRequestList";
+
 import SurveyMain from "../pages/survey/SurveyMain";
-import Users from "../pages/Users";
-import Recognition from "../pages/Recognition";
 import Management from "../pages/survey/Management";
-import Responses from "../pages/Responses/Responses";
+import Responses from "../pages/survey/responses/Responses";
+import Users from "../pages/Users";
+
 import iconHome from "../assets/images/icon_home.svg";
 import iconChevronRight from "../assets/images/icon_chevron_right.svg";
 
@@ -13,33 +19,33 @@ const routes = [
     { path: "/", element: <Home />, menuLabel: "Dashboard", icon: iconHome },
     {
         path: "/recognition",
-        element: <Recognition />,
+        element: <RecognitionMain />,
         menuLabel: "Recognition",
         icon: iconHome,
         iconChevron: iconChevronRight,
         subItems: [
             {
                 path: "/recognition/request",
-                element: <Recognition />,
+                element: <RecognitionRequestList />,
                 menuLabel: "Request",
             },
         ],
     },
     {
         path: "/rewards",
-        element: <Rewards />,
+        element: <RewardsMain />,
         menuLabel: "Rewards",
         icon: iconHome,
         iconChevron: iconChevronRight,
         subItems: [
             {
                 path: "/rewards/managment",
-                element: <Rewards />,
+                element: <RewardsManagement />,
                 menuLabel: "Managment",
             },
             {
-                path: "/rewards",
-                element: <Rewards />,
+                path: "/rewards/request",
+                element: <RewardsRequestList />,
                 menuLabel: "Request",
             },
         ],

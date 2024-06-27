@@ -1,13 +1,12 @@
-import { ReactComponent as Icon } from "../survey/icons/Icon.svg";
 import { IndividualDetails } from "./functions/IndividualDetails";
 import { UserDetails } from "./functions/UserDetails";
 import style from "./styles.module.css";
 import { EmployeeSurvey } from "./functions/EmployeeSurvey";
-import { FrameBox } from "../../components/FrameBox/FrameBox";
-import { createThemeContext } from "../../context/Context";
+import { FrameBox } from "../../../components/FrameBox/FrameBox";
+import { createThemeContext } from "../../../context/Context";
 import { useEffect, useState } from "react";
-import { CheckBox } from "../../components/fields/CheckBoxes/CheckBox";
-import { MyButton } from "../../components/fields/button/MyButton";
+import { CheckBox } from "../../../components/fields/CheckBoxes/CheckBox";
+import { MyButton } from "../../../components/fields/button/MyButton";
 
 export function IndividualReponse() {
     const user = {
@@ -50,7 +49,6 @@ export function IndividualReponse() {
         <>
             <main className="ml-menuMargin mt-24 py-4 bg-white">
                 <div className={style.userInformation}>
-                    <Icon />
                     <IndividualDetails props={user} />
                     <UserDetails props={user} />
                 </div>

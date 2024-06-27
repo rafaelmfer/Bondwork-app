@@ -1,63 +1,21 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { InputType } from "../../components/fields/InputType";
-import { InputDate } from "../../components/fields/InputDate/InputDate";
-import { InputTextArea } from "../../components/fields/InputTextArea/InputTextArea";
-import Survey from "../survey/Survey";
-import SurveyTable from "../../components/SurveyTable";
-import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
+import { InputType } from "../../../components/fields/InputType";
+import { InputDate } from "../../../components/fields/InputDate/InputDate";
+import { InputTextArea } from "../../../components/fields/InputTextArea/InputTextArea";
+import Survey from "../Survey";
+import SurveyTable from "../../../components/SurveyTable";
+import { InputSelect } from "../../../components/fields/InputSelect/InputSelect";
 import { IndividualReponse } from "./IndividualResponse";
-import { RequestBox } from "../../components/RequestBox/RequestBox";
-import { Request3Boxes } from "../../components/Request3Boxex/Request3Boxes";
 
 const Responses = () => {
     const Recurrence = ["Weekly", "Month", "Semester", "Year"];
-    const threeBoxes = {
-        title: "Management",
-        valueTotal: "54",
-        valueOn: "36",
-        valueCo: "18",
-        bar: "90",
-    };
 
-    const Request = [
-        {
-            title: "Pending Request",
-            value: "1,000",
-            text: "Total",
-            bar: "20",
-        },
-        {
-            title: "Total Request",
-            value: "2,000",
-            text: "Comleted",
-            bar: "",
-        },
-        {
-            title: "Aproved Request",
-            value: "1,500",
-            text: "Upcoming",
-            bar: "90",
-        },
-    ];
     return (
         <>
-            <main className="ml-menuMargin mt-24 bg-white">
-                <div className={styles.RequestBox}>
-                    <Request3Boxes info={threeBoxes} />
-                    <Request3Boxes info={threeBoxes} />
-                </div>
-            </main>
+            {/* <IndividualReponse />
 
-            <main className="ml-menuMargin mt-24 bg-white">
-                <div className={styles.RequestBox}>
-                    <RequestBox Request={Request} />
-                </div>
-            </main>
-
-            <IndividualReponse />
-
-            <Survey />
+            <Survey /> */}
 
             <main className="ml-menuMargin mt-24 bg-white">
                 <div className={styles.surveyEmployee}>
@@ -104,7 +62,7 @@ const Responses = () => {
                     <InputTextArea />
                     <div className={styles.space24}></div>
 
-                    <SurveyTable rowsNumber="5" />
+                    {/* <SurveyTable rowsNumber="5" /> */}
                 </div>
             </main>
         </>

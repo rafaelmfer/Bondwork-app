@@ -1,7 +1,7 @@
 import React from "react";
 
-const Recognition = () => {
+const RecognitionMain = () => {
     return <div>Recognition</div>;
 };
 
-export default Recognition;
+export default RecognitionMain;
