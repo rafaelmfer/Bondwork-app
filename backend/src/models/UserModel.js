@@ -36,10 +36,10 @@ const users = new mongoose.Schema(
             type: Boolean,
         },
         surveys: {
-            type: String,
+            type: Array,
         },
         endorsements: {
-            type: String,
+            type: Array,
         },
         points: {
             type: Number,

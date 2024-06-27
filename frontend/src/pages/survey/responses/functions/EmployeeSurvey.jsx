@@ -1,5 +1,5 @@
 import style from "../styles.module.css";
-
+import CustomDate from "../../../../components/custom-date/CustomDate";
 export function EmployeeSurvey(props) {
     return (
         <>
@@ -11,12 +11,12 @@ export function EmployeeSurvey(props) {
                     <p
                         className={`${style.individualDetails14} ${style.individualRight130}`}
                     >
-                        Status{" "}
+                        Status {props.survey}
                     </p>
                 </div>
                 <div className={style.individualSurvey}>
                     <p className={style.individualDetails14}>
-                        Period: {props.props.period}
+                        Period: <CustomDate propsDate={props.dateStart}/> - <CustomDate propsDate={props.dateFinish}/>
                     </p>
                     <p
                         className={`${style.individualDetails14} ${style.individualRight130} ${style.individualDetails14regular}`}

@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { InputType } from "../../components/fields/InputType";
-import { InputDate } from "../../components/fields/InputDate/InputDate";
-import { InputTextArea } from "../../components/fields/InputTextArea/InputTextArea";
-import Survey from "../survey/Survey";
-import SurveyTable from "../../components/SurveyTable";
-import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
+import { InputType } from "../../../components/fields/InputType";
+import { InputDate } from "../../../components/fields/InputDate/InputDate";
+import { InputTextArea } from "../../../components/fields/InputTextArea/InputTextArea";
+import Survey from "../Survey";
+import SurveyTable from "../../../components/SurveyTable";
+import { InputSelect } from "../../../components/fields/InputSelect/InputSelect";
 import { IndividualReponse } from "./IndividualResponse";
 
 const Responses = () => {
@@ -13,9 +13,9 @@ const Responses = () => {
 
     return (
         <>
-            <IndividualReponse />
+            {/* <IndividualReponse />
 
-            <Survey />
+            <Survey /> */}
 
             <main className="ml-menuMargin mt-24 bg-white">
                 <div className={styles.surveyEmployee}>
@@ -62,7 +62,7 @@ const Responses = () => {
                     <InputTextArea />
                     <div className={styles.space24}></div>
 
-                    <SurveyTable rowsNumber="5" />
+                    {/* <SurveyTable rowsNumber="5" /> */}
                 </div>
             </main>
         </>
