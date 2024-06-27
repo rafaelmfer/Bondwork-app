@@ -2,12 +2,35 @@ import styles from "./styles.module.css";
 import { ReactComponent as Icon } from "./icons/Icon.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import { SurveyDetails } from "../../components/SurveyDetails";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputType } from "../../components/fields/InputType";
+import { CheckBox } from "../../components/fields/CheckBoxes/CheckBox";
+import { MyButton } from "../../components/fields/button/MyButton";
 import { surveyCreationContext } from "../../context/Context";
 
 export default function SurveyHtml() {
-    const [active, setActive] = useState(false);
+    const [questions, setQuestions] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:5000/api/questions"
+                );
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                setQuestions(JSON.parse(data));
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const [surveyInputs, setSurveyInputs] = useState({});
 
     // Method to handle sending a new message
@@ -47,414 +70,39 @@ export default function SurveyHtml() {
                 </p>
                 <div className={styles.space24}></div>
 
-                <div className={styles.allQuestions}>
-                    <div className={styles.employeeSatisfaction}>
-                        <div className={styles.questionSatisfaction}>
-                            <p
-                                className={`${styles.title20} ${styles.satisfaction}`}
-                            >
-                                1. How satisfied are you with your curent salary
-                                and benefits package? <Icon />
-                            </p>
-                            <div className={styles.checkboxes}>
-                                <hr className={styles.hr20} />
-                                <div className={styles.individualCheckboxes}>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="1lang"
-                                            name="fav_language"
-                                            value="1"
-                                        />
-                                        <label
-                                            htmlFor="1lang"
-                                            className={styles.roboto14}
-                                        >
-                                            1
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="2lang"
-                                            name="fav_language"
-                                            value="2"
-                                        />
-                                        <label
-                                            htmlFor="2lang"
-                                            className={styles.roboto14}
-                                        >
-                                            2
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="3lang"
-                                            name="fav_language"
-                                            value="3"
-                                        />
-                                        <label
-                                            htmlFor="3lang"
-                                            className={styles.roboto14}
-                                        >
-                                            3
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="4lang"
-                                            name="fav_language"
-                                            value="4"
-                                        />
-                                        <label
-                                            htmlFor="4lang"
-                                            className={styles.roboto14}
-                                        >
-                                            4
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="5lang"
-                                            name="fav_language"
-                                            value="5"
-                                        />
-                                        <label
-                                            htmlFor="5lang"
-                                            className={styles.roboto14}
-                                        >
-                                            5
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                {questions.map((question, index) => (
+                    <div key={index}>
+                        <div className={styles.space24}></div>
+                        <div>
+                            <CheckBox question={question.question} />
+                            {/* Render other question details as needed */}
                         </div>
                     </div>
+                ))}
+                <div className={styles.space24}></div>
 
-                    <div className={styles.employeeSatisfaction}>
-                        <div className={styles.questionSatisfaction}>
-                            <p
-                                className={`${styles.title20} ${styles.satisfaction}`}
-                            >
-                                2. How satisfied are you with the company
-                                culture? <Icon />
-                            </p>
-                            <div className={styles.checkboxes}>
-                                <hr className={styles.hr20} />
-                                <div className={styles.individualCheckboxes}>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="1cult"
-                                            name="culture"
-                                            value="1"
-                                        />
-                                        <label
-                                            htmlFor="1cult"
-                                            className={styles.roboto14}
-                                        >
-                                            1
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="2cult"
-                                            name="culture"
-                                            value="2"
-                                        />
-                                        <label
-                                            htmlFor="2cult"
-                                            className={styles.roboto14}
-                                        >
-                                            2
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="3cult"
-                                            name="culture"
-                                            value="3"
-                                        />
-                                        <label
-                                            htmlFor="3cult"
-                                            className={styles.roboto14}
-                                        >
-                                            3
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="4cult"
-                                            name="culture"
-                                            value="4"
-                                        />
-                                        <label
-                                            htmlFor="4cult"
-                                            className={styles.roboto14}
-                                        >
-                                            4
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="5cult"
-                                            name="culture"
-                                            value="5"
-                                        />
-                                        <label
-                                            htmlFor="5cult"
-                                            className={styles.roboto14}
-                                        >
-                                            5
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.employeeSatisfaction}>
-                        <div className={styles.questionSatisfaction}>
-                            <p
-                                className={`${styles.title20} ${styles.satisfaction}`}
-                            >
-                                3. How satisfied are you with your job role and
-                                responsibilities? <Icon />
-                            </p>
-                            <div className={styles.checkboxes}>
-                                <hr className={styles.hr20} />
-                                <div className={styles.individualCheckboxes}>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="1resp"
-                                            name="response"
-                                            value="1"
-                                        />
-                                        <label
-                                            htmlFor="1resp"
-                                            className={styles.roboto14}
-                                        >
-                                            1
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="2resp"
-                                            name="response"
-                                            value="2"
-                                        />
-                                        <label
-                                            htmlFor="2resp"
-                                            className={styles.roboto14}
-                                        >
-                                            2
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="3resp"
-                                            name="response"
-                                            value="3"
-                                        />
-                                        <label
-                                            htmlFor="3resp"
-                                            className={styles.roboto14}
-                                        >
-                                            3
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="4resp"
-                                            name="response"
-                                            value="4"
-                                        />
-                                        <label
-                                            htmlFor="4resp"
-                                            className={styles.roboto14}
-                                        >
-                                            4
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="5resp"
-                                            name="response"
-                                            value="5"
-                                        />
-                                        <label
-                                            htmlFor="5resp"
-                                            className={styles.roboto14}
-                                        >
-                                            5
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.employeeSatisfaction}>
-                        <div className={styles.questionSatisfaction}>
-                            <p
-                                className={`${styles.title20} ${styles.satisfaction}`}
-                            >
-                                4. How satisfied are you with the level of
-                                collaboration and support with your colleagues?{" "}
-                                <Icon />
-                            </p>
-                            <div className={styles.checkboxes}>
-                                <hr className={styles.hr20} />
-                                <div className={styles.individualCheckboxes}>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="1satis"
-                                            name="support"
-                                            value="1"
-                                        />
-                                        <label
-                                            htmlFor="1satis"
-                                            className={styles.roboto14}
-                                        >
-                                            1
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="2satis"
-                                            name="support"
-                                            value="2"
-                                        />
-                                        <label
-                                            htmlFor="2satis"
-                                            className={styles.roboto14}
-                                        >
-                                            2
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="3satis"
-                                            name="support"
-                                            value="3"
-                                        />
-                                        <label
-                                            htmlFor="3satis"
-                                            className={styles.roboto14}
-                                        >
-                                            3
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="4satis"
-                                            name="support"
-                                            value="4"
-                                        />
-                                        <label
-                                            htmlFor="4satis"
-                                            className={styles.roboto14}
-                                        >
-                                            4
-                                        </label>
-                                    </div>
-                                    <div className={styles.checkbox}>
-                                        <input
-                                            type="radio"
-                                            id="5satis"
-                                            name="support"
-                                            value="5"
-                                        />
-                                        <label
-                                            htmlFor="5satis"
-                                            className={styles.roboto14}
-                                        >
-                                            5
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.employeeSatisfaction}>
-                        <div className={styles.questionSatisfaction}>
-                            <div className={styles.addQuestion}>
-                                <div className={styles.addingQuestion}>
-                                    <p
-                                        className={`${styles.title20} ${styles.satisfaction}`}
-                                    >
-                                        Add question{" "}
-                                    </p>
-                                    <p
-                                        className={styles.title20}
-                                        onClick={() => setActive((e) => !e)}
-                                    >
-                                        {" "}
-                                        {active ? "-" : "+"}{" "}
-                                    </p>
-                                </div>
-                                <div
-                                    className={styles.addNewQuestion}
-                                    style={
-                                        active
-                                            ? { height: "30px" }
-                                            : { height: "0px" }
-                                    }
-                                >
-                                    add survey here
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.space24}></div>
-
-                    <div
-                        className={`${styles.allowComments} ${styles.roboto14}`}
-                    >
-                        <input
-                            type="checkbox"
-                            name=""
-                            id=""
-                            placeholder="Allow Comments"
-                        />{" "}
-                        Allow Comments
-                    </div>
-
-                    <div className={styles.space24}></div>
-
-                    <div className={styles.btns}>
-                        <button
-                            type="reset"
-                            className={`${styles.cancelBtn} ${styles.title16}`}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
-                            className={`${styles.publishBtn} ${styles.title16}`}
-                        >
-                            Publish
-                        </button>
-                    </div>
+                <div className={styles.addQuestionBtn}>
+                    <p>Add Question</p>
+                    <p>+</p>
                 </div>
+                <div className={styles.space24}></div>
+
+                <div className={styles.Comments}>
+                    <input
+                        type="checkbox"
+                        name="Comments"
+                        id="Comments"
+                        value="Comments"
+                    />
+                    <label htmlFor="Comments"> Allow Comments?</label>
+                    <div className={styles.space24}></div>
+                </div>
+
+                <div className={styles.nextBtn}>
+                    <MyButton value={"Cancel"} />
+                    <MyButton value={"Next"} />
+                </div>
+                <div className={styles.space24}></div>
             </surveyCreationContext.Provider>
         </form>
     );

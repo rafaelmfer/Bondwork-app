@@ -9,7 +9,7 @@ import RewardsRequestList from "../pages/rewards/RewardsRequestList";
 
 import SurveyMain from "../pages/survey/SurveyMain";
 import Management from "../pages/survey/Management";
-import Responses from "../pages/Responses/Responses";
+import Responses from "../pages/survey/responses/Responses";
 import Users from "../pages/Users";
 
 import iconHome from "../assets/images/icon_home.svg";

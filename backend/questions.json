@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "question": "How satisfied are you with your current salary and benefits package?"
+    },
+    {
+        "id": 2,
+        "question": "How satisfied are you with the company culture?"
+    },
+    {
+        "id": 3,
+        "question": "How satisfied are you with your job role and responsibilities?"
+    },
+    {
+        "id": 4,
+        "question": "How satisfied are you with the level of collaboration and support with your colleagues?"
+    }
+]
