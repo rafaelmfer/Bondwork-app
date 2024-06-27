@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SurveyTable from "../../components/SurveyTable";
 
+const PORT = process.env.REACT_APP_PORT || 5000;
+const URL = "http://localhost:" + PORT + "/api/survies/survies";
+
 const Management = () => {
     //Hook for the survey array
     const [survies, setSurvies] = useState([]);
@@ -13,9 +16,9 @@ const Management = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:5001/api/survies");
+                const res = await fetch(URL);
                 const data = await res.json();
-                setSurvies(JSON.parse(data).survies);
+                setSurvies(data.survies);
             } catch (error) {
                 console.log("Error fetching data", error);
             }

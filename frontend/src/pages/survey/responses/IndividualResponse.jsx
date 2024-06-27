@@ -2,7 +2,7 @@ import { IndividualDetails } from "./functions/IndividualDetails";
 import { UserDetails } from "./functions/UserDetails";
 import style from "./styles.module.css";
 import { EmployeeSurvey } from "./functions/EmployeeSurvey";
-import { FrameBox } from "../../../components/FrameBox/FrameBox";
+import { FrameBox } from "../../../components/frame-box/FrameBox";
 import { createThemeContext } from "../../../context/Context";
 import { useEffect, useState } from "react";
 import { CheckBox } from "../../../components/fields/CheckBoxes/CheckBox";

@@ -3,19 +3,32 @@ import { useState } from "react";
 import { ReactComponent as ArrowDown } from "../icons/chevron-down.svg";
 import styles from "../styles.module.css";
 
-export function InputDate(props) {
+export function InputDate({ title, name, onChange }) {
     const [startDate, setStartDate] = useState(new Date());
+
+    /* Initially I was getting a date one day ahead, so this function will adjust for Time Zone */
+    const toLocalISOString = (date) => {
+        const offset = date.getTimezoneOffset() * 60000; // Convert offset to milliseconds
+        const adjustedDate = new Date(date.getTime() - offset);
+        return adjustedDate.toISOString().slice(0, 10);
+    };
+    const handleChange = (date) => {
+        const formattedDate = toLocalISOString(date);
+        setStartDate(date);
+        // Llama a onChange del padre con un objeto simulado
+        onChange({ target: { name, value: formattedDate } });
+    };
     return (
         <>
             <div className={styles.surveyFields}>
-                <h3>{props.title}</h3>
+                <h3>{title}</h3>
                 <div className={styles.paddingDatePicker}>
                     <DatePicker
                         className={styles.datePicker}
                         showIcon
                         toggleCalendarOnIconClick
                         selected={startDate}
-                        onChange={(date) => setStartDate(date)}
+                        onChange={handleChange}
                         icon={
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import styles from "../pages/survey/styles.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -5,12 +6,13 @@ import { InputTextArea } from "./fields/InputTextArea/InputTextArea";
 import { InputType } from "./fields/InputType";
 import { InputDate } from "./fields/InputDate/InputDate";
 import { InputSelect } from "./fields/InputSelect/InputSelect";
-import { useContext } from "react";
 import { surveyCreationContext } from "../context/Context";
 
 export function SurveyDetails() {
     // Set up context from SurveyHtml.jsx
     const { setSurveyInputs } = useContext(surveyCreationContext);
+    // const [selectedValue, setSelectedValue] = useState('');
+
     const jobLevels = ["Manager", "Supervisor", "Director", "Employee"];
     const department = [
         "Account",
@@ -24,19 +26,29 @@ export function SurveyDetails() {
         <div className={styles.surveyDetails}>
             <InputSelect
                 title={"Department"}
+                name={"department"} //to match database format
                 id={"department"}
                 selectOption={department}
                 onChange={(e) => {
-                    console.log(e.target.value);
-                    setSurveyInputs(e.target.value);
+                    setSurveyInputs((prevInputs) => ({
+                        ...prevInputs,
+                        [e.target.name]: e.target.value,
+                    }));
                 }}
             />
             <div className={styles.space24}></div>
 
             <InputSelect
                 title={"Job Level"}
+                name={"jobLevel"}
                 id={"jobLevel"}
                 selectOption={jobLevels}
+                onChange={(e) => {
+                    setSurveyInputs((prevInputs) => ({
+                        ...prevInputs,
+                        [e.target.name]: e.target.value,
+                    }));
+                }}
             />
             <div className={styles.space24}></div>
 
@@ -44,24 +56,54 @@ export function SurveyDetails() {
             <div className={styles.space24}></div>
 
             <div className={styles.periodRec}>
-                <InputDate title={"Period"} />
+                <InputDate
+                    title={"Period"}
+                    name={"createdIn"}
+                    onChange={(e) => {
+                        setSurveyInputs((prevInputs) => ({
+                            ...prevInputs,
+                            [e.target.name]: e.target.value,
+                        }));
+                    }}
+                />
                 <InputSelect
                     title={"Recurrence"}
+                    name={"recurrence"}
                     id={"Recurrence"}
                     selectOption={Recurrence}
+                    onChange={(e) => {
+                        setSurveyInputs((prevInputs) => ({
+                            ...prevInputs,
+                            [e.target.name]: e.target.value,
+                        }));
+                    }}
                 />
             </div>
             <div className={styles.space24}></div>
 
             <InputType
                 title={"Points"}
+                name={"points"}
                 type={"text"}
                 placeholder={"150"}
-                icon={"x"}
+                onValueChange={(value) => {
+                    setSurveyInputs((prevInputs) => ({
+                        ...prevInputs,
+                        points: value,
+                    }));
+                }}
             />
             <div className={styles.space24}></div>
 
-            <InputTextArea />
+            <InputTextArea
+                name="description"
+                onValueChange={(text) => {
+                    setSurveyInputs((prevInputs) => ({
+                        ...prevInputs,
+                        description: text,
+                    }));
+                }}
+            />
         </div>
     );
 }

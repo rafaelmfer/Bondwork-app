@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import SurveyTable from "../../components/SurveyTable";
 import Summary from "../../components/summary/Summary";
-import ChartArea from "../../components/Charts/ChartArea";
-import ChartDonut from "../../components/Charts/ChartDonut";
-import ChartLine from "../../components/Charts/ChartLine";
+import ChartArea from "../../components/charts/ChartArea";
+import ChartDonut from "../../components/charts/ChartDonut";
+import ChartLine from "../../components/charts/ChartLine";
+
+const PORT = process.env.REACT_APP_PORT || 5000;
+const URL = "http://localhost:" + PORT + "/api/survies/survies";
 
 const SurveyMain = () => {
     //Hook for the survey array
@@ -13,15 +16,17 @@ const SurveyMain = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:5001/api/survies");
+                const res = await fetch(URL);
                 const data = await res.json();
-                setSurvies(JSON.parse(data).survies);
+
+                setSurvies(data.survies);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchData();
     }, []);
+
     return (
         <main className="ml-menuMargin mt-24 bg-white">
             <Summary />
