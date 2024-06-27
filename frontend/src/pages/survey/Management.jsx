@@ -18,9 +18,9 @@ const Management = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:5001/api/survies");
+                const res = await fetch(URL);
                 const data = await res.json();
-                setSurvies(JSON.parse(data).survies);
+                setSurvies(data.survies);
             } catch (error) {
                 console.log("Error fetching data", error);
             }

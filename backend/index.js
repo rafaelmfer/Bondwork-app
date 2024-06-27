@@ -1,9 +1,6 @@
 const dotenv = require("dotenv");
 const cors = require("cors");
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
 const mongoose = require("mongoose");
 
 dotenv.config();
@@ -61,19 +58,5 @@ app.use("/api/rewards", rewardsRoutes);
 app.use("/api/departments", departmentsRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/company", companyRoutes);
-
-// Delete this endpoint once we create a new one
-// Middleware for survies.json
-app.use("/api/survies", (req, res) => {
-    const filePath = path.join("./survies.json");
-    // Read the file survies.json
-    fs.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send("Error reading the surveys file.");
-        }
-        return res.status(200).json(data);
-    });
-});
 
 module.exports = app;

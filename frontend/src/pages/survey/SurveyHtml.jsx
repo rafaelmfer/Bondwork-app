@@ -66,6 +66,7 @@ export default function SurveyHtml() {
     };
 
     //Add survey
+    const PORT = process.env.REACT_APP_PORT || 5000;
     const URL = "http://localhost:" + PORT + "/api/survies/addsurvey";
     const addSurvey = async (newSurvey) => {
         try {
@@ -166,67 +167,11 @@ export default function SurveyHtml() {
                         <div className={styles.space24}></div>
                     </div>
 
-                    <div className={styles.employeeSatisfaction}>
-                        <div className={styles.questionSatisfaction}>
-                            <div className={styles.addQuestion}>
-                                <div className={styles.addingQuestion}>
-                                    <p
-                                        className={`${styles.title20} ${styles.satisfaction}`}
-                                    >
-                                        Add question{" "}
-                                    </p>
-                                    <p
-                                        className={styles.title20}
-                                        onClick={() => setActive((e) => !e)}
-                                    >
-                                        {" "}
-                                        {active ? "-" : "+"}{" "}
-                                    </p>
-                                </div>
-                                <div
-                                    className={styles.addNewQuestion}
-                                    style={
-                                        active
-                                            ? { height: "30px" }
-                                            : { height: "0px" }
-                                    }
-                                >
-                                    add survey here
-                                </div>
-                            </div>
-                        </div>
+                    <div className={styles.nextBtn}>
+                        <MyButton value={"Cancel"} />
+                        <MyButton value={"Next"} />
                     </div>
-
                     <div className={styles.space24}></div>
-
-                    <div
-                        className={`${styles.allowComments} ${styles.roboto14}`}
-                    >
-                        <input
-                            type="checkbox"
-                            name=""
-                            id=""
-                            placeholder="Allow Comments"
-                        />{" "}
-                        Allow Comments
-                    </div>
-
-                    <div className={styles.space24}></div>
-
-                    <div className={styles.btns}>
-                        <button
-                            type="reset"
-                            className={`${styles.cancelBtn} ${styles.title16}`}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
-                            className={`${styles.publishBtn} ${styles.title16}`}
-                        >
-                            Publish
-                        </button>
-                    </div>
                 </surveyCreationContext.Provider>
             </form>
         </>

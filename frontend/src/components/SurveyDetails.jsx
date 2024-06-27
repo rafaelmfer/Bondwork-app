@@ -6,12 +6,13 @@ import { InputTextArea } from "./fields/InputTextArea/InputTextArea";
 import { InputType } from "./fields/InputType";
 import { InputDate } from "./fields/InputDate/InputDate";
 import { InputSelect } from "./fields/InputSelect/InputSelect";
-import { useContext } from "react";
 import { surveyCreationContext } from "../context/Context";
 
 export function SurveyDetails() {
     // Set up context from SurveyHtml.jsx
     const { setSurveyInputs } = useContext(surveyCreationContext);
+    // const [selectedValue, setSelectedValue] = useState('');
+
     const jobLevels = ["Manager", "Supervisor", "Director", "Employee"];
     const department = [
         "Account",
@@ -29,8 +30,10 @@ export function SurveyDetails() {
                 id={"department"}
                 selectOption={department}
                 onChange={(e) => {
-                    console.log(e.target.value);
-                    setSurveyInputs(e.target.value);
+                    setSurveyInputs((prevInputs) => ({
+                        ...prevInputs,
+                        [e.target.name]: e.target.value,
+                    }));
                 }}
             />
             <div className={styles.space24}></div>
