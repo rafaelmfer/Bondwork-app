@@ -2,7 +2,6 @@ import styles from "./styles.module.css";
 import { ReactComponent as ArrowDown } from "./icons/Icon.svg";
 
 export function InputType(props) {
-    console.log(props.icon);
     return (
         <div className={styles.surveyFields}>
             <div className={styles.titleIcon}>

@@ -11,9 +11,9 @@ const allUser = async (req, res) => {
 
 const getOneUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        console.log(id);
-        const oneUser = await User.findById(id);
+        const { employeeID } = req.params;
+
+        const oneUser = await User.findById(employeeID);
         return res.status(200).json(oneUser);
     } catch (error) {
         return res.status(500).json({ messsage: error.message });
@@ -22,8 +22,8 @@ const getOneUser = async (req, res) => {
 
 const getEmployeeID = async (req, res) => {
     try {
-        const { employeeID } = req.params;
-        const singleNote = await User.findOne({ employeeID });
+        const employeeID = parseInt(req.params.employeeID);
+        const singleNote = await User.findOne({ employee_ID: employeeID });
         return res.status(200).json(singleNote);
     } catch (error) {
         return res.status(500).json({ message: error.message });
