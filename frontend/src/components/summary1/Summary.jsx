@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { createThemeContext } from "../../context/Context";
 import { ReactComponent as Icon } from "./icons/users.svg";
 
-import { FrameBox } from "../FrameBox/FrameBox";
+import { FrameBox } from "../frame-box/FrameBox";
 
 export default function Summary() {
     return (
