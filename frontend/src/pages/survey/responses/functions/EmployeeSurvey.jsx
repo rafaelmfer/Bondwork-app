@@ -16,7 +16,8 @@ export function EmployeeSurvey(props) {
                 </div>
                 <div className={style.individualSurvey}>
                     <p className={style.individualDetails14}>
-                        Period: <CustomDate propsDate={props.dateStart}/> - <CustomDate propsDate={props.dateFinish}/>
+                        Period: <CustomDate propsDate={props.dateStart} /> -{" "}
+                        <CustomDate propsDate={props.dateFinish} />
                     </p>
                     <p
                         className={`${style.individualDetails14} ${style.individualRight130} ${style.individualDetails14regular}`}

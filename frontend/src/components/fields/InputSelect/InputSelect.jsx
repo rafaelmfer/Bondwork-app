@@ -7,7 +7,13 @@ export function InputSelect(props) {
                 <h3>{props.title}</h3>
             </label>
             <div className={styles.adjustArrowPadding}>
-                <select id={props.id} className={styles.textFieldArrow}>
+                <select
+                    id={props.id}
+                    name={props.name}
+                    className={styles.textFieldArrow}
+                    value={props.value} // Controla el valor actual con una prop
+                    onChange={props.onChange} // Maneja el cambio de selección
+                >
                     {props.selectOption.map((e) => (
                         <option key={e} value={e}>
                             {e}

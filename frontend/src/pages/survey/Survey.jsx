@@ -5,6 +5,7 @@ import { ReactComponent as Pie } from "./icons/pie-chart.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import { ReviewHtml } from "./ReviewHtml";
 
+// SurveyAdd page
 const Survey = () => {
     const [activePage, setActivePage] = useState(true);
 
