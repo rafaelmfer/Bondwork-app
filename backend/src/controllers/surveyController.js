@@ -22,7 +22,7 @@ const getSingleSurvey = async (req, res) => {
 const getSingleSurveyID = async (req, res) => {
     try {
         const { surveyID } = req.params;
-        const singleSurvey = await Survey.findOne({ surveyID });
+        const singleSurvey = await Survey.findOne({ surveyID: surveyID });
         return res.status(200).json(singleSurvey);
     } catch (error) {
         return res.status(500).json({ message: error.message });

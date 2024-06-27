@@ -33,8 +33,16 @@ const SurveySchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    alreadyAnswered: {
+    question4: {
+        type: String,
+        required: true,
+    },
+    question4Answer: {
         type: Number,
+        required: true,
+    },
+    alreadyAnswered: {
+        type: Array,
     },
     totalOfEmployees: {
         type: Number,

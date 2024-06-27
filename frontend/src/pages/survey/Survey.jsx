@@ -36,7 +36,7 @@ const Survey = () => {
                             Review
                         </p>
                     </div>
-                    <button className={styles.btnDraft}>Save Draft</button>
+
                     <button className={styles.btnDraft}>Save Draft</button>
                 </div>
                 {/* border-bottom: 2px solid black; */}

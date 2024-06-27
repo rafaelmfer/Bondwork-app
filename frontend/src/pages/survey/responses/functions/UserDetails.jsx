@@ -7,7 +7,7 @@ export function UserDetails(props) {
                 <p className={style.individualDetails14}>
                     Employee ID{" "}
                     <span className={style.userDetailsRegular}>
-                        {props.props.Id}
+                        {props.props.employee_ID}
                     </span>
                 </p>
                 <p className={style.individualDetails14}>
