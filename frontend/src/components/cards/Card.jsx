@@ -1,8 +1,8 @@
 import style from "./style.module.css";
-import { ReactComponent as RedBullet } from "./icon/red_bullet.svg";
-import { ReactComponent as Profile } from "./icon/profile.svg";
-import { ReactComponent as Supportive } from "./icon/supportive.svg";
-import { ReactComponent as Points } from "./icon/points.svg";
+import { ReactComponent as RedBullet } from "../../assets/images/red_bullet.svg";
+import { ReactComponent as Profile } from "../../assets/images/profile.svg";
+import { ReactComponent as Supportive } from "../../assets/images/supportive.svg";
+import { ReactComponent as Points } from "../../assets/images/points.svg";
 
 export function Card() {
     return (
