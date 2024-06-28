@@ -56,7 +56,7 @@ const SurveyMain = () => {
                         <p className={styles.title16}>
                             Overall Satisfaction Drivers
                         </p>
-                        <ChartLine />
+                        <ChartLine chartHeight={200} />
                     </div>
                 </div>
                 <SurveyTable rowsNumber="5" data={survies} />

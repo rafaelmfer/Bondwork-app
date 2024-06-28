@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <div>
             <TopUserBar titleScreen={"Dashboard"} />
-            <main className="ml-menuMargin mt-24 bg-white">
+            <main className="ml-menuMargin mt-24 bg-[#FBFBFB]">
                 <div className="flex row gap-4">
                     <CardTurnoverRate
                         title={"Turnover Rate"}
