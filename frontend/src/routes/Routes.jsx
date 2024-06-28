@@ -12,17 +12,26 @@ import Management from "../pages/survey/Management";
 import Responses from "../pages/survey/responses/Responses";
 import Users from "../pages/Users";
 
-import iconHome from "../assets/images/icon_home.svg";
-import iconChevronRight from "../assets/images/icon_chevron_right.svg";
+import iconDashboard from "../assets/icons/dashboard.svg";
+import iconRecognition from "../assets/icons/recognition.svg";
+import iconRewards from "../assets/icons/reward.svg";
+import iconSurvey from "../assets/icons/survey.svg";
+import iconEmployees from "../assets/icons/employees.svg";
+import iconArrowDown from "../assets/icons/dropdown.svg";
 
 const routes = [
-    { path: "/", element: <Home />, menuLabel: "Dashboard", icon: iconHome },
+    {
+        path: "/",
+        element: <Home />,
+        menuLabel: "Dashboard",
+        icon: iconDashboard,
+    },
     {
         path: "/recognition",
         element: <RecognitionMain />,
         menuLabel: "Recognition",
-        icon: iconHome,
-        iconChevron: iconChevronRight,
+        icon: iconRecognition,
+        iconChevron: iconArrowDown,
         subItems: [
             {
                 path: "/recognition/request",
@@ -35,8 +44,8 @@ const routes = [
         path: "/rewards",
         element: <RewardsMain />,
         menuLabel: "Rewards",
-        icon: iconHome,
-        iconChevron: iconChevronRight,
+        icon: iconRewards,
+        iconChevron: iconArrowDown,
         subItems: [
             {
                 path: "/rewards/managment",
@@ -54,8 +63,8 @@ const routes = [
         path: "/survey",
         element: <SurveyMain />,
         menuLabel: "Survey",
-        icon: iconHome,
-        iconChevron: iconChevronRight,
+        icon: iconSurvey,
+        iconChevron: iconArrowDown,
         subItems: [
             {
                 path: "/survey/management",
@@ -73,7 +82,7 @@ const routes = [
         path: "/users",
         element: <Users />,
         menuLabel: "Employees",
-        icon: iconHome,
+        icon: iconEmployees,
     },
 ];
 
