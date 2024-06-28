@@ -21,7 +21,7 @@ const ChartNegativeArea = ({ data }) => {
     const chartOptions = {
         chart: {
             type: "area",
-            height: "100%",
+            height: 280,
         },
         stroke: {
             curve: "smooth",
@@ -71,8 +71,8 @@ const ChartNegativeArea = ({ data }) => {
         },
         yaxis: {
             min: -referenceValue,
-            max: 20,
-            tickAmount: 6,
+            max: 15,
+            tickAmount: 5,
             labels: {
                 formatter: (value) => value + referenceValue,
                 style: {
@@ -94,6 +94,7 @@ const ChartNegativeArea = ({ data }) => {
             options={chartOptions}
             series={chartOptions.series}
             type="area"
+            height={200}
         />
     );
 };

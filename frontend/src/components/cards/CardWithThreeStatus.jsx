@@ -66,7 +66,7 @@ const CardWithThreeStatus = ({
     return (
         <Card
             variant="outlined"
-            sx={{ p: 2, mb: 2, flexGrow: 1, flexBasis: 0 }}
+            sx={{ p: 2, mb: 2, flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
         >
             <CardContent>
                 <Box

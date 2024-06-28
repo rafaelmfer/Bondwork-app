@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 
-export default function ChartLine() {
+export default function ChartLine({ chartHeight }) {
     const options = {
         series: [
             {
@@ -40,7 +40,7 @@ export default function ChartLine() {
             show: true,
             position: "right",
             horizontalAlign: "center",
-            offsetY: 60,
+            offsetY: 0,
         },
         dataLabels: {
             enabled: false,
@@ -83,5 +83,12 @@ export default function ChartLine() {
             },
         },
     };
-    return <Chart options={options} series={options.series} type="line" />;
+    return (
+        <Chart
+            options={options}
+            series={options.series}
+            type="line"
+            height={chartHeight}
+        />
+    );
 }
