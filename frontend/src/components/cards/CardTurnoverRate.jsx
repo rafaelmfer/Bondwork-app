@@ -46,7 +46,14 @@ const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
     return (
         <Card
             variant="outlined"
-            sx={{ p: 2, mb: 2, flexGrow: 1, flexBasis: 0 }}
+            sx={{
+                px: 2,
+                pt: 2,
+                mb: 2,
+                flexGrow: 1,
+                flexBasis: 0,
+                borderRadius: 4,
+            }}
         >
             <CardContent>
                 <Box

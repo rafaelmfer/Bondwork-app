@@ -46,7 +46,14 @@ const CardSatisfactionDrivers = ({ overall, chipText }) => {
     return (
         <Card
             variant="outlined"
-            sx={{ p: 2, mb: 2, flexGrow: 1, flexBasis: 0 }}
+            sx={{
+                px: 2,
+                pt: 2,
+                mb: 2,
+                flexGrow: 1,
+                flexBasis: 0,
+                borderRadius: 4,
+            }}
         >
             <CardContent>
                 <Box
@@ -97,7 +104,7 @@ const CardSatisfactionDrivers = ({ overall, chipText }) => {
                         />
                     </Box>
                 </Box>
-                <ChartLine />
+                <ChartLine chartHeight={200} />
             </CardContent>
         </Card>
     );

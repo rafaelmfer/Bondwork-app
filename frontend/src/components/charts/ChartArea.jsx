@@ -62,7 +62,7 @@ export default function ChartArea() {
             options={options}
             series={options.series}
             type="area"
-            height={280}
+            height={200}
         />
     );
 }
