@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SurveyTable from "../../components/SurveyTable";
+import TopUserBar from "../../components/top-user-bar/TopUserBar";
 
 const PORT = process.env.REACT_APP_PORT || 5000;
 const URL = "http://localhost:" + PORT + "/api/survies/survies";
@@ -33,10 +34,12 @@ const Management = () => {
     }, [data]);
 
     return (
-        <main className="ml-menuMargin mt-24 bg-white">
-            <h2>Management</h2>
-            <SurveyTable rowsNumber="15" data={survies} />
-        </main>
+        <div>
+            <TopUserBar titleScreen={"Management"} />
+            <main className="ml-menuMargin mt-24 bg-white">
+                <SurveyTable rowsNumber="15" data={survies} />
+            </main>
+        </div>
     );
 };
 

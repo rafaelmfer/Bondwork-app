@@ -61,7 +61,6 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <TopUserBar />
                 <Sidebar profileName={"Izabela N."} />
 
                 {/* Call to the method to render all the routes */}
