@@ -9,6 +9,8 @@ import { InputSelect } from "../../../components/fields/InputSelect/InputSelect"
 
 import { Card } from "../../../components/cards/Card";
 
+const PORT = process.env.REACT_APP_PORT || 5000;
+
 const Responses = () => {
     const Recurrence = ["Weekly", "Month", "Semester", "Year"];
     const [user, setUser] = useState("");
@@ -17,7 +19,7 @@ const Responses = () => {
         const fetchUser = async () => {
             try {
                 const fUser = await fetch(
-                    "http://localhost:5001/api/user/employee/11"
+                    `http://localhost:${PORT}/api/user/employee/11`
                 );
                 if (!fUser.ok) {
                     throw new Error(`HTTP error! status: ${fUser.status}`);

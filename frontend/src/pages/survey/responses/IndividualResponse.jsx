@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { CheckBox } from "../../../components/fields/CheckBoxes/CheckBox";
 import { MyButton } from "../../../components/fields/button/MyButton";
 
+const PORT = process.env.REACT_APP_PORT || 5000;
+
 export function IndividualReponse() {
     const [questions, setQuestions] = useState([]);
     const [user, setUser] = useState([]);
@@ -17,7 +19,7 @@ export function IndividualReponse() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:5001/api/questions"
+                    `http://localhost:${PORT}/api/questions`
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -33,7 +35,7 @@ export function IndividualReponse() {
         const fetchUser = async () => {
             try {
                 const fUser = await fetch(
-                    "http://localhost:5001/api/user/employee/11"
+                    `http://localhost:${PORT}/api/user/employee/11`
                 );
                 if (!fUser.ok) {
                     throw new Error(`HTTP error! status: ${fUser.status}`);
@@ -50,7 +52,7 @@ export function IndividualReponse() {
         const fetchSurvey = async (surveyID) => {
             try {
                 const fUser = await fetch(
-                    `http://localhost:5001/api/survies/surveyID/${surveyID}`
+                    `http://localhost:${PORT}/api/survies/surveyID/${surveyID}`
                 );
                 if (!fUser.ok) {
                     throw new Error(`HTTP error! status: ${fUser.status}`);
