@@ -56,16 +56,7 @@ export function SurveyDetails() {
             <div className={styles.space24}></div>
 
             <div className={styles.periodRec}>
-                <InputDate
-                    title={"Period"}
-                    name={"createdIn"}
-                    onChange={(e) => {
-                        setSurveyInputs((prevInputs) => ({
-                            ...prevInputs,
-                            [e.target.name]: e.target.value,
-                        }));
-                    }}
-                />
+                <InputDate title={"Period"} setSurveyInputs={setSurveyInputs} />
                 <InputSelect
                     title={"Recurrence"}
                     name={"recurrence"}

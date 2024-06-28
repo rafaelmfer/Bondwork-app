@@ -62,14 +62,14 @@ textArea {
 
 .datePicker {
     width: 100%;
-    background-color: var(--background-color-light);
+    background-color: white !important;
 }
 
-.paddingDatePicker {
+/* .paddingDatePicker {
     background-color: var(--background-color-light);
     padding: 11px;
     border-bottom: 1px solid #c1c7cd;
-}
+} */
 
 .recurrenceFields {
     display: flex;
