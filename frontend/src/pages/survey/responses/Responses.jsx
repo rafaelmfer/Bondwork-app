@@ -7,6 +7,7 @@ import Survey from "../Survey";
 import SurveyTable from "../../../components/SurveyTable";
 import { InputSelect } from "../../../components/fields/InputSelect/InputSelect";
 import { IndividualReponse } from "./IndividualResponse";
+import TopUserBar from "../../../components/top-user-bar/TopUserBar";
 
 import { Card } from "../../../components/cards/Card";
 
@@ -37,9 +38,8 @@ const Responses = () => {
 
     return (
         <>
-            <IndividualReponse />
-
-            <Card />
+            <TopUserBar titleScreen={"Responses"} />
+            {/* <IndividualReponse />
 
             <Survey />
 

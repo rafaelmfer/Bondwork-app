@@ -42,7 +42,6 @@ export function IndividualReponse() {
                 }
                 const data = await fUser.json();
                 setUser(data);
-
                 fetchSurvey(119);
             } catch (error) {
                 console.error("Error fetching data:", error);
