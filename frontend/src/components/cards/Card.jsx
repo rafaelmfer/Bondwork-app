@@ -1,8 +1,10 @@
 import style from "./style.module.css";
 import { ReactComponent as RedBullet } from "../../assets/images/red_bullet.svg";
-import { ReactComponent as Profile } from "../../assets/images/profile.svg";
+
 import { ReactComponent as Supportive } from "../../assets/images/supportive.svg";
 import { ReactComponent as Points } from "../../assets/images/points.svg";
+import { CardFrom } from "./CardFrom";
+import { CardTo } from "./CardTo";
 
 export function Card() {
     return (
@@ -19,7 +21,7 @@ export function Card() {
                     </select>
                 </div>
                 <div className={style.card2Cards}>
-                    <div className={style.cardUser}>
+                    {/* <div className={style.cardUser}>
                         <p className={style.cardFrom}>From</p>
                         <div className={style.cardAvatar}>
                             <div className={style.cardShowAvatar}>
@@ -39,28 +41,9 @@ export function Card() {
                                 <p>Job Level</p> <span>3</span>
                             </div>
                         </div>
-                    </div>
-                    <div className={style.cardUser}>
-                        <p className={style.cardFrom}>To</p>
-                        <div className={style.cardAvatar}>
-                            <div className={style.cardShowAvatar}>
-                                <Profile />
-                                <div className={style.cardUserInfo}>
-                                    <p className={style.cardUserName}>
-                                        Rafael Ferreira
-                                    </p>
-                                    <p className={style.cardUserTitle}>
-                                        Lead Developer
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={style.cardDepartment}>
-                                <p>Work ID</p> <span>7232</span>
-                                <p>Department</p> <span>Development</span>
-                                <p>Job Level</p> <span>3</span>
-                            </div>
-                        </div>
-                    </div>
+                    </div> */}
+                    <CardFrom />
+                    <CardTo />
                 </div>
                 <div className={style.cardCatPoint}>
                     <div className={style.cardOne}>
