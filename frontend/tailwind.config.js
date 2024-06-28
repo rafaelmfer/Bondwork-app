@@ -4,10 +4,10 @@ module.exports = {
     theme: {
         extend: {
             width: {
-                menuWidth: "264px",
+                menuWidth: "272px",
             },
             margin: {
-                menuMargin: "264px",
+                menuMargin: "272px",
             },
             transitionProperty: {
                 "max-height": "max-height",

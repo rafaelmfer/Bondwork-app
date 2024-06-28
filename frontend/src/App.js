@@ -2,7 +2,6 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import TopUserBar from "./components/top-user-bar/TopUserBar";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
 import Survey from "./pages/survey/Survey";
@@ -61,7 +60,6 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <TopUserBar />
                 <Sidebar profileName={"Izabela N."} />
 
                 {/* Call to the method to render all the routes */}

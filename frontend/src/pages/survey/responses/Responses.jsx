@@ -7,12 +7,14 @@ import Survey from "../Survey";
 import SurveyTable from "../../../components/SurveyTable";
 import { InputSelect } from "../../../components/fields/InputSelect/InputSelect";
 import { IndividualReponse } from "./IndividualResponse";
+import TopUserBar from "../../../components/top-user-bar/TopUserBar";
 
 const Responses = () => {
     const Recurrence = ["Weekly", "Month", "Semester", "Year"];
 
     return (
         <>
+            <TopUserBar titleScreen={"Responses"} />
             {/* <IndividualReponse />
 
             <Survey /> */}
