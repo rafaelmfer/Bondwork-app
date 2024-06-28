@@ -2,8 +2,8 @@ import styles from "../styles.module.css";
 import { ReactComponent as Icon } from "../icons/Icon.svg";
 
 export function CheckBox(props) {
-    console.log(props.question)
-    console.log(props.numChecked)
+    console.log(props.question);
+    console.log(props.numChecked);
     const line = props.line;
 
     return (
@@ -20,21 +20,22 @@ export function CheckBox(props) {
                             <hr className={styles.hr20} />
                             <div className={styles.individualCheckboxes}>
                                 <div className={styles.checkbox}>
-                                    {props.numChecked == 1 ?
+                                    {props.numChecked == 1 ? (
                                         <input
                                             type="radio"
                                             id="1lang"
                                             name={`fav_language${line}`}
-                                            value="1" 
+                                            value="1"
                                             checked
-                                        /> :
+                                        />
+                                    ) : (
                                         <input
                                             type="radio"
                                             id="1lang"
                                             name={`fav_language${line}`}
-                                            value="1" 
+                                            value="1"
                                         />
-                                    }
+                                    )}
                                     <label
                                         htmlFor="1lang"
                                         className={styles.roboto14}
@@ -43,21 +44,22 @@ export function CheckBox(props) {
                                     </label>
                                 </div>
                                 <div className={styles.checkbox}>
-                                    {props.numChecked == 2 ?
+                                    {props.numChecked == 2 ? (
                                         <input
                                             type="radio"
                                             id="2lang"
                                             name={`fav_language${line}`}
-                                            value="2" 
+                                            value="2"
                                             checked
-                                        /> :
+                                        />
+                                    ) : (
                                         <input
                                             type="radio"
                                             id="2lang"
                                             name={`fav_language${line}`}
-                                            value="2" 
+                                            value="2"
                                         />
-                                    }
+                                    )}
                                     <label
                                         htmlFor="2lang"
                                         className={styles.roboto14}
@@ -66,21 +68,22 @@ export function CheckBox(props) {
                                     </label>
                                 </div>
                                 <div className={styles.checkbox}>
-                                    {props.numChecked == 3 ?
+                                    {props.numChecked == 3 ? (
                                         <input
                                             type="radio"
                                             id="3lang"
                                             name={`fav_language${line}`}
-                                            value="3" 
+                                            value="3"
                                             checked
-                                        /> :
+                                        />
+                                    ) : (
                                         <input
                                             type="radio"
                                             id="3lang"
                                             name={`fav_language${line}`}
-                                            value="3" 
+                                            value="3"
                                         />
-                                    }   
+                                    )}
                                     <label
                                         htmlFor="3lang"
                                         className={styles.roboto14}
@@ -89,21 +92,22 @@ export function CheckBox(props) {
                                     </label>
                                 </div>
                                 <div className={styles.checkbox}>
-                                    {props.numChecked == 4 ?
+                                    {props.numChecked == 4 ? (
                                         <input
                                             type="radio"
                                             id="41lang"
                                             name={`fav_language${line}`}
-                                            value="4" 
+                                            value="4"
                                             checked
-                                        /> :
+                                        />
+                                    ) : (
                                         <input
                                             type="radio"
                                             id="4lang"
                                             name={`fav_language${line}`}
-                                            value="4" 
+                                            value="4"
                                         />
-                                    }
+                                    )}
                                     <label
                                         htmlFor="4lang"
                                         className={styles.roboto14}
@@ -112,21 +116,22 @@ export function CheckBox(props) {
                                     </label>
                                 </div>
                                 <div className={styles.checkbox}>
-                                    {props.numChecked == 5 ?
+                                    {props.numChecked == 5 ? (
                                         <input
                                             type="radio"
                                             id="5lang"
                                             name={`fav_language${line}`}
-                                            value="5" 
+                                            value="5"
                                             checked
-                                        /> :
+                                        />
+                                    ) : (
                                         <input
                                             type="radio"
                                             id="5lang"
                                             name={`fav_language${line}`}
-                                            value="5" 
+                                            value="5"
                                         />
-                                    }
+                                    )}
                                     <label
                                         htmlFor="5lang"
                                         className={styles.roboto14}

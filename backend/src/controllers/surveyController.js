@@ -1,3 +1,7 @@
+// TODO Delete it
+const fs = require("fs");
+const path = require("path");
+
 const Survey = require("../models/SurveyModel");
 
 const getAllSurvey = async (req, res) => {
@@ -7,6 +11,19 @@ const getAllSurvey = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
+};
+// TODO Delete it after
+const getFromBackEnd = async (req, res) => {
+    const filePath = path.join(__dirname, "../..", "survies.json");
+    // Read the file survies.json
+    fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error reading the surveys file.");
+        }
+        const jsonData = JSON.parse(data);
+        return res.status(200).json(jsonData);
+    });
 };
 
 const getSingleSurvey = async (req, res) => {
@@ -22,7 +39,7 @@ const getSingleSurvey = async (req, res) => {
 const getSingleSurveyID = async (req, res) => {
     try {
         const { surveyID } = req.params;
-        const singleSurvey = await Survey.findOne({ surveyID: surveyID });
+        const singleSurvey = await Survey.findOne({ surveyID });
         return res.status(200).json(singleSurvey);
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -47,38 +64,40 @@ const updateSurvey = async (req, res) => {
     }
 };
 
+// TODO Fix it to save into database
 const addSurvey = async (req, res) => {
-    const {
-        surveyID,
-        status,
-        question1,
-        question1Answer,
-        question2,
-        question2Answer,
-        question3,
-        question3Answer,
-        alreadyAnswered,
-        totalOfEmployees,
-    } = req.body;
+    const newSurvey = req.body;
+    const filePath = path.join("./survies.json");
+    fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading the file:", err);
+            return res.status(500).send("Error reading the file.");
+        }
 
-    try {
-        const newSurvey = new Survey({
-            surveyID,
-            status,
-            question1,
-            question1Answer,
-            question2,
-            question2Answer,
-            question3,
-            question3Answer,
-            alreadyAnswered,
-            totalOfEmployees,
-        });
-        await newSurvey.save();
-        return res.status(200).send("Survey Saved");
-    } catch (error) {
-        return res.status(400).send(error.message);
-    }
+        let survies = [];
+        try {
+            survies = JSON.parse(data);
+            console.log(survies);
+        } catch (error) {
+            console.log("problem", error);
+        }
+        survies.survies.push(newSurvey);
+        fs.writeFile(
+            "survies.json",
+            JSON.stringify(survies, null, 2),
+            (error) => {
+                if (error) {
+                    console.error("Error writing to the file:", error);
+                    return res.status(500).send("Error writing to the file.");
+                }
+
+                // Returning a response after successfully writing the file
+                return res.status(201).send(survies);
+            }
+        );
+        // Returning a response after successfully writing the file
+        return res.status(201).send("Reading file successfully");
+    });
 };
 
 module.exports = {
@@ -87,4 +106,5 @@ module.exports = {
     getSingleSurveyID,
     updateSurvey,
     addSurvey,
+    getFromBackEnd,
 };

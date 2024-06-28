@@ -1,4 +1,3 @@
-import styles from "./styles.module.css";
 import Chart from "react-apexcharts";
 
 export default function ChartDonut() {
@@ -10,10 +9,9 @@ export default function ChartDonut() {
         dataLabels: {
             enabled: false,
         },
-        series: [1.2, 1.4, 2.4],
-        chartOptions: {
-            labels: ["Apple", "Mango", "Orange"],
-        },
+        series: [2.5, 1.5, 1],
+        colors: ["#FBD8D8", "#F38886", "#0B4A86"],
+        labels: ["Promoters (4 - 5)", "Neutrals (3)", "Detractors (1 - 2)"],
         legend: {
             show: true,
             markers: {
@@ -25,7 +23,6 @@ export default function ChartDonut() {
             },
             offsetY: 60,
         },
-        labels: ["Promoters (4 - 5)", "Neutrals (3)", "Detractors (1 - 2)"],
         plotOptions: {
             pie: {
                 expandOnClick: false,
@@ -62,14 +59,11 @@ export default function ChartDonut() {
     };
 
     return (
-        <div className={styles.fullWidth}>
-            <p className={styles.title16}>Employee Satisfaction Index</p>
-            <Chart
-                options={options}
-                series={options.series}
-                type="donut"
-                height={280}
-            />
-        </div>
+        <Chart
+            options={options}
+            series={options.series}
+            type="donut"
+            height={280}
+        />
     );
 }

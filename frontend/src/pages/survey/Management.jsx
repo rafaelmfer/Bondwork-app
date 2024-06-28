@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SurveyTable from "../../components/SurveyTable";
+import TopUserBar from "../../components/top-user-bar/TopUserBar";
+
+const PORT = process.env.REACT_APP_PORT || 5000;
+const URL = "http://localhost:" + PORT + "/api/survies/survies";
 
 const Management = () => {
     //Hook for the survey array
@@ -13,9 +17,9 @@ const Management = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:5001/api/survies");
+                const res = await fetch(URL);
                 const data = await res.json();
-                setSurvies(JSON.parse(data).survies);
+                setSurvies(data.survies);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -30,10 +34,12 @@ const Management = () => {
     }, [data]);
 
     return (
-        <main className="ml-menuMargin mt-24 bg-white">
-            <h2>Management</h2>
-            <SurveyTable rowsNumber="15" data={survies} />
-        </main>
+        <div>
+            <TopUserBar titleScreen={"Management"} />
+            <main className="ml-menuMargin mt-24 bg-white">
+                <SurveyTable rowsNumber="15" data={survies} />
+            </main>
+        </div>
     );
 };
 

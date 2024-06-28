@@ -7,6 +7,7 @@ export function InputTextArea(props) {
 
     const handleTextChange = (event) => {
         const newText = event.target.value;
+        props.onValueChange(newText);
         setText(newText);
         setCharCount(newText.length);
     };
