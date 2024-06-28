@@ -281,6 +281,8 @@ hr {
 }
 
 .whiteBG {
+    max-width: 868px;
+    margin: auto;
     background-color: white;
     padding: 24px 32px;
 }

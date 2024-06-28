@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import { ReactComponent as Icon } from "./icons/Icon.svg";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,12 +8,26 @@ import { InputType } from "../../components/fields/InputType";
 import { CheckBox } from "../../components/fields/CheckBoxes/CheckBox";
 import { MyButton } from "../../components/fields/button/MyButton";
 import { surveyCreationContext } from "../../context/Context";
-import PopUpOneBtn from "../../components/dialogs/PopUpOneBtn";
-
-const PORT = process.env.REACT_APP_PORT || 5000;
-
+import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import promptOk from "../../assets/images/promptOk.svg";
+// TODO It's not working
+// const PORT = process.env.REACT_APP_PORT || 5000;
+// const URL = "http://localhost:" + PORT + "/api/questions";
 export default function SurveyHtml() {
     const [questions, setQuestions] = useState([]);
+    const [surveyInputs, setSurveyInputs] = useState({});
+
+    // For succesful message
+    const [showPopup, setShowPopup] = useState(false);
+    const navigate = useNavigate();
+
+    // Callback functions for the popUp message
+    const goToHome = () => {
+        navigate("/");
+    };
+    const goToSurvey = () => {
+        navigate("/survey");
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,17 +49,11 @@ export default function SurveyHtml() {
         fetchData();
     }, []);
 
-    const [surveyInputs, setSurveyInputs] = useState({});
-
-    // For succesful message
-    const [showPopup, setShowPopup] = useState(false);
-
     // TODO : Delete the useEffect after we fix the survey form
     // Add missing field that we need for the tables
     useEffect(() => {
         setSurveyInputs((prevInputs) => ({
             ...prevInputs,
-            expired: "2024-12-07",
             status: "Upcoming",
             viewed: 0,
             completed: 0,
@@ -84,7 +93,7 @@ export default function SurveyHtml() {
             // Verifica si la respuesta es JSON antes de intentar analizarla
             const contentType = res.headers.get("Content-Type");
             if (!contentType || !contentType.includes("application/json")) {
-                console.log("Received non-JSON response");
+                // console.log("Received non-JSON response");
                 return;
             }
 
@@ -97,7 +106,27 @@ export default function SurveyHtml() {
 
     return (
         <>
-            <PopUpOneBtn trigger={showPopup} setTrigger={setShowPopup} />
+            <PopUpTwoBtn
+                trigger={showPopup}
+                setTrigger={setShowPopup}
+                children={
+                    <div className="successTex flex flex-col gap-[16px] items-center">
+                        <img
+                            src={promptOk}
+                            alt="ok symbol"
+                            className="w-[50px] h-[50px]"
+                        />
+                        <h3 className="text-h3">Published</h3>
+                        <p className="text-p text-center">
+                            The employees have received the survey link.
+                        </p>
+                    </div>
+                }
+                btnOneText={"Go to Home"}
+                btnOneOnClick={goToHome}
+                btnTwoText={"Go to the Survey"}
+                btnTwoOnClick={goToSurvey}
+            />
             <form onSubmit={handleAddSurvey}>
                 <surveyCreationContext.Provider
                     value={{ surveyInputs, setSurveyInputs }}
@@ -169,7 +198,7 @@ export default function SurveyHtml() {
 
                     <div className={styles.nextBtn}>
                         <MyButton value={"Cancel"} />
-                        <MyButton value={"Next"} />
+                        <MyButton value={"Next"} onClick={handleAddSurvey} />
                     </div>
                     <div className={styles.space24}></div>
                 </surveyCreationContext.Provider>

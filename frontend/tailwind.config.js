@@ -25,7 +25,11 @@ module.exports = {
         colors: {
             transparent: "transparent",
             current: "currentColor",
-            main: "#EF6461",
+            main: {
+                DEFAULT: "#EF6461", // use as bg-main || text-main
+                active: "#FDE9E9", //use bg-main-active
+                hover: "#F9C2C1",
+            },
             secondary: "#0F599F",
             alert: "#B23E24",
             warning: "#F1C31E",
@@ -34,6 +38,7 @@ module.exports = {
             contrastText1: "#0B0A0A",
             contrastText: "#FBFBFB",
             info: "#E1E1E1",
+            white: "#FFFFFF",
         },
         fontFamily: {
             sans: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",

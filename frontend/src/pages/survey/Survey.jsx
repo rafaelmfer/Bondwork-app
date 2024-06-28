@@ -10,7 +10,7 @@ const Survey = () => {
     const [activePage, setActivePage] = useState(true);
 
     return (
-        <main className="ml-menuMargin mt-24 py-4 bg-white">
+        <main className="ml-menuMargin">
             <div className={styles.whiteBG}>
                 <div className={styles.nav}>
                     <div className={styles.nav_left}>
