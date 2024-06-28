@@ -1,6 +1,5 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import styles from "./styles.module.css";
 
 export default function ChartArea() {
     const options = {
@@ -13,8 +12,8 @@ export default function ChartArea() {
         },
         series: [
             {
-                name: "Series 1",
-                data: [45, 52, 38, 45, 19, 23, 2],
+                name: "Average",
+                data: [3.7, 4.5, 4, 2.8, 3.4, 4.3, 4.1, null],
             },
         ],
         fill: {
@@ -26,29 +25,44 @@ export default function ChartArea() {
                 stops: [0, 90, 100],
             },
         },
-        colors: ["silver", "blue"],
+        colors: ["#F38886"],
+        markers: {
+            colors: ["#F38886"],
+            size: 5,
+            strokeColors: "#fff",
+            strokeWidth: 0,
+            strokeOpacity: 0.9,
+            strokeDashArray: 0,
+            fillOpacity: 1,
+            discrete: [],
+            shape: "circle",
+            radius: 2,
+            offsetX: 0,
+            offsetY: 0,
+            onClick: undefined,
+            onDblClick: undefined,
+            showNullDataPoints: true,
+            hover: {
+                size: undefined,
+                sizeOffset: 3,
+            },
+        },
         xaxis: {
-            categories: [
-                "01 Jan",
-                "02 Jan",
-                "03 Jan",
-                "04 Jan",
-                "05 Jan",
-                "06 Jan",
-                "07 Jan",
-            ],
+            categories: ["19", "20", "21", "22", "23", "24", "25"],
+        },
+        yaxis: {
+            min: 0,
+            max: 5,
+            tickAmount: 5,
         },
     };
 
     return (
-        <div className={styles.fullWidth}>
-            <p className={styles.title16}>Average Score Over Time</p>
-            <Chart
-                options={options}
-                series={options.series}
-                type="area"
-                height={280}
-            />
-        </div>
+        <Chart
+            options={options}
+            series={options.series}
+            type="area"
+            height={280}
+        />
     );
 }
