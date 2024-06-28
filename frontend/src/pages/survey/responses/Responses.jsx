@@ -6,6 +6,7 @@ import { InputTextArea } from "../../../components/fields/InputTextArea/InputTex
 import Survey from "../Survey";
 import SurveyTable from "../../../components/SurveyTable";
 import { InputSelect } from "../../../components/fields/InputSelect/InputSelect";
+import { IndividualReponse } from "./IndividualResponse";
 
 import { Card } from "../../../components/cards/Card";
 
@@ -34,6 +35,8 @@ const Responses = () => {
 
     return (
         <>
+            <IndividualReponse />
+
             <Card />
 
             <Survey />
