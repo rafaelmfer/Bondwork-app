@@ -1,25 +1,19 @@
 .topBar {
     position: absolute;
-    background-color: lightblue;
+    background-color: white;
     width: calc(100% - 272px);
-    height: 47px;
+    height: 80px;
     right: 0;
     top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 2rem;
 }
 
 .right_side {
     display: flex;
     gap: 10px;
-}
-
-.person {
-    background-color: rgb(194, 194, 194);
-    border-radius: 50px;
-    padding: 0.2rem;
 }
 
 .menu {
