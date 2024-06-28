@@ -2,8 +2,6 @@ import styles from "../styles.module.css";
 import { ReactComponent as Icon } from "../icons/Icon.svg";
 
 export function CheckBox(props) {
-    console.log(props.question);
-    console.log(props.numChecked);
     const line = props.line;
 
     return (

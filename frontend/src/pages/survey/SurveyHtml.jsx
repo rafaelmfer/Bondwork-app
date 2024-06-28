@@ -9,6 +9,8 @@ import { MyButton } from "../../components/fields/button/MyButton";
 import { surveyCreationContext } from "../../context/Context";
 import PopUpOneBtn from "../../components/dialogs/PopUpOneBtn";
 
+const PORT = process.env.REACT_APP_PORT || 5000;
+
 export default function SurveyHtml() {
     const [questions, setQuestions] = useState([]);
 
@@ -16,7 +18,7 @@ export default function SurveyHtml() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:5000/api/questions"
+                    `http://localhost:${PORT}/api/questions`
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -64,7 +66,6 @@ export default function SurveyHtml() {
     };
 
     //Add survey
-    const PORT = process.env.REACT_APP_PORT || 5000;
     const URL = "http://localhost:" + PORT + "/api/survies/addsurvey";
     const addSurvey = async (newSurvey) => {
         try {

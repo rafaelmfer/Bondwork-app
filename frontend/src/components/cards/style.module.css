@@ -1,0 +1,186 @@
+.cardColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    min-width: 500px;
+}
+
+.cardStatus {
+    color: #ca310f;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.cardDivStatus {
+    display: flex;
+    gap: 25px;
+}
+
+.cardRequest {
+    color: #727272;
+    outline: none;
+    font-size: 15px;
+    background-color: #fffefe;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 8px;
+}
+
+.card2Cards {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    gap: 20px;
+    text-align: left;
+}
+
+.card2Cards p {
+    width: 100%;
+}
+
+.cardUser {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.cardFrom {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cardAvatar {
+    background-color: #fffefe;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    border-radius: 12px;
+    padding-left: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cardShowAvatar {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.cardUserInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardUserName {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.cardUserTitle {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.cardDepartment {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 15px;
+    row-gap: 10px;
+}
+
+.cardDepartment p {
+    font-size: 17px;
+    color: #727272;
+    font-weight: 700;
+}
+
+.cardDepartment span {
+    color: black;
+    font-weight: bold;
+}
+
+.cardCatPoint {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    gap: 20px;
+    text-align: left;
+}
+
+.cardOne {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+.cardPointsColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardPoints {
+    background-color: #fffefe;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    border-radius: 12px;
+    padding-left: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    font-weight: 500;
+    gap: 14px;
+}
+
+.cardFrom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cardPoints {
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.cardDetails {
+    font-size: 17px;
+    font-weight: 500;
+    padding: 24px;
+}
+
+.cardBtn {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+}
+
+.cardBtnReject {
+    font-size: 17px;
+    padding: 8px 28px;
+    border-radius: 8px;
+    color: #4190da;
+    border: 2px solid #4190da;
+    font-weight: 500;
+}
+
+.cardBtnApprove {
+    font-size: 17px;
+    padding: 8px 28px;
+    border-radius: 8px;
+    color: white;
+    background-color: #ef6461;
+    border: 2px solid #ef6461;
+    font-weight: 500;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { InputType } from "../../../components/fields/InputType";
 import { InputDate } from "../../../components/fields/InputDate/InputDate";
@@ -6,16 +6,39 @@ import { InputTextArea } from "../../../components/fields/InputTextArea/InputTex
 import Survey from "../Survey";
 import SurveyTable from "../../../components/SurveyTable";
 import { InputSelect } from "../../../components/fields/InputSelect/InputSelect";
-import { IndividualReponse } from "./IndividualResponse";
+
+import { Card } from "../../../components/cards/Card";
+
+const PORT = process.env.REACT_APP_PORT || 5000;
 
 const Responses = () => {
     const Recurrence = ["Weekly", "Month", "Semester", "Year"];
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const fUser = await fetch(
+                    `http://localhost:${PORT}/api/user/employee/11`
+                );
+                if (!fUser.ok) {
+                    throw new Error(`HTTP error! status: ${fUser.status}`);
+                }
+                const data = await fUser.json();
+                setUser(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchUser();
+    }, []);
 
     return (
         <>
-            {/* <IndividualReponse />
+            <Card />
 
-            <Survey /> */}
+            <Survey />
 
             <main className="ml-menuMargin mt-24 bg-white">
                 <div className={styles.surveyEmployee}>
