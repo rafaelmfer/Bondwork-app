@@ -26,19 +26,70 @@ module.exports = {
             transparent: "transparent",
             current: "currentColor",
             main: {
-                DEFAULT: "#EF6461", // use as bg-main || text-main
-                active: "#FDE9E9", //use bg-main-active
-                hover: "#F9C2C1",
+                DEFAULT: "#EF6461", // use as bg-main (or as text-main)  // This is primary-700 in mockup
+                100: "#FEF5F5", //use as bg-main-100
+                200: "#FDE9E9",
+                300: "#FBD8D8",
+                400: "#F9C2C1",
+                500: "#F6A8A6",
+                600: "#F38886",
+                800: "#E83532",
+                900: "#8F0A06",
             },
-            secondary: "#0F599F",
-            alert: "#B23E24",
-            warning: "#F1C31E",
-            success: "#20A41E",
-            light: "#FFFEFE", // Background color. The following colors are named based on theme.jsx
-            contrastText1: "#0B0A0A",
-            contrastText: "#FBFBFB",
-            info: "#E1E1E1",
-            white: "#FFFFFF",
+            secondary: {
+                DEFAULT: "#2774BC", // secondary-700 in mockup
+                100: "#ECF5FD",
+                200: "#D6DDE4",
+                300: "#B1D6F9",
+                400: "#85BFF5",
+                500: "#50A3F1",
+                600: "#4190DA",
+                800: "#0B4A86",
+                900: "#05213C",
+                950: "#041A2F",
+            },
+            alert: {
+                DEFAULT: "#DD735C",
+                100: "#FFF4F1",
+                300: "#CA310F",
+            },
+            warning: {
+                DEFAULT: "#F6D769",
+                100: "#FAEBB4",
+                300: "#B28E0B",
+            },
+            success: {
+                DEFAULT: "#76BF7D",
+                100: "#DEF6E0",
+                300: "#227F2C",
+            },
+            // light: "#FFFEFE", // Background color.
+            // contrastText1: "#0B0A0A",
+            // contrastText: "#FBFBFB",
+            // info: "#E1E1E1",
+            // white: "#FFFFFF",
+            neutrals: {
+                white: "#FFFEFE",
+                black: "#0B0A0A",
+                background: "#FBFBFB",
+                divader: "#DFDFDF",
+                gray50: "#F8F8F8",
+                gray100: "#EEEEEE",
+                gray200: "#B5B5B5",
+                gray300: "#727272",
+            },
+            support: {
+                purple: "#793BB7",
+                light_purple: "#EEDDFF",
+                blue: "#3065B4",
+                light_blue: "#D0E3FF",
+                green: "#349025",
+                light_green: "#DBF9D6",
+                orange: "#DC6A1E",
+                light_orange: "#FBE4D8",
+                red: "#DF263C",
+                light_red: "#FCDFE2",
+            },
         },
         fontFamily: {
             sans: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
