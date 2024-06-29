@@ -10,6 +10,7 @@ import { MyButton } from "../../components/fields/button/MyButton";
 import { surveyCreationContext } from "../../context/Context";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import promptOk from "../../assets/images/promptOk.svg";
+
 // TODO It's not working
 // const PORT = process.env.REACT_APP_PORT || 5000;
 // const URL = "http://localhost:" + PORT + "/api/questions";
@@ -33,7 +34,7 @@ export default function SurveyHtml() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:${PORT}/api/questions`
+                    "http://localhost:5001/api/questions"
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

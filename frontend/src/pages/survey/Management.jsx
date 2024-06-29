@@ -8,9 +8,6 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 const PORT = process.env.REACT_APP_PORT || 5000;
 const URL = "http://localhost:" + PORT + "/api/survies/survies";
 
-const PORT = process.env.REACT_APP_PORT || 5000;
-const URL = "http://localhost:" + PORT + "/api/survies/survies";
-
 const Management = () => {
     //Hook for the survey array
     const [survies, setSurvies] = useState([]);
