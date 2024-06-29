@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
 import Survey from "./pages/survey/Survey";
+import RecognitionRequestDetails from "./pages/recognition/RecognitionRequestDetails";
 
 // Method to recurservely create the routes
 const renderRoutes = (routes) => {
@@ -66,6 +67,11 @@ function App() {
                 <Routes>
                     {renderRoutes(routes)}
                     <Route path="/survey/addNew" element={<Survey />} />
+
+                    <Route
+                        path="/recognition/request/details"
+                        element={<RecognitionRequestDetails />}
+                    />
                 </Routes>
             </div>
         </Router>

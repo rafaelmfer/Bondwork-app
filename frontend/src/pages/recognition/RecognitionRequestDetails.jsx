@@ -1,7 +1,8 @@
 import React from "react";
+import { Card } from "../../components/cards/Card";
 
 const RecognitionRequestDetails = () => {
-    return <div>Recognition</div>;
+    return <Card />;
 };
 
 export default RecognitionRequestDetails;
