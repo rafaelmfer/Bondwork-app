@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
 import Survey from "./pages/survey/Survey";
 import RecognitionRequestDetails from "./pages/recognition/RecognitionRequestDetails";
+import Responses from "./pages/survey/responses/Responses";
 
 // Method to recurservely create the routes
 const renderRoutes = (routes) => {
@@ -62,16 +63,14 @@ function App() {
         <Router>
             <div className="App">
                 <Sidebar profileName={"Izabela N."} />
-
-                {/* Call to the method to render all the routes */}
                 <Routes>
                     {renderRoutes(routes)}
-                    <Route path="/survey/addNew" element={<Survey />} />
-
+                    <Route path="/surveys/addNew" element={<Survey />} />
                     <Route
-                        path="/recognition/request/details"
+                        path="/recognitions/requests/details"
                         element={<RecognitionRequestDetails />}
                     />
+                    <Route path="/surveys/responses" element={<Responses />} />
                 </Routes>
             </div>
         </Router>

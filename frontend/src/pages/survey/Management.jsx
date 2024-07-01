@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SurveyTable from "../../components/SurveyTable";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const PORT = process.env.REACT_APP_PORT || 5000;
 const URL = "http://localhost:" + PORT + "/api/survies/survies";
@@ -36,7 +37,8 @@ const Management = () => {
     return (
         <div>
             <TopUserBar titleScreen={"Management"} />
-            <main className="ml-menuMargin mt-24 bg-white">
+            <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+                <Breadcrumbs />
                 <SurveyTable rowsNumber="15" data={survies} />
             </main>
         </div>

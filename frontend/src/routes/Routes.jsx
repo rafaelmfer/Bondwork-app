@@ -27,16 +27,16 @@ const routes = [
         icon: iconDashboard,
     },
     {
-        path: "/recognition",
+        path: "/recognitions",
         element: <RecognitionMain />,
-        menuLabel: "Recognition",
+        menuLabel: "Recognitions",
         icon: iconRecognition,
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/recognition/request",
+                path: "/recognitions/requests",
                 element: <RecognitionRequestList />,
-                menuLabel: "Request",
+                menuLabel: "Requests",
             },
         ],
     },
@@ -48,33 +48,28 @@ const routes = [
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/rewards/managment",
+                path: "/rewards/management",
                 element: <RewardsManagement />,
-                menuLabel: "Managment",
+                menuLabel: "Management",
             },
             {
-                path: "/rewards/request",
+                path: "/rewards/requests",
                 element: <RewardsRequestList />,
-                menuLabel: "Request",
+                menuLabel: "Requests",
             },
         ],
     },
     {
-        path: "/survey",
+        path: "/surveys",
         element: <SurveyMain />,
-        menuLabel: "Survey",
+        menuLabel: "Surveys",
         icon: iconSurvey,
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/survey/management",
+                path: "/surveys/management",
                 element: <Management />,
                 menuLabel: "Management",
-            },
-            {
-                path: "/survey/responses",
-                element: <Responses />,
-                menuLabel: "Responses",
             },
         ],
     },
