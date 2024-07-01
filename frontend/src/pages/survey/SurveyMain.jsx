@@ -5,6 +5,7 @@ import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 import styles from "../../components/charts/styles.module.css";
 
@@ -31,37 +32,32 @@ const SurveyMain = () => {
     }, []);
 
     return (
-        <div>
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
             <TopUserBar titleScreen={"Surveys"} />
-            <main className="ml-menuMargin mt-24 bg-white">
-                <Summary />
-                <div
-                    className="grid grid-cols-3 items-center gap-5 p-4"
-                    id="chart"
-                >
-                    <div className={styles.fullWidth}>
-                        <p className={styles.title16}>
-                            Employee Satisfaction Index
-                        </p>
-                        <ChartDonut />
-                    </div>
-                    <div className={styles.fullWidth}>
-                        <p className={styles.title16}>
-                            Average Score Over Time
-                        </p>
-                        <ChartArea />
-                    </div>
+            <Breadcrumbs />
 
-                    <div className={styles.fullWidth}>
-                        <p className={styles.title16}>
-                            Overall Satisfaction Drivers
-                        </p>
-                        <ChartLine chartHeight={200} />
-                    </div>
+            <Summary />
+            <div className="grid grid-cols-3 items-center gap-5 p-4" id="chart">
+                <div className={styles.fullWidth}>
+                    <p className={styles.title16}>
+                        Employee Satisfaction Index
+                    </p>
+                    <ChartDonut />
                 </div>
-                <SurveyTable rowsNumber="5" data={survies} />
-            </main>
-        </div>
+                <div className={styles.fullWidth}>
+                    <p className={styles.title16}>Average Score Over Time</p>
+                    <ChartArea />
+                </div>
+
+                <div className={styles.fullWidth}>
+                    <p className={styles.title16}>
+                        Overall Satisfaction Drivers
+                    </p>
+                    <ChartLine chartHeight={200} />
+                </div>
+            </div>
+            <SurveyTable rowsNumber="5" data={survies} />
+        </main>
     );
 };
 
