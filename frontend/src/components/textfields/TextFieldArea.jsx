@@ -121,12 +121,14 @@ const TextFieldArea = ({
     disabled,
     value,
     onChange,
+    sx,
 }) => {
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
 
     return (
         <Box
+            sx={sx}
             aria-disabled={disabled} // ARIA attribute to indicate disabled state
             aria-invalid={error} // ARIA attribute to indicate error state
         >
