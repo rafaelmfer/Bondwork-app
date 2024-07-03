@@ -1,7 +1,7 @@
 import { ReactComponent as Supportive } from "../../assets/images/supportive.svg";
 import style from "./style.module.css";
 
-export function Category() {
+export function Category(props) {
     return (
         <>
             <div className={style.cardUser}>
@@ -9,7 +9,7 @@ export function Category() {
                     Category
                     <div className={style.cardPoints}>
                         <Supportive />
-                        Supportive
+                        {props.sender.category}
                     </div>
                 </div>
             </div>

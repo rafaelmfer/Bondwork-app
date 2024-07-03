@@ -1,7 +1,7 @@
 import { ReactComponent as PointSvg } from "../../assets/images/points.svg";
 import style from "./style.module.css";
 
-export function Points() {
+export function Points(props) {
     return (
         <>
             <div className={style.cardUser}>
@@ -9,7 +9,7 @@ export function Points() {
                     Points
                     <div className={style.cardPoints}>
                         <PointSvg />
-                        1,000
+                        {props.sender.points}
                     </div>
                 </div>
             </div>
