@@ -1,16 +1,16 @@
 import Home from "../pages/Home";
-
 import RecognitionMain from "../pages/recognition/RecognitionMain";
 import RecognitionRequestList from "../pages/recognition/RecognitionRequestList";
-
 import RewardsMain from "../pages/rewards/RewardsMain";
 import RewardsManagement from "../pages/rewards/RewardsManagement";
 import RewardsRequestList from "../pages/rewards/RewardsRequestList";
-
 import SurveyMain from "../pages/survey/SurveyMain";
 import Management from "../pages/survey/Management";
 import Responses from "../pages/survey/responses/Responses";
 import Users from "../pages/Users";
+import Login from "../pages/auth/Login";
+import Survey from "../pages/survey/Survey";
+import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
 
 import iconDashboard from "../assets/icons/dashboard.svg";
 import iconRecognition from "../assets/icons/recognition.svg";
@@ -21,7 +21,13 @@ import iconArrowDown from "../assets/icons/dropdown.svg";
 
 const routes = [
     {
-        path: "/",
+        path: "/login",
+        element: <Login />,
+        menuLabel: "Login",
+        hideInSidebar: true, // Don't Show in Sidebar Component
+    },
+    {
+        path: "/dashboard",
         element: <Home />,
         menuLabel: "Dashboard",
         icon: iconDashboard,
@@ -33,6 +39,12 @@ const routes = [
         icon: iconRecognition,
         iconChevron: iconArrowDown,
         subItems: [
+            {
+                path: "/recognitions/requests/details",
+                element: <RecognitionRequestDetails />,
+                menuLabel: "Request Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
             {
                 path: "/recognitions/requests",
                 element: <RecognitionRequestList />,
@@ -66,6 +78,18 @@ const routes = [
         icon: iconSurvey,
         iconChevron: iconArrowDown,
         subItems: [
+            {
+                path: "/survey/addNew",
+                element: <Survey />,
+                menuLabel: "Add New Survey",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+            {
+                path: "/surveys/responses",
+                element: <Responses />,
+                menuLabel: "Responses",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
             {
                 path: "/surveys/management",
                 element: <Management />,

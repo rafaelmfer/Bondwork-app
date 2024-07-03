@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import CustomButton from "../../components/buttons/CustomButton";
@@ -19,24 +19,82 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordIcon, setPasswordIcon] = useState(PasswordIconOpen);
     const [rememberMe, setRememberMe] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
+    const navigate = useNavigate();
+
+    // Toggle password visibility
     const handlePasswordToggle = () => {
         setShowPassword(!showPassword);
         setPasswordIcon(showPassword ? PasswordIconOpen : PasswordIconClosed);
     };
 
+    // Change password icon on hover
     const handlePasswordIconHover = () => {
         setPasswordIcon(
             showPassword ? PasswordIconOpenHover : PasswordIconClosedHover
         );
     };
 
+    // Revert password icon on hover out
     const handlePasswordIconHoverOut = () => {
         setPasswordIcon(showPassword ? PasswordIconOpen : PasswordIconClosed);
     };
 
+    // Toggle "Remember me" checkbox
     const handleRememberMeToggle = () => {
         setRememberMe(!rememberMe);
+    };
+
+    // Handle login form submission
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        // Reset error states
+        setEmailError(false);
+        setPasswordError(false);
+
+        // Validate input fields
+        if (!email) {
+            setEmailError(true);
+            return;
+        }
+        if (!password) {
+            setPasswordError(true);
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `http://localhost:${process.env.REACT_APP_PORT}/api/auth/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email, password }),
+                }
+            );
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert(errorData.message || "Login failed");
+                return;
+            }
+
+            const data = await response.json();
+            const token = data.token;
+
+            // Save the token to localStorage
+            localStorage.setItem("token", token);
+
+            // Redirect to the next page
+            navigate("/dashboard");
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("Login failed. Please try again.");
+        }
     };
 
     return (
@@ -46,14 +104,17 @@ const Login = () => {
             </div>
             <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg w-full max-w-lg">
                 <h1 className="text-center text-h2 mb-6">Log In</h1>
-                <form className="pb-8 border-b-neutrals-divider border-b">
+                <form
+                    className="pb-8 border-b-neutrals-divider border-b"
+                    onSubmit={handleLogin}
+                >
                     <TextFieldRegular
                         id="email"
                         label="Email"
                         placeholder="abc@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        error={false}
+                        error={emailError}
                         disabled={false}
                         sx={{ mb: "16px", width: "100%" }}
                     />
@@ -69,7 +130,7 @@ const Login = () => {
                         onMouseOverIconRight={handlePasswordIconHover}
                         onMouseOutIconRight={handlePasswordIconHoverOut}
                         hint="It must be a combination of minimum 8 letters, numbers, and symbols."
-                        error={false}
+                        error={passwordError}
                         disabled={false}
                         sx={{ mb: "24px", width: "100%" }}
                     />
@@ -98,7 +159,7 @@ const Login = () => {
                     </div>
                     <CustomButton
                         buttontype="primary"
-                        onClick={() => {}}
+                        onClick={handleLogin}
                         sx={{ width: "calc(100% - 48px)" }}
                     >
                         Log In

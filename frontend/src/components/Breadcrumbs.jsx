@@ -11,7 +11,7 @@ const Breadcrumbs = () => {
     const pathnames = location.pathname.split("/").filter((x) => x);
 
     // not show on Dashboard
-    if (location.pathname === "/") {
+    if (location.pathname === "/dashboard") {
         return null;
     }
 
