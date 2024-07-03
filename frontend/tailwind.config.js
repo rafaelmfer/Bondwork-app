@@ -72,7 +72,7 @@ module.exports = {
                 white: "#FFFEFE",
                 black: "#0B0A0A",
                 background: "#FBFBFB",
-                divader: "#DFDFDF",
+                divider: "#DFDFDF",
                 gray50: "#F8F8F8",
                 gray100: "#EEEEEE",
                 gray200: "#B5B5B5",

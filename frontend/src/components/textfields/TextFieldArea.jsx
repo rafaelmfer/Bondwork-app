@@ -16,7 +16,7 @@ const Hint = styled("p")(({ theme, error, focused, hovered, disabled }) => {
     } else if (focused) {
         color = theme.palette.secondary[800];
     } else if (hovered) {
-        color = theme.palette.secondary.main;
+        color = theme.palette.secondary[700];
     } else if (disabled) {
         color = theme.palette.neutrals.gray300;
     } else {
@@ -93,7 +93,8 @@ const TextAreaElement = styled("textarea")(
  *
  * Usage:
  *
- * ```<TextFieldArea
+ * ```jsx
+ * <TextFieldArea
  *     id="unique-id"
  *     label="Label Text"
  *     placeholder="Placeholder Text"
@@ -102,7 +103,8 @@ const TextAreaElement = styled("textarea")(
  *     disabled={false}
  *     value={textareaValue}
  *     onChange={(e) => setTextareaValue(e.target.value)}
- * />```
+ * />
+ * ```
  *
  * Accessibility:
  * - Uses ARIA attributes aria-disabled, aria-invalid, aria-describedby for accessibility.
