@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
     Box,
     Tabs,
@@ -25,47 +24,6 @@ import { ReactComponent as MenuDots } from "../assets/icons/deactivated/deactiva
 import { ReactComponent as SortActive } from "../assets/icons/activated/activated-sort.svg";
 import { ReactComponent as SortDeactive } from "../assets/icons/deactivated/deactivated-sort.svg";
 import { ReactComponent as ArrowBack } from "../assets/icons/activated/activated-back.svg";
-
-// function formatDate(date) {
-//     const options = { month: "short", day: "2-digit", year: "numeric" };
-//     return date.toLocaleDateString("en-US", options);
-// }
-// function createData(
-//     id,
-//     surveyName,
-//     createdIn,
-//     expired,
-//     status,
-//     viewed,
-//     completed,
-//     dropouts
-// ) {
-//     return {
-//         id,
-//         surveyName,
-//         createdIn,
-//         expired,
-//         status,
-//         viewed,
-//         completed,
-//         dropouts,
-//     };
-// }
-
-// function createRows(dataArray) {
-//     return dataArray.map((object, index) =>
-//         createData(
-//             index + 1,
-//             object.surveyName,
-//             formatDate(new Date(object.createdIn)),
-//             formatDate(new Date(object.expired)),
-//             object.status,
-//             object.viewed,
-//             object.completed,
-//             object.dropouts
-//         )
-//     );
-// }
 
 // Sorting functions
 function descendingComparator(a, b, orderBy) {
@@ -96,7 +54,7 @@ function stableSort(array, comparator) {
     return stabilizedThis.map((el) => el[0]);
 }
 // ===============================================
-export default function SurveyTable({
+export default function TableSeven({
     showTitle = true,
     title,
     showTabs = true,
@@ -251,7 +209,7 @@ export default function SurveyTable({
     const IconToDisplay =
         isClicked || isHovered ? CustomSortActiveIcon : CustomSortIcon;
     return (
-        <Box component="section" sx={{ m: 2 }}>
+        <Box component="section" className="table" sx={{ m: 2 }}>
             {showTitle && (
                 <Box
                     className="titleContainer"
@@ -302,7 +260,6 @@ export default function SurveyTable({
                                     backgroundColor: theme.palette.primary.main,
                                 },
                                 "button.Mui-selected": {
-                                    // color: "#EF6461",
                                     color: theme.palette.primary.main,
                                     borderRadius: "8px",
                                 },
@@ -575,7 +532,8 @@ export default function SurveyTable({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
-                                    width: "150px",
+                                    width: "110px",
+                                    maxWidth: "150px",
                                 }}
                                 onClick={() =>
                                     handleRequestSort(keysObject[7].toString())
@@ -673,11 +631,88 @@ export default function SurveyTable({
                     })}
                 </tbody>
             </table>
-            <ThemePagination
-                count={totalPages}
-                page={currentPage}
-                onChange={handlePageChange}
-            />
+            {totalRows > rowsPerPage && (
+                <ThemePagination
+                    count={totalPages}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                />
+            )}
         </Box>
     );
 }
+/** 
+ * Here is an example of how to use this component
+ * // Array to map the table headings
+    const columnsTable = [
+        "id",
+        "Survey Name",
+        "Created In",
+        "Expired Date",
+        "Viewed",
+        "Completed",
+        "Dropouts",
+        "Status",
+    ];
+
+    // method with the columns needed for the table
+    function createData(
+        id,
+        surveyName,
+        createdIn,
+        expired,
+        viewed,
+        completed,
+        dropouts,
+        status
+    ) {
+        return {
+            id,
+            surveyName,
+            createdIn,
+            expired,
+            viewed,
+            completed,
+            dropouts,
+            status,
+        };
+    }
+    // method to structure the data into the fields that we need
+    function createRows(dataArray) {
+        return dataArray.map((object, index) =>
+            createData(
+                index + 1,
+                object.surveyName,
+                formatDate(new Date(object.createdIn)),
+                formatDate(new Date(object.expired)),
+                object.viewed,
+                object.completed,
+                object.dropouts,
+                object.status
+            )
+        );
+    }
+    // create the array that will be passed into the table
+    const rows = createRows(survies);
+
+    After can be called like this
+    <TableSeven
+                title={"Survey"}
+                rows={rows}
+                columns={columnsTable}
+                rowsNumber="5"
+    />
+
+
+    Or like this if some elements shouldn't be displayed
+    <TableSeven
+                showTitle={false}
+                title={"Recognition"}
+                tabsVariant={"variant2"}
+                rows={rows}
+                columns={columnsTable}
+                rowsNumber="5"
+                showFilter = true,
+                showSend = true,
+    />
+*/
