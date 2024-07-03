@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Avatar } from "@mui/material";
-import routes from "../routes/Routes"; // Routes to the links on the menu. With exception of the profile route
-
+import routes from "../routes/Routes";
 import logo from "../assets/icons/logo.svg";
 import lineWithEndCurve from "../assets/images/vertical_line.svg";
 import lineWithMidCurve from "../assets/images/vertical_line_mid_curve.svg";
@@ -12,16 +11,14 @@ const Sidebar = ({ profileName }) => {
         .map((item, index) => (item.subItems ? index : null))
         .filter((index) => index !== null);
 
-    const [activeIndexes, setActiveIndexes] = useState(initialActiveIndexes); // State for active indexes
-    const location = useLocation(); // Obtiene la ruta actual desde react-router-dom
+    const [activeIndexes, setActiveIndexes] = useState(initialActiveIndexes);
+    const location = useLocation();
 
-    // Efecto para establecer el índice activo basado en la ruta actual
     useEffect(() => {
         const activeRouteIndex = routes.findIndex(
             (route) => route.path === location.pathname
         );
 
-        // Check for subItems
         routes.forEach((route, index) => {
             if (route.subItems) {
                 route.subItems.forEach((subItem) => {
@@ -53,18 +50,20 @@ const Sidebar = ({ profileName }) => {
         );
     };
 
-    const itemsWithoutLine = ["Dashboard", "Employees"];
-
     return (
         <div className="w-menuWidth bg-light border-r border-[#EEEEEE] flex flex-col fixed top-0 left-0 px-6 pb-4 h-screen">
             <div className="h-[80px] box-content flex">
-                <img src={logo} />
+                <img src={logo} alt="Logo" />
             </div>
 
             <div className="listContainer grow mt-4">
                 <ul className="flex flex-col items-start justify-between list-none p-0 m-0">
                     {routes.map((item, index) => {
                         const isActive = location.pathname === item.path;
+
+                        if (item.hideInSidebar) {
+                            return null; // Ignora rotas principais ocultas
+                        }
 
                         return (
                             <li key={index} className={`w-full`}>
@@ -81,9 +80,6 @@ const Sidebar = ({ profileName }) => {
                                         index
                                     )}
                                 >
-                                    {!itemsWithoutLine.includes(
-                                        item.menuLabel
-                                    ) && !item.subItems}
                                     <Link
                                         to={item.path}
                                         className={`flex items-center text-decoration-none ${
@@ -135,6 +131,11 @@ const Sidebar = ({ profileName }) => {
                                                 const isSubItemActive =
                                                     location.pathname ===
                                                     subItem.path;
+
+                                                if (subItem.hideInSidebar) {
+                                                    return null; // Ignora subitens ocultos
+                                                }
+
                                                 return (
                                                     <li
                                                         key={subIndex}
@@ -175,8 +176,7 @@ const Sidebar = ({ profileName }) => {
             </div>
 
             <div className="flex flex-col gap-4 items-start">
-                <div className="userProfile w-full cursor-pointer py-3 border-b border-info ">
-                    {/* TODO: when we fetch the User Data bring the profile picture */}
+                <div className="userProfile w-full cursor-pointer py-3 border-b border-neutrals-gray100 ">
                     <Link to="/profile" className="flex items-center px-[10px]">
                         <Avatar
                             className="px-1"

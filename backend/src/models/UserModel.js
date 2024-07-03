@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const users = new mongoose.Schema(
     {
@@ -7,7 +8,7 @@ const users = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        password: {
+        hashPassword: {
             type: String,
             required: true,
         },
@@ -56,5 +57,8 @@ const users = new mongoose.Schema(
         timestamps: true,
     }
 );
+
+users.methods.comparePassword = (password, hashPassword) =>
+    bcrypt.compareSync(password, hashPassword);
 
 module.exports = mongoose.model("Users", users);
