@@ -21,6 +21,9 @@ module.exports = {
                 0: "0",
                 100: "1",
             },
+            boxShadow: {
+                table: "0 0 6px 2px rgba(0, 0, 0, 0.06)",
+            },
         },
         colors: {
             transparent: "transparent",
@@ -72,7 +75,7 @@ module.exports = {
                 white: "#FFFEFE",
                 black: "#0B0A0A",
                 background: "#FBFBFB",
-                divader: "#DFDFDF",
+                divider: "#DFDFDF",
                 gray50: "#F8F8F8",
                 gray100: "#EEEEEE",
                 gray200: "#B5B5B5",
