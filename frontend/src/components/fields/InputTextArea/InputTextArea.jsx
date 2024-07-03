@@ -13,7 +13,7 @@ export function InputTextArea(props) {
     };
     return (
         <>
-            <div className={styles.textArea}>
+            <div className={styles.textAreaInput}>
                 <h3>Description</h3>
                 <textarea
                     placeholder="Description"

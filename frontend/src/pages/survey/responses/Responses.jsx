@@ -19,7 +19,7 @@ const Responses = () => {
 
             <Survey /> */}
 
-            <main className="ml-menuMargin mt-24 bg-white">
+            <main className="ml-menuMargin mt-[80px] bg-neutrals-background">
                 <div className={styles.surveyEmployee}>
                     <h1>Survey: Employee Satisfaction</h1>
                     <div className={styles.space24}></div>
