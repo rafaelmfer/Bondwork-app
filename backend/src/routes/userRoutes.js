@@ -36,20 +36,20 @@ router.put("/updateUser/:id", updateUser);
 
 router.post("/addUser", addUser);
 // {
-//     "email": "usuario1@uol.com.br",
-//     "password": "senhaum",
-//     "employee_ID": 11,
-//     "firstName": "primeiro Nome",
-//     "lastName": "primeiro lastName",
-//     "department": "department umm",
-//     "onBoardingDate": 2024,
-//     "jobTitle": "titulo job",
-//     "profilePicture": "foto um",
-//     "adminRights": true,
-//     "surveys": "survey um",
-//     "endorsements": "endorsementum",
-//     "points": 22,
-//     "lastAccess": 2025,
+//     "email": "cecilia@langara.ca",
+//     "password": "cecilialangara",
+//     "employeeID": 19,
+//     "firstName": "Cecilia",
+//     "lastName": "Lopez",
+//     "department": "IT",
+//     "onBoardingDate": 2022,
+//     "jobTitle": "Full Stack Developer",
+//     "profilePicture": "picturetwo",
+//     "adminRights": false,
+//     "surveys": [],
+//     "endorsements": [1012, 1013],
+//     "points": 210,
+//     "lastAccess": 2024,
 //     "workSchedule": "survey um"
 //   }
 module.exports = router;

@@ -23,7 +23,7 @@ const getOneUser = async (req, res) => {
 const getEmployeeID = async (req, res) => {
     try {
         const employeeID = parseInt(req.params.employeeID);
-        const singleNote = await User.findOne({ employee_ID: employeeID });
+        const singleNote = await User.findOne({ employeeID: employeeID });
         return res.status(200).json(singleNote);
     } catch (error) {
         return res.status(500).json({ message: error.message });

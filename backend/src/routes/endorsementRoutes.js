@@ -37,15 +37,5 @@ router.put("/update/:id", updateEndorsement);
 // add new Endorsement
 router.post("/addEndorsement", addEndorsement);
 // http://localhost:5000/api/endors/addEndorsement
-// {
-//     "details": "detailsone",
-//     "sender": "senderone",
-//     "receiver": "receiverone",
-//     "status": "statusone",
-//     "category": "categoryone",
-//     "date": 2,
-//     "points": 11,
-//     "published": true,
-//   }
 
 module.exports = router;

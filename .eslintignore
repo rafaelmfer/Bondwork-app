@@ -5,3 +5,4 @@ dist/
 .github/
 conventional_commits_examples.md
 userController.js
+endorsementController.js
