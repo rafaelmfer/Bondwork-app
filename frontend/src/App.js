@@ -1,13 +1,13 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
-import Survey from "./pages/survey/Survey";
-import RecognitionRequestDetails from "./pages/recognition/RecognitionRequestDetails";
-import Responses from "./pages/survey/responses/Responses";
-import Login from "./pages/auth/Login";
 
 // Method to recurservely create the routes
 const renderRoutes = (routes) => {
@@ -28,51 +28,16 @@ const renderRoutes = (routes) => {
 };
 
 function App() {
-    const [message, setMessage] = useState([]);
-    const [username, setUsername] = useState("admin");
-    const [password, setPassword] = useState("secret");
-    const [showData, setShowData] = useState([]);
-    const fetchSurvey = async () => {
-        const headers = new Headers();
-        headers.set(
-            "Authorization",
-            "Basic " + btoa(username + ":" + password)
-        );
-
-        try {
-            const response = await fetch(process.env.REACT_APP_API_URL_SURVEY, {
-                headers,
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setShowData(data);
-            } else {
-                setMessage(
-                    "Failed to fetch Protected data: " + response.statusText
-                );
-            }
-        } catch (error) {
-            setMessage("Failed to fetch Protected data: " + error.message);
-        }
-    };
-
-    useEffect(() => {
-        fetchSurvey();
-    }, []);
-
     return (
         <Router>
             <div className="App">
                 <Sidebar profileName={"Izabela N."} />
                 <Routes>
-                    {renderRoutes(routes)}
-                    <Route path="/surveys/addNew" element={<Survey />} />
                     <Route
-                        path="/recognitions/requests/details"
-                        element={<RecognitionRequestDetails />}
+                        path="/"
+                        element={<Navigate to="/login" replace={true} />}
                     />
-                    <Route path="/surveys/responses" element={<Responses />} />
-                    <Route path="/login" element={<Login />} />
+                    {renderRoutes(routes)}
                 </Routes>
             </div>
         </Router>

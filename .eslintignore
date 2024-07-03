@@ -4,5 +4,6 @@ dist/
 .git/
 .github/
 conventional_commits_examples.md
+authController.js
 userController.js
 endorsementController.js
