@@ -7,6 +7,7 @@ import routes from "./routes/Routes";
 import Survey from "./pages/survey/Survey";
 import RecognitionRequestDetails from "./pages/recognition/RecognitionRequestDetails";
 import Responses from "./pages/survey/responses/Responses";
+import Login from "./pages/auth/Login";
 
 // Method to recurservely create the routes
 const renderRoutes = (routes) => {
@@ -71,6 +72,7 @@ function App() {
                         element={<RecognitionRequestDetails />}
                     />
                     <Route path="/surveys/responses" element={<Responses />} />
+                    <Route path="/login" element={<Login />} />
                 </Routes>
             </div>
         </Router>

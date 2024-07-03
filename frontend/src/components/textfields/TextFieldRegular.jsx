@@ -31,6 +31,7 @@ const Hint = styled("p")(({ theme, error, focused, hovered, disabled }) => {
 });
 
 const CustomTextField = styled(TextField)(({ theme, disabled }) => ({
+    width: "inherit",
     "& .MuiInputBase-root": {
         borderRadius: "8px",
         height: "44px",
@@ -92,6 +93,8 @@ const Adornment = styled(InputAdornment)(({ theme }) => ({
  * - onChange: function - Event handler called when the input value changes.
  * - onClickIconLeft: function - Function to execute when the left icon is clicked.
  * - onClickIconRight: function - Function to execute when the right icon is clicked.
+ * - onMouseOverIconRight: function - Function to execute when the right icon is hovered.
+ * - onMouseOutIconRight: function - Function to execute when the right icon hover is removed.
  *
  * Usage:
  *
@@ -106,6 +109,8 @@ const Adornment = styled(InputAdornment)(({ theme }) => ({
  *     onClickIconLeft={() => console.log("Left icon clicked")}
  *     iconRight={IconNormal}
  *     onClickIconRight={() => console.log("Right icon clicked")}
+ *     onMouseOverIconRight={() => console.log("Right icon hovered")}
+ *     onMouseOutIconRight={() => console.log("Right icon hover removed")}
  *     placeholder="Placeholder Text"
  *     error={false}
  *     hint="Hint or Message"
@@ -131,11 +136,14 @@ const TextFieldRegular = ({
     onClickIconLeft,
     iconRight,
     onClickIconRight,
+    onMouseOverIconRight,
+    onMouseOutIconRight,
     placeholder,
     error,
     hint,
     disabled,
     value,
+    type,
     onChange,
     sx,
 }) => {
@@ -168,6 +176,7 @@ const TextFieldRegular = ({
                 error={error}
                 disabled={disabled}
                 value={value}
+                type={type}
                 onChange={onChange}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
@@ -188,6 +197,8 @@ const TextFieldRegular = ({
                             position="end"
                             sx={{ m: 0 }}
                             onClick={onClickIconRight}
+                            onMouseOver={onMouseOverIconRight}
+                            onMouseOut={onMouseOutIconRight}
                         >
                             <img src={iconRight} alt="icon" />
                         </Adornment>

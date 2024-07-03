@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 
 const CustomButtonStyled = styled(Button)(
     ({ theme, buttontype, isOutlined, buttonVariant }) => ({
-        minWidth: "calc(48px + 24px * 2)",
+        minWidth: "48px",
         height: "48px",
         display: "flex",
         alignItems: "center",
@@ -14,6 +14,8 @@ const CustomButtonStyled = styled(Button)(
         textTransform: "none",
         boxShadow: "none",
         boxSizing: "content-box",
+        fontFamily: theme.typography.fontFamily,
+        ...theme.typography.p,
         "& .MuiButton-startIcon": {
             marginRight: buttonVariant === "textIconLeft" ? "8px" : "0",
             marginLeft: buttonVariant === "textIconRight" ? "8px" : "0",
@@ -104,6 +106,7 @@ const CustomButton = ({
     isDisabled = false,
     onClick,
     children,
+    sx,
 }) => {
     return (
         <CustomButtonStyled
@@ -137,6 +140,7 @@ const CustomButton = ({
                 ) : null
             }
             onClick={onClick}
+            sx={sx}
         >
             {children}
         </CustomButtonStyled>
