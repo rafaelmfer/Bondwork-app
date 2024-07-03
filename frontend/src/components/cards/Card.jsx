@@ -4,14 +4,28 @@ import { Points } from "./Points";
 import { CardFrom } from "./CardFrom";
 import { CardTo } from "./CardTo";
 import { Category } from "./Category";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-export function Card() {
+export function Card(props) {
+    const location = useLocation();
+    const { state } = location;
+
+    console.log(state.obj);
+
     return (
-        <main className="ml-menuMargin mt-24 bg-white">
+        <>
             <div className={style.cardColumn}>
                 <div className={style.cardDivStatus}>
                     <p className={style.cardStatus}>
-                        <RedBullet /> Pending
+                        {state.obj.status === "Pending" ? (
+                            <>
+                                <RedBullet /> Pending
+                            </>
+                        ) : (
+                            "teste"
+                        )}
                     </p>
                     <select name="request" className={style.cardRequest}>
                         <option value="Request1">
@@ -20,29 +34,8 @@ export function Card() {
                     </select>
                 </div>
                 <div className={style.card2Cards}>
-                    {/* <div className={style.cardUser}>
-                        <p className={style.cardFrom}>From</p>
-                        <div className={style.cardAvatar}>
-                            <div className={style.cardShowAvatar}>
-                                <Profile />
-                                <div className={style.cardUserInfo}>
-                                    <p className={style.cardUserName}>
-                                        Rafael Ferreira
-                                    </p>
-                                    <p className={style.cardUserTitle}>
-                                        Lead Developer
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={style.cardDepartment}>
-                                <p>Work ID</p> <span>7232</span>
-                                <p>Department</p> <span>Development</span>
-                                <p>Job Level</p> <span>3</span>
-                            </div>
-                        </div>
-                    </div> */}
-                    <CardFrom />
-                    <CardTo />
+                    <CardFrom sender={state.obj} />
+                    <CardTo sender={state.obj} />
                 </div>
                 <div className={style.cardCatPoint}>
                     <div className={style.cardOne}>
@@ -88,6 +81,6 @@ export function Card() {
                     </div>
                 </div>
             </div>
-        </main>
+        </>
     );
 }

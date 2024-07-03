@@ -60,9 +60,13 @@ const allEndorsement = async (req, res) => {
 
 const getEndorsement = async (req, res) => {
     try {
+        console.log(req.params);
         const { id } = req.params;
-        console.log(id);
-        const showEndorsement = await Endorsement.findById(id);
+
+        const showEndorsement = await Endorsement.findOne({
+            individual_endorsement_id: parseInt(id),
+        });
+        console.log("end funcionando");
         return res.status(200).json(showEndorsement);
     } catch (error) {
         return res.status(500).json({ messsage: error.message });
@@ -92,6 +96,8 @@ const updateEndorsement = async (req, res) => {
 
 const addEndorsement = async (req, res) => {
     const {
+        endorsementId,
+        individualEndorsementId,
         details,
         sender,
         receiver,
@@ -104,6 +110,8 @@ const addEndorsement = async (req, res) => {
 
     try {
         const newEndorsement = new Endorsement({
+            endorsementId,
+            individualEndorsementId,
             details,
             sender,
             receiver,

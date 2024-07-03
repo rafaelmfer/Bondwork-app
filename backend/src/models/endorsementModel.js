@@ -1,14 +1,20 @@
 const mongoose = require("mongoose");
 
 const EndorsementSchema = new mongoose.Schema({
+    endorsement_id: {
+        type: Number,
+    },
+    individual_endorsement_id: {
+        type: Number,
+    },
     details: {
         type: String,
     },
     sender: {
-        type: String,
+        type: Number,
     },
     receiver: {
-        type: String,
+        type: Number,
     },
     status: {
         type: String,
@@ -24,6 +30,36 @@ const EndorsementSchema = new mongoose.Schema({
     },
     published: {
         type: Boolean,
+    },
+    receiverDepartment: {
+        type: String,
+    },
+    receiverJobTitle: {
+        type: String,
+    },
+    receiverName: {
+        type: String,
+    },
+    receiverPicture: {
+        type: String,
+    },
+    senderDepartment: {
+        type: String,
+    },
+    senderJobTitle: {
+        type: String,
+    },
+    senderName: {
+        type: String,
+    },
+    senderPicture: {
+        type: String,
+    },
+    receiverJobLevel: {
+        type: Number,
+    },
+    senderJobLevel: {
+        type: Number,
     },
 });
 
