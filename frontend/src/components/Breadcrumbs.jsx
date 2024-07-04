@@ -45,6 +45,7 @@ const Breadcrumbs = ({ dynamicTexts = [] }) => {
 
     return (
         <MUIBreadcrumbs
+            sx={{ mt: 1 }}
             aria-label="breadcrumb"
             separator={
                 <img
