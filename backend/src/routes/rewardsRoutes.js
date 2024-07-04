@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const {
-    insertRewards,
+    addRewards,
     getAllRewards,
     getSingleReward,
 } = require("../controllers/rewardsController");
@@ -11,12 +11,12 @@ const router = express();
 router.use(express.json());
 router.use(cors()); // This will enable CORS for all routes
 
-// http://localhost:5000/api/rewards/insert
+// http://localhost:5000/api/rewards/add
 // insert note
-router.post("/insert", insertRewards);
+router.post("/add", addRewards);
 // {
 //     "rewardId": 1,
-//     "rewardType": "typeone",
+//     "rewardType": "",
 //     "details": "detailsone",
 //     "pointsCost": 2,
 //     "status": "statusone"

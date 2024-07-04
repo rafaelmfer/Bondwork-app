@@ -19,16 +19,30 @@ const getSingleReward = async (req, res) => {
     }
 };
 
-const insertRewards = async (req, res) => {
-    const { rewardId, rewardType, details, pointsCost, status } = req.body;
+// ----Add Rewards---
+
+const addRewards = async (req, res) => {
+    const {
+        rewardId,
+        title,
+        image,
+        category,
+        pointsCost,
+        startDate,
+        endDate,
+        details,
+    } = req.body;
 
     try {
         const newRewards = new Rewards({
             rewardId,
-            rewardType,
-            details,
+            title,
+            image,
+            category,
             pointsCost,
-            status,
+            startDate,
+            endDate,
+            details,
         });
         await newRewards.save();
         return res.status(200).send("Rewards Saved");
@@ -37,17 +51,20 @@ const insertRewards = async (req, res) => {
     }
 };
 
-// const getAllNote = async (req, res) => {
-//     try {
-//         const allNotes = await Note.find({});
-//         res.status(200).json(allNotes);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// };
+// ----Rewards Management----
+const getRewardsByStatus = async (req, res) => {
+    try {
+        const { status } = req.params;
+        const rewardsByStatus = await Rewards.find({ status });
+        return res.status(200).json(rewardsByStatus);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
 
 module.exports = {
-    insertRewards,
+    addRewards,
     getAllRewards,
     getSingleReward,
+    getRewardsByStatus,
 };
