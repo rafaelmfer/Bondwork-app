@@ -8,7 +8,7 @@ const {
     updateSurvey,
     addSurvey,
     getFromBackEnd,
-    getSurveysByStatus,
+    // getSurveysByStatus,
 } = require("../controllers/surveyController");
 
 // const {
@@ -47,6 +47,6 @@ router.post("/addSurvey", addSurvey);
 // Routes for getting surveys by status
 // localhost:5000/survey/status/ongoing
 // status could be: ongoing ,upcoming, finished, draft
-router.get("/survey/status/:status", getSurveysByStatus);
+// router.get("/survey/status/:status", getSurveysByStatus);
 
 module.exports = router;
