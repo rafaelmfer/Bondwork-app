@@ -14,37 +14,37 @@ const getPeriodDates = async (unit) => {
     let endPrevious;
 
     switch (unit) {
-    case "week":
-        startCurrent = new Date(now.setDate(now.getDate() - now.getDay()));
-        startPrevious = new Date(now.setDate(now.getDate() - 7));
-        endPrevious = new Date(startCurrent);
-        break;
-    case "month":
-        startCurrent = new Date(now.getFullYear(), now.getMonth(), 1);
-        startPrevious = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-        endPrevious = new Date(startCurrent);
-        break;
-    case "quarter":
-        const currentQuarter = Math.floor((now.getMonth() + 3) / 3);
-        startCurrent = new Date(
-            now.getFullYear(),
-            (currentQuarter - 1) * 3,
-            1
-        );
-        startPrevious = new Date(
-            now.getFullYear(),
-            (currentQuarter - 2) * 3,
-            1
-        );
-        endPrevious = new Date(startCurrent);
-        break;
-    case "annual":
-        startCurrent = new Date(now.getFullYear(), 0, 1);
-        startPrevious = new Date(now.getFullYear() - 1, 0, 1);
-        endPrevious = new Date(startCurrent);
-        break;
-    default:
-        throw new Error("Invalid unit");
+        case "week":
+            startCurrent = new Date(now.setDate(now.getDate() - now.getDay()));
+            startPrevious = new Date(now.setDate(now.getDate() - 7));
+            endPrevious = new Date(startCurrent);
+            break;
+        case "month":
+            startCurrent = new Date(now.getFullYear(), now.getMonth(), 1);
+            startPrevious = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+            endPrevious = new Date(startCurrent);
+            break;
+        case "quarter":
+            const currentQuarter = Math.floor((now.getMonth() + 3) / 3);
+            startCurrent = new Date(
+                now.getFullYear(),
+                (currentQuarter - 1) * 3,
+                1
+            );
+            startPrevious = new Date(
+                now.getFullYear(),
+                (currentQuarter - 2) * 3,
+                1
+            );
+            endPrevious = new Date(startCurrent);
+            break;
+        case "annual":
+            startCurrent = new Date(now.getFullYear(), 0, 1);
+            startPrevious = new Date(now.getFullYear() - 1, 0, 1);
+            endPrevious = new Date(startCurrent);
+            break;
+        default:
+            throw new Error("Invalid unit");
     }
 
     return { startCurrent, startPrevious, endPrevious };
@@ -68,7 +68,7 @@ const getSatisfactionDrivers = async (req, res) => {
 };
 
 // ----Recognition----
-const getRecognition = async (req, res) => { };
+const getRecognition = async (req, res) => {};
 
 const getRewardsRequest = async (req, res) => {
     try {
@@ -77,7 +77,7 @@ const getRewardsRequest = async (req, res) => {
 
         for (const unit of units) {
             const { startCurrent, startPrevious, endPrevious } =
-                getPeriodDates(unit);
+                await getPeriodDates(unit);
 
             const currentCounts = await Rewards.find({
                 date: { $gte: startCurrent, $lt: new Date() },
