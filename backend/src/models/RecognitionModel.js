@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
-const EndorsementSchema = new mongoose.Schema({
-    endorsement_id: {
-        type: Number,
-    },
-    individual_endorsement_id: {
+const RecognitionSchema = new mongoose.Schema({
+    recognition_id: {
         type: Number,
     },
     details: {
@@ -28,16 +25,7 @@ const EndorsementSchema = new mongoose.Schema({
     points: {
         type: Number,
     },
-    published: {
-        type: Boolean,
-    },
     receiverDepartment: {
-        type: String,
-    },
-    receiverJobTitle: {
-        type: String,
-    },
-    receiverName: {
         type: String,
     },
     receiverPicture: {
@@ -46,13 +34,19 @@ const EndorsementSchema = new mongoose.Schema({
     senderDepartment: {
         type: String,
     },
+    senderPicture: {
+        type: String,
+    },
+    receiverJobTitle: {
+        type: String,
+    },
     senderJobTitle: {
         type: String,
     },
-    senderName: {
+    receiverName: {
         type: String,
     },
-    senderPicture: {
+    senderName: {
         type: String,
     },
     receiverJobLevel: {
@@ -63,4 +57,4 @@ const EndorsementSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Endorsement", EndorsementSchema);
+module.exports = mongoose.model("Recognition", RecognitionSchema);
