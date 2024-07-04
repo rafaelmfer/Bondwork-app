@@ -66,38 +66,39 @@ const updateSurvey = async (req, res) => {
 
 // TODO Fix it to save into database
 const addSurvey = async (req, res) => {
-    const newSurvey = req.body;
-    const filePath = path.join("./survies.json");
-    fs.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-            console.error("Error reading the file:", err);
-            return res.status(500).send("Error reading the file.");
-        }
+    const {
+        name,
+        description,
+        jobLevel,
+        startDate,
+        endDate,
+        status,
+        recurrence,
+        points,
+        departments,
+        answered,
+        requested,
+    } = req.body;
 
-        let survies = [];
-        try {
-            survies = JSON.parse(data);
-            console.log(survies);
-        } catch (error) {
-            console.log("problem", error);
-        }
-        survies.survies.push(newSurvey);
-        fs.writeFile(
-            "survies.json",
-            JSON.stringify(survies, null, 2),
-            (error) => {
-                if (error) {
-                    console.error("Error writing to the file:", error);
-                    return res.status(500).send("Error writing to the file.");
-                }
-
-                // Returning a response after successfully writing the file
-                return res.status(201).send(survies);
-            }
-        );
-        // Returning a response after successfully writing the file
-        return res.status(201).send("Reading file successfully");
-    });
+    try {
+        const newSurvey = new Survey({
+            name,
+            description,
+            jobLevel,
+            startDate,
+            endDate,
+            status,
+            recurrence,
+            points,
+            departments,
+            answered,
+            requested,
+        });
+        await newSurvey.save();
+        return res.status(200).send("Survey Saved");
+    } catch (error) {
+        return res.status(400).send(error.message);
+    }
 };
 
 module.exports = {
