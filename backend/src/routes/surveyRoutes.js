@@ -41,20 +41,6 @@ router.get("/surveyID/:surveyID", getSingleSurveyID);
 router.put("/updateSurvey/:id", updateSurvey);
 
 // add new Survey
-router.post("/addsurvey", addSurvey);
-// localhost:5000/survey/addsurvey
-// {
-//     "surveyID": 33,
-//     "status": "surveyStatus",
-//     "question1": "question one",
-//     "question1Answer": 1,
-//     "question2": "question two",
-//     "question2Answer": 2,
-//     "question3": "question three",
-//     "question3Answer": 3,
-//     "alreadyAnswered": 9,
-//     "totalOfEmployees": 8,
-//     "points": 7
-//   }
+router.post("/addSurvey", addSurvey);
 
 module.exports = router;

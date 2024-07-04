@@ -79,7 +79,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/survies", surveyRoutes);
+app.use("/api/surveys", surveyRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/endors", endorsementRoutes);
 app.use("/api/rewards", rewardsRoutes);

@@ -9,26 +9,28 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import styles from "../../components/charts/styles.module.css";
 
 const PORT = process.env.REACT_APP_PORT || 5000;
-const URL = "http://localhost:" + PORT + "/api/survies/survies";
+const URL = "http://localhost:" + PORT + "/api/surveys/";
 
 const SurveyMain = () => {
-    //Hook for the survey array
-    const [survies, setSurvies] = useState([]);
+    const [surveys, setSurveys] = useState([]);
 
-    // Fetching the survey.json @Backend
+    // Fetching surveys
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await fetch(URL);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
                 const data = await res.json();
-
-                setSurvies(data.survies);
+                setSurveys(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchData();
     }, []);
+
     // Array to map the table headings
     const columnsTable = [
         "id",
@@ -37,10 +39,9 @@ const SurveyMain = () => {
         "Expired Date",
         "Viewed",
         "Completed",
-        "Dropouts",
         "Status",
     ];
-    // method to format the date in eg. Jul 01, 2024
+    // Method to format the date in eg. Jul 01, 2024
     function formatDate(date) {
         const options = { month: "short", day: "2-digit", year: "numeric" };
         return date.toLocaleDateString("en-US", options);
@@ -53,7 +54,6 @@ const SurveyMain = () => {
         expired,
         viewed,
         completed,
-        dropouts,
         status
     ) {
         return {
@@ -63,27 +63,25 @@ const SurveyMain = () => {
             expired,
             viewed,
             completed,
-            dropouts,
             status,
         };
     }
     // method to structure the data into the fields that we need
     function createRows(dataArray) {
-        return dataArray.map((object, index) =>
+        return dataArray.map((object) =>
             createData(
-                index + 1,
-                object.surveyName,
-                formatDate(new Date(object.createdIn)),
-                formatDate(new Date(object.expired)),
-                object.viewed,
-                object.completed,
-                object.dropouts,
+                object._id,
+                object.name,
+                formatDate(new Date(object.startDate)),
+                formatDate(new Date(object.endDate)),
+                object.answered?.length || 0,
+                object.requested?.length || 0,
                 object.status
             )
         );
     }
     // create the array that will be passed into the table
-    const rows = createRows(survies);
+    const rows = createRows(surveys);
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
@@ -116,6 +114,7 @@ const SurveyMain = () => {
                 rows={rows}
                 columns={columnsTable}
                 rowsNumber="5"
+                showLastColumn={false}
             />
         </main>
     );
