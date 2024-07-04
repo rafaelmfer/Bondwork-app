@@ -2,11 +2,10 @@ import React from "react";
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from "@mui/material";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import routes from "../routes/Routes";
-
 import DashboardIcon from "../assets/icons/deactivated/deactivated-Dashboard.svg";
 import iconArrow from "../assets/icons/dropdown.svg";
 
-const Breadcrumbs = () => {
+const Breadcrumbs = ({ dynamicTexts = [] }) => {
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -17,7 +16,10 @@ const Breadcrumbs = () => {
 
     const findRouteNameAndIcon = (path, routes) => {
         for (const route of routes) {
-            if (route.path === path) {
+            const fullPath = route.path.startsWith("/")
+                ? route.path
+                : `/${route.path}`;
+            if (fullPath === path) {
                 return { menuLabel: route.menuLabel, icon: route.icon };
             }
             if (route.subItems) {
@@ -28,6 +30,17 @@ const Breadcrumbs = () => {
             }
         }
         return null;
+    };
+
+    const getDisplayLabel = (url, index) => {
+        const routeData = findRouteNameAndIcon(url, routes);
+        if (routeData) {
+            return routeData.menuLabel;
+        }
+
+        const dynamicTextIndex =
+            pathnames.length - pathnames.slice(0, index + 1).length;
+        return dynamicTexts[dynamicTextIndex] || pathnames[index];
     };
 
     return (
@@ -51,11 +64,11 @@ const Breadcrumbs = () => {
             </Link>
             {pathnames.map((_, index) => {
                 const url = `/${pathnames.slice(0, index + 1).join("/")}`;
-                const routeData = findRouteNameAndIcon(url, routes);
+                const displayLabel = getDisplayLabel(url, index);
 
                 return index === pathnames.length - 1 ? (
                     <Typography color="textPrimary" key={url}>
-                        {routeData && routeData.menuLabel}
+                        {displayLabel}
                     </Typography>
                 ) : (
                     <Link
@@ -65,7 +78,7 @@ const Breadcrumbs = () => {
                         color="inherit"
                         key={url}
                     >
-                        {routeData && routeData.menuLabel}
+                        {displayLabel}
                     </Link>
                 );
             })}
