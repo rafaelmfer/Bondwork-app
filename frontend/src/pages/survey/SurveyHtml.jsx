@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./styles.module.css";
 import { ReactComponent as Icon } from "./icons/Icon.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import { SurveyDetails } from "../../components/SurveyDetails";
@@ -10,23 +9,23 @@ import { MyButton } from "../../components/fields/button/MyButton";
 import { surveyCreationContext } from "../../context/Context";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import promptOk from "../../assets/images/promptOk.svg";
-// TODO It's not working
-// const PORT = process.env.REACT_APP_PORT || 5000;
-// const URL = "http://localhost:" + PORT + "/api/questions";
+
+const PORT = process.env.REACT_APP_PORT || 5000;
+
 export default function SurveyHtml() {
     const [questions, setQuestions] = useState([]);
     const [surveyInputs, setSurveyInputs] = useState({});
 
-    // For succesful message
+    // For successful message
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
 
     // Callback functions for the popUp message
     const goToHome = () => {
-        navigate("/");
+        navigate("/dashboard");
     };
     const goToSurvey = () => {
-        navigate("/survey");
+        navigate("/surveys");
     };
 
     useEffect(() => {
@@ -74,7 +73,7 @@ export default function SurveyHtml() {
         }
     };
 
-    //Add survey
+    // Add survey
     const PORT = process.env.REACT_APP_PORT || 5000;
     const URL = "http://localhost:" + PORT + "/api/survies/addsurvey";
     const addSurvey = async (newSurvey) => {
@@ -110,11 +109,11 @@ export default function SurveyHtml() {
                 trigger={showPopup}
                 setTrigger={setShowPopup}
                 children={
-                    <div className="successTex flex flex-col gap-[16px] items-center">
+                    <div className="successTex flex flex-col gap-4 items-center">
                         <img
                             src={promptOk}
                             alt="ok symbol"
-                            className="w-[50px] h-[50px]"
+                            className="w-12 h-12"
                         />
                         <h3 className="text-h3">Published</h3>
                         <p className="text-p text-center">
@@ -131,10 +130,10 @@ export default function SurveyHtml() {
                 <surveyCreationContext.Provider
                     value={{ surveyInputs, setSurveyInputs }}
                 >
-                    <p className={styles.title18}>Survey Title</p>
-                    <div className={styles.space24}></div>
+                    <p className="font-bold text-lg mb-6">Survey Title</p>
+                    <div className="h-6"></div>
                     <hr />
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
                     <InputType
                         title={"Title"}
                         type={"text"}
@@ -147,60 +146,65 @@ export default function SurveyHtml() {
                             }));
                         }}
                     />
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
 
-                    <div className={styles.space24}></div>
-                    <p className={styles.title18}>Choose the participant</p>
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
+                    <p className="font-bold text-lg mb-6">
+                        Choose the participant
+                    </p>
+                    <div className="h-6"></div>
                     <hr />
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
 
                     <SurveyDetails />
 
-                    <div className={styles.space24}></div>
-                    <p className={`${styles.title18} ${styles.satisfaction}`}>
+                    <div className="h-6"></div>
+                    <p className="flex items-center gap-2 font-bold text-lg mb-6">
                         Employee Satisfaction Index (ESI) <Icon />
                     </p>
-                    <div className={styles.space24}></div>
-                    <div className={styles.space24}></div>
-                    <p className={`${styles.title18} ${styles.satisfaction}`}>
+                    <div className="h-6"></div>
+                    <div className="h-6"></div>
+                    <p className="flex items-center gap-2 font-bold text-lg mb-6">
                         Employee Satisfaction Index (ESI) <Icon />
                     </p>
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
 
                     {questions.map((question, index) => (
                         <div key={index}>
-                            <div className={styles.space24}></div>
+                            <div className="h-6"></div>
                             <div>
                                 <CheckBox question={question.question} />
                                 {/* Render other question details as needed */}
                             </div>
                         </div>
                     ))}
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
 
-                    <div className={styles.addQuestionBtn}>
+                    <div className="flex justify-between items-center py-4 border border-gray-300">
                         <p>Add Question</p>
                         <p>+</p>
                     </div>
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
 
-                    <div className={styles.Comments}>
+                    <div className="flex items-center">
                         <input
                             type="checkbox"
                             name="Comments"
                             id="Comments"
                             value="Comments"
                         />
-                        <label htmlFor="Comments"> Allow Comments?</label>
-                        <div className={styles.space24}></div>
+                        <label htmlFor="Comments" className="ml-2">
+                            {" "}
+                            Allow Comments?
+                        </label>
+                        <div className="h-6"></div>
                     </div>
 
-                    <div className={styles.nextBtn}>
+                    <div className="flex justify-between mt-6">
                         <MyButton value={"Cancel"} />
                         <MyButton value={"Next"} onClick={handleAddSurvey} />
                     </div>
-                    <div className={styles.space24}></div>
+                    <div className="h-6"></div>
                 </surveyCreationContext.Provider>
             </form>
         </>

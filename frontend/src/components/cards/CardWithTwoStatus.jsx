@@ -4,12 +4,12 @@ import {
     Card,
     CardContent,
     Typography,
-    Chip,
     LinearProgress,
     Button,
 } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import StatusCard from "./StatusCard";
+import ChipNumber from "../chip/ChipNumber";
 
 const CardWithTwoStatus = ({
     title,
@@ -25,38 +25,6 @@ const CardWithTwoStatus = ({
     number2,
     chipText2,
 }) => {
-    const getChipColors = (chipPreviousNumberText) => {
-        let chipBackground, chipTextColor;
-
-        if (chipPreviousNumberText > 0) {
-            chipBackground = "#DEF6E0";
-            chipTextColor = "#227F2C";
-        } else if (chipPreviousNumberText < 0) {
-            chipBackground = "#FFF4F1";
-            chipTextColor = "#CA310F";
-        } else {
-            // chipPreviousNumberText === 0
-            chipBackground = "#EEEEEE";
-            chipTextColor = "#727272";
-        }
-
-        return { chipBackground, chipTextColor };
-    };
-
-    const { chipBackground, chipTextColor } = getChipColors(
-        chipPreviousNumberText
-    );
-
-    const formatChipLabel = (chipPreviousNumberText) => {
-        if (chipPreviousNumberText > 0) {
-            return `+${chipPreviousNumberText}`;
-        } else if (chipPreviousNumberText < 0) {
-            return `-${Math.abs(chipPreviousNumberText)}`;
-        } else {
-            return "±0";
-        }
-    };
-
     return (
         <Card
             variant="outlined"
@@ -101,13 +69,9 @@ const CardWithTwoStatus = ({
                         <Typography variant="h3" fontWeight="bold">
                             {totalNumber}
                         </Typography>
-                        <Chip
-                            label={formatChipLabel(chipPreviousNumberText)}
-                            sx={{
-                                backgroundColor: chipBackground,
-                                color: chipTextColor,
-                                ml: 1,
-                            }}
+                        <ChipNumber
+                            chipText={chipPreviousNumberText}
+                            sx={{ ml: 1 }}
                         />
                     </Box>
                 </Box>

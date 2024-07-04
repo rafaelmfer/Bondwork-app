@@ -1,4 +1,3 @@
-import styles from "./styles.module.css";
 import { useState } from "react";
 import SurveyHtml from "./SurveyHtml";
 import { ReactComponent as Pie } from "./icons/pie-chart.svg";
@@ -10,10 +9,10 @@ const Survey = () => {
     const [activePage, setActivePage] = useState(true);
 
     return (
-        <main className="ml-menuMargin">
-            <div className={styles.whiteBG}>
-                <div className={styles.nav}>
-                    <div className={styles.nav_left}>
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+            <div>
+                <div>
+                    <div>
                         <p
                             onClick={() => setActivePage((e) => !e)}
                             style={{
@@ -38,21 +37,14 @@ const Survey = () => {
                         </p>
                     </div>
 
-                    <button className={styles.btnDraft}>Save Draft</button>
+                    <button>Save Draft</button>
                 </div>
-                {/* border-bottom: 2px solid black; */}
 
-                <div
-                    id={styles.survey}
-                    style={{ display: activePage ? "none" : "block" }}
-                >
+                <div style={{ display: activePage ? "none" : "block" }}>
                     <ReviewHtml />
                 </div>
 
-                <div
-                    id={styles.survey}
-                    style={{ display: activePage ? "block" : "none" }}
-                >
+                <div style={{ display: activePage ? "block" : "none" }}>
                     <SurveyHtml />
                 </div>
             </div>
