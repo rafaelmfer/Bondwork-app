@@ -15,6 +15,7 @@ const rewardsRoutes = require("./src/routes/rewardsRoutes");
 const departmentsRoutes = require("./src/routes/departmentRoutes");
 const companyRoutes = require("./src/routes/companyRoutes");
 const questionRoutes = require("./src/routes/questionRoutes");
+const dashboardRoutes = require("./src/routes/dashboardRoutes");
 
 // Express App
 const app = express();
@@ -86,5 +87,6 @@ app.use("/api/rewards", rewardsRoutes);
 app.use("/api/departments", departmentsRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/company", companyRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 module.exports = app;

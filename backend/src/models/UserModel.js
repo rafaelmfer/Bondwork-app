@@ -52,6 +52,11 @@ const users = new mongoose.Schema(
         workSchedule: {
             type: String,
         },
+        rewards: [
+            {
+                type: Object,
+            },
+        ],
     },
     {
         timestamps: true,
