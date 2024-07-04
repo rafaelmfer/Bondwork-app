@@ -40,9 +40,9 @@ const routes = [
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/recognitions/requests/details",
+                path: "/recognitions/requests/:id",
                 element: <RecognitionRequestDetails />,
-                menuLabel: "Request Details",
+                menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
@@ -79,19 +79,25 @@ const routes = [
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/survey/addNew",
+                path: "/surveys/addNew",
                 element: <Survey />,
                 menuLabel: "Add New Survey",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "survey/responses/:id",
+                path: "surveys/management/:id",
                 element: <Responses />,
-                menuLabel: "Responses",
+                menuLabel: "SurveyDetails",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "/surveys/management",
+                path: "surveys/management/:id/:personId",
+                element: <Responses />,
+                menuLabel: "SurveyDetails",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+            {
+                path: "surveys/management",
                 element: <Management />,
                 menuLabel: "Management",
             },

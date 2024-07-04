@@ -94,7 +94,7 @@ export default function ChartDonut({ className, chartHeight }) {
                         },
                     },
                     legend: {
-                        show: true,
+                        show: false,
                         fontSize: "10px",
                         fontFamily:
                             "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",

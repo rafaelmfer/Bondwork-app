@@ -2,13 +2,12 @@ import React from "react";
 import TopUserBar from "../../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import SurveyDetailsCard from "../../../components/cards/SurveyDetailsCard";
-import theme from "../../../theme/theme";
 
 const Responses = () => {
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
-            <TopUserBar titleScreen={"Responses"} />
-            <Breadcrumbs />
+            <TopUserBar titleScreen={"Survey Details"} />
+            <Breadcrumbs dynamicTexts={["Survey Details"]} />
 
             <SurveyDetailsCard
                 sx={{ mt: "24px", mb: "24px" }}
