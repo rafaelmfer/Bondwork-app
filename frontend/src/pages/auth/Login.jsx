@@ -98,7 +98,7 @@ const Login = () => {
     };
 
     return (
-        <main className="bg-main-100 relative h-screen flex items-center justify-center">
+        <main className="bg-main-100 relative h-screen flex flex-col items-center justify-center">
             <div className="flex justify-center mb-12">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
