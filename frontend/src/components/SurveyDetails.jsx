@@ -1,7 +1,5 @@
 import { useContext } from "react";
-import styles from "../pages/survey/styles.module.css";
 import "react-datepicker/dist/react-datepicker.css";
-
 import { InputTextArea } from "./fields/InputTextArea/InputTextArea";
 import { InputType } from "./fields/InputType";
 import { InputDate } from "./fields/InputDate/InputDate";
@@ -23,7 +21,7 @@ export function SurveyDetails() {
     const Recurrence = ["Weekly", "Month", "Semester", "Year"];
 
     return (
-        <div className={styles.surveyDetails}>
+        <div>
             <InputSelect
                 title={"Department"}
                 name={"department"} //to match database format
@@ -36,7 +34,7 @@ export function SurveyDetails() {
                     }));
                 }}
             />
-            <div className={styles.space24}></div>
+            <div></div>
 
             <InputSelect
                 title={"Job Level"}
@@ -50,12 +48,12 @@ export function SurveyDetails() {
                     }));
                 }}
             />
-            <div className={styles.space24}></div>
+            <div></div>
 
-            <p className={styles.title18}>Survey Details</p>
-            <div className={styles.space24}></div>
+            <p>Survey Details</p>
+            <div></div>
 
-            <div className={styles.periodRec}>
+            <div>
                 <InputDate title={"Period"} setSurveyInputs={setSurveyInputs} />
                 <InputSelect
                     title={"Recurrence"}
@@ -70,7 +68,7 @@ export function SurveyDetails() {
                     }}
                 />
             </div>
-            <div className={styles.space24}></div>
+            <div></div>
 
             <InputType
                 title={"Points"}
@@ -84,7 +82,7 @@ export function SurveyDetails() {
                     }));
                 }}
             />
-            <div className={styles.space24}></div>
+            <div></div>
 
             <InputTextArea
                 name="description"

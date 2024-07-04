@@ -1,10 +1,11 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-export default function ChartArea() {
+export default function ChartArea({ className, chartHeight }) {
     const options = {
         chart: {
-            height: 200,
+            fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+            height: chartHeight,
             type: "area",
         },
         dataLabels: {
@@ -25,10 +26,15 @@ export default function ChartArea() {
                 stops: [0, 90, 100],
             },
         },
+        stroke: {
+            show: true,
+            curve: "smooth",
+            width: 2,
+        },
         colors: ["#F38886"],
         markers: {
             colors: ["#F38886"],
-            size: 5,
+            size: 3,
             strokeColors: "#fff",
             strokeWidth: 0,
             strokeOpacity: 0.9,
@@ -41,10 +47,10 @@ export default function ChartArea() {
             offsetY: 0,
             onClick: undefined,
             onDblClick: undefined,
-            showNullDataPoints: true,
+            showNullDataPoints: false,
             hover: {
                 size: undefined,
-                sizeOffset: 3,
+                sizeOffset: 2,
             },
         },
         xaxis: {
@@ -59,10 +65,11 @@ export default function ChartArea() {
 
     return (
         <Chart
+            className={className}
             options={options}
             series={options.series}
             type="area"
-            height={200}
+            height={chartHeight}
         />
     );
 }

@@ -596,7 +596,7 @@ export default function TableSeven({
                                 <td>
                                     <Link
                                         // TODO Check the route to individual survey or rewards
-                                        to={`/${title.toLowerCase()}/id/:${row.id}`}
+                                        to={`/${title.toLowerCase()}/responses/${row.id}`}
                                     >
                                         {row[keysObject[1]]}
                                     </Link>

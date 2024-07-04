@@ -1,37 +1,9 @@
 import React from "react";
-import { Box, Typography, Chip } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
+import ChipNumber from "../chip/ChipNumber";
 
 const StatusCard = ({ statusText, statusColor, number, chipText }) => {
-    const getChipColors = (chipText) => {
-        let chipBackground, chipTextColor;
-
-        if (chipText > 0) {
-            chipBackground = "#DEF6E0";
-            chipTextColor = "#227F2C";
-        } else if (chipText < 0) {
-            chipBackground = "#FFF4F1";
-            chipTextColor = "#CA310F";
-        } else {
-            chipBackground = "#FFFFFF";
-            chipTextColor = "#000000";
-        }
-
-        return { chipBackground, chipTextColor };
-    };
-
-    const { chipBackground, chipTextColor } = getChipColors(chipText);
-
-    const formatChipLabel = (chipText) => {
-        if (chipText > 0) {
-            return `+${chipText}`;
-        } else if (chipText < 0) {
-            return `-${Math.abs(chipText)}`;
-        } else {
-            return "±0";
-        }
-    };
-
     return (
         <Box
             display="flex"
@@ -53,14 +25,7 @@ const StatusCard = ({ statusText, statusColor, number, chipText }) => {
                 <Typography variant="h4" fontWeight="bold">
                     {number}
                 </Typography>
-                <Chip
-                    label={formatChipLabel(chipText)}
-                    sx={{
-                        backgroundColor: chipBackground,
-                        color: chipTextColor,
-                        ml: 1,
-                    }}
-                />
+                <ChipNumber chipText={chipText} sx={{ ml: 1 }} />
             </Box>
         </Box>
     );
