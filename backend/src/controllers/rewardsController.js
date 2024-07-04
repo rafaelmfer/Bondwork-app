@@ -37,17 +37,42 @@ const insertRewards = async (req, res) => {
     }
 };
 
-// const getAllNote = async (req, res) => {
-//     try {
-//         const allNotes = await Note.find({});
-//         res.status(200).json(allNotes);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// };
+// Rewards Management Status: ongoing, upcoming, finished, draft
+const getRewardsManagementByStatus = async (req, res) => {
+    const { status } = req.params;
+    try {
+        const surveys = await Rewards.find({ status });
+        if (surveys.length === 0) {
+            return res
+                .status(404)
+                .json({ message: `No rewards found with status: ${status}` });
+        }
+        return res.status(200).json(surveys);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+// Rewards Request Status: pending, approved, rejected
+const getRewardsRequestByStatus = async (req, res) => {
+    const { status } = req.params;
+    try {
+        const surveys = await Rewards.find({ status });
+        if (surveys.length === 0) {
+            return res
+                .status(404)
+                .json({ message: `No rewards found with status: ${status}` });
+        }
+        return res.status(200).json(surveys);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
 
 module.exports = {
     insertRewards,
     getAllRewards,
     getSingleReward,
+    getRewardsManagementByStatus,
+    getRewardsRequestByStatus,
 };
