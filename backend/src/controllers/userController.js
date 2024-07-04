@@ -91,7 +91,6 @@ const addUser = async (req, res) => {
         profilePicture,
         adminRights,
         surveys,
-        endorsements,
         points,
         lastAccess,
         workSchedule,
