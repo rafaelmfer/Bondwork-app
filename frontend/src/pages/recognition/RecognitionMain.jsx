@@ -4,6 +4,8 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
 
+const PORT = process.env.REACT_APP_PORT;
+
 const RecognitionMain = () => {
     const navigate = useNavigate();
     const [svg, setSvg] = useState("");
@@ -233,7 +235,6 @@ const RecognitionMain = () => {
     }
 
     // ====================================================
-    //console.log(obj);
     useEffect(() => {
         const fetchSvg = async () => {
             const headers = new Headers();
@@ -243,7 +244,7 @@ const RecognitionMain = () => {
             );
 
             const response = await fetch(
-                `${process.env.REACT_APP_API_URL_ENDORSEMENT}`,
+                `http://localhost:${PORT}/api/endors`,
                 {
                     headers,
                 }
@@ -287,9 +288,9 @@ const RecognitionMain = () => {
                 rows={recognitions}
                 columns={columnsTable}
                 rowsNumber="5"
-                showSecondColumn={false}
+                showSecondColumn={true}
                 showThirdLastColumn={true}
-                showSecondLastColumn={true}
+                showSecondLastColumn={false}
                 showLastColumn={false} // don't need to specify
                 showSearch={false}
                 showAdd={false}

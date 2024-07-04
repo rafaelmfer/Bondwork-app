@@ -9,37 +9,9 @@ import {
 } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ChartLine from "../charts/ChartLine";
+import ChipNumber from "../chip/ChipNumber";
 
 const CardSatisfactionDrivers = ({ overall, chipText }) => {
-    const getChipColors = (chipText) => {
-        let chipBackground, chipTextColor;
-
-        if (chipText > 0) {
-            chipBackground = "#DEF6E0";
-            chipTextColor = "#227F2C";
-        } else if (chipText < 0) {
-            chipBackground = "#FFF4F1";
-            chipTextColor = "#CA310F";
-        } else {
-            chipBackground = "#EEEEEE";
-            chipTextColor = "#727272";
-        }
-
-        return { chipBackground, chipTextColor };
-    };
-
-    const { chipBackground, chipTextColor } = getChipColors(chipText);
-
-    const formatChipLabel = (chipText) => {
-        if (chipText > 0) {
-            return `+${chipText.toFixed(1)}`;
-        } else if (chipText < 0) {
-            return `-${Math.abs(chipText).toFixed(1)}`;
-        } else {
-            return "±0";
-        }
-    };
-
     // Format overall to the specified decimal places
     const formattedOverall = overall.toFixed(2);
 
@@ -94,14 +66,7 @@ const CardSatisfactionDrivers = ({ overall, chipText }) => {
                         <Typography variant="h3" fontWeight="bold">
                             {formattedOverall}
                         </Typography>
-                        <Chip
-                            label={formatChipLabel(chipText)}
-                            sx={{
-                                backgroundColor: chipBackground,
-                                color: chipTextColor,
-                                ml: 1,
-                            }}
-                        />
+                        <ChipNumber chipText={chipText} sx={{ ml: 1 }} />
                     </Box>
                 </Box>
                 <ChartLine chartHeight={200} />

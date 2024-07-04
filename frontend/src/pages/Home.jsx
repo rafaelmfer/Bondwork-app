@@ -14,10 +14,10 @@ const Home = () => {
     };
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-screen">
             <TopUserBar titleScreen={"Dashboard"} />
             <Breadcrumbs />
-            <div className="flex row gap-4">
+            <div className="flex row gap-4 mt-6">
                 <CardTurnoverRate
                     title={"Turnover Rate"}
                     currentRate={currentRate}
@@ -26,7 +26,7 @@ const Home = () => {
                 />
                 <CardSatisfactionDrivers overall={3.25} chipText={-0.2} />
             </div>
-            <div className="flex row gap-4">
+            <div className="flex row gap-4 mt-6">
                 <CardWithThreeStatus
                     title={"Recognition"}
                     totalNumber={430}

@@ -1,9 +1,10 @@
 import Chart from "react-apexcharts";
 
-export default function ChartDonut() {
+export default function ChartDonut({ className, chartHeight }) {
     const options = {
         chart: {
-            height: 200,
+            fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+            height: chartHeight,
             type: "donut",
         },
         dataLabels: {
@@ -14,6 +15,10 @@ export default function ChartDonut() {
         labels: ["Promoters (4 - 5)", "Neutrals (3)", "Detractors (1 - 2)"],
         legend: {
             show: true,
+            floating: false,
+            position: "right",
+            fontSize: "12.64px",
+            fontWeight: 500,
             markers: {
                 width: 8,
                 height: 8,
@@ -21,12 +26,19 @@ export default function ChartDonut() {
                 offsetX: -8,
                 offsetY: 0,
             },
-            offsetY: 60,
+            itemMargin: {
+                horizontal: 0,
+                vertical: 6,
+            },
+            offsetY: 0,
+            offsetX: 0,
         },
         plotOptions: {
             pie: {
+                customScale: 1,
                 expandOnClick: false,
                 donut: {
+                    size: "58%",
                     labels: {
                         show: true,
                         name: {
@@ -34,8 +46,7 @@ export default function ChartDonut() {
                         },
                         value: {
                             show: true,
-                            fontSize: "16px",
-                            fontFamily: "Helvetica, Arial, sans-serif",
+                            fontSize: "14.22px",
                             fontWeight: 400,
                             color: "#B5B5B5",
                             offsetY: 0,
@@ -48,22 +59,72 @@ export default function ChartDonut() {
                             showAlways: true,
                             label: "4.5",
                             fontSize: "18px",
-                            fontFamily: "Helvetica, Arial, sans-serif",
                             fontWeight: 400,
-                            color: "#373d3f",
+                            color: "#0B0A0A",
                         },
                     },
                 },
             },
         },
+        responsive: [
+            {
+                breakpoint: 1350,
+                options: {
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                labels: {
+                                    show: true,
+                                    value: {
+                                        show: true,
+                                        fontSize: "13px",
+                                        fontFamily:
+                                            "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+                                        fontWeight: 400,
+                                    },
+                                    total: {
+                                        show: true,
+                                        fontSize: "16px",
+                                        fontFamily:
+                                            "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+                                        fontWeight: 400,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    legend: {
+                        show: true,
+                        fontSize: "10px",
+                        fontFamily:
+                            "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+                        fontWeight: 500,
+                        markers: {
+                            width: 6,
+                            height: 6,
+                            radius: 12,
+                            offsetX: -8,
+                            offsetY: 0,
+                        },
+                        itemMargin: {
+                            horizontal: 0,
+                            vertical: 4,
+                        },
+                        offsetX: 0,
+                        offsetY: -20,
+                    },
+                },
+            },
+        ],
     };
 
     return (
         <Chart
+            className={className}
             options={options}
             series={options.series}
             type="donut"
-            height={280}
+            height={chartHeight}
         />
     );
 }

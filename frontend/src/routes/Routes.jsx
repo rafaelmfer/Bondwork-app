@@ -85,7 +85,7 @@ const routes = [
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "/surveys/responses",
+                path: "survey/responses/:id",
                 element: <Responses />,
                 menuLabel: "Responses",
                 hideInSidebar: true, // Don't Show in Sidebar Component
