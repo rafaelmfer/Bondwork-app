@@ -94,6 +94,24 @@ const theme = createTheme({
         small1: { fontSize: "0.889rem", fontWeight: 400, lineHeight: "150%" },
         small2: { fontSize: "0.79rem", fontWeight: 400, lineHeight: "150%" },
     },
+    components: {
+        MuiTypography: {
+            defaultProps: {
+                variantMapping: {
+                    // Map the new variant to render a <h1> by default
+                    h1: "h1",
+                    h2: "h2",
+                    h3: "h3",
+                    h4: "h4",
+                    h5: "h5",
+                    h6: "h6",
+                    p: "p",
+                    small1: "p",
+                    small2: "p",
+                },
+            },
+        },
+    },
     // Puedes añadir más personalizaciones aquí
 });
 
