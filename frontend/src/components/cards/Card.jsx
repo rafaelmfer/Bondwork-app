@@ -10,8 +10,8 @@ export function Card(props) {
     const location = useLocation();
     const { state } = location;
 
-    console.log(state.obj.status);
-
+    console.log(state);
+    console.log("card..............");
     return (
         <>
             <div className={style.cardColumn}>

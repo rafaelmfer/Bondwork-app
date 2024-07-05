@@ -34,9 +34,9 @@ const CardWithThreeStatus = ({
     return (
         <Card
             variant="outlined"
-            sx={{ p: 2, mb: 2, flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
+            sx={{ mb: 2, flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
         >
-            <CardContent>
+            <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
