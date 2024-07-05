@@ -117,11 +117,7 @@ const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
  *     setSelectedOption(event.target.value);
  * };
  *
- * const options = [
- *     { value: "option1", label: "Option 1" },
- *     { value: "option2", label: "Option 2" },
- *     { value: "option3", label: "Option 3" },
- * ];
+ * const options = ["option1", "option2","option3"];
  *
  * <DropdownSelect
  *     label="Select an option"
