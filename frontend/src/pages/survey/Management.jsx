@@ -4,8 +4,8 @@ import TableSeven from "../../components/TableSeven";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
-const PORT = process.env.REACT_APP_PORT || 5000;
-const URL = "http://localhost:" + PORT + "/api/surveys/";
+// const PORT = process.env.REACT_APP_PORT || 5000;
+const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
 const Management = () => {
     //Hook for the survey array
@@ -96,7 +96,7 @@ const Management = () => {
                 <TableSeven
                     width="100%"
                     showTitle={false}
-                    title={"Survey"}
+                    title={"Management"}
                     pathTo={"/surveys/management"}
                     showSend={true}
                     showFilter={true}

@@ -18,7 +18,7 @@ export function IndividualReponse() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:5000/api/questions"
+                    `${process.env.REACT_APP_API_URL}/api/questions`
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -34,7 +34,7 @@ export function IndividualReponse() {
         const fetchUser = async () => {
             try {
                 const fUser = await fetch(
-                    "http://localhost:5000/api/user/employee/11"
+                    `${process.env.REACT_APP_API_URL}/api/user/employee/11`
                 );
                 if (!fUser.ok) {
                     throw new Error(`HTTP error! status: ${fUser.status}`);
@@ -50,7 +50,7 @@ export function IndividualReponse() {
         const fetchSurvey = async (surveyID) => {
             try {
                 const fUser = await fetch(
-                    `http://localhost:5000/api/survey/surveyID/${surveyID}`
+                    `${process.env.REACT_APP_API_URL}/api/survey/surveyID/${surveyID}`
                 );
                 if (!fUser.ok) {
                     throw new Error(`HTTP error! status: ${fUser.status}`);

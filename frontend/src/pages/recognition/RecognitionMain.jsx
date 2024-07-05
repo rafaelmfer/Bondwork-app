@@ -244,7 +244,7 @@ const RecognitionMain = () => {
             );
 
             const response = await fetch(
-                `http://localhost:5001/api/recognition`,
+                `${process.env.REACT_APP_API_URL}/api/recognition`,
                 {
                     headers,
                 }

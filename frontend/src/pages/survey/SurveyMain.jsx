@@ -8,8 +8,7 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import SummaryCard from "../../components/cards/SummaryCard";
 
-const PORT = process.env.REACT_APP_PORT || 5000;
-const URL = "http://localhost:" + PORT + "/api/surveys/";
+const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
 const SurveyMain = () => {
     // Summary Card data
