@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+    Box,
     FormControl,
     InputLabel,
     MenuItem,
@@ -69,11 +70,12 @@ const CustomFormControl = styled(FormControl)(({ theme }) => ({
     },
 }));
 
-const CustomInputLabel = styled(InputLabel)({
+const CustomInputLabel = styled(InputLabel)(({ theme }) => ({
     position: "relative",
     transform: "none",
     marginBottom: "8px",
-});
+    color: theme.palette.neutrals.black,
+}));
 
 const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
     height: "48px",
@@ -115,11 +117,7 @@ const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
  *     setSelectedOption(event.target.value);
  * };
  *
- * const options = [
- *     { value: "option1", label: "Option 1" },
- *     { value: "option2", label: "Option 2" },
- *     { value: "option3", label: "Option 3" },
- * ];
+ * const options = ["option1", "option2","option3"];
  *
  * <DropdownSelect
  *     label="Select an option"
@@ -138,6 +136,7 @@ const DropdownSelect = ({
     value,
     onChange,
     disabled,
+    sx,
 }) => {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
@@ -150,8 +149,13 @@ const DropdownSelect = ({
         setOpen(false);
     };
 
+    // Convert options if they are strings
+    const processedOptions = options.map((option) =>
+        typeof option === "string" ? { label: option, value: option } : option
+    );
+
     return (
-        <div style={{ position: "relative" }}>
+        <Box sx={{ position: "relative", ...sx }}>
             <CustomInputLabel>{label}</CustomInputLabel>
             <CustomFormControl variant="outlined" theme={theme}>
                 <Select
@@ -176,7 +180,7 @@ const DropdownSelect = ({
                               )
                     }
                 >
-                    {options.map((option) => (
+                    {processedOptions.map((option) => (
                         <CustomMenuItem
                             key={option.value}
                             value={option.value}
@@ -188,7 +192,7 @@ const DropdownSelect = ({
                 </Select>
                 <span className={`custom-select-icon ${open ? "open" : ""}`} />
             </CustomFormControl>
-        </div>
+        </Box>
     );
 };
 

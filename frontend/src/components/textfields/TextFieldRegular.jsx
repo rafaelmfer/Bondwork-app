@@ -35,10 +35,18 @@ const CustomTextField = styled(TextField)(({ theme, disabled }) => ({
     "& .MuiInputBase-root": {
         borderRadius: "8px",
         height: "44px",
-        backgroundColor: disabled ? theme.palette.neutrals.gray50 : "#FFFFFF",
+        backgroundColor: disabled
+            ? theme.palette.neutrals.gray50
+            : theme.palette.primary[50],
+        color: "inherit",
+        "& .MuiOutlinedInput-notchedOutline": {
+            borderWidth: "1px",
+            borderColor: theme.palette.neutrals.black,
+        },
         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.secondary[500],
             borderWidth: "3px",
+            color: theme.palette.neutrals.black,
         },
         "&.Mui-error .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.error[300],
@@ -51,13 +59,14 @@ const CustomTextField = styled(TextField)(({ theme, disabled }) => ({
             },
         "&.Mui-disabled .MuiOutlinedInput-notchedOutline": {
             color: theme.palette.neutrals.gray300,
-            borderColor: theme.palette.neutrals.gray300,
+            borderColor: theme.palette.neutrals.gray200,
         },
     },
     "& .MuiInputBase-input": {
         padding: "0px 10px",
         ...theme.typography.p,
-        color: disabled ? theme.palette.neutrals.gray300 : "inherit",
+        // color: disabled ? theme.palette.neutrals.gray300 : undefined,
+        // color: theme.palette.success.main,
         "&:disabled": {
             "-webkit-text-fill-color": theme.palette.neutrals.gray300,
         },
