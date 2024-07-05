@@ -244,7 +244,7 @@ const RecognitionMain = () => {
             );
 
             const response = await fetch(
-                `http://localhost:${PORT}/api/endors`,
+                `http://localhost:5001/api/recognition`,
                 {
                     headers,
                 }
@@ -253,8 +253,7 @@ const RecognitionMain = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                // const svgBase64 = `data:image/svg+xml;base64,${btoa(data[0].receiverPicture)}`;
-                const svgBase64 = `data:image/svg+xml;base64,${btoa(data[0].senderPicture)}`;
+                const svgBase64 = `data:image/svg+xml;base64,${btoa(data[0].receiverPicture)}`;
                 setSvg(svgBase64);
                 setSvgString(data[0].senderPicture);
                 setObj(data[0]);

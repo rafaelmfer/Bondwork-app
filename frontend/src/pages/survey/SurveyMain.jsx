@@ -136,7 +136,7 @@ const SurveyMain = () => {
 
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">
                 <TableSeven
-                    title={"Survey"}
+                    title={"Management"}
                     //tabsVariant={"variant2"}
                     rows={rows}
                     columns={columnsTable}
