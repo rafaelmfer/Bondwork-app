@@ -42,6 +42,9 @@ const users = new mongoose.Schema(
         endorsements: {
             type: Array,
         },
+        NPS: {
+            type: String,
+        },
         points: {
             type: Number,
         },
