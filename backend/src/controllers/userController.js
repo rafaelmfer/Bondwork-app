@@ -30,11 +30,18 @@ const getEmployeeID = async (req, res) => {
     }
 };
 
-const getDepartment = async (req, res) => {
+const postDepartments = async (req, res) => {
     try {
-        const { department } = req.params;
-        const singleNote = await User.find({ department });
-        return res.status(200).json(singleNote);
+        const { departments } = req.body; // Read departments array from the request body
+        if (!departments || !Array.isArray(departments)) {
+            return res
+                .status(400)
+                .json({ message: "Departments must be an array." });
+        }
+        const usersInDepartments = await User.find({
+            department: { $in: departments },
+        });
+        return res.status(200).json(usersInDepartments);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -127,7 +134,7 @@ module.exports = {
     allUser,
     getOneUser,
     getEmployeeID,
-    getDepartment,
+    postDepartments,
     updateUser,
     getHrStaff,
     getEmployeeStaff,
