@@ -148,20 +148,21 @@ const RecognitionMain = () => {
                 />
                 <CardRecognitionMovement overall={3.25} chipText={-0.2} />
             </div>
-
-            <TableWithProfile
-                title={"Request"}
-                tabsVariant={"variant2"}
-                rows={recognitions}
-                columns={columnsTable}
-                rowsNumber="5"
-                showSecondColumn={true}
-                showThirdLastColumn={true}
-                showSecondLastColumn={false}
-                showLastColumn={false} // don't need to specify
-                showSearch={false}
-                showAdd={false}
-            />
+            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+                <TableWithProfile
+                    title={"Request"}
+                    tabsVariant={"variant2"}
+                    rows={recognitions}
+                    columns={columnsTable}
+                    rowsNumber="5"
+                    showSecondColumn={true}
+                    showThirdLastColumn={true}
+                    showSecondLastColumn={false}
+                    showLastColumn={false} // don't need to specify
+                    showSearch={false}
+                    showAdd={false}
+                />
+            </div>
         </main>
     );
 };
