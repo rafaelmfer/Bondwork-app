@@ -67,7 +67,7 @@ const Login = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:${process.env.REACT_APP_PORT}/api/auth/login`,
+                `${process.env.REACT_APP_API_URL}/api/auth/login`,
                 {
                     method: "POST",
                     headers: {

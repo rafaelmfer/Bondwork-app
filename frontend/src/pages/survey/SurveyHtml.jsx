@@ -74,8 +74,7 @@
 //     };
 
 //     // Add survey
-//     const PORT = process.env.REACT_APP_PORT || 5000;
-//     const URL = "http://localhost:" + PORT + "/api/survies/addsurvey";
+//
 //     const addSurvey = async (newSurvey) => {
 //         try {
 //             const res = await fetch(URL, {

@@ -42,7 +42,7 @@ const Responses = () => {
         const fetchData = async () => {
             try {
                 const res = await fetch(
-                    `http://localhost:${PORT}/api/surveys/${id}`
+                    `${process.env.REACT_APP_API_URL}/api/surveys/${id}`
                 );
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
@@ -72,7 +72,7 @@ const Responses = () => {
                     const userDetails = await Promise.all(
                         usersIds.map(async (userId) => {
                             const res = await fetch(
-                                `http://localhost:${PORT}/api/user/${userId}`
+                                `${process.env.REACT_APP_API_URL}/api/user/${userId}`
                             );
                             if (!res.ok) {
                                 throw new Error(

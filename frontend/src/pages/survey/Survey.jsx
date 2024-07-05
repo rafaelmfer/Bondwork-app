@@ -9,14 +9,12 @@ import { surveyCreationContext } from "../../context/Context";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import promptOk from "../../assets/images/promptOk.svg";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
-import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
+//import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
 import { Tab, Tabs, Box, Card, Typography, Divider } from "@mui/material";
 import theme from "../../theme/theme";
 import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
-
-const PORT = process.env.REACT_APP_PORT || 5000;
 
 const Survey = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -127,7 +125,7 @@ export function SurveyHtml({ disabled }) {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:5001/api/questions"
+                    `${process.env.REACT_APP_API_URL}/api/questions`
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -167,7 +165,7 @@ export function SurveyHtml({ disabled }) {
     const addSurvey = async (newSurvey) => {
         try {
             const res = await fetch(
-                `http://localhost:${PORT}/api/survies/addsurvey`,
+                `${process.env.REACT_APP_API_URL}/api/surveys/addSurvey`,
                 {
                     method: "POST",
                     headers: {
@@ -194,7 +192,7 @@ export function SurveyHtml({ disabled }) {
     };
 
     const jobLevels = ["Manager", "Supervisor", "Director", "Employee"];
-    const department = [
+    const departments = [
         "Account",
         "Business Development",
         "IT",
@@ -245,12 +243,12 @@ export function SurveyHtml({ disabled }) {
                                 label="Survey Name"
                                 id="surveyName"
                                 placeholder="Type the title for this survey"
-                                value={surveyInputs.surveyName || ""}
+                                value={surveyInputs.name || ""}
                                 disabled={disabled}
                                 onChange={(e) => {
                                     setSurveyInputs((prevInputs) => ({
                                         ...prevInputs,
-                                        surveyName: e.target.value,
+                                        name: e.target.value,
                                     }));
                                 }}
                                 sx={{ width: "100%" }}
@@ -274,14 +272,14 @@ export function SurveyHtml({ disabled }) {
                                 sx={{ mt: 2 }}
                                 label="Department"
                                 placeholder="Select"
-                                options={department}
+                                options={departments}
                                 disabled={disabled}
                                 value={selectedDeparments}
                                 onChange={(e) => {
                                     handleChangeDepartments(e);
                                     setSurveyInputs((prevInputs) => ({
                                         ...prevInputs,
-                                        department: e.target.value,
+                                        departments: e.target.value,
                                     }));
                                 }}
                             />
