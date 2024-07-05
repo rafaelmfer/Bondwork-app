@@ -57,7 +57,7 @@ const Breadcrumbs = ({ dynamicTexts = [] }) => {
         >
             <Link
                 component={RouterLink}
-                to="/"
+                to="/dashboard"
                 underline="hover"
                 color="inherit"
             >

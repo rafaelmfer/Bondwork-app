@@ -79,9 +79,9 @@ const routes = [
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/surveys/addNew",
+                path: "management/addNew",
                 element: <Survey />,
-                menuLabel: "Add New Survey",
+                menuLabel: "Add Survey",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
