@@ -720,7 +720,8 @@ export default function TableWithProfile({
                                     >
                                         {/* SECOND PLACE TO CHANGE */}
                                         <img
-                                            src={`data:image/svg+xml;base64,${btoa(row.to.svgImage)}`}
+                                            src={ProfilePlaceHolder}
+                                            //src={`data:image/svg+xml;base64,${btoa(row.to.svgImage)}`}
                                             alt="Profile "
                                             style={{
                                                 maxWidth: "29px",

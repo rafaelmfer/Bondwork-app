@@ -43,7 +43,7 @@ const RecognitionMain = () => {
                     },
                     {
                         //imageReceiver
-                        svgImage: object.receiverPicture,
+                        //svgImage: object.receiverPicture,
                         firstNameReciever: object.receiverName,
                         // lastNameReceiver: "",
                         jobtTitleReciever: object.receiverJobTitle,
@@ -83,7 +83,7 @@ const RecognitionMain = () => {
                 displayName: `${from.firstNameSender} (${from.JobTitleSender})`,
             },
             to: {
-                svgImage: to.svgImage,
+                //svgImage: to.svgImage,
                 displayName: `${to.firstNameReciever} (${to.jobtTitleReciever})`,
             },
             category,
