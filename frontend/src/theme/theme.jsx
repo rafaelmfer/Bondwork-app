@@ -43,22 +43,24 @@ const theme = createTheme({
             contrastText: "#FFFEFE",
         },
         error: {
-            main: "#DD735C",
+            main: "#D23A3A",
             100: "#FFF4F1",
-            300: "#CA310F",
+            300: "#CC0C0C",
         },
         warning: {
-            main: "#F1C31E",
-            100: "#FAEBB4",
-            300: "#B28E0B",
+            300: "#EB8D1E",
+            main: "#F6B569",
+            100: "#FCF4D5",
         },
         success: {
-            main: "#20A41E",
+            main: "#76BF7D",
             100: "#DEF6E0",
             300: "#227F2C",
         },
         info: {
-            main: "#E1E1E1",
+            100: "#DCECF6",
+            main: "#3997D1",
+            300: "#11689E",
         },
         neutrals: {
             white: "#FFFEFE",

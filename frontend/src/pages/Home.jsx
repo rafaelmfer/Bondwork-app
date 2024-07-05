@@ -4,6 +4,7 @@ import CardWithThreeStatus from "../components/cards/CardWithThreeStatus";
 import CardTurnoverRate from "../components/cards/CardTurnoverRate";
 import CardSatisfactionDrivers from "../components/cards/CardSatisfactionDrivers";
 import Breadcrumbs from "../components/Breadcrumbs";
+import theme from "../theme/theme";
 
 const Home = () => {
     const currentRate = 10.0;
@@ -35,15 +36,15 @@ const Home = () => {
                     progressValue2={60}
                     progressValue3={10}
                     statusText1={"Pending"}
-                    statusColor1={"#DD735C"}
+                    statusColor1={theme.palette.info[300]}
                     number1={100}
                     chipText1={-10}
                     statusText2={"Approved"}
-                    statusColor2={"#76BF7D"}
+                    statusColor2={theme.palette.success.main}
                     number2={300}
                     chipText2={-10}
                     statusText3={"Rejected"}
-                    statusColor3={"#B5B5B5"}
+                    statusColor3={theme.palette.error.main}
                     number3={30}
                     chipText3={16}
                 />
@@ -55,15 +56,15 @@ const Home = () => {
                     progressValue2={40}
                     progressValue3={10}
                     statusText1={"Pending"}
-                    statusColor1={"#DD735C"}
+                    statusColor1={theme.palette.info[300]}
                     number1={40}
                     chipText1={-20}
                     statusText2={"Approved"}
-                    statusColor2={"#76BF7D"}
+                    statusColor2={theme.palette.success.main}
                     number2={18}
                     chipText2={18}
                     statusText3={"Rejected"}
-                    statusColor3={"#B5B5B5"}
+                    statusColor3={theme.palette.error.main}
                     number3={2}
                     chipText3={2}
                 />
