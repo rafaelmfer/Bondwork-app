@@ -18,7 +18,7 @@ const RewardsMain = () => {
     const [error, setError] = useState("Error");
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-screen">
             <TopUserBar titleScreen={"Rewards"} />
 
             <Breadcrumbs />
@@ -59,7 +59,7 @@ const RewardsMain = () => {
                 />
             </div>
 
-            <div className="p-4 flex row gap-4">
+            {/* <div className="p-4 flex row gap-4">
                 <CustomButton
                     buttontype="primary"
                     buttonVariant="textIconLeft"
@@ -237,7 +237,7 @@ const RewardsMain = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />
-            </div>
+            </div> */}
         </main>
     );
 };

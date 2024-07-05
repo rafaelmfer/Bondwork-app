@@ -35,7 +35,7 @@ function App() {
                 <Routes>
                     <Route
                         path="/"
-                        element={<Navigate to="/login" replace={true} />}
+                        element={<Navigate to="/dashboard" replace={true} />}
                     />
                     {renderRoutes(routes)}
                 </Routes>

@@ -96,13 +96,18 @@ const Responses = () => {
 
     // Método para estructurar los datos en los campos que necesitamos
     function createRows(dataArray) {
+        if (!Array.isArray(dataArray)) {
+            console.error("dataArray não é um array", dataArray);
+            return [];
+        }
         return dataArray.map((object) => {
             const survey = object.surveys.find((survey) => survey.id === id);
             const date = survey?.date ? formatDate(new Date(survey.date)) : "-";
             return createData(
                 object.employeeID,
                 {
-                    picture: object.profilePicture,
+                    myObject: object,
+                    svgImage: object.profilePicture,
                     userName: object.firstName,
                     jobTitle: object.jobTitle,
                 },
@@ -115,10 +120,14 @@ const Responses = () => {
     }
 
     // Método para crear los datos necesarios para las filas de la tabla
-    function createData(id, name, email, completed, nps, status) {
+    function createData(id, from, email, completed, nps, status) {
         return {
             id,
-            name: `${name.userName} (${name.jobTitle})`,
+            from: {
+                myObject: from.myObject,
+                svgImage: from.svgImage,
+                displayName: `${from.userName} (${from.jobTitle})`,
+            },
             email,
             completed,
             nps,
