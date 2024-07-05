@@ -12,8 +12,7 @@ const allUser = async (req, res) => {
 const getOneUser = async (req, res) => {
     try {
         const { employeeID } = req.params;
-
-        const oneUser = await User.findById(employeeID);
+        const oneUser = await User.findOne({ employeeID: employeeID });
         return res.status(200).json(oneUser);
     } catch (error) {
         return res.status(500).json({ messsage: error.message });

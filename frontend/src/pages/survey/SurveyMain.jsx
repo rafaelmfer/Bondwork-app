@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TableSeven from "../../components/TableSeven";
-import Summary from "../../components/summary/Summary";
+//import Summary from "../../components/summary/Summary";
 import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
@@ -137,7 +137,7 @@ const SurveyMain = () => {
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">
                 <TableSeven
                     title={"Management"}
-                    //tabsVariant={"variant2"}
+                    pathTo={"/surveys/management"}
                     rows={rows}
                     columns={columnsTable}
                     rowsNumber="5"

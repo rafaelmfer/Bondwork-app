@@ -23,7 +23,7 @@ const {
 
 router.get("/", allUser);
 
-router.get("/:id", getOneUser);
+router.get("/:employeeID", getOneUser);
 
 router.post("/addUser", addUser);
 
