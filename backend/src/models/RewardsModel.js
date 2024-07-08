@@ -4,6 +4,9 @@ const rewards = new mongoose.Schema({
     rewardId: {
         type: Number,
     },
+    rewardName: {
+        type: String,
+    },
     rewardType: {
         type: String,
         required: true,
@@ -16,6 +19,12 @@ const rewards = new mongoose.Schema({
     },
     status: {
         type: String,
+    },
+    startDate: {
+        type: Date,
+    },
+    endDate: {
+        type: Date,
     },
 });
 
