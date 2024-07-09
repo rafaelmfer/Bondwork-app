@@ -55,11 +55,10 @@ const users = new mongoose.Schema(
         workSchedule: {
             type: String,
         },
-        rewards: [
-            {
-                type: Object,
-            },
-        ],
+        // The array of requested rewards of the employee
+        rewards: {
+            type: Array,
+        },
     },
     {
         timestamps: true,

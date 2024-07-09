@@ -101,11 +101,27 @@ const addSurvey = async (req, res) => {
     }
 };
 
+const getSurveysByStatus = async (req, res) => {
+    const { status } = req.params;
+    try {
+        const surveys = await Survey.find({ status });
+        if (surveys.length === 0) {
+            return res
+                .status(404)
+                .json({ message: `No surveys found with status: ${status}` });
+        }
+        return res.status(200).json(surveys);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     getAllSurvey,
+    getFromBackEnd,
     getSingleSurvey,
     getSingleSurveyID,
     updateSurvey,
     addSurvey,
-    getFromBackEnd,
+    getSurveysByStatus,
 };

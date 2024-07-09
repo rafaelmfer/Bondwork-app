@@ -8,7 +8,7 @@ const {
     updateSurvey,
     addSurvey,
     getFromBackEnd,
-    // getSurveysByStatus,
+    getSurveysByStatus,
 } = require("../controllers/surveyController");
 
 // const {
@@ -42,11 +42,25 @@ router.get("/surveyID/:surveyID", getSingleSurveyID);
 router.put("/updateSurvey/:id", updateSurvey);
 
 // add new Survey
-router.post("/addSurvey", addSurvey);
+router.post("/addsurvey", addSurvey);
+// localhost:5000/survey/addsurvey
+// {
+//     "surveyID": 33,
+//     "status": "surveyStatus",
+//     "question1": "question one",
+//     "question1Answer": 1,
+//     "question2": "question two",
+//     "question2Answer": 2,
+//     "question3": "question three",
+//     "question3Answer": 3,
+//     "alreadyAnswered": 9,
+//     "totalOfEmployees": 8,
+//     "points": 7
+//   }
 
 // Routes for getting surveys by status
 // localhost:5000/survey/status/ongoing
 // status could be: ongoing ,upcoming, finished, draft
-// router.get("/survey/status/:status", getSurveysByStatus);
+router.get("/survey/status/:status", getSurveysByStatus);
 
 module.exports = router;

@@ -9,22 +9,28 @@ const rewards = new mongoose.Schema({
     },
     rewardType: {
         type: String,
-        required: true,
     },
-    details: {
+    image: {
         type: String,
+    },
+    category: {
+        type: String,
+        required: true,
     },
     pointsCost: {
         type: Number,
-    },
-    status: {
-        type: String,
     },
     startDate: {
         type: Date,
     },
     endDate: {
         type: Date,
+    },
+    details: {
+        type: String,
+    },
+    status: {
+        type: String,
     },
 });
 
