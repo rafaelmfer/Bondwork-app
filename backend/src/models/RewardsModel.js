@@ -4,7 +4,10 @@ const rewards = new mongoose.Schema({
     rewardId: {
         type: Number,
     },
-    title: {
+    rewardName: {
+        type: String,
+    },
+    rewardType: {
         type: String,
     },
     image: {

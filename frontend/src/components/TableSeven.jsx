@@ -55,8 +55,10 @@ function stableSort(array, comparator) {
 }
 // ===============================================
 export default function TableSeven({
+    width = "inherit",
     showTitle = true,
     title,
+    pathTo,
     showTabs = true,
     tabsVariant,
     rows,
@@ -66,12 +68,13 @@ export default function TableSeven({
     showSearch = true,
     showAdd = true,
     rowsNumber,
-    showLastColumn = true, // this will allow us to have a 6 to 7 columns table
+    showSecondLastColumn = true,
+    showLastColumn = true,
     showCheckboxColumn = true,
     showBtnColumn = true,
 }) {
     const [order, setOrder] = useState("asc");
-    const [orderBy, setOrderBy] = useState("surveyName");
+    const [orderBy, setOrderBy] = useState();
     const [tabValue, setTabValue] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -91,9 +94,17 @@ export default function TableSeven({
     // Array with option for the tabs
     const tabLabels1 = ["All", "Ongoing", "Upcoming", "Finished", "Draft"];
     const tabLabels2 = ["All", "Pending", "Aproved", "Rejected"];
+    const tabLabels3 = ["All", "Sent", "Completed"];
 
     // Determine the tab labels based on the variant
-    const tabLabels = tabsVariant === "variant2" ? tabLabels2 : tabLabels1;
+    let tabLabels;
+    if (tabsVariant === "variant2") {
+        tabLabels = tabLabels2;
+    } else if (tabsVariant === "variant3") {
+        tabLabels = tabLabels3;
+    } else {
+        tabLabels = tabLabels1;
+    }
 
     // Method to filter and sort the rows
     const getFilteredAndSortedRows = () => {
@@ -110,7 +121,9 @@ export default function TableSeven({
             const lowercasedQuery = searchQuery.toLowerCase();
             filteredData = filteredData.filter(
                 (row) =>
-                    row.surveyName.toLowerCase().includes(lowercasedQuery) ||
+                    row[keysObject[1]]
+                        .toLowerCase()
+                        .includes(lowercasedQuery) ||
                     row.status.toLowerCase().includes(lowercasedQuery)
             );
         }
@@ -209,7 +222,7 @@ export default function TableSeven({
     const IconToDisplay =
         isClicked || isHovered ? CustomSortActiveIcon : CustomSortIcon;
     return (
-        <Box component="section" className="table" sx={{ m: 2 }}>
+        <Box component="section" className="table" sx={{ m: 2, width: width }}>
             {showTitle && (
                 <Box
                     className="titleContainer"
@@ -220,13 +233,11 @@ export default function TableSeven({
                     </h3>
                     <Link
                         to={{
-                            pathname: `/${title.toLowerCase()}/management`,
-                            // TODO check if data=rows still works
+                            pathname: pathTo,
                             state: rows,
                         }}
                         className={
-                            location.pathname !==
-                            `/${title.toLowerCase()}/management`
+                            location.pathname !== `/${title.toLowerCase()}`
                                 ? "border-l border-neutrals-gray100 pl-4 flex items-center"
                                 : "hidden"
                         }
@@ -501,29 +512,33 @@ export default function TableSeven({
                                 {columns[5]} <IconToDisplay />
                             </div>
                         </th>
-                        <th
-                            scope="col"
-                            style={{
-                                backgroundColor: theme.palette.secondary[100],
-                                verticalAlign: "middle",
-                                borderBottom: 0,
-                                width: "100px",
-                                maxWidth: "120px",
-                                padding: "0px",
-                            }}
-                            onClick={() =>
-                                handleRequestSort(keysObject[6].toString())
-                            }
-                        >
-                            <div
-                                className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                        {showSecondLastColumn && (
+                            <th
+                                scope="col"
+                                style={{
+                                    backgroundColor:
+                                        theme.palette.secondary[100],
+                                    verticalAlign: "middle",
+                                    borderBottom: 0,
+                                    width: "100px",
+                                    maxWidth: "120px",
+                                    padding: "0px",
+                                }}
+                                onClick={() =>
+                                    handleRequestSort(keysObject[6].toString())
+                                }
                             >
-                                {columns[6]} <IconToDisplay />
-                            </div>
-                        </th>
+                                <div
+                                    className="flex items-center"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                    onClick={handleClickSort}
+                                >
+                                    {columns[6]} <IconToDisplay />
+                                </div>
+                            </th>
+                        )}
+
                         {showLastColumn && (
                             <th
                                 scope="col"
@@ -594,10 +609,7 @@ export default function TableSeven({
                                 </td>
 
                                 <td>
-                                    <Link
-                                        // TODO Check the route to individual survey or rewards
-                                        to={`/${title.toLowerCase()}/id/:${row.id}`}
-                                    >
+                                    <Link to={`${pathTo}/${row.id}`}>
                                         {row[keysObject[1]]}
                                     </Link>
                                 </td>
@@ -605,7 +617,10 @@ export default function TableSeven({
                                 <td>{row[keysObject[3]]}</td>
                                 <td>{row[keysObject[4]]}</td>
                                 <td>{row[keysObject[5]]}</td>
-                                <td>{row[keysObject[6]]}</td>
+                                {showSecondLastColumn && (
+                                    <td>{row[keysObject[6]]}</td>
+                                )}
+
                                 {showLastColumn && (
                                     <td>{row[keysObject[7]]}</td>
                                 )}

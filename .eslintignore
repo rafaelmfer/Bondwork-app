@@ -6,5 +6,5 @@ dist/
 conventional_commits_examples.md
 authController.js
 userController.js
-endorsementController.js
 dashboardController.js
+recognitionController.js

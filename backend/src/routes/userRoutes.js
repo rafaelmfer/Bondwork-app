@@ -15,7 +15,7 @@ const {
     allUser,
     getOneUser,
     getEmployeeID,
-    getDepartment,
+    postDepartments,
     updateUser,
     getHrStaff,
     getEmployeeStaff,
@@ -23,7 +23,7 @@ const {
 
 router.get("/", allUser);
 
-router.get("/:id", getOneUser);
+router.get("/:employeeID", getOneUser);
 
 router.post("/addUser", addUser);
 
@@ -35,7 +35,8 @@ router.get("/employeestaff", getEmployeeStaff);
 // localhost:5000/api/user/hrstaff
 router.get("/hrstaff", getHrStaff);
 
-router.get("/department/:department", getDepartment);
+// localhost:5000/api/user/department
+router.post("/department", postDepartments);
 
 // localhost:5000/api/user/employee/11
 router.get("/employee/:employeeID", getEmployeeID);

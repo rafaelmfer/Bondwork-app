@@ -91,7 +91,7 @@ export default function TableWithProfile({
             setKeysObject(keysOfObjects);
         }
     }, [rows]);
-
+    console.log(rows);
     // Numbers of columns for the Component (can be different from the real number)
     let numCol = 0;
     if (showSecondColumn) {
@@ -375,7 +375,7 @@ export default function TableWithProfile({
                     ${title} Results
                 </caption>
                 <thead>
-                    <tr className="h-[56px]">
+                    <tr className="h-[56px]" key={1}>
                         <th
                             style={{
                                 borderTopLeftRadius: "12px",
@@ -639,28 +639,34 @@ export default function TableWithProfile({
                                 <td>
                                     <Link
                                         // TODO Check the route to individual survey or rewards
-                                        to={`/${title.toLowerCase()}/id/:${row.id}`}
+                                        to={`/recognitions/requests/details`}
                                         style={{
                                             display: "flex",
                                             alignItems: "center",
                                             padding: "0 8px",
                                             gap: "12px",
                                         }}
+                                        state={{ obj: row.from.myObject }}
                                     >
                                         {/* TODO: Set up a conditional depending id the profile picture exist or not */}
                                         <img
-                                            src={ProfilePlaceHolder}
+                                            src={`data:image/svg+xml;base64,${btoa(row.from.svgImage)}`} //icon --svg
                                             alt="Profile "
                                             style={{
                                                 maxWidth: "29px",
                                                 maxHeight: "29px",
                                             }}
                                         />
+
+                                        {/* FIRST PLACE TO CHANGE */}
                                         <div className="flex flex-col">
                                             {row[keysObject[1]] && (
                                                 <>
                                                     <p className="text-small1">
-                                                        {row[
+                                                        {row.from.displayName
+                                                            .split("(")[0]
+                                                            .trim()}
+                                                        {/* {row[
                                                             keysObject[1]
                                                         ].includes("(")
                                                             ? row[keysObject[1]]
@@ -668,9 +674,22 @@ export default function TableWithProfile({
                                                                   .trim()
                                                             : row[
                                                                   keysObject[1]
-                                                              ]}
+                                                              ]} */}
                                                     </p>
                                                     <span className="text-small2">
+                                                        {row.from.displayName.includes(
+                                                            "("
+                                                        )
+                                                            ? row.from.displayName
+                                                                  .split("(")[1]
+                                                                  .replace(
+                                                                      ")",
+                                                                      ""
+                                                                  )
+                                                                  .trim()
+                                                            : ""}
+                                                    </span>
+                                                    {/* <span className="text-small2">
                                                         {row[
                                                             keysObject[1]
                                                         ].includes("(")
@@ -682,7 +701,7 @@ export default function TableWithProfile({
                                                                   )
                                                                   .trim()
                                                             : ""}
-                                                    </span>
+                                                    </span> */}
                                                 </>
                                             )}
                                         </div>
@@ -699,8 +718,10 @@ export default function TableWithProfile({
                                             height: "inherit",
                                         }}
                                     >
+                                        {/* SECOND PLACE TO CHANGE */}
                                         <img
                                             src={ProfilePlaceHolder}
+                                            //src={`data:image/svg+xml;base64,${btoa(row.to.svgImage)}`}
                                             alt="Profile "
                                             style={{
                                                 maxWidth: "29px",
@@ -711,6 +732,24 @@ export default function TableWithProfile({
                                             {row[keysObject[2]] && (
                                                 <>
                                                     <p className="text-small1">
+                                                        {row.to.displayName
+                                                            .split("(")[0]
+                                                            .trim()}
+                                                    </p>
+                                                    <span className="text-small2">
+                                                        {row.to.displayName.includes(
+                                                            "("
+                                                        )
+                                                            ? row.to.displayName
+                                                                  .split("(")[1]
+                                                                  .replace(
+                                                                      ")",
+                                                                      ""
+                                                                  )
+                                                                  .trim()
+                                                            : ""}
+                                                    </span>
+                                                    {/* <p className="text-small1">
                                                         {row[
                                                             keysObject[2]
                                                         ].includes("(")
@@ -720,8 +759,8 @@ export default function TableWithProfile({
                                                             : row[
                                                                   keysObject[2]
                                                               ]}
-                                                    </p>
-                                                    <span className="text-small2">
+                                                    </p> */}
+                                                    {/* <span className="text-small2">
                                                         {row[
                                                             keysObject[2]
                                                         ].includes("(")
@@ -733,7 +772,7 @@ export default function TableWithProfile({
                                                                   )
                                                                   .trim()
                                                             : ""}
-                                                    </span>
+                                                    </span> */}
                                                 </>
                                             )}
                                         </div>

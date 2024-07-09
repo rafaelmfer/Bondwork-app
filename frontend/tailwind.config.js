@@ -30,6 +30,7 @@ module.exports = {
             current: "currentColor",
             main: {
                 DEFAULT: "#EF6461", // use as bg-main (or as text-main)  // This is primary-700 in mockup
+                50: "#FFFFFF",
                 100: "#FEF5F5", //use as bg-main-100
                 200: "#FDE9E9",
                 300: "#FBD8D8",

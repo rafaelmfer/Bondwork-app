@@ -24,8 +24,8 @@ export function InputDate({ title, setSurveyInputs }) {
         setEndDate(end);
         setSurveyInputs((prevInputs) => ({
             ...prevInputs,
-            createdIn: toLocalISOString(start),
-            expired: toLocalISOString(end),
+            startDate: toLocalISOString(start),
+            endDate: toLocalISOString(end),
         }));
     };
 

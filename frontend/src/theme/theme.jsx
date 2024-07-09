@@ -16,8 +16,9 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#EF6461",
-            100: "#FEF5F5", //use bg-main-100
+            main: "#EF6461", // use theme.pallete.primary.main
+            50: "#FFFFFF",
+            100: "#FEF5F5", //use theme.pallete.primary[100]
             200: "#FDE9E9",
             300: "#FBD8D8",
             400: "#F9C2C1",
@@ -42,22 +43,24 @@ const theme = createTheme({
             contrastText: "#FFFEFE",
         },
         error: {
-            main: "#DD735C",
+            main: "#D23A3A",
             100: "#FFF4F1",
-            300: "#CA310F",
+            300: "#CC0C0C",
         },
         warning: {
-            main: "#F1C31E",
-            100: "#FAEBB4",
-            300: "#B28E0B",
+            300: "#EB8D1E",
+            main: "#F6B569",
+            100: "#FCF4D5",
         },
         success: {
-            main: "#20A41E",
+            main: "#76BF7D",
             100: "#DEF6E0",
             300: "#227F2C",
         },
         info: {
-            main: "#E1E1E1",
+            100: "#DCECF6",
+            main: "#3997D1",
+            300: "#11689E",
         },
         neutrals: {
             white: "#FFFEFE",
@@ -69,18 +72,19 @@ const theme = createTheme({
             gray200: "#B5B5B5",
             gray300: "#727272",
         },
-        support: {
-            purple: "#793BB7",
-            light_purple: "#EEDDFF",
-            blue: "#3065B4",
-            light_blue: "#D0E3FF",
-            green: "#349025",
-            light_green: "#DBF9D6",
-            orange: "#DC6A1E",
-            light_orange: "#FBE4D8",
-            red: "#DF263C",
-            light_red: "#FCDFE2",
-        },
+        // DESIGNERS STOPPED TO USE THIS COLLECTION OF COLORS, BEFORE USE ASK THEM
+        // support: {
+        //     purple: "#793BB7",
+        //     light_purple: "#EEDDFF",
+        //     blue: "#3065B4",
+        //     light_blue: "#D0E3FF",
+        //     green: "#349025",
+        //     light_green: "#DBF9D6",
+        //     orange: "#DC6A1E",
+        //     light_orange: "#FBE4D8",
+        //     red: "#DF263C",
+        //     light_red: "#FCDFE2",
+        // },
     },
     typography: {
         fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -90,9 +94,27 @@ const theme = createTheme({
         h4: { fontSize: "1.424rem", fontWeight: 400, lineHeight: "120%" },
         h5: { fontSize: "1.266rem", fontWeight: 400, lineHeight: "120%" },
         h6: { fontSize: "1.125rem", fontWeight: 400, lineHeight: "120%" },
-        p: { fontSize: "1rem", lineHeight: "150%" },
+        p: { fontSize: "1rem", fontWeight: 400, lineHeight: "150%" },
         small1: { fontSize: "0.889rem", fontWeight: 400, lineHeight: "150%" },
         small2: { fontSize: "0.79rem", fontWeight: 400, lineHeight: "150%" },
+    },
+    components: {
+        MuiTypography: {
+            defaultProps: {
+                variantMapping: {
+                    // Map the new variant to render a <h1> by default
+                    h1: "h1",
+                    h2: "h2",
+                    h3: "h3",
+                    h4: "h4",
+                    h5: "h5",
+                    h6: "h6",
+                    p: "p",
+                    small1: "p",
+                    small2: "p",
+                },
+            },
+        },
     },
     // Puedes añadir más personalizaciones aquí
 });

@@ -49,7 +49,7 @@ const TextAreaElement = styled("textarea")(
               ? theme.palette.neutrals.gray300
               : focused
                 ? theme.palette.secondary[500]
-                : theme.palette.neutrals.gray300,
+                : theme.palette.neutrals.black,
         resize: "vertical",
         transition: "border-color 0s ease, padding 0s ease",
         "&:hover": {

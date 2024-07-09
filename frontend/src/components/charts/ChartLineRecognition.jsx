@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 
-export default function ChartLine({ className, chartHeight }) {
+export default function ChartLineRecognition({ className, chartHeight }) {
     const options = {
         chart: {
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -11,34 +11,34 @@ export default function ChartLine({ className, chartHeight }) {
         },
         series: [
             {
-                name: "Overall",
-                data: [2.5, 2.9, 2.4, 2.9, 3.2, 3.4, null],
+                name: "Total",
+                data: [50, 45.9, 43, 52, 48, 55, null],
                 color: "#8F0A06",
             },
             {
-                name: "Salary",
-                data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
+                name: "Great Performance",
+                data: [10.9, 20, 25.7, 33.5, 27.3, 25.5, null],
                 color: "#B1D6F9",
             },
             {
-                name: "Company Culture",
-                data: [2, 2.3, 2.5, 3, 4.5, 4.1, null],
+                name: "Leadership",
+                data: [20, 20.3, 20.5, 20.8, 30, 33, null],
                 color: "#2774BC",
             },
             {
-                name: "Job Role",
-                data: [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
+                name: "Support",
+                data: [40.5, 35.2, 30.7, 38.6, 40.5, 42.1, null],
                 color: "#FBD8D8",
             },
             {
-                name: "Collegues",
-                data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
+                name: "Customer Center",
+                data: [20.6, 23.6, 25.9, 30.3, 35.3, 40.3, null],
                 color: "#EF6461",
             },
         ],
         legend: {
             show: true,
-            position: "right",
+            position: "bottom",
             horizontalAlign: "center",
             fontSize: "12px",
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -82,14 +82,14 @@ export default function ChartLine({ className, chartHeight }) {
             },
         },
         xaxis: {
-            categories: ["19", "20", "21", "22", "23", "24", "25"],
+            categories: ["23", "24", "26", "27", "28", "29", "30"],
             lines: {
                 show: true,
             },
         },
         yaxis: {
             min: 0,
-            max: 5,
+            max: 100,
             tickAmount: 5,
             lines: {
                 show: true,

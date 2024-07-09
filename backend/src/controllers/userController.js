@@ -12,8 +12,7 @@ const allUser = async (req, res) => {
 const getOneUser = async (req, res) => {
     try {
         const { employeeID } = req.params;
-
-        const oneUser = await User.findById(employeeID);
+        const oneUser = await User.findOne({ employeeID: employeeID });
         return res.status(200).json(oneUser);
     } catch (error) {
         return res.status(500).json({ messsage: error.message });
@@ -30,11 +29,18 @@ const getEmployeeID = async (req, res) => {
     }
 };
 
-const getDepartment = async (req, res) => {
+const postDepartments = async (req, res) => {
     try {
-        const { department } = req.params;
-        const singleNote = await User.find({ department });
-        return res.status(200).json(singleNote);
+        const { departments } = req.body; // Read departments array from the request body
+        if (!departments || !Array.isArray(departments)) {
+            return res
+                .status(400)
+                .json({ message: "Departments must be an array." });
+        }
+        const usersInDepartments = await User.find({
+            department: { $in: departments },
+        });
+        return res.status(200).json(usersInDepartments);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -91,7 +97,6 @@ const addUser = async (req, res) => {
         profilePicture,
         adminRights,
         surveys,
-        endorsements,
         points,
         lastAccess,
         workSchedule,
@@ -128,7 +133,7 @@ module.exports = {
     allUser,
     getOneUser,
     getEmployeeID,
-    getDepartment,
+    postDepartments,
     updateUser,
     getHrStaff,
     getEmployeeStaff,

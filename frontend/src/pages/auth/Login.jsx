@@ -67,7 +67,7 @@ const Login = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:${process.env.REACT_APP_PORT}/api/auth/login`,
+                `${process.env.REACT_APP_API_URL}/api/auth/login`,
                 {
                     method: "POST",
                     headers: {
@@ -98,7 +98,7 @@ const Login = () => {
     };
 
     return (
-        <main className="bg-main-100 relative h-screen flex items-center justify-center">
+        <main className="bg-main-100 relative h-screen flex flex-col items-center justify-center">
             <div className="flex justify-center mb-12">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
