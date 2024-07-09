@@ -51,12 +51,33 @@ const addRewards = async (req, res) => {
     }
 };
 
-// ----Rewards Management----
-const getRewardsByStatus = async (req, res) => {
+// Rewards Management Status: ongoing, upcoming, finished, draft
+const getRewardsManagementByStatus = async (req, res) => {
+    const { status } = req.params;
     try {
-        const { status } = req.params;
-        const rewardsByStatus = await Rewards.find({ status });
-        return res.status(200).json(rewardsByStatus);
+        const surveys = await Rewards.find({ status });
+        if (surveys.length === 0) {
+            return res
+                .status(404)
+                .json({ message: `No rewards found with status: ${status}` });
+        }
+        return res.status(200).json(surveys);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+// Rewards Request Status: pending, approved, rejected
+const getRewardsRequestByStatus = async (req, res) => {
+    const { status } = req.params;
+    try {
+        const surveys = await Rewards.find({ status });
+        if (surveys.length === 0) {
+            return res
+                .status(404)
+                .json({ message: `No rewards found with status: ${status}` });
+        }
+        return res.status(200).json(surveys);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -66,5 +87,6 @@ module.exports = {
     addRewards,
     getAllRewards,
     getSingleReward,
-    getRewardsByStatus,
+    getRewardsManagementByStatus,
+    getRewardsRequestByStatus,
 };

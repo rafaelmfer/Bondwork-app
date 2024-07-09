@@ -52,6 +52,10 @@ const users = new mongoose.Schema(
         workSchedule: {
             type: String,
         },
+        // The array of requested rewards of the employee
+        rewards: {
+            type: Array,
+        },
     },
     {
         timestamps: true,
