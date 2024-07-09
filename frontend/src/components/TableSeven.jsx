@@ -13,17 +13,17 @@ import {
 import ThemePagination from "./ThemePagination";
 import theme from "../theme/theme";
 import CustomButton from "./buttons/CustomButton";
-import IconNormal from "../assets/icons/activated/activated-add.svg";
-import FilterIcon from "../assets/icons/activated/activated-filter.svg";
-import SendIcon from "../assets/icons/activated/activated-Send.svg";
-import { ReactComponent as DefaultBox } from "../assets/icons/deactivated/deactivated-checkbox.svg";
-import { ReactComponent as CheckedBox } from "../assets/icons/activated/activated-checkbox-1.svg";
-import { ReactComponent as IndetermBox } from "../assets/icons/activated/activated-checkbox2.svg";
-import { ReactComponent as SearchIcon } from "../assets/icons/deactivated/deactivated-search.svg";
-import { ReactComponent as MenuDots } from "../assets/icons/deactivated/deactivated-menu3Dots.svg";
-import { ReactComponent as SortActive } from "../assets/icons/activated/activated-sort.svg";
-import { ReactComponent as SortDeactive } from "../assets/icons/deactivated/deactivated-sort.svg";
-import { ReactComponent as ArrowBack } from "../assets/icons/activated/activated-back.svg";
+import IconNormal from "../assets/icons/add-white-neutral.svg";
+import FilterIcon from "../assets/icons/filter-black-neutral.svg";
+import SendIcon from "../assets/icons/send-orange-primary.svg";
+import { ReactComponent as DefaultBox } from "../assets/icons/checkbox-black-neutral-empty.svg";
+import { ReactComponent as CheckedBox } from "../assets/icons/checkbox-black-neutral-filled.svg";
+import { ReactComponent as IndetermBox } from "../assets/icons/checkbox-black-neutral-table-multi.svg";
+import { ReactComponent as SearchIcon } from "../assets/icons/search-black-neutral.svg";
+import { ReactComponent as MenuDots } from "../assets/icons/menu3dots-black-neutral.svg";
+import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primary.svg";
+import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
+import { ReactComponent as ArrowBack } from "../assets/icons/back-dark-gray-neutral.svg";
 
 // Sorting functions
 function descendingComparator(a, b, orderBy) {

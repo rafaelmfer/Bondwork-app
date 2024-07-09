@@ -2,7 +2,7 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 // import { ReactComponent as ArrowDown } from "../icons/chevron-down.svg";
 import styles from "../styles.module.css";
-import calendar from "../../../assets/images/calendar.svg";
+import calendar from "../../../assets/icons/calendar-dark-gray-neutral.svg";
 
 export function InputDate({ title, setSurveyInputs }) {
     const [startDate, setStartDate] = useState(new Date());

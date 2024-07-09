@@ -1,4 +1,4 @@
-import { ReactComponent as Supportive } from "../../assets/images/supportive.svg";
+import { ReactComponent as Supportive } from "../../assets/icons/supportive-dark-gray-neutral.svg";
 import style from "./style.module.css";
 
 export function Category(props) {

@@ -1,6 +1,6 @@
-import { ReactComponent as RedBullet } from "../../assets/images/red_bullet.svg";
-import { ReactComponent as GreenBullet } from "../../assets/images/green_bullet.svg";
-import { ReactComponent as SilverBullet } from "../../assets/images/silver_bullet.svg";
+import { ReactComponent as RedBullet } from "../../assets/images/dot-Red.svg";
+import { ReactComponent as GreenBullet } from "../../assets/images/dot-Green.svg";
+import { ReactComponent as SilverBullet } from "../../assets/images/dot-Gray.svg";
 
 export function CheckStatus(props) {
     return (

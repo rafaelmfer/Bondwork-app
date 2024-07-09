@@ -1,4 +1,4 @@
-import { ReactComponent as Profile } from "../../assets/images/profile.svg";
+import { ReactComponent as Profile } from "../../assets/icons/profile-medium.svg";
 import style from "./style.module.css";
 import { useEffect, useState } from "react";
 

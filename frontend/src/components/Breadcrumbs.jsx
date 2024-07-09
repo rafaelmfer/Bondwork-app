@@ -2,8 +2,8 @@ import React from "react";
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from "@mui/material";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import routes from "../routes/Routes";
-import DashboardIcon from "../assets/icons/deactivated/deactivated-Dashboard.svg";
-import iconArrow from "../assets/icons/dropdown.svg";
+import DashboardIcon from "../assets/icons/dashboard-dark-orange-primary.svg";
+import iconArrow from "../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 
 const Breadcrumbs = ({ dynamicTexts = [] }) => {
     const location = useLocation();
@@ -51,7 +51,7 @@ const Breadcrumbs = ({ dynamicTexts = [] }) => {
                 <img
                     src={iconArrow}
                     alt="separator"
-                    style={{ margin: "0 2px", transform: "rotate(-90deg)" }}
+                    style={{ margin: "0 2px" }}
                 />
             }
         >

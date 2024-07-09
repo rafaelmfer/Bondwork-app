@@ -12,12 +12,12 @@ import Login from "../pages/auth/Login";
 import Survey from "../pages/survey/Survey";
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
 
-import iconDashboard from "../assets/icons/dashboard.svg";
-import iconRecognition from "../assets/icons/recognition.svg";
-import iconRewards from "../assets/icons/reward.svg";
-import iconSurvey from "../assets/icons/survey.svg";
-import iconEmployees from "../assets/icons/employees.svg";
-import iconArrowDown from "../assets/icons/dropdown.svg";
+import iconDashboard from "../assets/icons/dashboard-dark-orange-primary.svg";
+import iconRecognition from "../assets/icons/recognition-black-neutral.svg";
+import iconRewards from "../assets/icons/reward-black-neutral.svg";
+import iconSurvey from "../assets/icons/survey-black-neutral.svg";
+import iconEmployees from "../assets/icons/employees-black-neutral.svg";
+import iconArrowDown from "../assets/icons/dropdown-black-neutral-opened.svg";
 
 const routes = [
     {

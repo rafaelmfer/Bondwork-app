@@ -7,7 +7,7 @@ import TextFieldArea from "../../components/textfields/TextFieldArea";
 import CustomButton from "../../components/buttons/CustomButton";
 import { surveyCreationContext } from "../../context/Context";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
-import promptOk from "../../assets/images/promptOk.svg";
+import promptOk from "../../assets/icons/prompt-success.svg";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
 //import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
 import { Tab, Tabs, Box, Card, Typography, Divider } from "@mui/material";
