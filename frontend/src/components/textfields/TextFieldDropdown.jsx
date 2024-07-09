@@ -8,7 +8,7 @@ import {
     useTheme,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import iconArrow from "../../assets/icons/dropdown.svg";
+import iconArrow from "../../assets/icons/back-black-neutral.svg";
 
 const CustomFormControl = styled(FormControl)(({ theme }) => ({
     width: "100%",

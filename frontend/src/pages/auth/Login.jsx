@@ -5,13 +5,13 @@ import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import CustomButton from "../../components/buttons/CustomButton";
 
 import logo from "../../assets/icons/logo.svg";
-import CheckBoxEmpty from "../../assets/icons/deactivated/deactivated-checkbox.svg";
-import CheckBoxFilled from "../../assets/icons/activated/activated-checkbox-1.svg";
+import CheckBoxEmpty from "../../assets/icons/checkbox-dark-gray-neutral-empty.svg";
+import CheckBoxFilled from "../../assets/icons/checkbox-filled.svg";
 
-import PasswordIconClosed from "../../assets/icons/deactivated/deactivated-eye.svg";
-import PasswordIconOpen from "../../assets/icons/deactivated/deactivated-eye-1.svg";
-import PasswordIconClosedHover from "../../assets/icons/activated/activated-eye.svg";
-import PasswordIconOpenHover from "../../assets/icons/activated/activated-eye-1.svg";
+import PasswordIconClosed from "../../assets/icons/eye-dark-gray-neutral-closed.svg";
+import PasswordIconOpen from "../../assets/icons/eye-dark-gray-neutral-opened.svg";
+import PasswordIconClosedHover from "../../assets/icons/eye-orange-primary-closed.svg";
+import PasswordIconOpenHover from "../../assets/icons/eye-orange-primary-opened.svg";
 
 const Login = () => {
     const [email, setEmail] = useState("");

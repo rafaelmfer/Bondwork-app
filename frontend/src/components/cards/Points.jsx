@@ -1,4 +1,4 @@
-import { ReactComponent as PointSvg } from "../../assets/images/points.svg";
+import { ReactComponent as PointSvg } from "../../assets/icons/points-dark-gray-neutral.svg";
 import style from "./style.module.css";
 
 export function Points(props) {
