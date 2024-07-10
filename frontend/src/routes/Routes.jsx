@@ -7,7 +7,8 @@ import RewardsRequestList from "../pages/rewards/RewardsRequestList";
 import SurveyMain from "../pages/survey/SurveyMain";
 import Management from "../pages/survey/Management";
 import Responses from "../pages/survey/responses/Responses";
-import Users from "../pages/Users";
+import Users from "../pages/employee/Users";
+import EmployeeProfile from "../pages/employee/EmployeeProfileDetails";
 import Login from "../pages/auth/Login";
 import Survey from "../pages/survey/Survey";
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
@@ -18,6 +19,8 @@ import iconRewards from "../assets/icons/reward-black-neutral.svg";
 import iconSurvey from "../assets/icons/survey-black-neutral.svg";
 import iconEmployees from "../assets/icons/employees-black-neutral.svg";
 import iconArrowDown from "../assets/icons/dropdown-black-neutral-opened.svg";
+
+import EmployeeProfileDetails from "../pages/employee/EmployeeProfileDetails";
 
 const routes = [
     {
@@ -108,6 +111,14 @@ const routes = [
         element: <Users />,
         menuLabel: "Employees",
         icon: iconEmployees,
+        subItems: [
+            {
+                path: "users/details",
+                element: <EmployeeProfileDetails />,
+                menuLabel: "Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+        ],
     },
 ];
 

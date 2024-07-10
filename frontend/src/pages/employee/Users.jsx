@@ -1,6 +1,6 @@
 import React from "react";
-import TopUserBar from "../components/top-user-bar/TopUserBar";
-import Breadcrumbs from "../components/Breadcrumbs";
+import TopUserBar from "../../components/top-user-bar/TopUserBar";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const Users = () => {
     return (
