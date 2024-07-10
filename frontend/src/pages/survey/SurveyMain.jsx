@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import TableSeven from "../../components/TableSeven";
-//import Summary from "../../components/summary/Summary";
-import ChartArea from "../../components/charts/ChartArea";
-import ChartDonut from "../../components/charts/ChartDonut";
-import ChartLine from "../../components/charts/ChartLine";
+import { Box, Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import SummaryCard from "../../components/cards/SummaryCard";
+import ChartArea from "../../components/charts/ChartArea";
+import ChartDonut from "../../components/charts/ChartDonut";
+import ChartLine from "../../components/charts/ChartLine";
+import TableSeven from "../../components/TableSeven";
+import theme from "../../theme/theme";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
@@ -92,15 +93,18 @@ const SurveyMain = () => {
     const rows = createRows(surveys);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Surveys"} />
             <Breadcrumbs />
 
-            <SummaryCard data={Summarydata} sx={{ mt: 3 }} />
-            <div
-                className="h-full grid grid-cols-3 items-center gap-5 mt-6 mb-6"
-                id="chart"
-            >
+            <Box className="h-full grid grid-cols-2 items-center gap-6 mt-6">
+                <SummaryCard
+                    data={Summarydata}
+                    sx={{
+                        height: "100%",
+                    }}
+                />
+
                 <div className="chart-donut-card bg-main-50 flex flex-col h-full shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
                     <h4 className="text-h4 text-neutrals-black mb-2">
                         Employee Satisfaction Index
@@ -110,6 +114,12 @@ const SurveyMain = () => {
                         chartHeight={150}
                     />
                 </div>
+            </Box>
+
+            <div
+                className="h-full grid grid-cols-2 items-center gap-6 mt-6 mb-6"
+                id="chart"
+            >
                 <div className="chart-area-card h-full bg-main-50 shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
                     <h4 className="text-h4 text-neutrals-black mb-2">
                         Average Score Over Time
@@ -131,12 +141,13 @@ const SurveyMain = () => {
                 </div>
             </div>
 
-            <div className="border-neutrals-divider border"></div>
+            <Divider sx={{ background: theme.palette.neutrals.divider }} />
 
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">
                 <TableSeven
                     title={"Management"}
                     pathTo={"/surveys/management"}
+                    pathAddTo={"/surveys/management/addSurvey"}
                     rows={rows}
                     columns={columnsTable}
                     rowsNumber="5"

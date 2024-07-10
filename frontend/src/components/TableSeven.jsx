@@ -58,7 +58,7 @@ export default function TableSeven({
     width = "inherit",
     showTitle = true,
     title,
-    pathTo,
+    pathRowTo,
     showTabs = true,
     tabsVariant,
     rows,
@@ -67,6 +67,8 @@ export default function TableSeven({
     showSend = false,
     showSearch = true,
     showAdd = true,
+    pathAddTo,
+    pathViewAllTo,
     rowsNumber,
     showSecondLastColumn = true,
     showLastColumn = true,
@@ -233,7 +235,10 @@ export default function TableSeven({
                     </h3>
                     <Link
                         to={{
-                            pathname: pathTo,
+                            pathname:
+                                pathViewAllTo === ""
+                                    ? `/${title.toLowerCase()}/management}`
+                                    : pathViewAllTo,
                             state: rows,
                         }}
                         className={
@@ -354,7 +359,7 @@ export default function TableSeven({
                             buttonVariant="textIconLeft"
                             iconLeft={IconNormal}
                             onClick={() => {
-                                navigate(`/${title.toLowerCase()}/addNew`);
+                                navigate(pathAddTo);
                             }}
                         >
                             Add
@@ -609,7 +614,7 @@ export default function TableSeven({
                                 </td>
 
                                 <td>
-                                    <Link to={`${pathTo}/${row.id}`}>
+                                    <Link to={`${pathRowTo}/${row.id}`}>
                                         {row[keysObject[1]]}
                                     </Link>
                                 </td>
@@ -723,6 +728,9 @@ export default function TableSeven({
     <TableSeven
                 showTitle={false}
                 title={"Recognition"}
+                pathRowTo={"/recognitions/requests"}
+                pathViewAllTo={"/recognitions/requests"}
+                pathAddTo={"/rewards/addReward"}
                 tabsVariant={"variant2"}
                 rows={rows}
                 columns={columnsTable}

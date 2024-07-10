@@ -15,7 +15,7 @@ const Home = () => {
     };
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-screen">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Dashboard"} />
             <Breadcrumbs />
             <div className="flex row gap-4 mt-6">
@@ -36,7 +36,7 @@ const Home = () => {
                     progressValue2={60}
                     progressValue3={10}
                     statusText1={"Pending"}
-                    statusColor1={theme.palette.info[300]}
+                    statusColor1={theme.palette.info.main}
                     number1={100}
                     chipText1={-10}
                     statusText2={"Approved"}
@@ -56,7 +56,7 @@ const Home = () => {
                     progressValue2={40}
                     progressValue3={10}
                     statusText1={"Pending"}
-                    statusColor1={theme.palette.info[300]}
+                    statusColor1={theme.palette.info.main}
                     number1={40}
                     chipText1={-20}
                     statusText2={"Approved"}
