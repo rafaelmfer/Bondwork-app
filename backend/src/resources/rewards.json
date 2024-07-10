@@ -1,0 +1,213 @@
+[
+    {
+        "rewardId": 301,
+        "category": "Operational",
+        "details": "Amazon Gift Card",
+        "pointsCosts": 5000,
+        "status": "Ongoing",
+        "startDate": "2023-01-01",
+        "endDate": "2024-12-31",
+        "redeem": [
+            { "id": 7426, "status": "Approved", "requestDate": "2023-06-10" },
+            { "id": 6666, "status": "Pending", "requestDate": "2023-07-10" },
+            { "id": 2100, "status": "Pending", "requestDate": "2023-07-10" },
+            { "id": 3300, "status": "Pending", "requestDate": "2024-07-10" },
+            { "id": 3000, "status": "Rejected", "requestDate": "2023-06-10" }
+        ],
+        "title": "Amazon Gift Card",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 302,
+        "category": "Workstyle",
+        "details": "Extra Day Off",
+        "pointsCosts": 7000,
+        "status": "Upcoming",
+        "startDate": "2024-09-01",
+        "endDate": "2024-12-31",
+        "redeem": [],
+        "title": "Extra Day Off",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 303,
+        "category": "Well-being",
+        "details": "Gym Membership for Anytime",
+        "pointsCosts": 10000,
+        "status": "Finished",
+        "startDate": "2023-01-01",
+        "endDate": "2023-12-31",
+        "redeem": [
+            { "id": 4922, "status": "Approved", "requestDate": "2023-06-10" },
+            { "id": 9874, "status": "Approved", "requestDate": "2023-06-10" },
+            { "id": 2900, "status": "Rejected", "requestDate": "2023-05-10" }
+        ],
+        "title": "Gym Membership",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 304,
+        "category": "Operational",
+        "details": "Voucher for office supplies.",
+        "pointsCosts": 3000,
+        "status": "Ongoing",
+        "startDate": "2024-01-15",
+        "endDate": "2024-07-15",
+        "redeem": [
+            { "id": 3200, "status": "Approved", "requestDate": "2024-06-10" },
+            { "id": 3000, "status": "Approved", "requestDate": "2024-06-10" },
+            { "id": 2900, "status": "Rejected", "requestDate": "2024-06-10" }
+        ],
+        "title": "Office Supplies Voucher",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 305,
+        "category": "Workstyle",
+        "details": "Flexible work hours for one month.",
+        "pointsCosts": 7000,
+        "status": "Upcoming",
+        "startDate": "2024-08-01",
+        "endDate": "2024-12-31",
+        "redeem": [],
+        "title": "Flexible Work Hours",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 306,
+        "category": "Well-being",
+        "details": "Annual gym membership.",
+        "pointsCosts": 15000,
+        "status": "Ongoing",
+        "startDate": "2023-06-01",
+        "endDate": "2024-06-01",
+        "redeem": [
+            { "id": 2400, "status": "Pending", "requestDate": "2023-05-10" },
+            { "id": 2500, "status": "Pending", "requestDate": "2024-05-10" },
+            { "id": 2600, "status": "Pending", "requestDate": "2024-05-10" },
+            { "id": 3400, "status": "Pending", "requestDate": "2024-05-10" }
+        ],
+        "title": "Gym Membership",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 307,
+        "category": "Operational",
+        "details": "Extra vacation day.",
+        "pointsCosts": 5000,
+        "status": "Ongoing",
+        "startDate": "2023-09-01",
+        "endDate": "2024-09-01",
+        "redeem": [
+            { "id": 9874, "status": "Approved", "requestDate": "2024-02-10" },
+            { "id": 2321, "status": "Approved", "requestDate": "2024-05-10" },
+            { "id": 2103, "status": "Pending", "requestDate": "2024-06-10" },
+            { "id": 3400, "status": "Pending", "requestDate": "2024-06-10" }
+        ],
+        "title": "Extra Vacation Day",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 308,
+        "category": "Workstyle",
+        "details": "Ergonomic chair for home office.",
+        "pointsCosts": 8000,
+        "status": "Ongoing",
+        "startDate": "2024-02-01",
+        "endDate": "2024-08-01",
+        "redeem": [
+            { "id": 2700, "status": "Approved", "requestDate": "2024-04-10" },
+            { "id": 3500, "status": "Approved", "requestDate": "2024-07-10" }
+        ],
+        "title": "Ergonomic Chair",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 309,
+        "category": "Well-being",
+        "details": "Wellness retreat weekend.",
+        "pointsCosts": 20000,
+        "status": "Upcoming",
+        "startDate": "2024-09-01",
+        "endDate": "2024-12-31",
+        "redeem": [],
+        "title": "Wellness Retreat",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 310,
+        "category": "Operational",
+        "details": "Laptop upgrade.",
+        "pointsCosts": 50000,
+        "status": "Finished",
+        "startDate": "2023-03-01",
+        "endDate": "2024-03-01",
+        "redeem": [
+            { "id": 7232, "status": "Approved", "requestDate": "2023-06-10" },
+            { "id": 3100, "status": "Rejected", "requestDate": "2023-07-10" },
+            { "id": 2800, "status": "Rejected", "requestDate": "2023-07-10" }
+        ],
+        "title": "Laptop Upgrade",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 311,
+        "category": "Workstyle",
+        "details": "Home office setup package.",
+        "pointsCosts": 20000,
+        "status": "Ongoing",
+        "startDate": "2024-05-01",
+        "endDate": "2024-11-01",
+        "redeem": [
+            { "id": 2300, "status": "Approved", "requestDate": "2024-06-10" },
+            { "id": 9864, "status": "Approved", "requestDate": "2024-07-10" },
+            { "id": 3200, "status": "Rejected", "requestDate": "2024-07-10" }
+        ],
+        "title": "Home Office Setup",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 312,
+        "category": "Well-being",
+        "details": "Healthy meal delivery service.",
+        "pointsCosts": 9000,
+        "status": "Ongoing",
+        "startDate": "2024-01-01",
+        "endDate": "2024-07-30",
+        "redeem": [
+            { "id": 9864, "status": "Approved", "requestDate": "2024-06-10" },
+            { "id": 6666, "status": "Approved", "requestDate": "2024-06-19" },
+            { "id": 2500, "status": "Rejected", "requestDate": "2024-07-10" }
+        ],
+        "title": "Healthy Meal Delivery",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 313,
+        "category": "Operational",
+        "details": "Training course subscription.",
+        "pointsCosts": 10000,
+        "status": "Finished",
+        "startDate": "2023-04-01",
+        "endDate": "2024-04-01",
+        "redeem": [
+            { "id": 2321, "status": "Approved", "requestDate": "2023-06-10" },
+            { "id": 6666, "status": "Approved", "requestDate": "2023-06-19" }
+        ],
+        "title": "Training Course",
+        "image": "",
+        "publish": true
+    }
+]

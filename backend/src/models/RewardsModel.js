@@ -1,21 +1,34 @@
 const mongoose = require("mongoose");
 
+const redeemSchema = new mongoose.Schema(
+    {
+        id: {
+            type: Number,
+        },
+        status: {
+            type: String,
+        },
+        requestDate: {
+            type: Date,
+        },
+    },
+    { _id: false }
+);
+
 const rewards = new mongoose.Schema({
     rewardId: {
         type: Number,
+        required: true,
     },
-    rewardName: {
+    title: {
         type: String,
+        required: true,
     },
-    rewardType: {
+    category: {
         type: String,
     },
     image: {
         type: String,
-    },
-    category: {
-        type: String,
-        required: true,
     },
     pointsCost: {
         type: Number,
@@ -31,6 +44,12 @@ const rewards = new mongoose.Schema({
     },
     status: {
         type: String,
+    },
+    redeem: {
+        type: [redeemSchema],
+    },
+    publish: {
+        type: Boolean,
     },
 });
 
