@@ -17,7 +17,7 @@ import Survey from "../pages/survey/Survey";
 import SurveyIndividualResponse from "../pages/survey/SurveyIndividualResponse";
 
 import Users from "../pages/employee/Users";
-import EmployeeProfile from "../pages/employee/EmployeeProfileDetails";
+import EmployeeProfileDetails from "../pages/employee/EmployeeProfileDetails";
 
 import Login from "../pages/auth/Login";
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
@@ -33,8 +33,6 @@ import iconSurveySelected from "../assets/icons/survey-orange-primary.svg";
 import iconEmployees from "../assets/icons/employees-black-neutral.svg";
 import iconEmployeesSelected from "../assets/icons/employees-orange-primary.svg";
 import iconArrowDown from "../assets/icons/dropdown-black-neutral-opened.svg";
-
-import EmployeeProfileDetails from "../pages/employee/EmployeeProfileDetails";
 
 const routes = [
     {
