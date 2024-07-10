@@ -91,7 +91,7 @@ const theme = createTheme({
         h1: { fontSize: "2.027rem", fontWeight: 600, lineHeight: "120%" },
         h2: { fontSize: "1.802rem", fontWeight: 600, lineHeight: "120%" },
         h3: { fontSize: "1.602rem", fontWeight: 600, lineHeight: "120%" },
-        h4: { fontSize: "1.424rem", fontWeight: 400, lineHeight: "120%" },
+        h4: { fontSize: "1.424rem", fontWeight: 500, lineHeight: "120%" },
         h5: { fontSize: "1.266rem", fontWeight: 400, lineHeight: "120%" },
         h6: { fontSize: "1.125rem", fontWeight: 400, lineHeight: "120%" },
         p: { fontSize: "1rem", fontWeight: 400, lineHeight: "150%" },

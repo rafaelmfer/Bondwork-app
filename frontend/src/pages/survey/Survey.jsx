@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Pie } from "./icons/pie-chart.svg";
 import "react-datepicker/dist/react-datepicker.css";
+import { Tab, Tabs, Box, Card, Typography, Divider } from "@mui/material";
 import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import CustomButton from "../../components/buttons/CustomButton";
-import { surveyCreationContext } from "../../context/Context";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
-import promptOk from "../../assets/icons/prompt-success.svg";
-import { InputDate } from "../../components/fields/InputDate/InputDate";
-//import { InputSelect } from "../../components/fields/InputSelect/InputSelect";
-import { Tab, Tabs, Box, Card, Typography, Divider } from "@mui/material";
-import theme from "../../theme/theme";
 import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import QuestionCard from "../../components/QuestionCard";
+import { InputDate } from "../../components/fields/InputDate/InputDate";
+
+import theme from "../../theme/theme";
+
+import { surveyCreationContext } from "../../context/Context";
+import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
+import CheckBoxEmpty from "../../assets/icons/checkbox-dark-gray-neutral-empty.svg";
+import CheckBoxFilled from "../../assets/icons/checkbox-black-neutral-filled.svg";
+import promptOk from "../../assets/icons/prompt-success.svg";
 
 const Survey = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -103,6 +107,7 @@ export function SurveyHtml({ disabled }) {
     const [selectedDeparments, setSelectedDeparment] = useState("");
     const [selectedJobLevel, setSelectedJobLevel] = useState("");
     const [selectedRecurrence, setSelectedRecurrence] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
 
     const handleChangeDepartments = (event) => {
         setSelectedDeparment(event.target.value);
@@ -112,6 +117,11 @@ export function SurveyHtml({ disabled }) {
     };
     const handleChangeRecurrence = (event) => {
         setSelectedRecurrence(event.target.value);
+    };
+
+    // Toggle "Remember me" checkbox
+    const handleRememberMeToggle = () => {
+        setRememberMe(!rememberMe);
     };
 
     const goToHome = () => {
@@ -368,11 +378,61 @@ export function SurveyHtml({ disabled }) {
                             </Box>
                         </Box>
 
-                        <Box sx={{ mt: 3, backgroundColor: "#b5b5b5" }}>
-                            Component still not made it
+                        <Box sx={{ mt: 3 }}>
+                            <Typography variant="h4" mt={4} mb={2}>
+                                Employee Satisfacion Index (ESI)
+                            </Typography>
+                            <Divider
+                                sx={{
+                                    background: theme.palette.neutrals.gray200,
+                                }}
+                            />
+                            <QuestionCard
+                                sx={{ mt: "16px" }}
+                                question={
+                                    "1. How satisfied are you with your current salary and benefits package?"
+                                }
+                                isDisabled={true}
+                            />
+                            <QuestionCard
+                                sx={{ mt: "16px" }}
+                                question={
+                                    "2. How satisfied are you with the company culture?"
+                                }
+                                isDisabled={true}
+                            />
+                            <QuestionCard
+                                sx={{ mt: "16px" }}
+                                question={
+                                    "3. How satisfied are you with your job role and responsibilities?"
+                                }
+                                isDisabled={true}
+                            />
+                            <QuestionCard
+                                sx={{ mt: "16px" }}
+                                question={
+                                    "4. How satisfied are you with the level of collaboration and support with your colleagues?"
+                                }
+                                isDisabled={true}
+                            />
+                            <label
+                                className="flex items-center gap-2 cursor-pointer mt-4"
+                                onClick={handleRememberMeToggle}
+                            >
+                                <img
+                                    src={
+                                        rememberMe
+                                            ? CheckBoxFilled
+                                            : CheckBoxEmpty
+                                    }
+                                    alt="allow comments?"
+                                    onClick={handleRememberMeToggle}
+                                />
+                                Allow comments?
+                            </label>
                         </Box>
                         <Box
-                            sx={{ mt: 3 }}
+                            sx={{ mt: "24px" }}
                             display="flex"
                             justifyContent="space-between"
                             mt={4}
