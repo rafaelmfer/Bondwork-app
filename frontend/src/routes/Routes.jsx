@@ -16,7 +16,9 @@ import SurveyDetails from "../pages/survey/SurveyDetails";
 import Survey from "../pages/survey/Survey";
 import SurveyIndividualResponse from "../pages/survey/SurveyIndividualResponse";
 
-import Users from "../pages/Users";
+import Users from "../pages/employee/Users";
+import EmployeeProfileDetails from "../pages/employee/EmployeeProfileDetails";
+
 import Login from "../pages/auth/Login";
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
 
@@ -144,6 +146,14 @@ const routes = [
         menuLabel: "Employees",
         icon: iconEmployees,
         iconSelected: iconEmployeesSelected,
+        subItems: [
+            {
+                path: "users/details",
+                element: <EmployeeProfileDetails />,
+                menuLabel: "Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+        ],
     },
 ];
 
