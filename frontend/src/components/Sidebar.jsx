@@ -4,7 +4,9 @@ import { Avatar } from "@mui/material";
 import routes from "../routes/Routes";
 import logo from "../assets/icons/logo.svg";
 import lineWithEndCurve from "../assets/images/vertical_line.svg";
+import lineWithEndCurveSelected from "../assets/images/vertical_line_selected.svg";
 import lineWithMidCurve from "../assets/images/vertical_line_mid_curve.svg";
+import lineWithMidCurveSelected from "../assets/images/vertical_line_mid_curve_selected.svg";
 
 const Sidebar = ({ profileName }) => {
     const initialActiveIndexes = routes
@@ -22,7 +24,9 @@ const Sidebar = ({ profileName }) => {
         routes.forEach((route, index) => {
             if (route.subItems) {
                 route.subItems.forEach((subItem) => {
-                    if (subItem.path === location.pathname) {
+                    if (
+                        location.pathname.startsWith(subItem.path.split(":")[0])
+                    ) {
                         setActiveIndexes((prevIndexes) =>
                             !prevIndexes.includes(index)
                                 ? [...prevIndexes, index]
@@ -51,7 +55,7 @@ const Sidebar = ({ profileName }) => {
     };
 
     return (
-        <div className="w-menuWidth bg-light border-r border-[#EEEEEE] flex flex-col fixed top-0 left-0 px-6 pb-4 h-screen">
+        <div className="w-menuWidth bg-neutrals-white border-r border-[#EEEEEE] flex flex-col fixed top-0 left-0 px-6 pb-4 h-screen">
             <div className="h-[80px] box-content flex">
                 <img src={logo} alt="Logo" />
             </div>
@@ -68,9 +72,9 @@ const Sidebar = ({ profileName }) => {
                         return (
                             <li key={index} className={`w-full`}>
                                 <div
-                                    className={`flex items-center justify-between cursor-pointer py-2 border-info h-[48px] w-[224px] relative rounded-[10px] ${
-                                        isActive ? "bg-[#FDE9E9]" : ""
-                                    } hover:bg-[#FEF5F5]`}
+                                    className={`flex items-center justify-between cursor-pointer py-2 border-neutrals-gray100 h-[48px] w-[224px] relative rounded-[10px] ${
+                                        isActive ? "bg-main-200" : ""
+                                    } hover:bg-main-100`}
                                     onClick={() =>
                                         item.subItems
                                             ? handleToggle(index)
@@ -86,18 +90,22 @@ const Sidebar = ({ profileName }) => {
                                             item.subItems ? "px-2" : "pl-2 pr-2"
                                         } w-full ${
                                             isActive
-                                                ? "text-[#EF6461]"
-                                                : "text-[#727272]"
-                                        } hover:text-[#0B0A0A]`}
+                                                ? "text-main font-semibold"
+                                                : "text-neutrals-black"
+                                        } hover:text-neutrals-black hover:font-semibold`}
                                     >
                                         <img
-                                            src={item.icon}
+                                            src={
+                                                isActive
+                                                    ? item.iconSelected
+                                                    : item.icon
+                                            }
                                             alt="icon"
                                             className={`mr-2 ${
                                                 isActive
-                                                    ? "fill-[#EF6461]"
-                                                    : "fill-[#727272]"
-                                            } hover:fill-[#0B0A0A]`}
+                                                    ? "fill-main"
+                                                    : "fill-neutrals-black"
+                                            } hover:fill-neutrals-black`}
                                         />
                                         <span>{item.menuLabel}</span>
                                     </Link>
@@ -110,9 +118,9 @@ const Sidebar = ({ profileName }) => {
                                                     : "-rotate-90"
                                             } mr-2 ${
                                                 isActive
-                                                    ? "fill-[#EF6461]"
-                                                    : "fill-[#727272]"
-                                            } hover:fill-[#0B0A0A]`}
+                                                    ? "fill-main"
+                                                    : "fill-neutrals-black"
+                                            } hover:fill-neutrals-black`}
                                             src={item.iconChevron}
                                             alt="chevron icon"
                                         />
@@ -129,11 +137,14 @@ const Sidebar = ({ profileName }) => {
                                         {item.subItems.map(
                                             (subItem, subIndex) => {
                                                 const isSubItemActive =
-                                                    location.pathname ===
-                                                    subItem.path;
+                                                    location.pathname.startsWith(
+                                                        subItem.path.split(
+                                                            ":"
+                                                        )[0]
+                                                    );
 
                                                 if (subItem.hideInSidebar) {
-                                                    return null; // Ignora subitens ocultos
+                                                    return null;
                                                 }
 
                                                 return (
@@ -143,23 +154,32 @@ const Sidebar = ({ profileName }) => {
                                                     >
                                                         <img
                                                             src={
-                                                                subIndex ===
-                                                                item.subItems
-                                                                    .length -
-                                                                    1
-                                                                    ? lineWithEndCurve
-                                                                    : lineWithMidCurve
+                                                                isSubItemActive
+                                                                    ? subIndex ===
+                                                                      item
+                                                                          .subItems
+                                                                          .length -
+                                                                          1
+                                                                        ? lineWithEndCurveSelected
+                                                                        : lineWithMidCurveSelected
+                                                                    : subIndex ===
+                                                                        item
+                                                                            .subItems
+                                                                            .length -
+                                                                            1
+                                                                      ? lineWithEndCurve
+                                                                      : lineWithMidCurve
                                                             }
                                                             alt="line"
                                                             className="absolute left-2 top-0 h-[48px] w-[25px]"
                                                         />
                                                         <Link
                                                             to={subItem.path}
-                                                            className={`rounded-[10px] border-info flex py-3.5 pl-10 pr-5 w-[224px] h-[48px] hover:bg-[#FEF5F5] ${
+                                                            className={`rounded-[10px] flex py-3.5 pl-10 pr-5 w-[224px] h-[48px] hover:bg-main-100 ${
                                                                 isSubItemActive
-                                                                    ? "text-[#EF6461] bg-[#FDE9E9]"
-                                                                    : "text-[#727272]"
-                                                            } hover:text-[#0B0A0A]`}
+                                                                    ? "text-main bg-main-200 font-semibold"
+                                                                    : "text-neutrals-black"
+                                                            } hover:text-neutrals-black hover:font-semibold`}
                                                         >
                                                             {subItem.menuLabel}
                                                         </Link>

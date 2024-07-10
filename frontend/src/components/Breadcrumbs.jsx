@@ -2,7 +2,7 @@ import React from "react";
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from "@mui/material";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import routes from "../routes/Routes";
-import DashboardIcon from "../assets/icons/dashboard-dark-orange-primary.svg";
+import DashboardIcon from "../assets/icons/dashboard-dark-gray-neutral.svg";
 import iconArrow from "../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 
 const Breadcrumbs = ({ dynamicTexts = [] }) => {
