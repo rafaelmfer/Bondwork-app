@@ -16,7 +16,7 @@ const EmployeeProfileDetails = () => {
                 JobTitle="UI / UX Designer"
                 OnBoardingDate="May, 2024"
                 imageSrc="https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Iza-L.png?alt=media&token=4f78dbd7-078e-4c04-a3be-d3e61e6d49c0"
-                ChipNPS="Promoters"
+                chipText="Promoter"
             />
             <EmployeeProfileInfoCard
                 EmployeeID="0011"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
@@ -121,7 +122,7 @@ const RecognitionMain = () => {
     }, []);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Recognition"} />
             <Breadcrumbs />
 
@@ -148,9 +149,12 @@ const RecognitionMain = () => {
                 />
                 <CardRecognitionMovement overall={3.25} chipText={-0.2} />
             </div>
+            <Divider sx={{ background: theme.palette.neutrals.divider }} />
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">
                 <TableWithProfile
                     title={"Request"}
+                    pathRowTo={"/recognitions/requests"}
+                    pathViewAllTo={"/recognitions/requests"}
                     tabsVariant={"variant2"}
                     rows={recognitions}
                     columns={columnsTable}

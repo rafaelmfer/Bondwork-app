@@ -19,6 +19,7 @@ const SummaryCard = ({ data, sx }) => {
             <CardContent
                 sx={{
                     width: "100%",
+                    height: "100%",
                     "&:last-child": {
                         paddingBottom: 2,
                     },
@@ -28,9 +29,12 @@ const SummaryCard = ({ data, sx }) => {
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
-                    mb={2}
+                    mb={"56px"}
                 >
-                    <Typography variant="h6" gutterBottom>
+                    <Typography
+                        variant="h4"
+                        color={theme.palette.neutrals.black}
+                    >
                         Summary
                     </Typography>
                     <Typography
@@ -40,7 +44,7 @@ const SummaryCard = ({ data, sx }) => {
                         Compared to previous period
                     </Typography>
                 </Box>
-                <Box display="grid" gridTemplateColumns="repeat(5, 1fr)">
+                <Box display="grid" gridTemplateColumns="repeat(3, 1fr)">
                     <Box
                         display="flex"
                         flexDirection="column"
@@ -71,7 +75,7 @@ const SummaryCard = ({ data, sx }) => {
                             variant="small1"
                             color={theme.palette.neutrals.gray300}
                         >
-                            Survey Sent
+                            Sent
                         </Typography>
                         <Box display="flex" alignItems="center">
                             <Typography variant="h1">
@@ -83,27 +87,7 @@ const SummaryCard = ({ data, sx }) => {
                             />
                         </Box>
                     </Box>
-                    <Box
-                        display="flex"
-                        flexDirection="column"
-                        alignItems="flex-start"
-                    >
-                        <Typography
-                            variant="small1"
-                            color={theme.palette.neutrals.gray300}
-                        >
-                            Received
-                        </Typography>
-                        <Box display="flex" alignItems="center">
-                            <Typography variant="h1">
-                                {data.received.value}
-                            </Typography>
-                            <ChipNumber
-                                chipText={data.received.chip}
-                                sx={{ ml: 1 }}
-                            />
-                        </Box>
-                    </Box>
+
                     <Box
                         display="flex"
                         flexDirection="column"
@@ -121,27 +105,6 @@ const SummaryCard = ({ data, sx }) => {
                             </Typography>
                             <ChipNumber
                                 chipText={data.completed.chip}
-                                sx={{ ml: 1 }}
-                            />
-                        </Box>
-                    </Box>
-                    <Box
-                        display="flex"
-                        flexDirection="column"
-                        alignItems="flex-start"
-                    >
-                        <Typography
-                            variant="small1"
-                            color={theme.palette.neutrals.gray300}
-                        >
-                            Average Time
-                        </Typography>
-                        <Box display="flex" alignItems="center">
-                            <Typography variant="h1">
-                                {data.averageTime.value} min
-                            </Typography>
-                            <ChipNumber
-                                chipText={data.averageTime.chip}
                                 sx={{ ml: 1 }}
                             />
                         </Box>

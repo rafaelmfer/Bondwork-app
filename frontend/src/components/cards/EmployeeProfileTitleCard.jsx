@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Card, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import theme from "../../theme/theme";
-import ChipNPS from "../chip/ChipNPS";
+import ChipText from "../chip/ChipText";
 
 const StyledCard = styled(Card)(({ theme }) => ({
     borderRadius: "8px",
@@ -72,7 +72,7 @@ const ChipContainer = styled(Box)({
  * ```
  */
 const EmployeeProfileTitleCard = ({
-    ChipNPS: chipNPS,
+    chipText,
     Name,
     JobTitle,
     OnBoardingDate,
@@ -102,7 +102,7 @@ const EmployeeProfileTitleCard = ({
                         />
                     </ImgContainer>
                     <ChipContainer>
-                        <ChipNPS chipText={chipNPS} />
+                        <ChipText chipText={chipText} />
                     </ChipContainer>
                 </Column>
                 <Box

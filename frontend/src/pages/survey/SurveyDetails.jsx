@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
-import TopUserBar from "../../../components/top-user-bar/TopUserBar";
-import Breadcrumbs from "../../../components/Breadcrumbs";
-import SurveyDetailsCard from "../../../components/cards/SurveyDetailsCard";
-import TableWithProfile from "../../../components/TableWithProfile";
+import TopUserBar from "../../components/top-user-bar/TopUserBar";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import SurveyDetailsCard from "../../components/cards/SurveyDetailsCard";
+import TableWithProfile from "../../components/TableWithProfile";
 //import theme from "../../../theme/theme";
 
 // All of this is to allow multiple savings during the first fetch
@@ -28,7 +28,7 @@ const reducer = (state, action) => {
     }
 };
 
-const Responses = () => {
+const SurveyDetails = () => {
     const { id } = useParams();
     const [state, dispatch] = useReducer(reducer, initialState);
     const { survey, answered, requested } = state;
@@ -154,7 +154,7 @@ const Responses = () => {
     ];
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Survey Details"} />
             <Breadcrumbs dynamicTexts={["Survey Details"]} />
             {survey && tableData ? (
@@ -177,6 +177,7 @@ const Responses = () => {
                         {/* CHANGE IN THE COMPONENT THE STATUS TO BE ALWAYS CAPITALIZED */}
                         <TableWithProfile
                             title={"Audience List"}
+                            pathRowTo={""}
                             tabsVariant={"variant2"}
                             rows={tableData}
                             columns={columnsTable}
@@ -195,4 +196,4 @@ const Responses = () => {
     );
 };
 
-export default Responses;
+export default SurveyDetails;

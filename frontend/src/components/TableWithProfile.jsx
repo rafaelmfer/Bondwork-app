@@ -58,6 +58,7 @@ function stableSort(array, comparator) {
 export default function TableWithProfile({
     showTitle = true,
     title,
+    pathRowTo,
     showTabs = true,
     tabsVariant,
     rows,
@@ -66,6 +67,8 @@ export default function TableWithProfile({
     showSend = false,
     showSearch = true,
     showAdd = true,
+    pathAddTo,
+    pathViewAllTo,
     rowsNumber,
     showSecondColumn = true, // this is to consider the second column with a profile picture
     showThirdLastColumn = true,
@@ -92,6 +95,7 @@ export default function TableWithProfile({
         }
     }, [rows]);
     console.log(rows);
+
     // Numbers of columns for the Component (can be different from the real number)
     let numCol = 0;
     if (showSecondColumn) {
@@ -226,6 +230,7 @@ export default function TableWithProfile({
 
     const IconToDisplay =
         isClicked || isHovered ? CustomSortActiveIcon : CustomSortIcon;
+
     return (
         <Box component="section" className="table" sx={{ m: 2 }}>
             {showTitle && (
@@ -238,7 +243,10 @@ export default function TableWithProfile({
                     </h3>
                     <Link
                         to={{
-                            pathname: `/${title.toLowerCase()}/management`,
+                            pathname:
+                                pathViewAllTo === ""
+                                    ? `/${title.toLowerCase()}/management}`
+                                    : pathViewAllTo,
                             // TODO check if data=rows still works
                             state: rows,
                         }}
@@ -361,7 +369,7 @@ export default function TableWithProfile({
                             buttonVariant="textIconLeft"
                             iconLeft={IconNormal}
                             onClick={() => {
-                                navigate(`/${title.toLowerCase()}/addNew`);
+                                navigate(pathAddTo);
                             }}
                         >
                             Add
@@ -639,7 +647,12 @@ export default function TableWithProfile({
                                 <td>
                                     <Link
                                         // TODO Check the route to individual survey or rewards
-                                        to={`/recognitions/requests/details`}
+
+                                        to={
+                                            pathRowTo === ""
+                                                ? `${row.from.myObject._id}`
+                                                : `${pathRowTo}/${row.from.myObject._id}`
+                                        }
                                         style={{
                                             display: "flex",
                                             alignItems: "center",
@@ -905,6 +918,9 @@ export default function TableWithProfile({
     <TableSeven
                 showTitle={false}
                 title={"Recognition"}
+                pathRowTo={"/recognitions/requests"}
+                pathViewAllTo={"/recognitions/requests"}
+                pathAddTo={"/rewards/addReward"}
                 tabsVariant={"variant2"}
                 rows={rows}
                 columns={columnsTable}

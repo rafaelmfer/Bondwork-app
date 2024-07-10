@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { Tab, Tabs, Box, Card, Typography, Divider } from "@mui/material";
-import TextFieldRegular from "../../components/textfields/TextFieldRegular";
-import TextFieldArea from "../../components/textfields/TextFieldArea";
-import CustomButton from "../../components/buttons/CustomButton";
-import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
-import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import QuestionCard from "../../components/QuestionCard";
+import TextFieldRegular from "../../components/textfields/TextFieldRegular";
+import TextFieldArea from "../../components/textfields/TextFieldArea";
+import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
-
+import CustomButton from "../../components/buttons/CustomButton";
+import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import theme from "../../theme/theme";
 
 import { surveyCreationContext } from "../../context/Context";
@@ -28,7 +27,7 @@ const Survey = () => {
     };
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Add Survey"} />
             <Breadcrumbs />
             <Card
@@ -64,6 +63,9 @@ const Survey = () => {
                                 textTransform: "none",
                                 padding: 0,
                                 height: "56px",
+                                "& .MuiTab-iconWrapper": {
+                                    marginBottom: 0,
+                                },
                             }}
                         />
                         <Tab
@@ -208,7 +210,7 @@ export function SurveyHtml({ disabled }) {
         "IT",
         "Human Resources",
     ];
-    const recurrence = ["Weekly", "Month", "Semester", "Year"];
+    const recurrence = ["Weekly", "Monthly", "Per Semester", "Per Year"];
 
     return (
         <>
@@ -246,7 +248,7 @@ export function SurveyHtml({ disabled }) {
                             Survey Name
                         </Typography>
                         <Divider
-                            sx={{ background: theme.palette.neutrals.gray200 }}
+                            sx={{ background: theme.palette.neutrals.divider }}
                         />
                         <Box mt={2}>
                             <TextFieldRegular
@@ -275,7 +277,7 @@ export function SurveyHtml({ disabled }) {
                             </Typography>
                             <Divider
                                 sx={{
-                                    background: theme.palette.neutrals.gray200,
+                                    background: theme.palette.neutrals.divider,
                                 }}
                             />
                             <DropdownSelect
@@ -316,7 +318,7 @@ export function SurveyHtml({ disabled }) {
                             </Typography>
                             <Divider
                                 sx={{
-                                    background: theme.palette.neutrals.gray200,
+                                    background: theme.palette.neutrals.divider,
                                 }}
                             />
                             <Box
@@ -384,7 +386,7 @@ export function SurveyHtml({ disabled }) {
                             </Typography>
                             <Divider
                                 sx={{
-                                    background: theme.palette.neutrals.gray200,
+                                    background: theme.palette.neutrals.divider,
                                 }}
                             />
                             <QuestionCard
