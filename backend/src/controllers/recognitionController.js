@@ -1,9 +1,47 @@
 const Recognition = require("../models/RecognitionModel");
+const User = require("../models/UserModel");
 
 const allRecognition = async (req, res) => {
     try {
         const allRecognit = await Recognition.find({});
-        return res.status(200).json(allRecognit);
+        const enhancedRecognitions = await Promise.all(
+            allRecognit.map(async (recognition) => {
+                const sender = await User.findOne({
+                    employeeID: recognition.sender,
+                });
+                const receiver = await User.findOne({
+                    employeeID: recognition.receiver,
+                });
+
+                return {
+                    ...recognition._doc,
+                    sender: {
+                        id: sender ? sender.employeeID : null,
+                        name: sender
+                            ? `${sender.firstName} ${sender.lastName}`
+                            : null,
+                        jobTitle: sender ? sender.jobTitle : null,
+                        jobLevel: sender ? sender.jobLevel : null,
+                        departmentName: sender ? sender.department.name : null,
+                        profileImage: sender ? sender.profilePicture : null,
+                    },
+                    receiver: {
+                        id: receiver ? receiver.employeeID : null,
+                        name: receiver
+                            ? `${receiver.firstName} ${receiver.lastName}`
+                            : null,
+                        jobTitle: receiver ? receiver.jobTitle : null,
+                        jobLevel: receiver ? receiver.jobLevel : null,
+                        departmentName: receiver
+                            ? receiver.department.name
+                            : null,
+                        profileImage: receiver ? receiver.profilePicture : null,
+                    },
+                };
+            })
+        );
+
+        return res.status(200).json(enhancedRecognitions);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
