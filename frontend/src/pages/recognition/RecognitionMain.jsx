@@ -6,6 +6,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
 //import CustomDate from "../../components/custom-date/CustomDate";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
+import { CardStacked } from "../../components/cards/CardStacked";
 import CardRecognitionMovement from "../../components/cards/CardRecognitionMovement";
 import theme from "../../theme/theme";
 
@@ -133,7 +134,8 @@ const RecognitionMain = () => {
                     number3={30}
                     chipText3={16}
                 />
-                <CardRecognitionMovement overall={3.25} chipText={-0.2} />
+                {/* <CardRecognitionMovement overall={3.25} chipText={-0.2} />  */}
+                <CardStacked />
             </div>
             <Divider sx={{ background: theme.palette.neutrals.divider }} />
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">

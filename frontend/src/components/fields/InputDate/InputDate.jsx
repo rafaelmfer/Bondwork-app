@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "../styles.module.css";
 import calendar from "../../../assets/icons/calendar-dark-gray-neutral.svg";
 
-export function InputDate({ title, setSurveyInputs }) {
+export function InputDate({ title, setFunctionExecution }) {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null);
 
@@ -19,20 +19,24 @@ export function InputDate({ title, setSurveyInputs }) {
     };
 
     const handleChange = (update) => {
+        console.log(update);
+
         const [start, end] = update;
         setStartDate(start);
         setEndDate(end);
-        setSurveyInputs((prevInputs) => ({
+        setFunctionExecution((prevInputs) => ({
             ...prevInputs,
             startDate: toLocalISOString(start),
             endDate: toLocalISOString(end),
         }));
     };
-
+    console.log(endDate);
     return (
         <>
             <div className={styles.surveyFields}>
-                <h3>{title}</h3>
+                <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-animated css-mpwgvf-MuiFormLabel-root-MuiInputLabel-root">
+                    {title}
+                </label>
                 <div className="border rounded-[8px] grow grid content-center px-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <DatePicker
                         className={styles.datePicker}

@@ -72,6 +72,10 @@ const TextAreaElement = styled("textarea")(
         "&:disabled": {
             color: theme.palette.neutrals.gray300,
         },
+        "&::placeholder": {
+            opacity: 1,
+            color: theme.palette.neutrals.gray300,
+        },
     })
 );
 
@@ -127,9 +131,10 @@ const TextFieldArea = ({
 }) => {
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
-
+    const [valueChanged, setValue] = useState("");
     return (
         <Box
+            class="flex flex-col"
             sx={sx}
             aria-disabled={disabled} // ARIA attribute to indicate disabled state
             aria-invalid={error} // ARIA attribute to indicate error state
@@ -142,6 +147,7 @@ const TextFieldArea = ({
                 disabled={disabled}
                 value={value}
                 onChange={onChange}
+                rows={"3"}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onMouseEnter={() => setHovered(true)}
@@ -150,6 +156,7 @@ const TextFieldArea = ({
                 aria-invalid={error} // ARIA attribute to indicate error state
                 aria-describedby={`${id}-hint`} // Associate hint with textarea
             />
+
             <Hint
                 id={`${id}-hint`}
                 error={error}
@@ -159,7 +166,7 @@ const TextFieldArea = ({
                 role="status" // ARIA attribute to indicate the role of the element
                 aria-live="polite" // ARIA attribute for polite notification of changes
             >
-                {hint}
+                {value.length}/{hint} letters
             </Hint>
         </Box>
     );

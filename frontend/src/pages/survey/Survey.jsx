@@ -17,6 +17,7 @@ import { surveyCreationContext } from "../../context/Context";
 import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
 import CheckBoxEmpty from "../../assets/icons/checkbox-dark-gray-neutral-empty.svg";
 import CheckBoxFilled from "../../assets/icons/checkbox-black-neutral-filled.svg";
+import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
 
 const Survey = () => {
@@ -88,7 +89,12 @@ const Survey = () => {
                             }}
                         />
                     </Tabs>
-                    <CustomButton buttontype="secondary" isOutlined>
+                    <CustomButton
+                        buttontype="secondary"
+                        buttonVariant="textIconLeft"
+                        iconLeft={SaveIcon}
+                        isOutlined
+                    >
                         Save Draft
                     </CustomButton>
                 </Box>
@@ -329,7 +335,7 @@ export function SurveyHtml({ disabled }) {
                             >
                                 <InputDate
                                     title="Period"
-                                    setSurveyInputs={setSurveyInputs}
+                                    setFunctionExecution={setSurveyInputs}
                                 />
                                 <DropdownSelect
                                     label="Recurrence"
