@@ -11,6 +11,8 @@ import {
     InputAdornment,
 } from "@mui/material";
 import ThemePagination from "./ThemePagination";
+import ChipText from "./chip/ChipText";
+import { CheckStatus } from "./checkStatus/CheckStatus";
 import theme from "../theme/theme";
 import CustomButton from "./buttons/CustomButton";
 import IconNormal from "../assets/icons/add-white-neutral.svg";
@@ -74,6 +76,7 @@ export default function TableSeven({
     showLastColumn = true,
     showCheckboxColumn = true,
     showBtnColumn = true,
+    showPagination = true,
 }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState();
@@ -129,6 +132,7 @@ export default function TableSeven({
                     row.status.toLowerCase().includes(lowercasedQuery)
             );
         }
+
         return stableSort(filteredData, getComparator(order, orderBy));
     };
 
@@ -409,8 +413,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "300px",
-                                maxWidth: "100%",
+                                width: "220px",
+                                maxWidth: "400px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -433,7 +437,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "150px",
+                                maxWidth: "160px",
+                                width: "120px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -455,7 +460,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "150px",
+                                maxWidth: "160px",
+                                width: "120px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -477,8 +483,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "100px",
-                                maxWidth: "120px",
+                                maxWidth: "160px",
+                                width: "120px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -500,8 +506,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "100px",
-                                maxWidth: "120px",
+                                maxWidth: "160px",
+                                width: "120px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -525,8 +531,8 @@ export default function TableSeven({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
-                                    width: "100px",
-                                    maxWidth: "120px",
+                                    maxWidth: "160px",
+                                    width: "120px",
                                     padding: "0px",
                                 }}
                                 onClick={() =>
@@ -552,8 +558,8 @@ export default function TableSeven({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
-                                    width: "110px",
-                                    maxWidth: "150px",
+                                    maxWidth: "160px",
+                                    width: "120px",
                                 }}
                                 onClick={() =>
                                     handleRequestSort(keysObject[7].toString())
@@ -599,6 +605,7 @@ export default function TableSeven({
                                     style={{
                                         padding: "0px",
                                         textAlign: "center",
+                                        height: "56px",
                                     }}
                                 >
                                     {showCheckboxColumn && (
@@ -618,12 +625,79 @@ export default function TableSeven({
                                         {row[keysObject[1]]}
                                     </Link>
                                 </td>
-                                <td>{row[keysObject[2]]}</td>
-                                <td>{row[keysObject[3]]}</td>
-                                <td>{row[keysObject[4]]}</td>
-                                <td>{row[keysObject[5]]}</td>
+                                <td>
+                                    {keysObject[2] === "category" ? (
+                                        <ChipText
+                                            chipText={row[keysObject[2]]}
+                                            sx={{ marginTop: "8px" }}
+                                        />
+                                    ) : (
+                                        row[keysObject[2]]
+                                    )}
+                                </td>
+
+                                <td>
+                                    {keysObject[3] === "points" ? (
+                                        <p
+                                            style={{
+                                                textAlign: "right",
+                                                marginRight: "3rem",
+                                            }}
+                                        >
+                                            {row[keysObject[3]]}
+                                        </p>
+                                    ) : (
+                                        row[keysObject[3]]
+                                    )}
+                                </td>
+                                <td>
+                                    {keysObject[4] === "status" ? (
+                                        <CheckStatus
+                                            status={row[keysObject[4]]}
+                                        />
+                                    ) : (
+                                        row[keysObject[4]]
+                                    )}
+                                </td>
+                                <td>
+                                    {(() => {
+                                        switch (keysObject[5]) {
+                                            case "status":
+                                                return (
+                                                    <CheckStatus
+                                                        status={
+                                                            row[keysObject[5]]
+                                                        }
+                                                    />
+                                                );
+                                            // case "redeem":
+                                            //     //case "completed":
+                                            //     return (
+                                            //         <p
+                                            //             style={{
+                                            //                 textAlign: "right",
+                                            //                 marginRight: "2rem",
+                                            //             }}
+                                            //         >
+                                            //             {row[keysObject[5]]}
+                                            //         </p>
+                                            //     );
+                                            default:
+                                                return row[keysObject[5]];
+                                        }
+                                    })()}
+                                </td>
+
                                 {showSecondLastColumn && (
-                                    <td>{row[keysObject[6]]}</td>
+                                    <td>
+                                        {keysObject[6] === "status" ? (
+                                            <CheckStatus
+                                                status={row[keysObject[6]]}
+                                            />
+                                        ) : (
+                                            row[keysObject[6]]
+                                        )}
+                                    </td>
                                 )}
 
                                 {showLastColumn && (
@@ -651,7 +725,7 @@ export default function TableSeven({
                     })}
                 </tbody>
             </table>
-            {totalRows > rowsPerPage && (
+            {showPagination && totalRows > rowsPerPage && (
                 <ThemePagination
                     count={totalPages}
                     page={currentPage}

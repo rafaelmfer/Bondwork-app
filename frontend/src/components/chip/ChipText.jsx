@@ -12,9 +12,25 @@ const ChipText = ({ chipText, sx }) => {
         } else if (chipText === "Neutral") {
             chipBackground = theme.palette.neutrals.gray100;
             chipTextColor = theme.palette.neutrals.gray300;
-        } else {
+        } else if (chipText === "Detractor" || chipText === "Teamwork") {
             chipBackground = theme.palette.error[100];
             chipTextColor = theme.palette.error[300];
+            /// FOR CATEGORY
+        } else if (chipText === "Well-being" || chipText === "Leadership") {
+            chipBackground = theme.palette.success[100];
+            chipTextColor = theme.palette.success[300];
+        } else if (
+            chipText === "Operational" ||
+            chipText === "Innovative Idea"
+        ) {
+            chipBackground = theme.palette.support.light_purple;
+            chipTextColor = theme.palette.support.purple;
+        } else if (
+            chipText === "Workstyle" ||
+            chipText === "Great Performance"
+        ) {
+            chipBackground = theme.palette.info[100];
+            chipTextColor = theme.palette.info[300];
         }
 
         return { chipBackground, chipTextColor };
