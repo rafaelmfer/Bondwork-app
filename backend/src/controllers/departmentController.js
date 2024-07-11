@@ -1,21 +1,4 @@
-const Department = require("../models/departmentModel");
-
-const insertDepartment = async (req, res) => {
-    const { departmentId, departmentName, employees, surveyAssign } = req.body;
-
-    try {
-        const newDepartment = new Department({
-            departmentId,
-            departmentName,
-            employees,
-            surveyAssign,
-        });
-        await newDepartment.save();
-        return res.status(200).send("Department Saved");
-    } catch (error) {
-        return res.status(400).send(error.message);
-    }
-};
+const Department = require("../models/DepartmentModel");
 
 const allDepartment = async (req, res) => {
     try {
@@ -39,7 +22,6 @@ const getSingleDepartment = async (req, res) => {
 };
 
 module.exports = {
-    insertDepartment,
     allDepartment,
     getSingleDepartment,
 };

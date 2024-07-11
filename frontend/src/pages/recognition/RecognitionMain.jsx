@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
-import CustomDate from "../../components/custom-date/CustomDate";
-import { CheckStatus } from "../../components/checkStatus/CheckStatus";
+//import CustomDate from "../../components/custom-date/CustomDate";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import { CardStacked } from "../../components/cards/CardStacked";
 import CardRecognitionMovement from "../../components/cards/CardRecognitionMovement";
 import theme from "../../theme/theme";
 
-const PORT = process.env.REACT_APP_PORT;
-
 const RecognitionMain = () => {
-    const navigate = useNavigate();
-    const [svg, setSvg] = useState("");
+    //const navigate = useNavigate();
+    //const [svg, setSvg] = useState("");
     const [dataInd, setData] = useState("");
-    const [svgString, setSvgString] = useState("");
-    const [obj, setObj] = useState("");
-    // =============================================================
+    //const [svgString, setSvgString] = useState("");
     const [recognitions, setRecognitions] = useState([]); // for the table
 
     useEffect(() => {
         // Método para estruturar os dados em campos que precisamos
         function createRows(dataArray) {
-            console.log("OBJECT ", dataArray);
-
             if (!Array.isArray(dataArray)) {
                 console.error("dataArray não é um array", dataArray);
                 return [];
@@ -34,25 +27,21 @@ const RecognitionMain = () => {
 
             return dataArray.map((object) =>
                 createData(
-                    object.id,
+                    object.recognitionId,
                     {
                         //PLACE THE IMAGE
                         myObject: object,
                         svgImage: object.senderPicture,
                         firstNameSender: object.senderName,
-                        //lastNameSender: "",
                         JobTitleSender: object.senderJobTitle,
                     },
                     {
-                        //imageReceiver
-                        //svgImage: object.receiverPicture,
                         firstNameReciever: object.receiverName,
-                        // lastNameReceiver: "",
                         jobtTitleReciever: object.receiverJobTitle,
                     },
                     object.category,
-                    <CustomDate propsDate={object.date} />,
-                    <CheckStatus status={object.status} />
+                    formatDate(new Date(object.dateRequest)),
+                    object.status
                 )
             );
         }
@@ -75,7 +64,7 @@ const RecognitionMain = () => {
         return date.toLocaleDateString("en-US", options);
     }
     // Método para crear los datos necesarios para las filas de la tabla
-    function createData(id, from, to, category, RequestedDate, status) {
+    function createData(id, from, to, category, dateRequest, status) {
         return {
             id,
             // pass the image and the names
@@ -89,7 +78,7 @@ const RecognitionMain = () => {
                 displayName: `${to.firstNameReciever} (${to.jobtTitleReciever})`,
             },
             category,
-            RequestedDate,
+            dateRequest,
             status,
         };
     }
@@ -102,7 +91,6 @@ const RecognitionMain = () => {
                 "Authorization",
                 "Basic " + btoa("admin" + ":" + "secret")
             );
-
             const response = await fetch(
                 `${process.env.REACT_APP_API_URL}/api/recognition`,
                 {
@@ -112,10 +100,8 @@ const RecognitionMain = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
-
+                //console.log(data);
                 setData(data);
-                setObj(data[0]);
             }
         };
 
@@ -164,9 +150,11 @@ const RecognitionMain = () => {
                     showSecondColumn={true}
                     showThirdLastColumn={true}
                     showSecondLastColumn={false}
-                    showLastColumn={false} // don't need to specify
                     showSearch={false}
                     showAdd={false}
+                    showCheckboxColumn={false}
+                    showBtnColumn={false}
+                    showPagination={false}
                 />
             </div>
         </main>

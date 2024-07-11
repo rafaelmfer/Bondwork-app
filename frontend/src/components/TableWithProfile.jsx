@@ -11,6 +11,8 @@ import {
     InputAdornment,
 } from "@mui/material";
 import ThemePagination from "./ThemePagination";
+import ChipText from "./chip/ChipText";
+import { CheckStatus } from "./checkStatus/CheckStatus";
 import theme from "../theme/theme";
 import CustomButton from "./buttons/CustomButton";
 import IconNormal from "../assets/icons/add-white-neutral.svg";
@@ -56,6 +58,8 @@ function stableSort(array, comparator) {
 }
 // ===============================================
 export default function TableWithProfile({
+    width = "inherit",
+    margin = 2,
     showTitle = true,
     title,
     pathRowTo,
@@ -76,6 +80,7 @@ export default function TableWithProfile({
     showLastColumn = false, // this will allow us to have a 6 - 7 columns table
     showCheckboxColumn = true,
     showBtnColumn = true,
+    showPagination = true,
 }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState();
@@ -94,7 +99,8 @@ export default function TableWithProfile({
             setKeysObject(keysOfObjects);
         }
     }, [rows]);
-    console.log(rows);
+
+    console.log("LAS ROWS", rows);
 
     // Numbers of columns for the Component (can be different from the real number)
     let numCol = 0;
@@ -232,7 +238,11 @@ export default function TableWithProfile({
         isClicked || isHovered ? CustomSortActiveIcon : CustomSortIcon;
 
     return (
-        <Box component="section" className="table" sx={{ m: 2 }}>
+        <Box
+            component="section"
+            className="table"
+            sx={{ m: margin, width: width }}
+        >
             {showTitle && (
                 <Box
                     className="titleContainer"
@@ -792,13 +802,80 @@ export default function TableWithProfile({
                                     </td>
                                 )}
 
-                                <td>{row[keysObject[numCol - 4]]}</td>
-                                <td>{row[keysObject[numCol - 3]]}</td>
+                                <td>
+                                    {keysObject[numCol - 4] === "category" ? (
+                                        <ChipText
+                                            chipText={
+                                                row[keysObject[numCol - 4]]
+                                            }
+                                            sx={{ marginTop: "8px" }}
+                                        />
+                                    ) : (
+                                        row[keysObject[numCol - 4]]
+                                    )}
+                                </td>
+                                <td>
+                                    {(() => {
+                                        switch (keysObject[numCol - 3]) {
+                                            case "status":
+                                                return (
+                                                    <CheckStatus
+                                                        status={
+                                                            row[
+                                                                keysObject[
+                                                                    numCol - 3
+                                                                ]
+                                                            ]
+                                                        }
+                                                    />
+                                                );
+                                            case "category":
+                                                return (
+                                                    <ChipText
+                                                        chipText={
+                                                            row[
+                                                                keysObject[
+                                                                    numCol - 3
+                                                                ]
+                                                            ]
+                                                        }
+                                                        sx={{
+                                                            marginTop: "8px",
+                                                        }}
+                                                    />
+                                                );
+                                            default:
+                                                return row[
+                                                    keysObject[numCol - 3]
+                                                ];
+                                        }
+                                    })()}
+                                </td>
                                 {showThirdLastColumn && (
-                                    <td>{row[keysObject[numCol - 2]]}</td>
+                                    <td>
+                                        {keysObject[numCol - 2] === "status" ? (
+                                            <CheckStatus
+                                                status={
+                                                    row[keysObject[numCol - 2]]
+                                                }
+                                            />
+                                        ) : (
+                                            row[keysObject[numCol - 2]]
+                                        )}
+                                    </td>
                                 )}
                                 {showSecondLastColumn && (
-                                    <td>{row[keysObject[numCol - 1]]}</td>
+                                    <td>
+                                        {keysObject[numCol - 1] === "status" ? (
+                                            <CheckStatus
+                                                status={
+                                                    row[keysObject[numCol - 1]]
+                                                }
+                                            />
+                                        ) : (
+                                            row[keysObject[numCol - 1]]
+                                        )}
+                                    </td>
                                 )}
 
                                 {showLastColumn && (
@@ -826,7 +903,7 @@ export default function TableWithProfile({
                     })}
                 </tbody>
             </table>
-            {totalRows > rowsPerPage && (
+            {showPagination && totalRows > rowsPerPage && (
                 <ThemePagination
                     count={totalPages}
                     page={currentPage}
