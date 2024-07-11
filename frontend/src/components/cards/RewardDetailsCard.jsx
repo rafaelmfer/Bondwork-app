@@ -34,12 +34,13 @@ const Column = styled(Box)({
     display: "flex",
     flexDirection: "column",
     flexBasis: "50%",
+    gap: "10px",
 });
 
 const TextContainer = styled(Box)({
     display: "flex",
     flexDirection: "column",
-    gap: "8px",
+    gap: "0px",
 });
 
 const TextBlue = styled(Typography)(({ theme }) => ({
@@ -82,9 +83,8 @@ const ImgContainer = styled(Box)({
  * ```
  */
 
-const RewardDetailCard = ({
+const RewardDetailsCard = ({
     rewardName,
-    status,
     rewardType,
     pointsCost,
     period,
@@ -126,20 +126,7 @@ const RewardDetailCard = ({
                         alignItems: "center",
                     }}
                 >
-                    <CircleIcon
-                        fontSize="small"
-                        sx={{
-                            color: getStatusColor(status),
-                            fontSize: 10,
-                            mr: 1,
-                        }}
-                    />
-                    <Typography
-                        variant="body1"
-                        sx={{ color: getStatusColor(status) }}
-                    >
-                        {status}
-                    </Typography>
+                    {/* TODO: Put the component of Status that we already have about ongoing, finished, upcoming here, with a logic to show or not */}
                 </Box>
             </Header>
             <Box
@@ -154,7 +141,7 @@ const RewardDetailCard = ({
                         <ImgContainer>
                             <img
                                 src={imageSrc}
-                                alt="rewardImage"
+                                alt={`reward ${rewardName}`}
                                 style={{
                                     maxWidth: "100%",
                                     borderRadius: "12px",
@@ -199,4 +186,4 @@ const RewardDetailCard = ({
     );
 };
 
-export default RewardDetailCard;
+export default RewardDetailsCard;

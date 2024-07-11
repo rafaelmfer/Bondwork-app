@@ -1,11 +1,352 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import { Tab, Tabs, Box, Card } from "@mui/material";
+import TopUserBar from "../../components/top-user-bar/TopUserBar";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import TextFieldRegular from "../../components/textfields/TextFieldRegular";
+import TextFieldArea from "../../components/textfields/TextFieldArea";
+import DropdownSelect from "../../components/textfields/TextFieldDropdown";
+import { InputDate } from "../../components/fields/InputDate/InputDate";
+import CustomButton from "../../components/buttons/CustomButton";
+import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
+import { AddImage } from "../../components/addImage/AddImage";
+import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import theme from "../../theme/theme";
 
-const RewardsMain = () => {
+import { surveyCreationContext } from "../../context/Context";
+import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
+import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
+import promptOk from "../../assets/icons/prompt-success.svg";
+
+const ReviewStep = ({ rewardInputs }) => {
+    console.log(rewardInputs);
+
     return (
-        <main>
-            <h2>Rewards</h2>
+        <RewardDetailsCard
+            sx={{
+                mt: "24px",
+                mb: "24px",
+                boxShadow: "none !important",
+                padding: 0,
+                borderRadius: 0,
+            }}
+            rewardName={rewardInputs.name}
+            rewardType={rewardInputs.category}
+            pointsCost={rewardInputs.points}
+            period={[rewardInputs.startDate, rewardInputs.endDate]}
+            details={rewardInputs.description}
+            // image={rewardInputs.image}
+            imageSrc={
+                "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
+            }
+        />
+    );
+};
+
+const RewardsAdd = () => {
+    const [activeTab, setActiveTab] = useState(0);
+    const [rewardInputs, setRewardInputs] = useState({});
+
+    const handleTabChange = (event, newValue) => {
+        setActiveTab(newValue);
+    };
+
+    return (
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
+            <TopUserBar titleScreen={"Add Reward"} />
+            {/* <Breadcrumbs /> */}
+            <Card
+                sx={{
+                    marginTop: "24px",
+                    marginBottom: "32px",
+                    mx: "14%",
+                    padding: "24px",
+                    paddingTop: "16px",
+                    boxShadow: "0 0 6px 2px rgba(0, 0, 0, 0.06)",
+                    borderRadius: "8px",
+                    backgroundColor: theme.palette.neutrals.white,
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+            >
+                <Box
+                    display="flex"
+                    flexDirection="row"
+                    justifyContent="space-between"
+                >
+                    <Tabs value={activeTab} onChange={handleTabChange}>
+                        <Tab
+                            icon={<Pie />}
+                            label="1/2 Rewards Details"
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                gap: "8px",
+                                fontWeight: 700,
+
+                                ...theme.typography.p,
+                                textTransform: "none",
+                                padding: 0,
+                                height: "56px",
+                            }}
+                        />
+                        <Tab
+                            icon={<Pie />}
+                            label="2/2  Review"
+                            sx={{
+                                marginLeft: "4px",
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "8px",
+                                ...theme.typography.p,
+                                fontWeight: 500,
+                                textTransform: "none",
+                                padding: "0 12px",
+                                maxHeight: "56px",
+                                "& .MuiTab-iconWrapper": {
+                                    marginBottom: 0,
+                                },
+                            }}
+                        />
+                    </Tabs>
+                    <CustomButton
+                        buttontype="secondary"
+                        buttonVariant="textIconLeft"
+                        iconLeft={SaveIcon}
+                        isOutlined
+                    >
+                        Save Draft
+                    </CustomButton>
+                </Box>
+                <Box>
+                    {activeTab === 0 && (
+                        <CreateRewardStep
+                            rewardInputs={rewardInputs}
+                            setRewardInputs={setRewardInputs}
+                            disabled={false}
+                        />
+                    )}
+                    {activeTab === 1 && (
+                        <ReviewStep rewardInputs={rewardInputs} />
+                    )}
+                </Box>
+            </Card>
         </main>
     );
 };
 
-export default RewardsMain;
+export default RewardsAdd;
+
+export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
+    const [showPopup, setShowPopup] = useState(false);
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+        navigate("/dashboard");
+    };
+    const goToRewards = () => {
+        navigate("/rewards");
+    };
+
+    useEffect(() => {
+        setRewardInputs((prevInputs) => ({
+            ...prevInputs,
+            status: "Upcoming",
+            viewed: 0,
+            completed: 0,
+            dropouts: 0,
+        }));
+    }, []);
+
+    const handleAddReward = async (event) => {
+        event.preventDefault();
+        try {
+            const result = await addReward(rewardInputs);
+            console.log("Reward added successfully", result);
+            setShowPopup(true);
+        } catch (error) {
+            console.error("Error adding reward:", error);
+        }
+    };
+
+    const addReward = async (newReward) => {
+        try {
+            const res = await fetch(
+                `${process.env.REACT_APP_API_URL}/api/rewards/addReward`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newReward),
+                }
+            );
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+
+            const contentType = res.headers.get("Content-Type");
+            if (!contentType || !contentType.includes("application/json")) {
+                return;
+            }
+
+            const data = await res.json();
+            return data;
+        } catch (error) {
+            console.log("Failed to send message:", error);
+        }
+    };
+
+    // TODO: Put all the categories of the rewards
+    const departments = [
+        "Account",
+        "Business Development",
+        "IT",
+        "Human Resources",
+    ];
+
+    return (
+        <>
+            <PopUpTwoBtn
+                trigger={showPopup}
+                setTrigger={setShowPopup}
+                children={
+                    <div className="successTex flex flex-col gap-4 items-center">
+                        <img
+                            src={promptOk}
+                            alt="ok symbol"
+                            className="w-12 h-12"
+                        />
+                        <h3 className="text-h3">Published</h3>
+                        <p className="text-p text-center">
+                            The employees have received the survey link.
+                        </p>
+                    </div>
+                }
+                btnOneText={"Go to Home"}
+                btnOneOnClick={goToHome}
+                btnTwoText={"Go to the Rewards"}
+                btnTwoOnClick={goToRewards}
+            />
+            <form onSubmit={handleAddReward}>
+                <surveyCreationContext.Provider
+                    value={{ rewardInputs, setRewardInputs }}
+                >
+                    <Box
+                        sx={{
+                            mt: 3,
+                        }}
+                    >
+                        <Box mt={2}>
+                            <TextFieldRegular
+                                label="Title"
+                                id="surveyName"
+                                placeholder="Type the title for this reward"
+                                value={rewardInputs.name || ""}
+                                hint={50}
+                                disabled={disabled}
+                                onChange={(e) => {
+                                    if (e.target.value.length <= 50) {
+                                        setRewardInputs((prevInputs) => ({
+                                            ...prevInputs,
+                                            name: e.target.value,
+                                        }));
+                                    }
+                                }}
+                                sx={{ width: "100%" }}
+                            />
+                        </Box>
+
+                        <Box mt={2}>
+                            <AddImage id="addImage" label="Thumbnail Image" />
+
+                            {/* set the image here */}
+                        </Box>
+
+                        <Box mt={2}>
+                            <DropdownSelect
+                                sx={{ mt: 2 }}
+                                label="Category"
+                                placeholder="Select the category for this reward"
+                                options={departments}
+                                disabled={disabled}
+                                value={rewardInputs.category || ""}
+                                onChange={(e) => {
+                                    setRewardInputs((prevInputs) => ({
+                                        ...prevInputs,
+                                        category: e.target.value,
+                                    }));
+                                }}
+                            />
+                        </Box>
+
+                        <Box mt={2}>
+                            <TextFieldRegular
+                                label="Points"
+                                id="Points"
+                                placeholder="Type the point for this reward"
+                                value={rewardInputs.points || ""}
+                                type={"number"}
+                                disabled={disabled}
+                                onChange={(e) => {
+                                    setRewardInputs((prevInputs) => ({
+                                        ...prevInputs,
+                                        points: e.target.value,
+                                    }));
+                                }}
+                                sx={{ width: "100%" }}
+                            />
+                        </Box>
+
+                        <Box mt={2}>
+                            <InputDate
+                                title="Period"
+                                setFunctionExecution={setRewardInputs}
+                            />
+                        </Box>
+
+                        <Box mt={2}>
+                            <TextFieldArea
+                                label="Details"
+                                id="Details"
+                                placeholder="Search"
+                                hint={500}
+                                value={rewardInputs.description || ""}
+                                disabled={disabled}
+                                onChange={(e) => {
+                                    if (e.target.value.length <= 500) {
+                                        setRewardInputs((prevInputs) => ({
+                                            ...prevInputs,
+                                            description: e.target.value,
+                                        }));
+                                    }
+                                }}
+                                sx={{ width: "100%" }}
+                            />
+                        </Box>
+
+                        <Box
+                            sx={{ mt: 3 }}
+                            display="flex"
+                            justifyContent="space-between"
+                            mt={4}
+                        >
+                            <CustomButton buttontype="secondary" isOutlined>
+                                Cancel
+                            </CustomButton>
+                            <CustomButton
+                                buttontype="primary"
+                                onClick={handleAddReward}
+                            >
+                                Next
+                            </CustomButton>
+                        </Box>
+                    </Box>
+                </surveyCreationContext.Provider>
+            </form>
+        </>
+    );
+}

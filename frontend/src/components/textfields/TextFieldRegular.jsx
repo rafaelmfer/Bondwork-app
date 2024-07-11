@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, InputAdornment, Box } from "@mui/material";
 import { styled } from "@mui/system";
-
 const Label = styled("label")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
@@ -65,10 +64,12 @@ const CustomTextField = styled(TextField)(({ theme, disabled }) => ({
     "& .MuiInputBase-input": {
         padding: "0px 10px",
         ...theme.typography.p,
-        // color: disabled ? theme.palette.neutrals.gray300 : undefined,
-        // color: theme.palette.success.main,
         "&:disabled": {
             "-webkit-text-fill-color": theme.palette.neutrals.gray300,
+        },
+        "&::placeholder": {
+            opacity: 1,
+            color: theme.palette.neutrals.gray300,
         },
     },
 }));
@@ -158,6 +159,18 @@ const TextFieldRegular = ({
 }) => {
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
+    const [stringCount, setStringCount] = useState("0");
+
+    useEffect(() => {
+        setStringCount(value.length);
+    }, [value]);
+
+    const getHintText = () => {
+        if (typeof hint === "number") {
+            return `${stringCount}/${hint} letters`;
+        }
+        return hint;
+    };
 
     return (
         <Box
@@ -216,6 +229,7 @@ const TextFieldRegular = ({
                 variant="outlined"
                 aria-describedby={`${id}-hint`} // Reference to hint for accessibility
             />
+
             <Hint
                 id={`${id}-hint`}
                 error={error}
@@ -225,7 +239,7 @@ const TextFieldRegular = ({
                 role="status" // ARIA attribute to indicate the role of the element
                 aria-live="polite" // ARIA attribute for polite notification of changes
             >
-                {hint}
+                {getHintText()}
             </Hint>
         </Box>
     );

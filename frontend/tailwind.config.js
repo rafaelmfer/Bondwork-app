@@ -58,20 +58,20 @@ module.exports = {
                 300: "#CA310F",
             },
             warning: {
-                DEFAULT: "#F6D769",
-                100: "#FAEBB4",
-                300: "#B28E0B",
+                300: "#EB8D1E",
+                main: "#F6B569",
+                100: "#FCF4D5",
             },
             success: {
                 DEFAULT: "#76BF7D",
                 100: "#DEF6E0",
                 300: "#227F2C",
             },
-            // light: "#FFFEFE", // Background color.
-            // contrastText1: "#0B0A0A",
-            // contrastText: "#FBFBFB",
-            // info: "#E1E1E1",
-            // white: "#FFFFFF",
+            info: {
+                DEFAULT: "#3997D1",
+                100: "#DCECF6",
+                300: "#11689E",
+            },
             neutrals: {
                 white: "#FFFEFE",
                 black: "#0B0A0A",
