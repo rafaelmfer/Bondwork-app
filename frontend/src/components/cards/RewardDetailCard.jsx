@@ -15,6 +15,14 @@ const StyledCard = styled(Card)(({ theme }) => ({
     gap: "16px",
 }));
 
+const StyledCardNoBox = styled(Card)(({ theme }) => ({
+    backgroundColor: theme.palette.neutrals.white,
+    display: "flex",
+    boxShadow: "none !important",
+    flexDirection: "column",
+    gap: "16px",
+}));
+
 const Header = styled(Box)({
     display: "flex",
     justifyContent: "space-between",
@@ -34,12 +42,13 @@ const Column = styled(Box)({
     display: "flex",
     flexDirection: "column",
     flexBasis: "50%",
+    gap: "10px",
 });
 
 const TextContainer = styled(Box)({
     display: "flex",
     flexDirection: "column",
-    gap: "8px",
+    gap: "0px",
 });
 
 const TextBlue = styled(Typography)(({ theme }) => ({
@@ -84,7 +93,7 @@ const ImgContainer = styled(Box)({
 
 const RewardDetailCard = ({
     rewardName,
-    status,
+    noBox,
     rewardType,
     pointsCost,
     period,
@@ -106,97 +115,171 @@ const RewardDetailCard = ({
                 return theme.palette.neutrals.black;
         }
     };
+    console.log(sx);
 
-    return (
-        <StyledCard sx={sx}>
-            <Header>
-                <Row>
-                    <Typography
-                        variant="h5"
-                        color={theme.palette.neutrals.black}
-                    >
-                        {`${rewardName}`}
-                    </Typography>
-                    <img src={MenuIcon} alt="Menu Icon" />
-                </Row>
+    if (noBox == "noBox") {
+        return (
+            <StyledCardNoBox sx={sx}>
+                <Header>
+                    <Row>
+                        <Typography
+                            variant="h5"
+                            color={theme.palette.neutrals.black}
+                        >
+                            {`${rewardName}`}
+                        </Typography>
+                        <img src="{MenuIcon}" alt="Menu Icon" />
+                    </Row>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                        }}
+                    ></Box>
+                </Header>
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
+                        flexDirection: "column",
+                        gap: "16px",
                     }}
                 >
-                    <CircleIcon
-                        fontSize="small"
-                        sx={{
-                            color: getStatusColor(status),
-                            fontSize: 10,
-                            mr: 1,
-                        }}
-                    />
-                    <Typography
-                        variant="body1"
-                        sx={{ color: getStatusColor(status) }}
-                    >
-                        {status}
-                    </Typography>
+                    <Row sx={{ gap: "16px" }}>
+                        <Column>
+                            <ImgContainer>
+                                <img
+                                    src="https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
+                                    alt="rewardImage"
+                                    style={{
+                                        maxWidth: "100%",
+                                        borderRadius: "12px",
+                                    }}
+                                />
+                            </ImgContainer>
+                        </Column>
+                        <Column>
+                            <TextContainer>
+                                <TextBlue>Category</TextBlue>
+                                <Typography
+                                    color={theme.palette.neutrals.black}
+                                >
+                                    {rewardType}
+                                </Typography>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextBlue>Points</TextBlue>
+                                <Typography
+                                    color={theme.palette.neutrals.black}
+                                >
+                                    {pointsCost}
+                                </Typography>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextBlue>Period</TextBlue>
+                                <Typography
+                                    color={theme.palette.neutrals.black}
+                                    aria-label="Reward Period"
+                                >
+                                    {/* {period.join(" - ")} */}
+                                    {period}
+                                </Typography>
+                            </TextContainer>
+                        </Column>
+                    </Row>
                 </Box>
-            </Header>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "16px",
-                }}
-            >
-                <Row sx={{ gap: "16px" }}>
-                    <Column>
-                        <ImgContainer>
-                            <img
-                                src={imageSrc}
-                                alt="rewardImage"
-                                style={{
-                                    maxWidth: "100%",
-                                    borderRadius: "12px",
-                                }}
-                            />
-                        </ImgContainer>
-                    </Column>
-                    <Column>
-                        <TextContainer>
-                            <TextBlue>Category</TextBlue>
-                            <Typography color={theme.palette.neutrals.black}>
-                                {rewardType}
-                            </Typography>
-                        </TextContainer>
-                        <TextContainer>
-                            <TextBlue>Points</TextBlue>
-                            <Typography color={theme.palette.neutrals.black}>
-                                {pointsCost}
-                            </Typography>
-                        </TextContainer>
-                        <TextContainer>
-                            <TextBlue>Period</TextBlue>
-                            <Typography
-                                color={theme.palette.neutrals.black}
-                                aria-label="Reward Period"
-                            >
-                                {period.join(" - ")}
-                            </Typography>
-                        </TextContainer>
-                    </Column>
-                </Row>
-            </Box>
-            <Column>
-                <TextContainer>
-                    <TextBlue>Details</TextBlue>
-                    <Typography aria-label="Reward details">
-                        {details}
-                    </Typography>
-                </TextContainer>
-            </Column>
-        </StyledCard>
-    );
+                <Column>
+                    <TextContainer>
+                        <TextBlue>Details</TextBlue>
+                        <Typography aria-label="Reward details">
+                            {details}
+                        </Typography>
+                    </TextContainer>
+                </Column>
+            </StyledCardNoBox>
+        );
+    } else {
+        return (
+            <StyledCard sx={sx}>
+                <Header>
+                    <Row>
+                        <Typography
+                            variant="h5"
+                            color={theme.palette.neutrals.black}
+                        >
+                            {`${rewardName}`}
+                        </Typography>
+                        <img src="{MenuIcon}" alt="Menu Icon" />
+                    </Row>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                        }}
+                    ></Box>
+                </Header>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "16px",
+                    }}
+                >
+                    <Row sx={{ gap: "16px" }}>
+                        <Column>
+                            <ImgContainer>
+                                <img
+                                    src="https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
+                                    alt="rewardImage"
+                                    style={{
+                                        maxWidth: "100%",
+                                        borderRadius: "12px",
+                                    }}
+                                />
+                            </ImgContainer>
+                        </Column>
+                        <Column>
+                            <TextContainer>
+                                <TextBlue>Category</TextBlue>
+                                <Typography
+                                    color={theme.palette.neutrals.black}
+                                >
+                                    {rewardType}
+                                </Typography>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextBlue>Points</TextBlue>
+                                <Typography
+                                    color={theme.palette.neutrals.black}
+                                >
+                                    {pointsCost}
+                                </Typography>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextBlue>Period</TextBlue>
+                                <Typography
+                                    color={theme.palette.neutrals.black}
+                                    aria-label="Reward Period"
+                                >
+                                    {/* {period.join(" - ")} */}
+                                    {period}
+                                </Typography>
+                            </TextContainer>
+                        </Column>
+                    </Row>
+                </Box>
+                <Column>
+                    <TextContainer>
+                        <TextBlue>Details</TextBlue>
+                        <Typography aria-label="Reward details">
+                            {details}
+                        </Typography>
+                    </TextContainer>
+                </Column>
+            </StyledCard>
+        );
+    }
 };
 
 export default RewardDetailCard;

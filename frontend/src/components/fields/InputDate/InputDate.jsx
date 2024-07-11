@@ -4,9 +4,9 @@ import { useState } from "react";
 import styles from "../styles.module.css";
 import calendar from "../../../assets/icons/calendar-dark-gray-neutral.svg";
 
-export function InputDate({ title, setSurveyInputs }) {
+export function InputDate({ title, setSurveyInputs, surveyInputs }) {
     const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(null);
+    const [endDate, setEndDate] = useState(surveyInputs.endDate);
 
     /* Initially I was getting a date one day ahead, so this function will adjust for Time Zone */
 
@@ -19,6 +19,8 @@ export function InputDate({ title, setSurveyInputs }) {
     };
 
     const handleChange = (update) => {
+        console.log(update);
+
         const [start, end] = update;
         setStartDate(start);
         setEndDate(end);
@@ -28,7 +30,7 @@ export function InputDate({ title, setSurveyInputs }) {
             endDate: toLocalISOString(end),
         }));
     };
-
+    console.log(endDate);
     return (
         <>
             <div className={styles.surveyFields}>

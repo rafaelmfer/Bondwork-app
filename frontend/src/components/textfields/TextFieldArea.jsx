@@ -129,6 +129,7 @@ const TextFieldArea = ({
     const [hovered, setHovered] = useState(false);
     const [valueChanged, setValue] = useState("");
     console.log(valueChanged);
+    console.log(onChange);
     return (
         <Box
             class="flex flex-col"
@@ -142,13 +143,8 @@ const TextFieldArea = ({
                 placeholder={placeholder}
                 error={error}
                 disabled={disabled}
-                value={valueChanged}
-                // onChange={onChange}
-                onChange={(e) => {
-                    if (valueChanged.length <= 500) {
-                        setValue(e.target.value);
-                    }
-                }}
+                value={value}
+                onChange={onChange}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onMouseEnter={() => setHovered(true)}
@@ -167,7 +163,7 @@ const TextFieldArea = ({
                 role="status" // ARIA attribute to indicate the role of the element
                 aria-live="polite" // ARIA attribute for polite notification of changes
             >
-                {valueChanged.length}/{hint} letters
+                {value.length}/{hint} letters
             </Hint>
         </Box>
     );

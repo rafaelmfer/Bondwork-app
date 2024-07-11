@@ -10,6 +10,7 @@ import TextFieldArea from "../../components/textfields/TextFieldArea";
 import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
 import CustomButton from "../../components/buttons/CustomButton";
+import RewardDetailCard from "../../components/cards/RewardDetailCard";
 import { AddImage } from "../../components/addImage/AddImage";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import theme from "../../theme/theme";
@@ -20,8 +21,26 @@ import CheckBoxEmpty from "../../assets/icons/checkbox-dark-gray-neutral-empty.s
 import CheckBoxFilled from "../../assets/icons/checkbox-black-neutral-filled.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
 
+const RewardsDetailsCard = ({ surveyInputs }) => {
+    console.log(surveyInputs);
+
+    return (
+        <RewardDetailCard
+            sx={{ mt: "24px", mb: "24px" }}
+            rewardName={surveyInputs.name}
+            noBox="noBox"
+            rewardType={surveyInputs.category}
+            pointsCost={surveyInputs.points}
+            period={`${surveyInputs.startDate} - ${surveyInputs.endDate}`}
+            details={surveyInputs.description}
+        />
+    );
+};
+
 const RewardsAdd = () => {
     const [activeTab, setActiveTab] = useState(0);
+    const [description, setDescription] = useState("");
+    const [surveyInputs, setSurveyInputs] = useState({});
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
@@ -29,8 +48,8 @@ const RewardsAdd = () => {
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
-            <TopUserBar titleScreen={"Add Survey"} />
-            <Breadcrumbs />
+            <TopUserBar titleScreen={"Add Reward"} />
+            {/* <Breadcrumbs /> */}
             <Card
                 sx={{
                     marginTop: "24px",
@@ -90,7 +109,18 @@ const RewardsAdd = () => {
                         Save Draft
                     </CustomButton>
                 </Box>
-                <SurveyHtml disabled={activeTab === 1} />
+                <Box>
+                    {activeTab === 0 && (
+                        <SurveyHtml
+                            surveyInputs={surveyInputs}
+                            setSurveyInputs={setSurveyInputs}
+                            disabled={false}
+                        />
+                    )}
+                    {activeTab === 1 && (
+                        <RewardsDetailsCard surveyInputs={surveyInputs} />
+                    )}
+                </Box>
             </Card>
         </main>
     );
@@ -98,7 +128,7 @@ const RewardsAdd = () => {
 
 export default RewardsAdd;
 
-export function SurveyHtml({ disabled }) {
+export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
     const [questions, setQuestions] = useState([]);
     const [rewardInputs, setRewardInputs] = useState({});
     const [description, setDescription] = useState("");
@@ -207,7 +237,7 @@ export function SurveyHtml({ disabled }) {
         "Human Resources",
     ];
     const recurrence = ["Weekly", "Month", "Semester", "Year"];
-    const [surveyInputs, setSurveyInputs] = useState({});
+
     return (
         <>
             <PopUpTwoBtn
@@ -245,13 +275,16 @@ export function SurveyHtml({ disabled }) {
                                 label="Title"
                                 id="surveyName"
                                 placeholder="Type the title for reward"
-                                value={title || ""}
+                                value={surveyInputs.name || ""}
+                                // value={title || ""}
                                 hint="50"
-                                s
                                 disabled={disabled}
                                 onChange={(e) => {
                                     if (e.target.value.length <= 50) {
-                                        setTitle(e.target.value);
+                                        setSurveyInputs((prevInputs) => ({
+                                            ...prevInputs,
+                                            name: e.target.value,
+                                        }));
                                     }
                                 }}
                                 sx={{ width: "100%" }}
@@ -269,9 +302,14 @@ export function SurveyHtml({ disabled }) {
                                 placeholder="Select the category for this reward"
                                 options={departments}
                                 disabled={disabled}
-                                value={selectedDeparments}
+                                value={surveyInputs.category}
                                 onChange={(e) => {
+                                    setSurveyInputs((prevInputs) => ({
+                                        ...prevInputs,
+                                        category: e.target.value,
+                                    }));
                                     handleChangeDepartments(e);
+                                    console.log(e.target.value);
                                     setRewardInputs((prevInputs) => ({
                                         ...prevInputs,
                                         departments: e.target.value,
@@ -285,9 +323,13 @@ export function SurveyHtml({ disabled }) {
                                 label="Points"
                                 id="Points"
                                 placeholder="Type the point for this reward"
-                                value={pointsInput || ""}
+                                value={surveyInputs.points || ""}
                                 disabled={disabled}
                                 onChange={(e) => {
+                                    setSurveyInputs((prevInputs) => ({
+                                        ...prevInputs,
+                                        points: e.target.value,
+                                    }));
                                     setPointsInputs(e.target.value);
                                 }}
                                 sx={{ width: "100%" }}
@@ -298,6 +340,7 @@ export function SurveyHtml({ disabled }) {
                             <InputDate
                                 title="Period"
                                 setSurveyInputs={setSurveyInputs}
+                                surveyInputs={surveyInputs}
                             />
                         </Box>
 
@@ -307,10 +350,15 @@ export function SurveyHtml({ disabled }) {
                                 id="Details"
                                 placeholder="Search"
                                 hint="500"
-                                value={description}
+                                value={surveyInputs.description || ""}
                                 disabled={disabled}
                                 onChange={(e) => {
-                                    setDescription(e.target.value);
+                                    if (e.target.value.length <= 500) {
+                                        setSurveyInputs((prevInputs) => ({
+                                            ...prevInputs,
+                                            description: e.target.value,
+                                        }));
+                                    }
                                 }}
                                 sx={{ width: "100%" }}
                             />
