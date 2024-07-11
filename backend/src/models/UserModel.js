@@ -17,7 +17,7 @@ const departmentSchema = new mongoose.Schema(
 const surveySchema = new mongoose.Schema(
     {
         id: {
-            type: String,
+            type: Number,
         },
         status: {
             type: String,

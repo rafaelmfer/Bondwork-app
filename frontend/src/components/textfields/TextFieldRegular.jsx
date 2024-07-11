@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { TextField, InputAdornment, Box } from "@mui/material";
+import {
+    TextField,
+    InputAdornment,
+    Box,
+    IconButton,
+    Typography,
+} from "@mui/material";
 import { styled } from "@mui/system";
+import CustomTooltip from "../CustomTooltip";
+import InfoIcon from "../../assets/icons/info-dark-gray-neutral.svg";
+
 const Label = styled("label")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
@@ -93,6 +102,7 @@ const Adornment = styled(InputAdornment)(({ theme }) => ({
  * - id: string - ID for accessibility and htmlFor association with label.
  * - label: string - Label text for the text field.
  * - iconLabel: string - URL for an optional icon next to the label.
+ * - infoTooltipText - The text to display in the info tooltip. If not provided, the tooltip will not be displayed.
  * - iconLeft: string - URL for an optional icon on the left side of the input.
  * - iconRight: string - URL for an optional icon on the right side of the input.
  * - placeholder: string - Placeholder text when the input is empty.
@@ -114,7 +124,7 @@ const Adornment = styled(InputAdornment)(({ theme }) => ({
  * <TextFieldRegular
  *     id="unique-id"
  *     label="Label Text"
- *     iconLabel={IconNormal}
+ *     iconLabel={true}
  *     iconLeft={IconNormal}
  *     onClickIconLeft={() => console.log("Left icon clicked")}
  *     iconRight={IconNormal}
@@ -141,7 +151,7 @@ const Adornment = styled(InputAdornment)(({ theme }) => ({
 const TextFieldRegular = ({
     id,
     label,
-    iconLabel,
+    infoTooltipText,
     iconLeft,
     onClickIconLeft,
     iconRight,
@@ -180,15 +190,26 @@ const TextFieldRegular = ({
         >
             <Label htmlFor={id}>
                 {label}
-                {iconLabel && (
-                    <img
-                        src={iconLabel}
-                        alt="icon"
-                        style={{
-                            marginLeft: "4px",
-                            width: "24px",
-                            height: "24px",
-                        }}
+                {infoTooltipText && (
+                    <CustomTooltip
+                        tooltipContent={
+                            <Typography variant="small2">
+                                {infoTooltipText}
+                            </Typography>
+                        }
+                        triggerComponent={
+                            <IconButton
+                                aria-label="info"
+                                sx={{
+                                    position: "relative",
+                                    marginLeft: "0px",
+                                    height: "28px",
+                                    width: "48px",
+                                }}
+                            >
+                                <img src={InfoIcon} alt="info icon" />
+                            </IconButton>
+                        }
                     />
                 )}
             </Label>

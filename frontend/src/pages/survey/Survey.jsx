@@ -115,7 +115,7 @@ export function SurveyHtml({ disabled }) {
     const [selectedDeparments, setSelectedDeparment] = useState("");
     const [selectedJobLevel, setSelectedJobLevel] = useState("");
     const [selectedRecurrence, setSelectedRecurrence] = useState("");
-    const [rememberMe, setRememberMe] = useState(false);
+    const [checked, setChecked] = useState(false);
 
     const handleChangeDepartments = (event) => {
         setSelectedDeparment(event.target.value);
@@ -128,8 +128,8 @@ export function SurveyHtml({ disabled }) {
     };
 
     // Toggle "Remember me" checkbox
-    const handleRememberMeToggle = () => {
-        setRememberMe(!rememberMe);
+    const handleCheckboxToggle = () => {
+        setChecked(!checked);
     };
 
     const goToHome = () => {
@@ -357,6 +357,9 @@ export function SurveyHtml({ disabled }) {
                                     sx={{ width: "100%" }}
                                     label="Points"
                                     id="points"
+                                    infoTooltipText={
+                                        "Earn points for completing surveys and exchange them for rewards."
+                                    }
                                     placeholder="150"
                                     type={"number"}
                                     value={surveyInputs.points || ""}
@@ -374,6 +377,7 @@ export function SurveyHtml({ disabled }) {
                                     label="Description"
                                     id="description"
                                     placeholder="Text here"
+                                    hint={200}
                                     value={surveyInputs.description || ""}
                                     disabled={disabled}
                                     onChange={(e) => {
@@ -401,6 +405,9 @@ export function SurveyHtml({ disabled }) {
                                     "1. How satisfied are you with your current salary and benefits package?"
                                 }
                                 isDisabled={true}
+                                infoTooltipText={
+                                    "This question seeks to understand your level of satisfaction with your compensation, including your salary and any additional benefits such as health insurance, retirement plans, bonuses, and other perks. Your feedback helps us gauge if our compensation packages meet the expectations and needs of our employees."
+                                }
                             />
                             <QuestionCard
                                 sx={{ mt: "16px" }}
@@ -408,6 +415,9 @@ export function SurveyHtml({ disabled }) {
                                     "2. How satisfied are you with the company culture?"
                                 }
                                 isDisabled={true}
+                                infoTooltipText={
+                                    "Company culture encompasses the values, behaviours, and atmosphere within the workplace. This question aims to capture your perception of our company's culture and your satisfaction with it. Your insights are crucial for us to understand how well our culture supports and motivates our employees."
+                                }
                             />
                             <QuestionCard
                                 sx={{ mt: "16px" }}
@@ -415,6 +425,9 @@ export function SurveyHtml({ disabled }) {
                                     "3. How satisfied are you with your job role and responsibilities?"
                                 }
                                 isDisabled={true}
+                                infoTooltipText={
+                                    "This question aims to evaluate how supported and satisfied you feel with the collaboration between you and your colleagues. We want to understand if you feel you can rely on your colleagues to accomplish tasks, if there is a positive team spirit, and if the work environment facilitates cooperation. Your response will help us identify areas where we can improve teamwork and foster a more collaborative and supportive work environment."
+                                }
                             />
                             <QuestionCard
                                 sx={{ mt: "16px" }}
@@ -422,19 +435,20 @@ export function SurveyHtml({ disabled }) {
                                     "4. How satisfied are you with the level of collaboration and support with your colleagues?"
                                 }
                                 isDisabled={true}
+                                infoTooltipText={
+                                    "Clarity in job roles and responsibilities is essential for job satisfaction and performance. This question asks about your understanding of your role and your satisfaction with your tasks and duties. Your response helps us ensure that employees have clear expectations and find their work fulfilling."
+                                }
                             />
                             <label
                                 className="flex items-center gap-2 cursor-pointer mt-4"
-                                onClick={handleRememberMeToggle}
+                                onClick={handleCheckboxToggle}
                             >
                                 <img
                                     src={
-                                        rememberMe
-                                            ? CheckBoxFilled
-                                            : CheckBoxEmpty
+                                        checked ? CheckBoxFilled : CheckBoxEmpty
                                     }
                                     alt="allow comments?"
-                                    onClick={handleRememberMeToggle}
+                                    onClick={handleCheckboxToggle}
                                 />
                                 Allow comments?
                             </label>
