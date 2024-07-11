@@ -16,28 +16,28 @@
         "lastAccess": "2024-07-05",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-01-20",
                 "answers": [5, 3, 4, 4],
                 "NPS": "Promoter"
             },
             {
-                "id": "103",
+                "id": 103,
                 "status": "completed",
                 "date": "2024-03-20",
                 "answers": [5, 4, 5, 5],
                 "NPS": "Promoter"
             },
-            { "id": "107", "status": "sent" },
+            { "id": 107, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-15",
                 "answers": [5, 4, 4, 4],
                 "NPS": "Promoter"
             },
-            { "id": "116", "status": "sent" }
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [310],
         "recognitions": {
@@ -64,16 +64,16 @@
         "lastAccess": "2024-07-03",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-01-17",
                 "answers": [5, 3, 4, 4],
                 "NPS": "Promoter"
             },
-            { "id": "104", "status": "sent" },
-            { "id": "107", "status": "sent" },
+            { "id": 104, "status": "sent" },
+            { "id": 107, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-15",
                 "answers": [5, 4, 5, 5],
@@ -106,14 +106,14 @@
         "NPS": "Promoter",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-05",
                 "answers": [5, 3, 4, 5],
                 "NPS": "Promoter"
             },
-            { "id": "104", "status": "sent" },
-            { "id": "108", "status": "sent" }
+            { "id": 104, "status": "sent" },
+            { "id": 108, "status": "sent" }
         ],
         "rewards": [301, 312, 313],
         "recognitions": {
@@ -140,14 +140,14 @@
         "lastAccess": "2024-07-02",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-01-20",
                 "answers": [5, 3, 4, 5],
                 "NPS": "Promoter"
             },
-            { "id": "104", "status": "sent" },
-            { "id": "108", "status": "sent" }
+            { "id": 104, "status": "sent" },
+            { "id": 108, "status": "sent" }
         ],
         "rewards": [303],
         "recognitions": {
@@ -174,20 +174,20 @@
         "lastAccess": "2024-07-09",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-04",
                 "answers": [5, 3, 4, 5],
                 "NPS": "Promoter"
             },
             {
-                "id": "103",
+                "id": 103,
                 "status": "completed",
                 "date": "2024-03-20",
                 "answers": [5, 4, 4, 5],
                 "NPS": "Promoter"
             },
-            { "id": "116", "status": "sent" }
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [311, 312],
         "recognitions": {
@@ -214,22 +214,21 @@
         "lastAccess": "2024-07-07",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-02",
                 "answers": [4, 3, 4, 4],
                 "NPS": "Neutral"
             },
             {
-                "id": "103",
+                "id": 103,
                 "status": "completed",
                 "date": "2024-03-20",
                 "answers": [4, 4, 4, 5],
                 "NPS": "Promoter"
             },
-            { "id": "116", "status": "sent" }
+            { "id": 116, "status": "sent" }
         ],
-
         "rewards": [307, 313],
         "recognitions": {
             "sent": [426],
@@ -255,14 +254,14 @@
         "lastAccess": "2024-07-01",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-02",
                 "answers": [4, 4, 4, 5],
                 "NPS": "Promoter"
             },
-            { "id": "104", "status": "sent" },
-            { "id": "108", "status": "sent" }
+            { "id": 104, "status": "sent" },
+            { "id": 108, "status": "sent" }
         ],
         "rewards": [301],
         "recognitions": {
@@ -289,20 +288,20 @@
         "lastAccess": "2024-07-09",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-02",
                 "answers": [4, 4, 4, 5],
                 "NPS": "Promoter"
             },
             {
-                "id": "103",
+                "id": 103,
                 "status": "completed",
                 "date": "2024-03-20",
                 "answers": [5, 4, 4, 5],
                 "NPS": "Promoter"
             },
-            { "id": "116", "status": "sent" }
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [307],
         "recognitions": {
@@ -329,13 +328,13 @@
         "lastAccess": "2024-07-01",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-02",
                 "answers": [4, 3, 4, 4],
                 "NPS": "Neutral"
             },
-            { "id": "106", "status": "sent" }
+            { "id": 106, "status": "sent" }
         ],
         "rewards": [311],
         "recognitions": {
@@ -362,7 +361,7 @@
         "lastAccess": "2024-07-02",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-01-20",
                 "answers": [4, 3, 3, 4],
@@ -370,7 +369,7 @@
             },
             { "id": "105", "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [4, 3, 4, 4],
@@ -402,7 +401,7 @@
         "lastAccess": "2024-07-03",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-02",
                 "answers": [4, 3, 4, 4],
@@ -410,7 +409,7 @@
             },
             { "id": "106", "status": "sent" },
             {
-                "id": "120",
+                "id": 120,
                 "status": "completed",
                 "date": "2024-05-30",
                 "answers": [4, 3, 4, 4],
@@ -441,10 +440,10 @@
         "onBoardingDate": "2023-01-25",
         "lastAccess": "2024-07-04",
         "surveys": [
-            { "id": "100", "status": "sent" },
-            { "id": "103", "status": "sent" },
-            { "id": "107", "status": "sent" },
-            { "id": "116", "status": "sent" }
+            { "id": 100, "status": "sent" },
+            { "id": 103, "status": "sent" },
+            { "id": 107, "status": "sent" },
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [306],
         "recognitions": {
@@ -470,17 +469,17 @@
         "onBoardingDate": "2020-11-18",
         "lastAccess": "2024-07-05",
         "surveys": [
-            { "id": "100", "status": "sent" },
-            { "id": "103", "status": "sent" },
+            { "id": 100, "status": "sent" },
+            { "id": 103, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [4, 3, 3, 4],
                 "NPS": "Neutral"
             },
-            { "id": "107", "status": "sent" },
-            { "id": "116", "status": "sent" }
+            { "id": 107, "status": "sent" },
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [308],
         "recognitions": {
@@ -506,16 +505,16 @@
         "onBoardingDate": "2023-09-10",
         "lastAccess": "2024-07-06",
         "surveys": [
-            { "id": "100", "status": "sent" },
+            { "id": 100, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [4, 3, 4, 4],
                 "NPS": "Neutral"
             },
-            { "id": "107", "status": "sent" },
-            { "id": "116", "status": "sent" }
+            { "id": 107, "status": "sent" },
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [310, 311],
         "recognitions": {
@@ -541,24 +540,24 @@
         "onBoardingDate": "2022-04-20",
         "lastAccess": "2024-07-07",
         "surveys": [
-            { "id": "100", "status": "sent" },
+            { "id": 100, "status": "sent" },
             {
-                "id": "102",
+                "id": 102,
                 "status": "completed",
                 "date": "2024-01-20",
                 "answers": [3, 1, 2, 3],
                 "NPS": "Detractor"
             },
-            { "id": "105", "status": "sent" },
-            { "id": "109", "status": "sent" },
+            { "id": 105, "status": "sent" },
+            { "id": 109, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [3, 3, 4, 4],
                 "NPS": "Neutral"
             },
-            { "id": "116", "status": "sent" }
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [303, 304],
         "recognitions": {
@@ -584,17 +583,17 @@
         "onBoardingDate": "2023-03-15",
         "lastAccess": "2024-07-08",
         "surveys": [
-            { "id": "100", "status": "sent" },
+            { "id": 100, "status": "sent" },
             {
-                "id": "102",
+                "id": 102,
                 "status": "completed",
                 "date": "2024-02-29",
                 "answers": [4, 3, 4, 4],
                 "NPS": "Neutral"
             },
-            { "id": "106", "status": "sent" },
-            { "id": "109", "status": "sent" },
-            { "id": "116", "status": "sent" }
+            { "id": 106, "status": "sent" },
+            { "id": 109, "status": "sent" },
+            { "id": 116, "status": "sent" }
         ],
         "rewards": [301, 304],
         "recognitions": {
@@ -620,18 +619,18 @@
         "onBoardingDate": "2020-12-05",
         "lastAccess": "2024-07-09",
         "surveys": [
-            { "id": "100", "status": "sent" },
+            { "id": 100, "status": "sent" },
             {
-                "id": "102",
+                "id": 102,
                 "status": "completed",
                 "date": "2024-02-29",
                 "answers": [4, 3, 4, 4],
                 "NPS": "Neutral"
             },
-            { "id": "104", "status": "sent" },
-            { "id": "109", "status": "sent" },
+            { "id": 104, "status": "sent" },
+            { "id": 109, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [4, 3, 4, 4],
@@ -662,10 +661,10 @@
         "onBoardingDate": "2021-07-20",
         "lastAccess": "2024-07-10",
         "surveys": [
-            { "id": "100", "status": "sent" },
-            { "id": "102", "status": "sent" },
+            { "id": 100, "status": "sent" },
+            { "id": 102, "status": "sent" },
             {
-                "id": "113",
+                "id": 113,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [4, 3, 4, 4],
@@ -696,9 +695,9 @@
         "onBoardingDate": "2023-05-15",
         "lastAccess": "2024-07-01",
         "surveys": [
-            { "id": "100", "status": "sent" },
+            { "id": 100, "status": "sent" },
             {
-                "id": "103",
+                "id": 103,
                 "status": "completed",
                 "date": "2024-03-15",
                 "answers": [4, 4, 4, 5],
@@ -730,14 +729,14 @@
         "lastAccess": "2024-07-03",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-05",
                 "answers": [3, 2, 3, 4],
                 "NPS": "Neutral"
             },
             {
-                "id": "104",
+                "id": 104,
                 "status": "sent"
             }
         ],
@@ -766,7 +765,7 @@
         "lastAccess": "2024-07-02",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [4, 3, 4, 3],
@@ -799,7 +798,7 @@
         "terminationDate": "2024-07-01",
         "surveys": [
             {
-                "id": "100",
+                "id": 100,
                 "status": "completed",
                 "date": "2024-02-10",
                 "answers": [3, 3, 4, 4],
