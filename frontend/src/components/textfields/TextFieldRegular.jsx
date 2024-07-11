@@ -64,10 +64,12 @@ const CustomTextField = styled(TextField)(({ theme, disabled }) => ({
     "& .MuiInputBase-input": {
         padding: "0px 10px",
         ...theme.typography.p,
-        // color: disabled ? theme.palette.neutrals.gray300 : undefined,
-        // color: theme.palette.success.main,
         "&:disabled": {
             "-webkit-text-fill-color": theme.palette.neutrals.gray300,
+        },
+        "&::placeholder": {
+            opacity: 1,
+            color: theme.palette.neutrals.gray300,
         },
     },
 }));
@@ -160,9 +162,15 @@ const TextFieldRegular = ({
     const [stringCount, setStringCount] = useState("0");
 
     useEffect(() => {
-        console.log(value.length);
         setStringCount(value.length);
     }, [value]);
+
+    const getHintText = () => {
+        if (typeof hint === "number") {
+            return `${stringCount}/${hint} letters`;
+        }
+        return hint;
+    };
 
     return (
         <Box
@@ -231,7 +239,7 @@ const TextFieldRegular = ({
                 role="status" // ARIA attribute to indicate the role of the element
                 aria-live="polite" // ARIA attribute for polite notification of changes
             >
-                {hint != null && `${stringCount}/${hint} letters`}
+                {getHintText()}
             </Hint>
         </Box>
     );

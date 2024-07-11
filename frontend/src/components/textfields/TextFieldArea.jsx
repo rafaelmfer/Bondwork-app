@@ -72,6 +72,10 @@ const TextAreaElement = styled("textarea")(
         "&:disabled": {
             color: theme.palette.neutrals.gray300,
         },
+        "&::placeholder": {
+            opacity: 1,
+            color: theme.palette.neutrals.gray300,
+        },
     })
 );
 
@@ -128,8 +132,6 @@ const TextFieldArea = ({
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
     const [valueChanged, setValue] = useState("");
-    console.log(valueChanged);
-    console.log(onChange);
     return (
         <Box
             class="flex flex-col"
@@ -145,6 +147,7 @@ const TextFieldArea = ({
                 disabled={disabled}
                 value={value}
                 onChange={onChange}
+                rows={"3"}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onMouseEnter={() => setHovered(true)}

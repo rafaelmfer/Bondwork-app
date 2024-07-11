@@ -4,9 +4,9 @@ import { useState } from "react";
 import styles from "../styles.module.css";
 import calendar from "../../../assets/icons/calendar-dark-gray-neutral.svg";
 
-export function InputDate({ title, setSurveyInputs, surveyInputs }) {
+export function InputDate({ title, setFunctionExecution }) {
     const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(surveyInputs.endDate);
+    const [endDate, setEndDate] = useState(null);
 
     /* Initially I was getting a date one day ahead, so this function will adjust for Time Zone */
 
@@ -24,7 +24,7 @@ export function InputDate({ title, setSurveyInputs, surveyInputs }) {
         const [start, end] = update;
         setStartDate(start);
         setEndDate(end);
-        setSurveyInputs((prevInputs) => ({
+        setFunctionExecution((prevInputs) => ({
             ...prevInputs,
             startDate: toLocalISOString(start),
             endDate: toLocalISOString(end),

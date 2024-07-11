@@ -1,46 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-import { Tab, Tabs, Box, Card, Typography, Divider } from "@mui/material";
+import { Tab, Tabs, Box, Card } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import QuestionCard from "../../components/QuestionCard";
 import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
 import CustomButton from "../../components/buttons/CustomButton";
-import RewardDetailCard from "../../components/cards/RewardDetailCard";
+import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import { AddImage } from "../../components/addImage/AddImage";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import theme from "../../theme/theme";
 
 import { surveyCreationContext } from "../../context/Context";
 import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
-import CheckBoxEmpty from "../../assets/icons/checkbox-dark-gray-neutral-empty.svg";
-import CheckBoxFilled from "../../assets/icons/checkbox-black-neutral-filled.svg";
+import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
 
-const RewardsDetailsCard = ({ surveyInputs }) => {
-    console.log(surveyInputs);
+const ReviewStep = ({ rewardInputs }) => {
+    console.log(rewardInputs);
 
     return (
-        <RewardDetailCard
-            sx={{ mt: "24px", mb: "24px" }}
-            rewardName={surveyInputs.name}
-            noBox="noBox"
-            rewardType={surveyInputs.category}
-            pointsCost={surveyInputs.points}
-            period={`${surveyInputs.startDate} - ${surveyInputs.endDate}`}
-            details={surveyInputs.description}
+        <RewardDetailsCard
+            sx={{
+                mt: "24px",
+                mb: "24px",
+                boxShadow: "none !important",
+                padding: 0,
+                borderRadius: 0,
+            }}
+            rewardName={rewardInputs.name}
+            rewardType={rewardInputs.category}
+            pointsCost={rewardInputs.points}
+            period={[rewardInputs.startDate, rewardInputs.endDate]}
+            details={rewardInputs.description}
+            // image={rewardInputs.image}
+            imageSrc={
+                "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
+            }
         />
     );
 };
 
 const RewardsAdd = () => {
     const [activeTab, setActiveTab] = useState(0);
-    const [description, setDescription] = useState("");
-    const [surveyInputs, setSurveyInputs] = useState({});
+    const [rewardInputs, setRewardInputs] = useState({});
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
@@ -105,20 +111,25 @@ const RewardsAdd = () => {
                             }}
                         />
                     </Tabs>
-                    <CustomButton buttontype="secondary" isOutlined>
+                    <CustomButton
+                        buttontype="secondary"
+                        buttonVariant="textIconLeft"
+                        iconLeft={SaveIcon}
+                        isOutlined
+                    >
                         Save Draft
                     </CustomButton>
                 </Box>
                 <Box>
                     {activeTab === 0 && (
-                        <SurveyHtml
-                            surveyInputs={surveyInputs}
-                            setSurveyInputs={setSurveyInputs}
+                        <CreateRewardStep
+                            rewardInputs={rewardInputs}
+                            setRewardInputs={setRewardInputs}
                             disabled={false}
                         />
                     )}
                     {activeTab === 1 && (
-                        <RewardsDetailsCard surveyInputs={surveyInputs} />
+                        <ReviewStep rewardInputs={rewardInputs} />
                     )}
                 </Box>
             </Card>
@@ -128,55 +139,16 @@ const RewardsAdd = () => {
 
 export default RewardsAdd;
 
-export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
-    const [questions, setQuestions] = useState([]);
-    const [rewardInputs, setRewardInputs] = useState({});
-    const [description, setDescription] = useState("");
-    const [pointsInput, setPointsInputs] = useState("");
+export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
     const [showPopup, setShowPopup] = useState(false);
-    const [title, setTitle] = useState("");
     const navigate = useNavigate();
-
-    const [selectedDeparments, setSelectedDeparment] = useState("");
-    const [selectedJobLevel, setSelectedJobLevel] = useState("");
-    const [selectedRecurrence, setSelectedRecurrence] = useState("");
-
-    console.log(description);
-    const handleChangeDepartments = (event) => {
-        setSelectedDeparment(event.target.value);
-    };
-    const handleChangeJobLevel = (event) => {
-        setSelectedJobLevel(event.target.value);
-    };
-    const handleChangeRecurrence = (event) => {
-        setSelectedRecurrence(event.target.value);
-    };
 
     const goToHome = () => {
         navigate("/dashboard");
     };
-    const goToSurvey = () => {
-        navigate("/surveys");
+    const goToRewards = () => {
+        navigate("/rewards");
     };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    `${process.env.REACT_APP_API_URL}/api/questions`
-                );
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                setQuestions(JSON.parse(data));
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     useEffect(() => {
         setRewardInputs((prevInputs) => ({
@@ -188,28 +160,27 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
         }));
     }, []);
 
-    const handleAddSurvey = async (event) => {
+    const handleAddReward = async (event) => {
         event.preventDefault();
-        console.log(rewardInputs);
         try {
             const result = await addReward(rewardInputs);
-            console.log("Survey added successfully", result);
+            console.log("Reward added successfully", result);
             setShowPopup(true);
         } catch (error) {
-            console.error("Error adding survey:", error);
+            console.error("Error adding reward:", error);
         }
     };
 
-    const addReward = async (newSurvey) => {
+    const addReward = async (newReward) => {
         try {
             const res = await fetch(
-                `${process.env.REACT_APP_API_URL}/api/surveys/addSurvey`,
+                `${process.env.REACT_APP_API_URL}/api/rewards/addReward`,
                 {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(newSurvey),
+                    body: JSON.stringify(newReward),
                 }
             );
 
@@ -229,14 +200,13 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
         }
     };
 
-    const jobLevels = ["Manager", "Supervisor", "Director", "Employee"];
+    // TODO: Put all the categories of the rewards
     const departments = [
         "Account",
         "Business Development",
         "IT",
         "Human Resources",
     ];
-    const recurrence = ["Weekly", "Month", "Semester", "Year"];
 
     return (
         <>
@@ -258,10 +228,10 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                 }
                 btnOneText={"Go to Home"}
                 btnOneOnClick={goToHome}
-                btnTwoText={"Go to the Survey"}
-                btnTwoOnClick={goToSurvey}
+                btnTwoText={"Go to the Rewards"}
+                btnTwoOnClick={goToRewards}
             />
-            <form onSubmit={handleAddSurvey}>
+            <form onSubmit={handleAddReward}>
                 <surveyCreationContext.Provider
                     value={{ rewardInputs, setRewardInputs }}
                 >
@@ -274,14 +244,13 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                             <TextFieldRegular
                                 label="Title"
                                 id="surveyName"
-                                placeholder="Type the title for reward"
-                                value={surveyInputs.name || ""}
-                                // value={title || ""}
-                                hint="50"
+                                placeholder="Type the title for this reward"
+                                value={rewardInputs.name || ""}
+                                hint={50}
                                 disabled={disabled}
                                 onChange={(e) => {
                                     if (e.target.value.length <= 50) {
-                                        setSurveyInputs((prevInputs) => ({
+                                        setRewardInputs((prevInputs) => ({
                                             ...prevInputs,
                                             name: e.target.value,
                                         }));
@@ -291,9 +260,11 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                             />
                         </Box>
 
-                        {/* <Box mt={2}>
-                            <AddImage id="addImage" label="Thumbnail Image"/>
-                        </Box> */}
+                        <Box mt={2}>
+                            <AddImage id="addImage" label="Thumbnail Image" />
+
+                            {/* set the image here */}
+                        </Box>
 
                         <Box mt={2}>
                             <DropdownSelect
@@ -302,17 +273,11 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                                 placeholder="Select the category for this reward"
                                 options={departments}
                                 disabled={disabled}
-                                value={surveyInputs.category}
+                                value={rewardInputs.category || ""}
                                 onChange={(e) => {
-                                    setSurveyInputs((prevInputs) => ({
-                                        ...prevInputs,
-                                        category: e.target.value,
-                                    }));
-                                    handleChangeDepartments(e);
-                                    console.log(e.target.value);
                                     setRewardInputs((prevInputs) => ({
                                         ...prevInputs,
-                                        departments: e.target.value,
+                                        category: e.target.value,
                                     }));
                                 }}
                             />
@@ -323,14 +288,14 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                                 label="Points"
                                 id="Points"
                                 placeholder="Type the point for this reward"
-                                value={surveyInputs.points || ""}
+                                value={rewardInputs.points || ""}
+                                type={"number"}
                                 disabled={disabled}
                                 onChange={(e) => {
-                                    setSurveyInputs((prevInputs) => ({
+                                    setRewardInputs((prevInputs) => ({
                                         ...prevInputs,
                                         points: e.target.value,
                                     }));
-                                    setPointsInputs(e.target.value);
                                 }}
                                 sx={{ width: "100%" }}
                             />
@@ -339,8 +304,7 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                         <Box mt={2}>
                             <InputDate
                                 title="Period"
-                                setSurveyInputs={setSurveyInputs}
-                                surveyInputs={surveyInputs}
+                                setFunctionExecution={setRewardInputs}
                             />
                         </Box>
 
@@ -349,12 +313,12 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                                 label="Details"
                                 id="Details"
                                 placeholder="Search"
-                                hint="500"
-                                value={surveyInputs.description || ""}
+                                hint={500}
+                                value={rewardInputs.description || ""}
                                 disabled={disabled}
                                 onChange={(e) => {
                                     if (e.target.value.length <= 500) {
-                                        setSurveyInputs((prevInputs) => ({
+                                        setRewardInputs((prevInputs) => ({
                                             ...prevInputs,
                                             description: e.target.value,
                                         }));
@@ -364,9 +328,6 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                             />
                         </Box>
 
-                        <Box sx={{ mt: 3, backgroundColor: "#b5b5b5" }}>
-                            Component still not made it
-                        </Box>
                         <Box
                             sx={{ mt: 3 }}
                             display="flex"
@@ -378,7 +339,7 @@ export function SurveyHtml({ disabled, surveyInputs, setSurveyInputs }) {
                             </CustomButton>
                             <CustomButton
                                 buttontype="primary"
-                                onClick={handleAddSurvey}
+                                onClick={handleAddReward}
                             >
                                 Next
                             </CustomButton>

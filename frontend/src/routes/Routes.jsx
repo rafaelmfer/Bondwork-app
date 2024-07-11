@@ -78,7 +78,7 @@ const routes = [
         iconChevron: iconArrowDown,
         subItems: [
             {
-                path: "/rewards/management/AddReward",
+                path: "/rewards/management/addReward",
                 element: <RewardsAdd />,
                 menuLabel: "Add Reward",
                 hideInSidebar: true, // Don't Show in Sidebar Component
