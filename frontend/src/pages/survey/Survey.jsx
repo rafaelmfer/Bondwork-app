@@ -377,6 +377,7 @@ export function SurveyHtml({ disabled }) {
                                     label="Description"
                                     id="description"
                                     placeholder="Text here"
+                                    hint={200}
                                     value={surveyInputs.description || ""}
                                     disabled={disabled}
                                     onChange={(e) => {

@@ -201,8 +201,9 @@ const TextFieldRegular = ({
                             <IconButton
                                 aria-label="info"
                                 sx={{
+                                    position: "relative",
                                     marginLeft: "0px",
-                                    height: "48px",
+                                    height: "28px",
                                     width: "48px",
                                 }}
                             >
