@@ -2,11 +2,10 @@
     {
         "employeeID": 7232,
         "email": "rafael@langara.ca",
-        "password": "rafaellangara",
+        "hashPassword": "rafaellangara",
         "firstName": "Rafael",
         "lastName": "Ferreira",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Rafael-M.png?alt=media&token=6eec4e90-4db4-4f4f-9dc8-9bdc4334d18e",
-
         "department": {
             "name": "IT",
             "id": 2
@@ -51,12 +50,14 @@
     {
         "employeeID": 9874,
         "email": "yuriko@langara.ca",
-        "password": "yurikolangara",
+        "hashPassword": "yurikolangara",
         "firstName": "Yuriko",
         "lastName": "Kikuchi",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Yuriko-M.png?alt=media&token=e7215be7-c52e-4d31-8698-1396bb9ffc2f",
-        "departmentId": 5,
-        "department": "Marketing",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
         "jobLevel": "Senior",
         "jobTitle": "UX Designer",
         "onBoardingDate": "2023-09-01",
@@ -90,12 +91,14 @@
     {
         "employeeID": 6666,
         "email": "moonyoung@langara.ca",
-        "password": "moonyounglangara",
+        "hashPassword": "moonyounglangara",
         "firstName": "MoonYoung",
         "lastName": "Lee",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-MoonYoung-M.png?alt=media&token=692817b0-7698-43fa-af58-ab99ff76a1c2",
-        "departmentId": 5,
-        "department": "Marketing",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "UX/UI Designer",
         "onBoardingDate": "2023-09-01",
@@ -123,12 +126,14 @@
     {
         "employeeID": 4922,
         "email": "izabela@langara.ca",
-        "password": "izabelalangara",
+        "hashPassword": "izabelalangara",
         "firstName": "Izabela",
         "lastName": "Nadu",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Iza-M.png?alt=media&token=4acae49b-4708-4b9d-a393-eda4b84c3a7a",
-        "departmentId": 5,
-        "department": "Marketing",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "UX Strategits",
         "onBoardingDate": "2023-09-01",
@@ -155,12 +160,14 @@
     {
         "employeeID": 9864,
         "email": "yun@langara.ca",
-        "password": "yunlangara",
+        "hashPassword": "yunlangara",
         "firstName": "Yun",
         "lastName": "Hsu",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-YJ-M.png?alt=media&token=7134a348-4b0a-4a0c-a760-b443ec0fab87",
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "Backend Developer",
         "onBoardingDate": "2023-09-01",
@@ -193,12 +200,14 @@
     {
         "employeeID": 2321,
         "email": "cecilia@langara.ca",
-        "password": "cecilialangara",
+        "hashPassword": "cecilialangara",
         "firstName": "Cecilia",
         "lastName": "Lopez",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Ceci-M.png?alt=media&token=069bc2c5-67d4-4ee9-a341-0b099838e1ce",
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "Full Stack Developer",
         "onBoardingDate": "2023-09-01",
@@ -232,12 +241,14 @@
     {
         "employeeID": 7426,
         "email": "tzexuan@langara.ca",
-        "password": "tzexuanlangara",
+        "hashPassword": "tzexuanlangara",
         "firstName": "Tzexuan",
         "lastName": "Shane",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Shane-M.png?alt=media&token=983a1754-3f37-4580-8c50-6bf08ee959ac",
-        "departmentId": 5,
-        "department": "Marketing",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "User Experience Designer",
         "onBoardingDate": "2023-09-01",
@@ -264,12 +275,14 @@
     {
         "employeeID": 2103,
         "email": "shogo@langara.ca",
-        "password": "shogolangara",
+        "hashPassword": "shogolangara",
         "firstName": "Sidney",
         "lastName": "Kai",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Sidney-M.png?alt=media&token=71c73591-a1f5-4428-96f1-66e8ff0f6ce1",
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "Full Stack Developer",
         "onBoardingDate": "2023-09-01",
@@ -302,12 +315,14 @@
     {
         "employeeID": 2300,
         "email": "john.doe@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "John",
         "lastName": "Doe",
         "profilePicture": null,
-        "departmentId": 7,
-        "department": "Production",
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "Specialist",
         "onBoardingDate": "2020-01-15",
@@ -333,12 +348,14 @@
     {
         "employeeID": 2400,
         "email": "jane.smith@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Jane",
         "lastName": "Smith",
         "profilePicture": null,
-        "departmentId": 7,
-        "department": "Production",
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
         "jobLevel": "Senior",
         "jobTitle": "Manager",
         "onBoardingDate": "2021-03-22",
@@ -371,12 +388,14 @@
     {
         "employeeID": 2500,
         "email": "robert.brown@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Robert",
         "lastName": "Brown",
         "profilePicture": null,
-        "departmentId": 7,
-        "department": "Production",
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
         "jobLevel": "Entry Level",
         "jobTitle": "Assistant",
         "onBoardingDate": "2024-04-10",
@@ -409,12 +428,14 @@
     {
         "employeeID": 2600,
         "email": "alice.jones@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Alice",
         "lastName": "Jones",
         "profilePicture": null,
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "Software Developer",
         "onBoardingDate": "2023-01-25",
@@ -436,12 +457,14 @@
     {
         "employeeID": 2700,
         "email": "michael.white@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Michael",
         "lastName": "White",
         "profilePicture": null,
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Senior",
         "jobTitle": "IT Manager",
         "onBoardingDate": "2020-11-18",
@@ -470,12 +493,14 @@
     {
         "employeeID": 2800,
         "email": "tyler.higg@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Tyler ",
         "lastName": "Higg",
         "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-Tyler.jpg?alt=media&token=e988e580-bedf-47a0-9211-ffb5da95647b",
-        "departmentId": 5,
-        "department": "Marketing",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
         "jobLevel": "Senior",
         "jobTitle": "Product Designer",
         "onBoardingDate": "2023-09-10",
@@ -503,12 +528,14 @@
     {
         "employeeID": 2900,
         "email": "olivia.moore@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Olivia",
         "lastName": "Moore",
         "profilePicture": null,
-        "departmentId": 3,
-        "department": "Accounting & Finance",
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
         "jobLevel": "Management",
         "jobTitle": "Finance Manager",
         "onBoardingDate": "2022-04-20",
@@ -544,12 +571,14 @@
     {
         "employeeID": 3000,
         "email": "liam.taylor@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Liam",
         "lastName": "Taylor",
         "profilePicture": null,
-        "departmentId": 3,
-        "department": "Accounting & Finance",
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "Accountant",
         "onBoardingDate": "2023-03-15",
@@ -578,12 +607,14 @@
     {
         "employeeID": 3100,
         "email": "sophia.davis@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Sophia",
         "lastName": "Davis",
         "profilePicture": null,
-        "departmentId": 4,
-        "department": "Business Development",
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
         "jobLevel": "Senior",
         "jobTitle": "Business Development Manager",
         "onBoardingDate": "2020-12-05",
@@ -618,12 +649,14 @@
     {
         "employeeID": 3200,
         "email": "james.jackson@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "James",
         "lastName": "Jackson",
         "profilePicture": null,
-        "departmentId": 4,
-        "department": "Business Development",
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
         "jobLevel": "Executive",
         "jobTitle": "Chief Business Officer",
         "onBoardingDate": "2021-07-20",
@@ -650,12 +683,14 @@
     {
         "employeeID": 3300,
         "email": "charlotte.johnson@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Charlotte",
         "lastName": "Johnson",
         "profilePicture": null,
-        "departmentId": 6,
-        "department": "R&D",
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
         "jobLevel": "Entry Level",
         "jobTitle": "Assistant",
         "onBoardingDate": "2023-05-15",
@@ -681,12 +716,14 @@
     {
         "employeeID": 3400,
         "email": "harper.brown@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Harper",
         "lastName": "Brown",
         "profilePicture": null,
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Junior",
         "jobTitle": "Junior Developer",
         "onBoardingDate": "2023-11-05",
@@ -715,12 +752,14 @@
     {
         "employeeID": 3500,
         "email": "henry.evans@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Henry",
         "lastName": "Evans",
         "profilePicture": null,
-        "departmentId": 6,
-        "department": "R&D",
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
         "jobLevel": "Senior",
         "jobTitle": "Specialist",
         "onBoardingDate": "2023-09-25",
@@ -745,12 +784,14 @@
     {
         "employeeID": 3600,
         "email": "amelia.thomas@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Amelia",
         "lastName": "Thomas",
         "profilePicture": null,
-        "departmentId": 4,
-        "department": "Business Development",
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
         "jobLevel": "Management",
         "jobTitle": "Sales Manager",
         "onBoardingDate": "2023-06-10",
@@ -773,12 +814,14 @@
     {
         "employeeID": 3700,
         "email": "lucas.martin@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Lucas",
         "lastName": "Martin",
         "profilePicture": null,
-        "departmentId": 3,
-        "department": "Accounting & Finance",
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
         "jobLevel": "Junior",
         "jobTitle": "Junior Accountant",
         "onBoardingDate": "2023-09-01",
@@ -796,12 +839,14 @@
     {
         "employeeID": 3800,
         "email": "mason.lee@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Mason",
         "lastName": "Lee",
         "profilePicture": null,
-        "departmentId": 2,
-        "department": "IT",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
         "jobLevel": "Mid Level",
         "jobTitle": "System Analyst",
         "onBoardingDate": "2023-09-10",
@@ -819,12 +864,14 @@
     {
         "employeeID": 3900,
         "email": "ella.white@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Ella",
         "lastName": "White",
         "profilePicture": null,
-        "departmentId": 5,
-        "department": "Marketing",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
         "jobLevel": "Senior",
         "jobTitle": "Brand Manager",
         "onBoardingDate": "2023-10-10",
@@ -842,12 +889,14 @@
     {
         "employeeID": 4000,
         "email": "logan.harris@example.com",
-        "password": "hashedpassword",
+        "hashPassword": "hashedpassword",
         "firstName": "Logan",
         "lastName": "Harris",
         "profilePicture": null,
-        "departmentId": 4,
-        "department": "Business Development",
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
         "jobLevel": "Junior",
         "jobTitle": "Business Analyst",
         "onBoardingDate": "2023-11-05",
