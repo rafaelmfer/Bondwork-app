@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableSeven from "../../components/TableSeven";
-//import RewardDetailCard from "../../components/cards/RewardDetailCard";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 
@@ -91,14 +90,14 @@ const RewardsManagement = () => {
         // create the array that will be passed into the table
         setRows(createRows(rewards));
     }, [rewards]);
-    //console.log("Mis rewards", rewards);
+
     console.log("Las filas que arme ", rows);
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Management"} />
             <Breadcrumbs />
-            {/* <RewardDetailCard /> */}
+
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">
                 <TableSeven
                     title={"Management"}

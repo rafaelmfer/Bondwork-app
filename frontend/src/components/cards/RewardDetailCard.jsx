@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, Card, IconButton, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import theme from "../../theme/theme";
+import MenuIcon from "../../assets/icons/menu3dots-dark-gray-neutral.svg";
+import CircleIcon from "@mui/icons-material/Circle";
 
 const StyledCard = styled(Card)(({ theme }) => ({
     borderRadius: "20px",
@@ -24,6 +26,8 @@ const Header = styled(Box)({
 const Row = styled(Box)({
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
+    alignSelf: "stretch",
 });
 
 const Column = styled(Box)({
@@ -86,7 +90,23 @@ const RewardDetailCard = ({
     period,
     details,
     sx,
+    imageSrc,
 }) => {
+    const getStatusColor = (status) => {
+        switch (status) {
+            case "Ongoing":
+                return theme.palette.info[300];
+            case "Upcoming":
+                return theme.palette.warning[300];
+            case "Finished":
+                return theme.palette.success[300];
+            case "Draft":
+                return theme.palette.neutrals.gray300;
+            default:
+                return theme.palette.neutrals.black;
+        }
+    };
+
     return (
         <StyledCard sx={sx}>
             <Header>
@@ -97,15 +117,30 @@ const RewardDetailCard = ({
                     >
                         {`${rewardName}`}
                     </Typography>
-                    <img src="" alt="Menu Icon" />
+                    <img src={MenuIcon} alt="Menu Icon" />
                 </Row>
-                <TextContainer>
-                    <TextBlue>
-                        <ul>
-                            <li>{status}</li>
-                        </ul>
-                    </TextBlue>
-                </TextContainer>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                    }}
+                >
+                    <CircleIcon
+                        fontSize="small"
+                        sx={{
+                            color: getStatusColor(status),
+                            fontSize: 10,
+                            mr: 1,
+                        }}
+                    />
+                    <Typography
+                        variant="body1"
+                        sx={{ color: getStatusColor(status) }}
+                    >
+                        {status}
+                    </Typography>
+                </Box>
             </Header>
             <Box
                 sx={{
@@ -118,7 +153,7 @@ const RewardDetailCard = ({
                     <Column>
                         <ImgContainer>
                             <img
-                                src=""
+                                src={imageSrc}
                                 alt="rewardImage"
                                 style={{
                                     maxWidth: "100%",
