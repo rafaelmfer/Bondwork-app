@@ -30,7 +30,7 @@ const rewards = new mongoose.Schema({
     image: {
         type: String,
     },
-    pointsCost: {
+    pointsCosts: {
         type: Number,
     },
     startDate: {
