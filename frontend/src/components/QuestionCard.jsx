@@ -9,13 +9,15 @@ import {
 import CustomRadioButton from "./buttons/CustomRadioButton";
 import theme from "../theme/theme";
 import InfoIcon from "../assets/icons/info-dark-gray-neutral.svg";
+import CustomTooltip from "./CustomTooltip";
 
 /**
  * QuestionCard component to display a question with radio button options.
  * @param {string} question - The question text to display.
  * @param {number|string} initialSelectedValue - The initial selected value for the radio buttons. If there are 5 options, then the numbers will go from 1 to 5. Don't pass this value if you don't want to check any of them in the beginning.
  * @param {boolean} isDisabled - Whether the radio buttons should be disabled.
- * @param {object} props.sx - Optional styling prop to add custom styles to the card.
+ * @param {string} infoTooltipText - The text to display in the info tooltip. If not provided, the tooltip will not be displayed.
+ * @param {object} sx - Optional styling prop to add custom styles to the card.
  * @returns {JSX.Element} QuestionCard component.
  *
  * Example of usage:
@@ -25,10 +27,18 @@ import InfoIcon from "../assets/icons/info-dark-gray-neutral.svg";
  *   question="How satisfied are you with our service?"
  *   initialSelectedValue={3}
  *   isDisabled={false}
+ *   infoTooltipText="This is additional information about the question."
+ *   sx={{ marginBottom: '16px' }}
  * />
  * ```
  */
-const QuestionCard = ({ question, initialSelectedValue, isDisabled, sx }) => {
+const QuestionCard = ({
+    question,
+    initialSelectedValue,
+    isDisabled,
+    infoTooltipText,
+    sx,
+}) => {
     const [selectedValue, setSelectedValue] = useState(
         initialSelectedValue || ""
     );
@@ -65,12 +75,30 @@ const QuestionCard = ({ question, initialSelectedValue, isDisabled, sx }) => {
                     marginBottom: "16px",
                 }}
             >
-                <Typography variant="body1" sx={{ textAlign: "left" }}>
+                <Typography variant="p" sx={{ textAlign: "left" }}>
                     {question}
                 </Typography>
-                <IconButton aria-label="info" sx={{ marginLeft: "8px" }}>
-                    <img src={InfoIcon} alt="info icon" />
-                </IconButton>
+                {infoTooltipText && (
+                    <CustomTooltip
+                        tooltipContent={
+                            <Typography variant="small2">
+                                {infoTooltipText}
+                            </Typography>
+                        }
+                        triggerComponent={
+                            <IconButton
+                                aria-label="info"
+                                sx={{
+                                    marginLeft: "8px",
+                                    height: "48px",
+                                    width: "48px",
+                                }}
+                            >
+                                <img src={InfoIcon} alt="info icon" />
+                            </IconButton>
+                        }
+                    />
+                )}
             </Box>
             <FormControl component="fieldset" sx={{ width: "100%" }}>
                 <RadioGroup

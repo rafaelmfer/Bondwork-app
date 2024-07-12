@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 
-export default function ChartLine({ className, chartHeight }) {
+export default function ChartLine({ className, chartHeight, isLegendBottom }) {
     const options = {
         chart: {
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -38,7 +38,7 @@ export default function ChartLine({ className, chartHeight }) {
         ],
         legend: {
             show: true,
-            position: "right",
+            position: isLegendBottom ? "bottom" : "right",
             horizontalAlign: "center",
             fontSize: "12px",
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",

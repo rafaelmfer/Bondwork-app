@@ -6,7 +6,7 @@
         "dateRequest": "2024-01-15",
         "date": "2024-01-31",
         "status": "Approved",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Excellent teamwork and project management skills.",
         "points": 1000
     },
@@ -39,7 +39,7 @@
         "dateRequest": "2023-04-15",
         "date": "2023-05-05",
         "status": "Approved",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Outstanding performance in the recent project.",
         "points": 1000
     },
@@ -74,7 +74,7 @@
         "dateRequest": "2023-07-30",
         "date": "2023-08-11",
         "status": "Approved",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Excellent coding and problem-solving skills.",
         "points": 1000
     },
@@ -106,7 +106,7 @@
         "dateRequest": "2023-10-05",
         "date": "2023-10-29",
         "status": "Approved",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Achieving exceptional results in financial analysis.",
         "points": 1000
     },
@@ -138,7 +138,7 @@
         "receiver": 3200,
         "dateRequest": "2024-07-12",
         "status": "Pending",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Delivered outstanding performance in the latest project.",
         "points": 1000
     },
@@ -149,7 +149,7 @@
         "dateRequest": "2023-02-15",
         "date": "2023-03-02",
         "status": "Rejected",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Outstanding performance in the recent project.",
         "points": 1000,
         "reason": "Others",
@@ -188,7 +188,7 @@
         "dateRequest": "2023-05-30",
         "date": "2023-06-14",
         "status": "Rejected",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Excellent coding and problem-solving skills.",
         "points": 1000,
         "reason": "Others",
@@ -264,7 +264,7 @@
         "dateRequest": "2024-05-30",
         "status": "Approved",
         "date": "2024-06-10",
-        "category": "Innovative Idea",
+        "category": "Creativity",
         "details": "Your innovative approach to streamlining the workflow has saved us both time and resources. The new system you designed is already showing impressive results, and we appreciate your forward-thinking mindset.",
         "points": 1000
     },
@@ -275,7 +275,7 @@
         "dateRequest": "2024-01-20",
         "date": "2024-02-13",
         "status": "Approved",
-        "category": "Innovative Idea",
+        "category": "Creativity",
         "details": "Your proposal for the new marketing strategy was brilliant. It has brought fresh ideas to the table and has the potential to significantly boost our brand visibility. Thank you for your creativity and initiative.",
         "points": 1000
     },
@@ -285,7 +285,7 @@
         "receiver": 7426,
         "dateRequest": "2024-06-28",
         "status": "Pending",
-        "category": "Innovative Idea",
+        "category": "Creativity",
         "details": "The innovative solution you developed for the customer service issue has drastically improved our response times and customer satisfaction. Your ability to think outside the box is truly commendable.",
         "points": 1000
     },
@@ -295,7 +295,7 @@
         "receiver": 2103,
         "dateRequest": "2024-06-30",
         "status": "Pending",
-        "category": "Innovative Idea",
+        "category": "Creativity",
         "details": "Your idea to integrate the new software with our existing system was a game-changer. It has enhanced our productivity and efficiency, and we are grateful for your innovative thinking.",
         "points": 1000
     },
@@ -305,7 +305,7 @@
         "receiver": 2500,
         "dateRequest": "2024-07-01",
         "status": "Pending",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Charlotte has consistently exceeded her performance targets.",
         "points": 1000
     },
@@ -337,7 +337,7 @@
         "dateRequest": "2024-07-02",
         "date": "2024-07-05",
         "status": "Approved",
-        "category": "Innovative Idea",
+        "category": "Creativity",
         "details": "Harper's new system implementation was innovative and efficient.",
         "points": 1000
     },
@@ -358,7 +358,7 @@
         "dateRequest": "2024-07-01",
         "date": "2024-07-02",
         "status": "Approved",
-        "category": "Great Performance",
+        "category": "Performance",
         "details": "Henry's marketing strategies have significantly boosted our brand.",
         "points": 1000
     }

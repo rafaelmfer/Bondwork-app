@@ -19,16 +19,10 @@ const ChipText = ({ chipText, sx }) => {
         } else if (chipText === "Well-being" || chipText === "Leadership") {
             chipBackground = theme.palette.success[100];
             chipTextColor = theme.palette.success[300];
-        } else if (
-            chipText === "Operational" ||
-            chipText === "Innovative Idea"
-        ) {
+        } else if (chipText === "Operational" || chipText === "Creativity") {
             chipBackground = theme.palette.support.light_purple;
             chipTextColor = theme.palette.support.purple;
-        } else if (
-            chipText === "Workstyle" ||
-            chipText === "Great Performance"
-        ) {
+        } else if (chipText === "Workstyle" || chipText === "Performance") {
             chipBackground = theme.palette.info[100];
             chipTextColor = theme.palette.info[300];
         }

@@ -18,7 +18,7 @@ const allRecognition = async (req, res) => {
                     sender: {
                         id: sender ? sender.employeeID : null,
                         name: sender
-                            ? `${sender.firstName} ${sender.lastName}`
+                            ? `${sender.firstName} ${sender.lastName.charAt(0).toUpperCase()}.`
                             : null,
                         jobTitle: sender ? sender.jobTitle : null,
                         jobLevel: sender ? sender.jobLevel : null,
@@ -28,7 +28,7 @@ const allRecognition = async (req, res) => {
                     receiver: {
                         id: receiver ? receiver.employeeID : null,
                         name: receiver
-                            ? `${receiver.firstName} ${receiver.lastName}`
+                            ? `${receiver.firstName} ${receiver.lastName.charAt(0).toUpperCase()}.`
                             : null,
                         jobTitle: receiver ? receiver.jobTitle : null,
                         jobLevel: receiver ? receiver.jobLevel : null,

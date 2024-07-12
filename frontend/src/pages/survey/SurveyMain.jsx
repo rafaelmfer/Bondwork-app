@@ -8,6 +8,7 @@ import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
 import TableSeven from "../../components/TableSeven";
 import theme from "../../theme/theme";
+import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
@@ -50,11 +51,7 @@ const SurveyMain = () => {
         "Completed",
         "Status",
     ];
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // method with the columns needed for the table
     function createData(
         id,
@@ -79,12 +76,12 @@ const SurveyMain = () => {
     function createRows(dataArray) {
         return dataArray.map((object) =>
             createData(
-                object._id,
+                object.surveyId,
                 object.name,
-                formatDate(new Date(object.startDate)),
-                formatDate(new Date(object.endDate)),
-                object.answered?.length || 0,
-                object.requested?.length || 0,
+                object.startDate,
+                object.endDate,
+                object.completed?.length || 0,
+                object.sent?.length || 0,
                 object.status
             )
         );
@@ -98,11 +95,19 @@ const SurveyMain = () => {
             <Breadcrumbs />
 
             <Box className="h-full grid grid-cols-2 items-center gap-6 mt-6">
-                <SummaryCard
-                    data={Summarydata}
-                    sx={{
-                        height: "100%",
-                    }}
+                <CardWithTwoStatus
+                    title={"Management"}
+                    totalNumber={98}
+                    chipPreviousNumberText={6}
+                    progressValue={70}
+                    statusText1={"Pending"}
+                    statusColor1={theme.palette.info.main}
+                    number1={54}
+                    chipText1={-10}
+                    statusText2={"Completed"}
+                    statusColor2={theme.palette.success.main}
+                    number2={44}
+                    chipText2={16}
                 />
 
                 <div className="chart-donut-card bg-main-50 flex flex-col h-full shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
@@ -111,13 +116,13 @@ const SurveyMain = () => {
                     </h4>
                     <ChartDonut
                         className="chart-donut-survey-main flex flex-col justify-center h-full"
-                        chartHeight={150}
+                        chartHeight={200}
                     />
                 </div>
             </Box>
 
             <div
-                className="h-full grid grid-cols-2 items-center gap-6 mt-6 mb-6"
+                className="h-full grid grid-cols-2 items-center gap-6 mt-6"
                 id="chart"
             >
                 <div className="chart-area-card h-full bg-main-50 shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
@@ -126,7 +131,7 @@ const SurveyMain = () => {
                     </h4>
                     <ChartArea
                         className="chart-area-survey-main"
-                        chartHeight={150}
+                        chartHeight={220}
                     />
                 </div>
 
@@ -136,22 +141,30 @@ const SurveyMain = () => {
                     </h4>
                     <ChartLine
                         className="chart-line-survey-main"
-                        chartHeight={150}
+                        chartHeight={220}
+                        isLegendBottom={false}
                     />
                 </div>
             </div>
 
-            <Divider sx={{ background: theme.palette.neutrals.divider }} />
+            <Divider
+                sx={{
+                    background: theme.palette.neutrals.divider,
+                    marginTop: "32px",
+                }}
+            />
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
                 <TableSeven
                     title={"Management"}
-                    pathTo={"/surveys/management"}
+                    pathViewAllTo={"/surveys/management"}
                     pathAddTo={"/surveys/management/addSurvey"}
+                    pathRowTo={"/surveys/management"}
                     rows={rows}
                     columns={columnsTable}
                     rowsNumber="5"
                     showLastColumn={false}
+                    showPagination={false}
                 />
             </div>
         </main>

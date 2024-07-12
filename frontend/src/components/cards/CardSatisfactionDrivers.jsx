@@ -7,11 +7,11 @@ import {
     Chip,
     Button,
 } from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 import ChartLine from "../charts/ChartLine";
 import ChipNumber from "../chip/ChipNumber";
 
-const CardSatisfactionDrivers = ({ overall, chipText }) => {
+const CardSatisfactionDrivers = ({ overall, chipText, isLegendBottom }) => {
     // Format overall to the specified decimal places
     const formattedOverall = overall.toFixed(2);
 
@@ -19,15 +19,12 @@ const CardSatisfactionDrivers = ({ overall, chipText }) => {
         <Card
             variant="outlined"
             sx={{
-                px: 2,
-                pt: 2,
-                mb: 2,
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
             }}
         >
-            <CardContent>
+            <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
@@ -69,7 +66,7 @@ const CardSatisfactionDrivers = ({ overall, chipText }) => {
                         <ChipNumber chipText={chipText} sx={{ ml: 1 }} />
                     </Box>
                 </Box>
-                <ChartLine chartHeight={200} />
+                <ChartLine chartHeight={200} isLegendBottom />
             </CardContent>
         </Card>
     );

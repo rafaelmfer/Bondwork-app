@@ -5,6 +5,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import TableSeven from "../../components/TableSeven";
+import TableWithProfile from "../../components/TableWithProfile";
 import theme from "../../theme/theme";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
@@ -12,6 +13,7 @@ const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 const RewardsMain = () => {
     const [rewards, setRewards] = useState([]);
     const [rows, setRows] = useState([]);
+    const [rowsRequest, setRowsRequest] = useState([]);
 
     // Fetching Rewards
     useEffect(() => {
@@ -30,7 +32,8 @@ const RewardsMain = () => {
         fetchData();
     }, []);
 
-    // Array to map the table headings
+    // MANAGEMENT TABLE -------------------------------------
+    // Array to map the table headings for Management Table
     const columnsTable = [
         "id",
         "Title",
@@ -67,15 +70,12 @@ const RewardsMain = () => {
                     (redeemItem) => redeemItem.status === "Approved"
                 );
 
-                // To format the point
-                const formattedPointsCosts =
-                    object.pointsCosts.toLocaleString();
                 return createData(
                     object.rewardId,
                     object.title,
                     object.category,
-                    formattedPointsCosts,
-                    formatDate(new Date(object.endDate)),
+                    object.pointsCosts,
+                    object.endDate,
                     approvedRedeems.length,
                     object.status
                 );
@@ -84,15 +84,74 @@ const RewardsMain = () => {
         // create the array that will be passed into the table
         setRows(createRows(rewards));
     }, [rewards]);
-    //console.log("Mis rewards", rewards);
-    console.log("Las filas que arme ", rows);
+
+    // REQUEST TABLE -------------------------------------
+    const columnsTableRequest = [
+        "id",
+        "From",
+        "Title",
+        "Category",
+        "Points",
+        "Requested Date",
+        "Status",
+    ];
+    function createDataRequest(
+        id,
+        from,
+        title,
+        category,
+        points,
+        dateRequest,
+        status
+    ) {
+        return {
+            id,
+            from: {
+                displayName: `${from.nameSender} (${from.jobTitleSender})`,
+                profile: from.profile,
+            },
+            title,
+            category,
+            points,
+            dateRequest,
+            status,
+        };
+    }
+
+    useEffect(() => {
+        // method to structure the data into the fields that we need
+        function createRowsRequest(dataArray) {
+            // use of flatMap instead of map
+            return dataArray.flatMap((object) => {
+                // Iterar sobre cada elemento en el array redeem
+                return object.redeem.map((redeemItem) =>
+                    createDataRequest(
+                        redeemItem.id,
+                        {
+                            profile: redeemItem.profilePicture,
+                            nameSender: redeemItem.fullName,
+                            jobTitleSender: redeemItem.jobTitle,
+                        },
+                        object.title,
+                        object.category,
+                        object.pointsCosts,
+
+                        redeemItem.requestDate,
+                        redeemItem.status
+                    )
+                );
+            });
+        }
+        // create the array that will be passed into the table
+        setRowsRequest(createRowsRequest(rewards));
+    }, [rewards]);
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Rewards"} />
 
             <Breadcrumbs />
-            <div className="flex row gap-4 mt-4 mb-6">
+            <div className="flex row gap-4 mt-4">
                 <CardWithTwoStatus
                     title={"Management"}
                     totalNumber={98}
@@ -129,9 +188,14 @@ const RewardsMain = () => {
                 />
             </div>
 
-            <Divider sx={{ background: theme.palette.neutrals.divider }} />
+            <Divider
+                sx={{
+                    background: theme.palette.neutrals.divider,
+                    marginTop: "32px",
+                }}
+            />
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
                 <TableSeven
                     title={"Management"}
                     pathViewAllTo={"/rewards/management"}
@@ -148,14 +212,26 @@ const RewardsMain = () => {
                 />
             </div>
 
-            {/* <Divider
-                sx={{
-                    background: theme.palette.neutrals.divider,
-                    marginTop: "24px",
-                }}
-            /> */}
-
-            {/* Table Requests */}
+            <div className="flex flex-col gap-4 mx-[-16px] mt-[24px]">
+                <TableWithProfile
+                    title={"Request"}
+                    pathRowTo={"/rewards/requests"}
+                    pathViewAllTo={"/rewards/requests"}
+                    tabsVariant={"variant2"}
+                    rows={rowsRequest}
+                    columns={columnsTableRequest}
+                    rowsNumber="5"
+                    showSecondColumn={false}
+                    showThirdLastColumn={true}
+                    showSecondLastColumn={true}
+                    showLastColumn={true}
+                    showSearch={false}
+                    showAdd={false}
+                    showCheckboxColumn={false}
+                    showBtnColumn={false}
+                    showPagination={false}
+                />
+            </div>
         </main>
     );
 };

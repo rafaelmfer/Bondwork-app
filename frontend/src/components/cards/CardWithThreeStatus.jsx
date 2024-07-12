@@ -7,9 +7,10 @@ import {
     LinearProgress,
     Button,
 } from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 const CardWithThreeStatus = ({
     title,
@@ -34,7 +35,7 @@ const CardWithThreeStatus = ({
     return (
         <Card
             variant="outlined"
-            sx={{ mb: 2, flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
+            sx={{ flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
         >
             <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
@@ -48,7 +49,7 @@ const CardWithThreeStatus = ({
                         sx={{
                             textTransform: "none",
                             color: "inherit",
-                            fontSize: "1.25rem",
+                            ...theme.typography.h4,
                             fontWeight: "bold",
                             padding: 0,
                             "&:hover": {
@@ -58,7 +59,10 @@ const CardWithThreeStatus = ({
                     >
                         {title}
                     </Button>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Compared to Previous Period
                     </Typography>
                 </Box>
@@ -68,7 +72,10 @@ const CardWithThreeStatus = ({
                     alignItems="flex-start"
                     mb={2}
                 >
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Total
                     </Typography>
                     <Box display="flex" alignItems="center">

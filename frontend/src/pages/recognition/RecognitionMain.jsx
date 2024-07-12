@@ -4,10 +4,8 @@ import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
-//import CustomDate from "../../components/custom-date/CustomDate";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
-import { CardStacked } from "../../components/cards/CardStacked";
-import CardRecognitionMovement from "../../components/cards/CardRecognitionMovement";
+import CardStacked from "../../components/cards/CardStacked";
 import theme from "../../theme/theme";
 
 const RecognitionMain = () => {
@@ -18,7 +16,6 @@ const RecognitionMain = () => {
     const [recognitions, setRecognitions] = useState([]); // for the table
 
     useEffect(() => {
-        // Método para estruturar os dados em campos que precisamos
         function createRows(dataArray) {
             if (!Array.isArray(dataArray)) {
                 console.error("dataArray não é um array", dataArray);
@@ -29,18 +26,17 @@ const RecognitionMain = () => {
                 createData(
                     object.recognitionId,
                     {
-                        //PLACE THE IMAGE
-                        myObject: object,
-                        svgImage: object.senderPicture,
-                        firstNameSender: object.senderName,
-                        JobTitleSender: object.senderJobTitle,
+                        profile: object.sender.profileImage,
+                        nameSender: object.sender.name,
+                        jobTitleSender: object.sender.jobTitle,
                     },
                     {
-                        firstNameReciever: object.receiverName,
-                        jobtTitleReciever: object.receiverJobTitle,
+                        profile: object.receiver.profileImage,
+                        nameReceiver: object.receiver.name,
+                        jobTitleReceiver: object.receiver.jobTitle,
                     },
                     object.category,
-                    formatDate(new Date(object.dateRequest)),
+                    object.dateRequest,
                     object.status
                 )
             );
@@ -58,24 +54,18 @@ const RecognitionMain = () => {
         "Requested Date",
         "Status",
     ];
-    // method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // Método para crear los datos necesarios para las filas de la tabla
     function createData(id, from, to, category, dateRequest, status) {
         return {
             id,
-            // pass the image and the names
             from: {
-                myObject: from.myObject,
-                svgImage: from.svgImage,
-                displayName: `${from.firstNameSender} (${from.JobTitleSender})`,
+                displayName: `${from.nameSender} (${from.jobTitleSender})`,
+                profile: from.profile,
             },
             to: {
-                //svgImage: to.svgImage,
-                displayName: `${to.firstNameReciever} (${to.jobtTitleReciever})`,
+                displayName: `${to.nameReceiver} (${to.jobTitleReceiver})`,
+                profile: to.profile,
             },
             category,
             dateRequest,
@@ -100,7 +90,6 @@ const RecognitionMain = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                //console.log(data);
                 setData(data);
             }
         };
@@ -122,7 +111,7 @@ const RecognitionMain = () => {
                     progressValue2={60}
                     progressValue3={10}
                     statusText1={"Pending"}
-                    statusColor1={theme.palette.info[300]}
+                    statusColor1={theme.palette.info.main}
                     number1={100}
                     chipText1={-10}
                     statusText2={"Approved"}
@@ -134,11 +123,15 @@ const RecognitionMain = () => {
                     number3={30}
                     chipText3={16}
                 />
-                {/* <CardRecognitionMovement overall={3.25} chipText={-0.2} />  */}
                 <CardStacked />
             </div>
-            <Divider sx={{ background: theme.palette.neutrals.divider }} />
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+            <Divider
+                sx={{
+                    background: theme.palette.neutrals.divider,
+                    marginTop: "32px",
+                }}
+            />
+            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
                 <TableWithProfile
                     title={"Request"}
                     pathRowTo={"/recognitions/requests"}

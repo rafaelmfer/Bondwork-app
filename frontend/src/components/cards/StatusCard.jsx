@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import ChipNumber from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 const StatusCard = ({ statusText, statusColor, number, chipText }) => {
     return (
@@ -19,7 +20,12 @@ const StatusCard = ({ statusText, statusColor, number, chipText }) => {
                     fontSize="small"
                     sx={{ color: statusColor, fontSize: 10, mr: 1 }}
                 />
-                <Typography variant="body1">{statusText}</Typography>
+                <Typography
+                    variant="small1"
+                    color={theme.palette.neutrals.gray300}
+                >
+                    {statusText}
+                </Typography>
             </Box>
             <Box display="flex" alignItems="center" mb={1}>
                 <Typography variant="h4" fontWeight="bold">

@@ -12,12 +12,12 @@ const RecognitionRequestList = () => {
         return {
             id,
             from: {
-                myObject: from.myObject,
-                svgImage: from.svgImage,
-                displayName: `${from.firstNameSender} (${from.JobTitleSender})`,
+                displayName: `${from.nameSender} (${from.jobTitleSender})`,
+                profile: from.profile,
             },
             to: {
-                displayName: `${to.firstNameReciever} (${to.jobtTitleReciever})`,
+                displayName: `${to.nameReceiver} (${to.jobTitleReceiver})`,
+                profile: to.profile,
             },
             category,
             dateRequest,
@@ -27,12 +27,6 @@ const RecognitionRequestList = () => {
 
     // Método para estruturar os dados em campos que precisamos
     const createRows = useCallback((dataArray) => {
-        // method to format the date in eg. Jul 01, 2024
-        const formatDate = (date) => {
-            const options = { month: "short", day: "2-digit", year: "numeric" };
-            return date.toLocaleDateString("en-US", options);
-        };
-
         if (!Array.isArray(dataArray)) {
             console.error("dataArray não é um array", dataArray);
             return [];
@@ -42,17 +36,17 @@ const RecognitionRequestList = () => {
             createData(
                 object.recognitionId,
                 {
-                    myObject: object,
-                    svgImage: object.senderPicture,
-                    firstNameSender: object.senderName,
-                    JobTitleSender: object.senderJobTitle,
+                    profile: object.sender.profileImage,
+                    nameSender: object.sender.name,
+                    jobTitleSender: object.sender.jobTitle,
                 },
                 {
-                    firstNameReciever: object.receiverName,
-                    jobtTitleReciever: object.receiverJobTitle,
+                    profile: object.receiver.profileImage,
+                    nameReceiver: object.receiver.name,
+                    jobTitleReceiver: object.receiver.jobTitle,
                 },
                 object.category,
-                formatDate(new Date(object.dateRequest)),
+                object.dateRequest,
                 object.status
             )
         );

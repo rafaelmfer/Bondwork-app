@@ -13,7 +13,6 @@ const RewardsManagement = () => {
     const location = useLocation();
     const { data } = location.state || {};
 
-    // Fetching the survey.json @Backend
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -46,11 +45,7 @@ const RewardsManagement = () => {
         "Redeem",
         "Status",
     ];
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // method with the columns needed for the table
     function createData(id, title, category, points, endDate, redeem, status) {
         return {
@@ -73,15 +68,12 @@ const RewardsManagement = () => {
                     (redeemItem) => redeemItem.status === "Approved"
                 );
 
-                // To format the point
-                const formattedPointsCosts =
-                    object.pointsCosts.toLocaleString();
                 return createData(
                     object.rewardId,
                     object.title,
                     object.category,
-                    formattedPointsCosts,
-                    formatDate(new Date(object.endDate)),
+                    object.pointsCosts,
+                    object.endDate,
                     approvedRedeems.length,
                     object.status
                 );
@@ -90,8 +82,6 @@ const RewardsManagement = () => {
         // create the array that will be passed into the table
         setRows(createRows(rewards));
     }, [rewards]);
-
-    console.log("Las filas que arme ", rows);
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">

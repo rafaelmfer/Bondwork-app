@@ -166,7 +166,7 @@ const TextFieldArea = ({
                 role="status" // ARIA attribute to indicate the role of the element
                 aria-live="polite" // ARIA attribute for polite notification of changes
             >
-                {value.length}/{hint} letters
+                {value.length}/{hint} characters
             </Hint>
         </Box>
     );

@@ -10,6 +10,7 @@ import {
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 const CardWithTwoStatus = ({
     title,
@@ -28,9 +29,9 @@ const CardWithTwoStatus = ({
     return (
         <Card
             variant="outlined"
-            sx={{ p: 2, mb: 2, flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
+            sx={{ flexGrow: 1, flexBasis: 0, borderRadius: 4 }}
         >
-            <CardContent>
+            <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
@@ -42,7 +43,7 @@ const CardWithTwoStatus = ({
                         sx={{
                             textTransform: "none",
                             color: "inherit",
-                            fontSize: "1.25rem",
+                            ...theme.typography.h4,
                             fontWeight: "bold",
                             padding: 0,
                             "&:hover": {
@@ -52,7 +53,10 @@ const CardWithTwoStatus = ({
                     >
                         {title}
                     </Button>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Compared to Previous Period
                     </Typography>
                 </Box>
@@ -62,7 +66,10 @@ const CardWithTwoStatus = ({
                     alignItems="flex-start"
                     mb={2}
                 >
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Total
                     </Typography>
                     <Box display="flex" alignItems="center">
