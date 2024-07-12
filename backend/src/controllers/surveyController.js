@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const Survey = require("../models/SurveyModel");
+const User = require("../models/UserModel");
 
 const getAllSurvey = async (req, res) => {
     try {
@@ -30,6 +31,7 @@ const getSingleSurvey = async (req, res) => {
     try {
         const { id } = req.params;
         const singleSurvey = await Survey.findById(id);
+
         return res.status(200).json(singleSurvey);
     } catch (error) {
         return res.status(500).json({ messsage: error.message });
@@ -38,9 +40,55 @@ const getSingleSurvey = async (req, res) => {
 
 const getSingleSurveyID = async (req, res) => {
     try {
-        const { surveyID } = req.params;
-        const singleSurvey = await Survey.findOne({ surveyID });
-        return res.status(200).json(singleSurvey);
+        const { surveyId } = req.params;
+        const singleSurvey = await Survey.findOne({ surveyId });
+
+        if (!singleSurvey) {
+            return res.status(404).json({ message: "Survey not found" });
+        }
+
+        const audienceDetails = await Promise.all(
+            singleSurvey.sent.map(async (id) => {
+                const user = await User.findOne({ employeeID: id });
+
+                if (!user) {
+                    return {
+                        employeeID: id,
+                        userName: null,
+                        jobTitle: null,
+                        email: null,
+                        survey: null,
+                    };
+                }
+
+                const userSurvey = user.surveys.find(
+                    (survey) => survey.id === parseInt(surveyId, 10)
+                );
+
+                return {
+                    employeeID: id,
+                    userName: `${user.firstName} ${user.lastName}`,
+                    jobTitle: user.jobTitle,
+                    email: user.email,
+                    departmentName: user.department.name,
+                    profilePicture: user.profilePicture,
+
+                    survey: userSurvey
+                        ? {
+                              surveyId: userSurvey.id,
+                              startDate: singleSurvey.startDate,
+                              endDate: singleSurvey.endDate,
+                              completedDate: userSurvey.date,
+                              NPS: userSurvey.NPS,
+                              status: userSurvey.status,
+                              answers: userSurvey.answers,
+                          }
+                        : null,
+                };
+            })
+        );
+
+        return res.status(200).json({ survey: singleSurvey, audienceDetails });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
