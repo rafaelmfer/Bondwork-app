@@ -8,6 +8,7 @@ import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
 import TableSeven from "../../components/TableSeven";
 import theme from "../../theme/theme";
+import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
@@ -94,11 +95,19 @@ const SurveyMain = () => {
             <Breadcrumbs />
 
             <Box className="h-full grid grid-cols-2 items-center gap-6 mt-6">
-                <SummaryCard
-                    data={Summarydata}
-                    sx={{
-                        height: "100%",
-                    }}
+                <CardWithTwoStatus
+                    title={"Management"}
+                    totalNumber={98}
+                    chipPreviousNumberText={6}
+                    progressValue={70}
+                    statusText1={"Pending"}
+                    statusColor1={theme.palette.info.main}
+                    number1={54}
+                    chipText1={-10}
+                    statusText2={"Completed"}
+                    statusColor2={theme.palette.success.main}
+                    number2={44}
+                    chipText2={16}
                 />
 
                 <div className="chart-donut-card bg-main-50 flex flex-col h-full shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
@@ -107,13 +116,13 @@ const SurveyMain = () => {
                     </h4>
                     <ChartDonut
                         className="chart-donut-survey-main flex flex-col justify-center h-full"
-                        chartHeight={150}
+                        chartHeight={200}
                     />
                 </div>
             </Box>
 
             <div
-                className="h-full grid grid-cols-2 items-center gap-6 mt-6 mb-6"
+                className="h-full grid grid-cols-2 items-center gap-6 mt-6"
                 id="chart"
             >
                 <div className="chart-area-card h-full bg-main-50 shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
@@ -122,7 +131,7 @@ const SurveyMain = () => {
                     </h4>
                     <ChartArea
                         className="chart-area-survey-main"
-                        chartHeight={150}
+                        chartHeight={220}
                     />
                 </div>
 
@@ -132,14 +141,20 @@ const SurveyMain = () => {
                     </h4>
                     <ChartLine
                         className="chart-line-survey-main"
-                        chartHeight={150}
+                        chartHeight={220}
+                        isLegendBottom={false}
                     />
                 </div>
             </div>
 
-            <Divider sx={{ background: theme.palette.neutrals.divider }} />
+            <Divider
+                sx={{
+                    background: theme.palette.neutrals.divider,
+                    marginTop: "32px",
+                }}
+            />
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
                 <TableSeven
                     title={"Management"}
                     pathViewAllTo={"/surveys/management"}

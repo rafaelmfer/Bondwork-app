@@ -3,6 +3,7 @@ import { ReactComponent as GreenBullet } from "../../assets/images/dot-Green.svg
 import { ReactComponent as SilverBullet } from "../../assets/images/dot-Gray.svg";
 import { ReactComponent as OrangeBullet } from "../../assets/images/dot-Yellow.svg";
 import { ReactComponent as BlueBullet } from "../../assets/images/dot-Blue.svg";
+
 export function CheckStatus({ status }) {
     let bulletComponent, statusClass;
 

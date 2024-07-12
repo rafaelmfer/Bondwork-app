@@ -71,7 +71,7 @@ const Users = () => {
     }, [users]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Employees"} />
             <Breadcrumbs />
             <div className="mt-4">
@@ -93,20 +93,6 @@ const Users = () => {
                     showAdd={false}
                 />
             </div>
-
-            <CustomTooltip
-                sx={{ mt: 14, ml: 6 }}
-                tooltipContent={
-                    <>
-                        <span className="tag">Tag</span>
-                        <div className="score">
-                            4<span className="extra">+3</span>
-                        </div>
-                        <span className="label">Leadership</span>
-                    </>
-                }
-                triggerComponent={<CustomButton>Click Me</CustomButton>}
-            />
         </main>
     );
 };

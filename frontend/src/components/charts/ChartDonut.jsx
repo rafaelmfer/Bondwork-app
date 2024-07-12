@@ -66,6 +66,40 @@ export default function ChartDonut({ className, chartHeight }) {
                 },
             },
         },
+        states: {
+            normal: {
+                filter: {
+                    type: "none",
+                    value: 0,
+                },
+            },
+            hover: {
+                filter: {
+                    type: "none",
+                    value: 0,
+                },
+            },
+            active: {
+                allowMultipleDataPointsSelection: false,
+                filter: {
+                    type: "none",
+                    value: 0,
+                },
+            },
+        },
+        tooltip: {
+            enabled: true,
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                const percentage = (series[seriesIndex] / 5) * 100;
+                return `<div class="custom-tooltip">
+                            <div class="tooltip-header">
+                                <p class="tooltip-percentage">${percentage}%</p>
+                                <div class="tooltip-extra">+3%</div>
+                            </div>
+                            <div class="tooltip-label">${w.globals.labels[seriesIndex]}</div>
+                        </div>`;
+            },
+        },
         responsive: [
             {
                 breakpoint: 1350,
@@ -119,12 +153,60 @@ export default function ChartDonut({ className, chartHeight }) {
     };
 
     return (
-        <Chart
-            className={className}
-            options={options}
-            series={options.series}
-            type="donut"
-            height={chartHeight}
-        />
+        <>
+            <style>
+                {`
+                    .custom-tooltip {
+                        width: 150px;
+                        background-color: rgba(5, 33, 60, 0.8);
+                        color: #FFFFFF;
+                        text-align: left;
+                        border-radius: 8px;
+                        padding: 16px;
+                        position: relative;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                        font-family: 'IBM Plex Sans', sans-serif;
+                    }
+
+                    
+
+                    .tooltip-header {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 6px;
+                    }
+
+                    .tooltip-percentage {
+                        font-size: 24px;
+                        font-weight: 500;
+                    }
+
+                    .tooltip-extra {
+                        background-color: #D3F9D8;
+                        color: #4CAF50;
+                        border-radius: 12px;
+                        padding: 2px 6px;
+                        font-size: 16px;
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        justify-content: center;
+                        height: 20px;
+                    }
+
+                    .tooltip-label {
+                        font-size: 14px;
+                        margin-top: 8px;
+                    }
+                `}
+            </style>
+            <Chart
+                className={className}
+                options={options}
+                series={options.series}
+                type="donut"
+                height={chartHeight}
+            />
+        </>
     );
 }

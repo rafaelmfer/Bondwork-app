@@ -151,7 +151,7 @@ const RewardsMain = () => {
             <TopUserBar titleScreen={"Rewards"} />
 
             <Breadcrumbs />
-            <div className="flex row gap-4 mt-4 mb-6">
+            <div className="flex row gap-4 mt-4">
                 <CardWithTwoStatus
                     title={"Management"}
                     totalNumber={98}
@@ -188,9 +188,14 @@ const RewardsMain = () => {
                 />
             </div>
 
-            <Divider sx={{ background: theme.palette.neutrals.divider }} />
+            <Divider
+                sx={{
+                    background: theme.palette.neutrals.divider,
+                    marginTop: "32px",
+                }}
+            />
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
                 <TableSeven
                     title={"Management"}
                     pathViewAllTo={"/rewards/management"}

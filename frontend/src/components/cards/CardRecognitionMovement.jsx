@@ -19,22 +19,12 @@ const CardRecognitionMovement = ({ overall, chipText }) => {
         <Card
             variant="outlined"
             sx={{
-                px: 2,
-                pt: 2,
-                mb: 2,
-                pb: 0,
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
             }}
         >
-            <CardContent
-                sx={{
-                    "&:last-child": {
-                        paddingBottom: 0,
-                    },
-                }}
-            >
+            <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
