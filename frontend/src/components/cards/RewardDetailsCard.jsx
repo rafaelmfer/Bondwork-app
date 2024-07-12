@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import theme from "../../theme/theme";
 import MenuIcon from "../../assets/icons/menu3dots-dark-gray-neutral.svg";
 import CircleIcon from "@mui/icons-material/Circle";
+import { CheckStatus } from "../checkStatus/CheckStatus";
 
 const StyledCard = styled(Card)(({ theme }) => ({
     borderRadius: "20px",
@@ -60,7 +61,7 @@ const ImgContainer = styled(Box)({
  *
  * @param {object} props
  * @param {string} props.rewardName - The name of the reward.
- * @param {string} props.status - The status of reward: ongoing, upcoming, finished , and draft.
+ * @param {string} props.statusText - The status of reward: ongoing, upcoming, finished , and draft.
  * @param {string} props.rewardType - The category of the reward: operational, workstyle, and well-being.
  * @param {number} props.pointsCost - The points of the reward will be costed to redeem.
  * @param {date} props.period - The period during which the reward is active.
@@ -74,7 +75,7 @@ const ImgContainer = styled(Box)({
  * <RewardDetailCard
  *   sx={{ mt: "24px", mb: "24px" }}
  *   rewardName="Free Lunch ($20)"
- *   status="ongoing"
+ *   statusText="ongoing"
  *   rewardType="Well-Being"
  *   pointsCost={2000}
  *   period={["May 1, 2024", "Sep 30, 2024"]}
@@ -86,6 +87,7 @@ const ImgContainer = styled(Box)({
 const RewardDetailsCard = ({
     rewardName,
     rewardType,
+    statusText,
     pointsCost,
     period,
     details,
@@ -126,7 +128,7 @@ const RewardDetailsCard = ({
                         alignItems: "center",
                     }}
                 >
-                    {/* TODO: Put the component of Status that we already have about ongoing, finished, upcoming here, with a logic to show or not */}
+                    {statusText && <CheckStatus status={statusText} />}
                 </Box>
             </Header>
             <Box
@@ -152,19 +154,26 @@ const RewardDetailsCard = ({
                     <Column>
                         <TextContainer>
                             <TextBlue>Category</TextBlue>
-                            <Typography color={theme.palette.neutrals.black}>
+                            <Typography
+                                variant="p"
+                                color={theme.palette.neutrals.black}
+                            >
                                 {rewardType}
                             </Typography>
                         </TextContainer>
                         <TextContainer>
                             <TextBlue>Points</TextBlue>
-                            <Typography color={theme.palette.neutrals.black}>
+                            <Typography
+                                variant="p"
+                                color={theme.palette.neutrals.black}
+                            >
                                 {pointsCost}
                             </Typography>
                         </TextContainer>
                         <TextContainer>
                             <TextBlue>Period</TextBlue>
                             <Typography
+                                variant="p"
                                 color={theme.palette.neutrals.black}
                                 aria-label="Reward Period"
                             >
@@ -177,9 +186,12 @@ const RewardDetailsCard = ({
             <Column>
                 <TextContainer>
                     <TextBlue>Details</TextBlue>
-                    <Typography aria-label="Reward details">
-                        {details}
-                    </Typography>
+                    <Typography
+                        variant="p"
+                        color={theme.palette.neutrals.black}
+                        aria-label="Reward details"
+                        dangerouslySetInnerHTML={{ __html: details }}
+                    />
                 </TextContainer>
             </Column>
         </StyledCard>

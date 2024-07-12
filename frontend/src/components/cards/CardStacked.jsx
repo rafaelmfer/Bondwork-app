@@ -8,22 +8,26 @@ import {
     Chip,
     Button,
 } from "@mui/material";
+import theme from "../../theme/theme";
 
 function ChartVerticalBar({ className, chartHeight }) {
     const options = {
         series: [
             {
-                name: "Net Profit",
-                data: [44, 55, 57, 56],
+                name: "Previous",
+                data: [34, 45, 67, 66],
+                color: "#EF6461",
             },
             {
-                name: "Revenue",
-                data: [76, 85, 92, 88],
+                name: "Current",
+                data: [65, 55, 52, 46],
+                color: "#11689E",
             },
         ],
         chart: {
+            fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
             type: "bar",
-            height: 350,
+            height: 250,
             toolbar: {
                 show: false,
             },
@@ -44,43 +48,48 @@ function ChartVerticalBar({ className, chartHeight }) {
             colors: ["transparent"],
         },
         xaxis: {
-            categories: [
-                `Great Performance`,
-                "Leadership",
-                "Teamwork",
-                "Innovative Idea",
-            ],
+            categories: ["Performance", "Leadership", "Teamwork", "Creativity"],
             labels: {
                 show: true,
-                rotate: -45,
                 rotateAlways: false,
                 hideOverlappingLabels: true,
                 showDuplicates: false,
                 trim: false,
                 minHeight: undefined,
                 maxHeight: 100,
-
                 style: {
-                    colors: ["red", "blue", "green", "purple"],
-                    fontSize: "12px",
-                    fontFamily: "Helvetica, Arial, sans-serif",
-                    fontWeight: 400,
+                    colors: "#0B0A0A",
+                    fontSize: "12.6px",
+                    fontFamily:
+                        "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+                    fontWeight: 600,
                     cssClass: "apexcharts-xaxis-label",
                 },
             },
         },
-
         yaxis: {
-            tickAmount: 5,
+            tickAmount: 4,
             title: {
-                text: "",
+                text: "number",
             },
         },
         fill: {
-            colors: ["#EF6461", "#0E5886"],
+            colors: ["#EF6461", "#11689E"],
         },
         legend: {
-            show: false,
+            show: true,
+            position: "right",
+            offsetY: 60,
+            fontSize: "12px",
+            fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+            fontWeight: 500,
+            markers: {
+                width: 10,
+                height: 10,
+                radius: 12,
+                offsetX: -4,
+                offsetY: 0,
+            },
         },
         tooltip: {
             enabled: false,
@@ -88,12 +97,6 @@ function ChartVerticalBar({ className, chartHeight }) {
                 formatter: function (val) {
                     return "$ " + val + " thousandss";
                 },
-            },
-        },
-        grid: {
-            padding: {
-                left: 30, // or whatever value that works
-                right: 30, // or whatever value that works
             },
         },
     };
@@ -109,52 +112,38 @@ function ChartVerticalBar({ className, chartHeight }) {
     );
 }
 
-export function CardStacked() {
+export default function CardStacked() {
     return (
         <Card
             variant="outlined"
             sx={{
-                px: 2,
-                pt: 2,
-                mb: 2,
-                pb: 0,
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
             }}
         >
-            <CardContent
-                sx={{
-                    "&:last-child": {
-                        paddingBottom: 0,
-                    },
-                }}
-            >
+            <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <Button
-                        sx={{
-                            textTransform: "none",
-                            color: "inherit",
-                            fontSize: "1.25rem",
-                            fontWeight: "bold",
-                            padding: 0,
-                            "&:hover": {
-                                backgroundColor: "transparent",
-                            },
-                        }}
+                    <Typography
+                        variant="h4"
+                        color={theme.palette.neutrals.black}
+                        fontWeight={600}
                     >
-                        Category Trend Movement
-                    </Button>
-                    <Typography variant="p" color="textSecondary">
-                        Compared to last week
+                        Recognition Drivers
+                    </Typography>
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
+                        Compared to Previous Period
                     </Typography>
                 </Box>
 
-                <ChartVerticalBar chartHeight={250} />
+                <ChartVerticalBar chartHeight={200} />
                 {/* <div class="relative h-[25px]">
                   <ul class="flex justify-between absolute w-full -top-[30px] pl-[10%] text-[15px]">
                       <li>Great Performance</li>

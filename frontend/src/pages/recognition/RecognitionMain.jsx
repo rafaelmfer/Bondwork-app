@@ -4,10 +4,8 @@ import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
-//import CustomDate from "../../components/custom-date/CustomDate";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
-import { CardStacked } from "../../components/cards/CardStacked";
-import CardRecognitionMovement from "../../components/cards/CardRecognitionMovement";
+import CardStacked from "../../components/cards/CardStacked";
 import theme from "../../theme/theme";
 
 const RecognitionMain = () => {
@@ -18,7 +16,6 @@ const RecognitionMain = () => {
     const [recognitions, setRecognitions] = useState([]); // for the table
 
     useEffect(() => {
-        // Método para estruturar os dados em campos que precisamos
         function createRows(dataArray) {
             if (!Array.isArray(dataArray)) {
                 console.error("dataArray não é um array", dataArray);
@@ -114,7 +111,7 @@ const RecognitionMain = () => {
                     progressValue2={60}
                     progressValue3={10}
                     statusText1={"Pending"}
-                    statusColor1={theme.palette.info[300]}
+                    statusColor1={theme.palette.info.main}
                     number1={100}
                     chipText1={-10}
                     statusText2={"Approved"}
@@ -126,11 +123,15 @@ const RecognitionMain = () => {
                     number3={30}
                     chipText3={16}
                 />
-                {/* <CardRecognitionMovement overall={3.25} chipText={-0.2} />  */}
                 <CardStacked />
             </div>
-            <Divider sx={{ background: theme.palette.neutrals.divider }} />
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+            <Divider
+                sx={{
+                    background: theme.palette.neutrals.divider,
+                    marginTop: "32px",
+                }}
+            />
+            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
                 <TableWithProfile
                     title={"Request"}
                     pathRowTo={"/recognitions/requests"}

@@ -7,8 +7,9 @@ import {
     Chip,
     Button,
 } from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 import ChartNegativeArea from "../charts/ChartNegativeArea";
+import theme from "../../theme/theme";
 
 const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
     const getChipColors = (chipText) => {
@@ -47,15 +48,12 @@ const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
         <Card
             variant="outlined"
             sx={{
-                px: 2,
-                pt: 2,
-                mb: 2,
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
             }}
         >
-            <CardContent>
+            <CardContent sx={{ px: "24px", pt: "24px" }}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
@@ -77,7 +75,10 @@ const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
                     >
                         {title}
                     </Button>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Compared to Previous Period
                     </Typography>
                 </Box>
@@ -87,7 +88,10 @@ const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
                     alignItems="flex-start"
                     mb={2}
                 >
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Current
                     </Typography>
                     <Box display="flex" alignItems="center">

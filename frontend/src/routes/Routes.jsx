@@ -148,7 +148,7 @@ const routes = [
         iconSelected: iconEmployeesSelected,
         subItems: [
             {
-                path: "users/details",
+                path: "users/details/:id",
                 element: <EmployeeProfileDetails />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
