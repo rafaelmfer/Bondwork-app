@@ -75,12 +75,12 @@ const Management = () => {
     function createRows(dataArray) {
         return dataArray.map((object) =>
             createData(
-                object._id,
+                object.surveyId,
                 object.name,
                 formatDate(new Date(object.startDate)),
                 formatDate(new Date(object.endDate)),
-                object.answered?.length || 0,
-                object.requested?.length || 0,
+                object.completed?.length || 0,
+                object.sent?.length || 0,
                 object.status
             )
         );
@@ -97,7 +97,7 @@ const Management = () => {
                     width="100%"
                     showTitle={false}
                     title={"Management"}
-                    pathTo={"/surveys/management"}
+                    pathAddTo={"/surveys/management/addSurvey"}
                     showSend={true}
                     showFilter={true}
                     rows={rows}

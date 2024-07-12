@@ -75,6 +75,7 @@ const theme = createTheme({
         support: {
             purple: "#793BB7",
             light_purple: "#EEDDFF",
+            tabs: "#464646",
             //     blue: "#3065B4",
             //     light_blue: "#D0E3FF",
             //     green: "#349025",

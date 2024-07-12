@@ -91,6 +91,7 @@ export default function TableWithProfile({
     const [keysObject, setKeysObject] = useState([]);
     const navigate = useNavigate();
     const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
+    let count = 0;
 
     useEffect(() => {
         if (rows && rows.length > 0) {
@@ -99,8 +100,6 @@ export default function TableWithProfile({
             setKeysObject(keysOfObjects);
         }
     }, [rows]);
-
-    console.log("LAS ROWS", rows);
 
     // Numbers of columns for the Component (can be different from the real number)
     let numCol = 0;
@@ -118,6 +117,12 @@ export default function TableWithProfile({
     // Determine the tab labels based on the variant
     const tabLabels = tabsVariant === "variant2" ? tabLabels2 : tabLabels1;
 
+    // Method to format the date in eg. Jul 01, 2024
+    function formatDate(date) {
+        const options = { month: "short", day: "2-digit", year: "numeric" };
+        return date.toLocaleDateString("en-US", options);
+    }
+
     // Method to filter and sort the rows
     const getFilteredAndSortedRows = () => {
         let filteredData = rows;
@@ -131,17 +136,19 @@ export default function TableWithProfile({
 
         if (searchQuery) {
             const lowercasedQuery = searchQuery.toLowerCase();
-            filteredData = filteredData.filter(
-                (row) =>
-                    row[keysObject[1]]
-                        .toLowerCase()
-                        .includes(lowercasedQuery) ||
-                    row[keysObject[2]]
-                        .toLowerCase()
-                        .includes(lowercasedQuery) ||
-                    row.status.toLowerCase().includes(lowercasedQuery)
-            );
+            filteredData = filteredData.filter((row) => {
+                const displayName =
+                    row.from && row.from.displayName
+                        ? row.from.displayName.toLowerCase()
+                        : "";
+                return (
+                    displayName.includes(lowercasedQuery) ||
+                    (row.status &&
+                        row.status.toLowerCase().includes(lowercasedQuery)) // Para el caso de uso específico
+                );
+            });
         }
+
         return stableSort(filteredData, getComparator(order, orderBy));
     };
 
@@ -257,7 +264,6 @@ export default function TableWithProfile({
                                 pathViewAllTo === ""
                                     ? `/${title.toLowerCase()}/management}`
                                     : pathViewAllTo,
-                            // TODO check if data=rows still works
                             state: rows,
                         }}
                         className={
@@ -292,6 +298,7 @@ export default function TableWithProfile({
                             sx={{
                                 marginTop: "16px",
                                 height: "56px",
+                                color: theme.palette.support.tabs,
                                 ".MuiTabs-indicator": {
                                     backgroundColor: theme.palette.primary.main,
                                 },
@@ -307,6 +314,8 @@ export default function TableWithProfile({
                                     sx={{
                                         textTransform: "none",
                                         minWidth: "auto",
+                                        fontSize: "16px",
+                                        fontWeight: "600",
                                     }}
                                     label={label}
                                 />
@@ -629,7 +638,7 @@ export default function TableWithProfile({
                         const isItemSelected = isSelected(row.id);
                         return (
                             <tr
-                                key={row.id}
+                                key={count++}
                                 className="text-left h-[56px]"
                                 role="checkbox"
                                 aria-checked={isItemSelected}
@@ -656,24 +665,21 @@ export default function TableWithProfile({
 
                                 <td>
                                     <Link
-                                        // TODO Check the route to individual survey or rewards
-
-                                        to={
-                                            pathRowTo === ""
-                                                ? `${row.from.myObject._id}`
-                                                : `${pathRowTo}/${row.from.myObject._id}`
-                                        }
+                                        to={`${pathRowTo}/${row.id}`}
                                         style={{
                                             display: "flex",
                                             alignItems: "center",
                                             padding: "0 8px",
                                             gap: "12px",
                                         }}
-                                        state={{ obj: row.from.myObject }}
+                                        state={{ rows }}
                                     >
-                                        {/* TODO: Set up a conditional depending id the profile picture exist or not */}
                                         <img
-                                            src={`data:image/svg+xml;base64,${btoa(row.from.svgImage)}`} //icon --svg
+                                            src={
+                                                row.from.profile
+                                                    ? row.from.profile
+                                                    : ProfilePlaceHolder
+                                            }
                                             alt="Profile "
                                             style={{
                                                 maxWidth: "29px",
@@ -681,7 +687,6 @@ export default function TableWithProfile({
                                             }}
                                         />
 
-                                        {/* FIRST PLACE TO CHANGE */}
                                         <div className="flex flex-col">
                                             {row[keysObject[1]] && (
                                                 <>
@@ -689,15 +694,6 @@ export default function TableWithProfile({
                                                         {row.from.displayName
                                                             .split("(")[0]
                                                             .trim()}
-                                                        {/* {row[
-                                                            keysObject[1]
-                                                        ].includes("(")
-                                                            ? row[keysObject[1]]
-                                                                  .split("(")[0]
-                                                                  .trim()
-                                                            : row[
-                                                                  keysObject[1]
-                                                              ]} */}
                                                     </p>
                                                     <span className="text-small2">
                                                         {row.from.displayName.includes(
@@ -712,19 +708,6 @@ export default function TableWithProfile({
                                                                   .trim()
                                                             : ""}
                                                     </span>
-                                                    {/* <span className="text-small2">
-                                                        {row[
-                                                            keysObject[1]
-                                                        ].includes("(")
-                                                            ? row[keysObject[1]]
-                                                                  .split("(")[1]
-                                                                  .replace(
-                                                                      ")",
-                                                                      ""
-                                                                  )
-                                                                  .trim()
-                                                            : ""}
-                                                    </span> */}
                                                 </>
                                             )}
                                         </div>
@@ -741,11 +724,13 @@ export default function TableWithProfile({
                                             height: "inherit",
                                         }}
                                     >
-                                        {/* SECOND PLACE TO CHANGE */}
                                         <img
-                                            src={ProfilePlaceHolder}
-                                            //src={`data:image/svg+xml;base64,${btoa(row.to.svgImage)}`}
-                                            alt="Profile "
+                                            src={
+                                                row.to.profile
+                                                    ? row.to.profile
+                                                    : ProfilePlaceHolder
+                                            }
+                                            alt="Profile"
                                             style={{
                                                 maxWidth: "29px",
                                                 maxHeight: "29px",
@@ -772,30 +757,6 @@ export default function TableWithProfile({
                                                                   .trim()
                                                             : ""}
                                                     </span>
-                                                    {/* <p className="text-small1">
-                                                        {row[
-                                                            keysObject[2]
-                                                        ].includes("(")
-                                                            ? row[keysObject[2]]
-                                                                  .split("(")[0]
-                                                                  .trim()
-                                                            : row[
-                                                                  keysObject[2]
-                                                              ]}
-                                                    </p> */}
-                                                    {/* <span className="text-small2">
-                                                        {row[
-                                                            keysObject[2]
-                                                        ].includes("(")
-                                                            ? row[keysObject[2]]
-                                                                  .split("(")[1]
-                                                                  .replace(
-                                                                      ")",
-                                                                      ""
-                                                                  )
-                                                                  .trim()
-                                                            : ""}
-                                                    </span> */}
                                                 </>
                                             )}
                                         </div>
@@ -844,6 +805,17 @@ export default function TableWithProfile({
                                                         }}
                                                     />
                                                 );
+                                            case "dateRequest":
+                                            case "endDate":
+                                                return formatDate(
+                                                    new Date(
+                                                        row[
+                                                            keysObject[
+                                                                numCol - 3
+                                                            ]
+                                                        ]
+                                                    )
+                                                );
                                             default:
                                                 return row[
                                                     keysObject[numCol - 3]
@@ -853,33 +825,123 @@ export default function TableWithProfile({
                                 </td>
                                 {showThirdLastColumn && (
                                     <td>
-                                        {keysObject[numCol - 2] === "status" ? (
-                                            <CheckStatus
-                                                status={
-                                                    row[keysObject[numCol - 2]]
-                                                }
-                                            />
-                                        ) : (
-                                            row[keysObject[numCol - 2]]
-                                        )}
+                                        {(() => {
+                                            switch (keysObject[numCol - 2]) {
+                                                case "status":
+                                                    return (
+                                                        <CheckStatus
+                                                            status={
+                                                                row[
+                                                                    keysObject[
+                                                                        numCol -
+                                                                            2
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        />
+                                                    );
+                                                case "dateRequest":
+                                                case "endDate":
+                                                case "lastAccess":
+                                                    return formatDate(
+                                                        new Date(
+                                                            row[
+                                                                keysObject[
+                                                                    numCol - 2
+                                                                ]
+                                                            ]
+                                                        )
+                                                    );
+                                                case "points":
+                                                    return row[
+                                                        keysObject[numCol - 2]
+                                                    ].toLocaleString();
+                                                default:
+                                                    return row[
+                                                        keysObject[numCol - 2]
+                                                    ];
+                                            }
+                                        })()}
                                     </td>
                                 )}
                                 {showSecondLastColumn && (
                                     <td>
-                                        {keysObject[numCol - 1] === "status" ? (
-                                            <CheckStatus
-                                                status={
-                                                    row[keysObject[numCol - 1]]
-                                                }
-                                            />
-                                        ) : (
-                                            row[keysObject[numCol - 1]]
-                                        )}
+                                        {(() => {
+                                            switch (keysObject[numCol - 1]) {
+                                                case "status":
+                                                    return (
+                                                        <CheckStatus
+                                                            status={
+                                                                row[
+                                                                    keysObject[
+                                                                        numCol -
+                                                                            1
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        />
+                                                    );
+                                                case "dateRequest":
+                                                case "endDate":
+                                                    return formatDate(
+                                                        new Date(
+                                                            row[
+                                                                keysObject[
+                                                                    numCol - 1
+                                                                ]
+                                                            ]
+                                                        )
+                                                    );
+                                                default:
+                                                    return row[
+                                                        keysObject[numCol - 1]
+                                                    ];
+                                            }
+                                        })()}
                                     </td>
                                 )}
 
                                 {showLastColumn && (
-                                    <td>{row[keysObject[numCol]]}</td>
+                                    <td>
+                                        {(() => {
+                                            switch (keysObject[numCol]) {
+                                                case "status":
+                                                    return (
+                                                        <CheckStatus
+                                                            status={
+                                                                row[
+                                                                    keysObject[
+                                                                        numCol
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        />
+                                                    );
+                                                case "dateRequest":
+                                                case "endDate":
+                                                    return formatDate(
+                                                        new Date(
+                                                            row[
+                                                                keysObject[
+                                                                    numCol
+                                                                ]
+                                                            ]
+                                                        )
+                                                    );
+                                                default:
+                                                    return row[
+                                                        keysObject[numCol]
+                                                    ];
+                                            }
+                                        })()}
+                                        {/* {keysObject[numCol] === "status" ? (
+                                            <CheckStatus
+                                                status={row[keysObject[numCol]]}
+                                            />
+                                        ) : (
+                                            row[keysObject[numCol]]
+                                        )} */}
+                                    </td>
                                 )}
 
                                 <td
@@ -932,7 +994,7 @@ export default function TableWithProfile({
                         jobtTitleReciever: object.jobtTitleReciever,
                     },
                     object.category,
-                    formatDate(new Date(object.RequestedDate)),
+                    object.RequestedDate,
                     object.status,
                     object.optionColumn
                 )
