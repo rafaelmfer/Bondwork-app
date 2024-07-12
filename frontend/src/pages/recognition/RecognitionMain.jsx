@@ -29,18 +29,17 @@ const RecognitionMain = () => {
                 createData(
                     object.recognitionId,
                     {
-                        //PLACE THE IMAGE
-                        myObject: object,
-                        svgImage: object.senderPicture,
-                        firstNameSender: object.senderName,
-                        JobTitleSender: object.senderJobTitle,
+                        profile: object.sender.profileImage,
+                        nameSender: object.sender.name,
+                        jobTitleSender: object.sender.jobTitle,
                     },
                     {
-                        firstNameReciever: object.receiverName,
-                        jobtTitleReciever: object.receiverJobTitle,
+                        profile: object.receiver.profileImage,
+                        nameReceiver: object.receiver.name,
+                        jobTitleReceiver: object.receiver.jobTitle,
                     },
                     object.category,
-                    formatDate(new Date(object.dateRequest)),
+                    object.dateRequest,
                     object.status
                 )
             );
@@ -58,24 +57,18 @@ const RecognitionMain = () => {
         "Requested Date",
         "Status",
     ];
-    // method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // Método para crear los datos necesarios para las filas de la tabla
     function createData(id, from, to, category, dateRequest, status) {
         return {
             id,
-            // pass the image and the names
             from: {
-                myObject: from.myObject,
-                svgImage: from.svgImage,
-                displayName: `${from.firstNameSender} (${from.JobTitleSender})`,
+                displayName: `${from.nameSender} (${from.jobTitleSender})`,
+                profile: from.profile,
             },
             to: {
-                //svgImage: to.svgImage,
-                displayName: `${to.firstNameReciever} (${to.jobtTitleReciever})`,
+                displayName: `${to.nameReceiver} (${to.jobTitleReceiver})`,
+                profile: to.profile,
             },
             category,
             dateRequest,
@@ -100,7 +93,6 @@ const RecognitionMain = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                //console.log(data);
                 setData(data);
             }
         };

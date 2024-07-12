@@ -110,6 +110,11 @@ export default function TableSeven({
     } else {
         tabLabels = tabLabels1;
     }
+    // Method to format the date in eg. Jul 01, 2024
+    function formatDate(date) {
+        const options = { month: "short", day: "2-digit", year: "numeric" };
+        return date.toLocaleDateString("en-US", options);
+    }
 
     // Method to filter and sort the rows
     const getFilteredAndSortedRows = () => {
@@ -276,6 +281,7 @@ export default function TableSeven({
                             sx={{
                                 marginTop: "16px",
                                 height: "56px",
+                                color: theme.palette.support.tabs,
                                 ".MuiTabs-indicator": {
                                     backgroundColor: theme.palette.primary.main,
                                 },
@@ -291,6 +297,8 @@ export default function TableSeven({
                                     sx={{
                                         textTransform: "none",
                                         minWidth: "auto",
+                                        fontSize: "16px",
+                                        fontWeight: "600",
                                     }}
                                     label={label}
                                 />
@@ -626,38 +634,76 @@ export default function TableSeven({
                                     </Link>
                                 </td>
                                 <td>
-                                    {keysObject[2] === "category" ? (
-                                        <ChipText
-                                            chipText={row[keysObject[2]]}
-                                            sx={{ marginTop: "8px" }}
-                                        />
-                                    ) : (
-                                        row[keysObject[2]]
-                                    )}
+                                    {(() => {
+                                        switch (keysObject[2]) {
+                                            case "category":
+                                                return (
+                                                    <ChipText
+                                                        chipText={
+                                                            row[keysObject[2]]
+                                                        }
+                                                        sx={{
+                                                            marginTop: "8px",
+                                                        }}
+                                                    />
+                                                );
+                                            case "createdIn":
+                                            case "expired":
+                                                return formatDate(
+                                                    new Date(row[keysObject[2]])
+                                                );
+                                            default:
+                                                return row[keysObject[2]];
+                                        }
+                                    })()}
                                 </td>
 
                                 <td>
-                                    {keysObject[3] === "points" ? (
-                                        <p
-                                            style={{
-                                                textAlign: "right",
-                                                marginRight: "3rem",
-                                            }}
-                                        >
-                                            {row[keysObject[3]]}
-                                        </p>
-                                    ) : (
-                                        row[keysObject[3]]
-                                    )}
+                                    {(() => {
+                                        switch (keysObject[3]) {
+                                            case "points":
+                                                return (
+                                                    <p
+                                                        style={{
+                                                            textAlign: "right",
+                                                            marginRight: "3rem",
+                                                        }}
+                                                    >
+                                                        {row[
+                                                            keysObject[3]
+                                                        ].toLocaleString()}
+                                                    </p>
+                                                );
+                                            case "createdIn":
+                                            case "expired":
+                                                return formatDate(
+                                                    new Date(row[keysObject[3]])
+                                                );
+                                            default:
+                                                return row[keysObject[3]];
+                                        }
+                                    })()}
                                 </td>
                                 <td>
-                                    {keysObject[4] === "status" ? (
-                                        <CheckStatus
-                                            status={row[keysObject[4]]}
-                                        />
-                                    ) : (
-                                        row[keysObject[4]]
-                                    )}
+                                    {(() => {
+                                        switch (keysObject[4]) {
+                                            case "status":
+                                                return (
+                                                    <CheckStatus
+                                                        status={
+                                                            row[keysObject[4]]
+                                                        }
+                                                    />
+                                                );
+                                            case "endDate":
+                                            case "expired":
+                                                return formatDate(
+                                                    new Date(row[keysObject[4]])
+                                                );
+                                            default:
+                                                return row[keysObject[4]];
+                                        }
+                                    })()}
                                 </td>
                                 <td>
                                     {(() => {

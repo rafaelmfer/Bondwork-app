@@ -50,11 +50,7 @@ const SurveyMain = () => {
         "Completed",
         "Status",
     ];
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // method with the columns needed for the table
     function createData(
         id,
@@ -79,12 +75,12 @@ const SurveyMain = () => {
     function createRows(dataArray) {
         return dataArray.map((object) =>
             createData(
-                object._id,
+                object.surveyId,
                 object.name,
-                formatDate(new Date(object.startDate)),
-                formatDate(new Date(object.endDate)),
-                object.answered?.length || 0,
-                object.requested?.length || 0,
+                object.startDate,
+                object.endDate,
+                object.completed?.length || 0,
+                object.sent?.length || 0,
                 object.status
             )
         );
@@ -146,12 +142,14 @@ const SurveyMain = () => {
             <div className="flex flex-col gap-4 mx-[-16px] mt-2">
                 <TableSeven
                     title={"Management"}
-                    pathTo={"/surveys/management"}
+                    pathViewAllTo={"/surveys/management"}
                     pathAddTo={"/surveys/management/addSurvey"}
+                    pathRowTo={"/surveys/management"}
                     rows={rows}
                     columns={columnsTable}
                     rowsNumber="5"
                     showLastColumn={false}
+                    showPagination={false}
                 />
             </div>
         </main>
