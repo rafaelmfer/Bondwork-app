@@ -31,19 +31,19 @@ router.get("/", getAllSurvey);
 //
 router.get("/survies", getFromBackEnd);
 
-// localhost:5000/survey/xxxxx-xxxx-xxxxx
+// localhost:5000/surveys/xxxxx-xxxx-xxxxx
 router.get("/:id", getSingleSurvey);
 
 // Get single note from user_id
-// localhost:5000/survey/surveyID/33
-router.get("/surveyID/:surveyID", getSingleSurveyID);
+// localhost:5000/surveys/surveyID/33
+router.get("/surveyId/:surveyId", getSingleSurveyID);
 
-// localhost:5000/survey/updateSurvey/66624bf1b42f3fc1effcb5f4
+// localhost:5000/surveys/updateSurvey/66624bf1b42f3fc1effcb5f4
 router.put("/updateSurvey/:id", updateSurvey);
 
 // add new Survey
 router.post("/addsurvey", addSurvey);
-// localhost:5000/survey/addsurvey
+// localhost:5000/surveys/addsurvey
 // {
 //     "surveyID": 33,
 //     "status": "surveyStatus",
