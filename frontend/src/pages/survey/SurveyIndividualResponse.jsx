@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+
 import { Box, Card, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
@@ -14,13 +15,41 @@ import CustomButton from "../../components/buttons/CustomButton";
 
 const SurveyIndividualResponse = () => {
     const navigate = useNavigate();
+    const { id, personId } = useParams();
+    const URL = `${process.env.REACT_APP_API_URL}/api/user/${personId}`;
 
-    let profilePicture = "";
-    let userName = "Izabela N.";
-    let jobTitle = "UI / UX Designer";
+    const [employee, setEmployee] = useState([]);
+
+    console.log(id, personId);
+
+    // Fetching Rewards
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(URL);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                const data = await res.json();
+                setEmployee(data);
+            } catch (error) {
+                console.log("Error fetching data", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    // let { state } = useLocation();
+
+    //setEmployee(state);
+    console.log("Employee", employee);
+
+    let profilePicture = employee.profilePicture;
+    let userName = `${employee.firstName} ${employee.lastName}`;
+    let jobTitle = employee.jobTitle;
     let nps = "Promoter";
-    let employeedID = 4972;
-    let department = "Product Design";
+    let employeedID = employee.employeeID;
+    let department = employee.departmentName;
     let period = ["May 29, 2024", "Jun 29, 2024"];
 
     // TODO: pick the answer of the survey:

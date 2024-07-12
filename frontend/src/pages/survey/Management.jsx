@@ -98,6 +98,7 @@ const Management = () => {
                     showTitle={false}
                     title={"Management"}
                     pathAddTo={"/surveys/management/addSurvey"}
+                    pathRowTo={"/surveys/management"}
                     showSend={true}
                     showFilter={true}
                     rows={rows}

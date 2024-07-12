@@ -7,7 +7,6 @@ const {
     getSingleSurveyID,
     updateSurvey,
     addSurvey,
-    getFromBackEnd,
     getSurveysByStatus,
 } = require("../controllers/surveyController");
 
@@ -26,10 +25,6 @@ router.use(cors()); // This will enable CORS for all routes
 
 // localhost:5000/survey
 router.get("/", getAllSurvey);
-
-// TODO Delete once we can get them from the database
-//
-router.get("/survies", getFromBackEnd);
 
 // localhost:5000/surveys/xxxxx-xxxx-xxxxx
 router.get("/:id", getSingleSurvey);
