@@ -74,7 +74,7 @@ const RewardsMain = () => {
                     object.rewardId,
                     object.title,
                     object.category,
-                    object.pointsCosts,
+                    object.pointsCost,
                     object.endDate,
                     approvedRedeems.length,
                     object.status
@@ -134,7 +134,7 @@ const RewardsMain = () => {
                         },
                         object.title,
                         object.category,
-                        object.pointsCosts,
+                        object.pointsCost,
 
                         redeemItem.requestDate,
                         redeemItem.status
@@ -147,7 +147,7 @@ const RewardsMain = () => {
     }, [rewards]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Rewards"} />
 
             <Breadcrumbs />
