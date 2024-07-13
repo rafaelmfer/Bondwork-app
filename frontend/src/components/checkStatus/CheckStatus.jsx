@@ -15,6 +15,7 @@ export function CheckStatus({ status }) {
             break;
         case "Approved":
         case "Finished":
+        case "Completed":
             bulletComponent = <GreenBullet />;
             statusClass = "text-success-300";
             break;
@@ -23,6 +24,7 @@ export function CheckStatus({ status }) {
             statusClass = "text-alert-300";
             break;
         case "Draft":
+        case "Sent":
             bulletComponent = <SilverBullet />;
             statusClass = "text-neutrals-gray300";
             break;

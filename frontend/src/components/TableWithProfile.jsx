@@ -30,11 +30,41 @@ import { ReactComponent as ArrowBack } from "../assets/icons/back-dark-gray-neut
 
 // Sorting functions
 function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
+    if (!orderBy) return 0; // Si orderBy no está definido, no ordenar.
+
+    if (orderBy.includes(".")) {
+        // To sort when the column has a nested keyword (from and to columns)
+        const keys = orderBy.split(".");
+        const valueA = keys.reduce(
+            (obj, key) => (obj ? obj[key] : undefined),
+            a
+        );
+        const valueB = keys.reduce(
+            (obj, key) => (obj ? obj[key] : undefined),
+            b
+        );
+
+        if (valueA === undefined && valueB === undefined) return 0;
+        if (valueA === undefined) return 1;
+        if (valueB === undefined) return -1;
+
+        if (valueB < valueA) {
+            return -1;
+        }
+        if (valueB > valueA) {
+            return 1;
+        }
+    } else {
+        if (a[orderBy] === undefined && b[orderBy] === undefined) return 0;
+        if (a[orderBy] === undefined) return 1;
+        if (b[orderBy] === undefined) return -1;
+
+        if (b[orderBy] < a[orderBy]) {
+            return -1;
+        }
+        if (b[orderBy] > a[orderBy]) {
+            return 1;
+        }
     }
     return 0;
 }
@@ -113,9 +143,21 @@ export default function TableWithProfile({
     // Array with option for the tabs
     const tabLabels1 = ["All", "Ongoing", "Upcoming", "Finished", "Draft"];
     const tabLabels2 = ["All", "Pending", "Approved", "Rejected"];
+    const tabLabels3 = ["All", "Sent", "Completed"];
 
     // Determine the tab labels based on the variant
-    const tabLabels = tabsVariant === "variant2" ? tabLabels2 : tabLabels1;
+    const tabLabels = (() => {
+        switch (tabsVariant) {
+            case "variant1":
+                return tabLabels1;
+            case "variant2":
+                return tabLabels2;
+            case "variant3":
+                return tabLabels3;
+            default:
+                return tabLabels1;
+        }
+    })();
 
     // Method to format the date in eg. Jul 01, 2024
     function formatDate(date) {
@@ -233,16 +275,27 @@ export default function TableWithProfile({
     const CustomSortIcon = () => <SortDeactive width="24" height="24" />;
     const CustomArrowIcon = () => <ArrowBack width="24" height="24" />;
 
-    // Switch arrow icons
-    const [isHovered, setIsHovered] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+    // State to switch arrow icons
+    const [columnState, setColumnState] = useState({});
+    const handleColumnClick = (columnName) => {
+        setColumnState((prevState) => ({
+            ...prevState,
+            [columnName]: {
+                ...prevState[columnName],
+                isClicked: !prevState[columnName]?.isClicked,
+            },
+        }));
+    };
 
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
-    const handleClickSort = () => setIsClicked(!isClicked);
-
-    const IconToDisplay =
-        isClicked || isHovered ? CustomSortActiveIcon : CustomSortIcon;
+    const handleColumnHover = (columnName, isHovered) => {
+        setColumnState((prevState) => ({
+            ...prevState,
+            [columnName]: {
+                ...prevState[columnName],
+                isHovered: isHovered,
+            },
+        }));
+    };
 
     return (
         <Box
@@ -433,6 +486,7 @@ export default function TableWithProfile({
                         </th>
 
                         <th
+                            key={1}
                             scope="col"
                             style={{
                                 backgroundColor: theme.palette.secondary[100],
@@ -442,23 +496,29 @@ export default function TableWithProfile({
                                 maxWidth: "100%",
                                 padding: "0px",
                             }}
-                            onClick={() =>
-                                handleRequestSort(keysObject[1].toString())
-                            }
+                            onClick={() => {
+                                handleRequestSort("from.displayName");
+                            }}
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onClick={() => handleColumnClick(1)}
+                                onMouseEnter={() => handleColumnHover(1, true)}
+                                onMouseLeave={() => handleColumnHover(1, false)}
                             >
                                 {columns[1]}
-                                <IconToDisplay />
+                                {columnState[1]?.isClicked ||
+                                columnState[1]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
 
                         {showSecondColumn && (
                             <th
+                                key={2}
                                 scope="col"
                                 style={{
                                     backgroundColor:
@@ -469,21 +529,36 @@ export default function TableWithProfile({
                                     maxWidth: "100%",
                                     padding: "0px",
                                 }}
-                                onClick={() =>
-                                    handleRequestSort(keysObject[2].toString())
-                                }
+                                onClick={() => {
+                                    const keyword = showSecondColumn
+                                        ? "to.displayName"
+                                        : "from.displayName";
+                                    handleRequestSort(keyword);
+                                }}
                             >
                                 <div
                                     className="flex items-center"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClickSort}
+                                    onClick={() => handleColumnClick(2)}
+                                    onMouseEnter={() =>
+                                        handleColumnHover(2, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(2, false)
+                                    }
                                 >
-                                    {columns[2]} <IconToDisplay />
+                                    {columns[numCol - 5]}
+
+                                    {columnState[2]?.isClicked ||
+                                    columnState[2]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
                                 </div>
                             </th>
                         )}
                         <th
+                            key={3}
                             scope="col"
                             style={{
                                 backgroundColor: theme.palette.secondary[100],
@@ -501,15 +576,23 @@ export default function TableWithProfile({
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onClick={() => handleColumnClick(3)}
+                                onMouseEnter={() => handleColumnHover(3, true)}
+                                onMouseLeave={() => handleColumnHover(3, false)}
                             >
-                                {columns[numCol - 4]} <IconToDisplay />
+                                {columns[numCol - 4]}
+
+                                {columnState[3]?.isClicked ||
+                                columnState[3]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
 
                         <th
+                            key={4}
                             scope="col"
                             style={{
                                 backgroundColor: theme.palette.secondary[100],
@@ -527,15 +610,22 @@ export default function TableWithProfile({
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onClick={() => handleColumnClick(4)}
+                                onMouseEnter={() => handleColumnHover(4, true)}
+                                onMouseLeave={() => handleColumnHover(4, false)}
                             >
-                                {columns[numCol - 3]} <IconToDisplay />
+                                {columns[numCol - 3]}
+                                {columnState[4]?.isClicked ||
+                                columnState[4]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
                         {showThirdLastColumn && (
                             <th
+                                key={5}
                                 scope="col"
                                 style={{
                                     backgroundColor:
@@ -554,17 +644,29 @@ export default function TableWithProfile({
                             >
                                 <div
                                     className="flex items-center"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClickSort}
+                                    onClick={() => handleColumnClick(5)}
+                                    onMouseEnter={() =>
+                                        handleColumnHover(5, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(5, false)
+                                    }
                                 >
-                                    {columns[numCol - 2]} <IconToDisplay />
+                                    {columns[numCol - 2]}
+
+                                    {columnState[5]?.isClicked ||
+                                    columnState[5]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
                                 </div>
                             </th>
                         )}
 
                         {showSecondLastColumn && (
                             <th
+                                key={6}
                                 scope="col"
                                 style={{
                                     backgroundColor:
@@ -583,17 +685,29 @@ export default function TableWithProfile({
                             >
                                 <div
                                     className="flex items-center"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClickSort}
+                                    onClick={() => handleColumnClick(6)}
+                                    onMouseEnter={() =>
+                                        handleColumnHover(6, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(6, false)
+                                    }
                                 >
-                                    {columns[numCol - 1]} <IconToDisplay />
+                                    {columns[numCol - 1]}
+
+                                    {columnState[6]?.isClicked ||
+                                    columnState[6]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
                                 </div>
                             </th>
                         )}
 
                         {showLastColumn && (
                             <th
+                                key={7}
                                 scope="col"
                                 style={{
                                     backgroundColor:
@@ -612,11 +726,22 @@ export default function TableWithProfile({
                             >
                                 <div
                                     className="flex items-center"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClickSort}
+                                    onClick={() => handleColumnClick(7)}
+                                    onMouseEnter={() =>
+                                        handleColumnHover(7, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(7, false)
+                                    }
                                 >
-                                    {columns[numCol]} <IconToDisplay />
+                                    {columns[numCol]}
+
+                                    {columnState[7]?.isClicked ||
+                                    columnState[7]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
                                 </div>
                             </th>
                         )}
@@ -808,15 +933,19 @@ export default function TableWithProfile({
                                             case "dateRequest":
                                             case "endDate":
                                             case "completed":
-                                                return formatDate(
-                                                    new Date(
-                                                        row[
-                                                            keysObject[
-                                                                numCol - 3
-                                                            ]
-                                                        ]
-                                                    )
-                                                );
+                                                return row[
+                                                    keysObject[numCol - 3]
+                                                ]
+                                                    ? formatDate(
+                                                          new Date(
+                                                              row[
+                                                                  keysObject[
+                                                                      numCol - 3
+                                                                  ]
+                                                              ]
+                                                          )
+                                                      )
+                                                    : "     -";
                                             default:
                                                 return row[
                                                     keysObject[numCol - 3]
@@ -839,6 +968,23 @@ export default function TableWithProfile({
                                                                     ]
                                                                 ]
                                                             }
+                                                        />
+                                                    );
+                                                case "nps":
+                                                    return (
+                                                        <ChipText
+                                                            chipText={
+                                                                row[
+                                                                    keysObject[
+                                                                        numCol -
+                                                                            2
+                                                                    ]
+                                                                ]
+                                                            }
+                                                            sx={{
+                                                                marginTop:
+                                                                    "8px",
+                                                            }}
                                                         />
                                                     );
                                                 case "dateRequest":
@@ -935,13 +1081,6 @@ export default function TableWithProfile({
                                                     ];
                                             }
                                         })()}
-                                        {/* {keysObject[numCol] === "status" ? (
-                                            <CheckStatus
-                                                status={row[keysObject[numCol]]}
-                                            />
-                                        ) : (
-                                            row[keysObject[numCol]]
-                                        )} */}
                                     </td>
                                 )}
 
