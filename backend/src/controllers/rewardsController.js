@@ -47,7 +47,7 @@ const getAllRewards = async (req, res) => {
                     rewardId: reward.rewardId,
                     category: reward.category,
                     details: reward.details,
-                    pointsCosts: reward.pointsCosts,
+                    pointsCost: reward.pointsCost,
                     status: reward.status,
                     startDate: reward.startDate,
                     endDate: reward.endDate,
@@ -115,7 +115,7 @@ const getSingleReward = async (req, res) => {
             rewardId: reward.rewardId,
             category: reward.category,
             details: reward.details,
-            pointsCosts: reward.pointsCosts,
+            pointsCost: reward.pointsCost,
             status: reward.status,
             startDate: reward.startDate,
             endDate: reward.endDate,
@@ -145,6 +145,8 @@ const addRewards = async (req, res) => {
         startDate,
         endDate,
         details,
+        publish,
+        status,
     } = req.body;
 
     try {
@@ -157,6 +159,8 @@ const addRewards = async (req, res) => {
             startDate,
             endDate,
             details,
+            publish,
+            status,
         });
         await newRewards.save();
         return res.status(200).send("Rewards Saved");

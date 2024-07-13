@@ -19,37 +19,98 @@ import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-In
 import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
 
-const ReviewStep = ({ rewardInputs }) => {
-    console.log(rewardInputs);
-
-    return (
-        <RewardDetailsCard
-            sx={{
-                mt: "24px",
-                mb: "24px",
-                boxShadow: "none !important",
-                padding: 0,
-                borderRadius: 0,
-            }}
-            rewardName={rewardInputs.name}
-            rewardType={rewardInputs.category}
-            pointsCost={rewardInputs.points}
-            period={[rewardInputs.startDate, rewardInputs.endDate]}
-            details={rewardInputs.description}
-            // image={rewardInputs.image}
-            imageSrc={
-                "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
-            }
-        />
-    );
-};
-
 const RewardsAdd = () => {
     const [activeTab, setActiveTab] = useState(0);
+    const [showPopup, setShowPopup] = useState(false);
     const [rewardInputs, setRewardInputs] = useState({});
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
+    };
+
+    const handleAddReward = async (
+        event,
+        rewardInputs,
+        setShowPopup,
+        isDraft
+    ) => {
+        event.preventDefault();
+        let status = "";
+
+        const url = "http://localhost:5001/api/rewards/add";
+        //public true or false
+        //status ongoing, upcoming, draft, finished,
+        //draft if clic on button
+        //ongoing se for hj pra frente
+        //
+        if (!isDraft) {
+            status = "Draft";
+        } else {
+            const todayD = new Date(); // Get the current date
+
+            // Create a new date object for the future date
+            const startD = new Date(rewardInputs.startDate);
+            const endD = new Date(rewardInputs.endDate);
+
+            // Calculate the difference in milliseconds between startD and todayD
+            const diffMillis = startD - todayD;
+            const diffMillisEnd = endD - todayD;
+            // Convert the difference from milliseconds to days
+            const diffDays = Math.ceil(diffMillis / (1000 * 60 * 60 * 24)); // Use Math.ceil to round up to the nearest day
+            const diffDaysEnd = Math.ceil(
+                diffMillisEnd / (1000 * 60 * 60 * 24)
+            ); // Use Math.ceil to round up to the nearest day
+
+            if (diffDays > 0) {
+                console.log("UPCOMING");
+                status = "Upcoming";
+            } else if (diffDaysEnd < 0) {
+                console.log("Finished");
+                status = "Finished";
+            } else {
+                console.log("Ongoing");
+                status = "Ongoing";
+            }
+        }
+
+        const rewardData = {
+            rewardId: 317,
+            title: rewardInputs.name || "",
+            image: "myImage",
+            category: rewardInputs.category,
+            pointsCost: Number(rewardInputs.points),
+            startDate: new Date(rewardInputs.startDate || ""),
+            endDate: new Date(rewardInputs.endDate || ""),
+            details: rewardInputs.reward,
+            publish: isDraft,
+            status: status,
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(rewardData),
+            });
+
+            if (!response.ok) {
+                throw new Error("Fetch FAILED " + response.statusText);
+            }
+
+            const data = await response.text();
+            console.log("Success:", data);
+            setShowPopup(true);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+        try {
+            //const result = await addReward(rewardInputs);
+            //console.log("Reward added successfully", result);
+        } catch (error) {
+            console.error("Error adding reward:", error);
+        }
     };
 
     return (
@@ -116,6 +177,14 @@ const RewardsAdd = () => {
                         buttonVariant="textIconLeft"
                         iconLeft={SaveIcon}
                         isOutlined
+                        onClick={(e) =>
+                            handleAddReward(
+                                e,
+                                rewardInputs,
+                                setShowPopup,
+                                false
+                            )
+                        }
                     >
                         Save Draft
                     </CustomButton>
@@ -126,6 +195,9 @@ const RewardsAdd = () => {
                             rewardInputs={rewardInputs}
                             setRewardInputs={setRewardInputs}
                             disabled={false}
+                            functionToCreateReward={handleAddReward}
+                            showPopup={showPopup}
+                            setShowPopup={setShowPopup}
                         />
                     )}
                     {activeTab === 1 && (
@@ -139,8 +211,14 @@ const RewardsAdd = () => {
 
 export default RewardsAdd;
 
-export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
-    const [showPopup, setShowPopup] = useState(false);
+export function CreateRewardStep({
+    disabled,
+    rewardInputs,
+    setRewardInputs,
+    functionToCreateReward,
+    showPopup,
+    setShowPopup,
+}) {
     const navigate = useNavigate();
 
     const goToHome = () => {
@@ -159,46 +237,6 @@ export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
             dropouts: 0,
         }));
     }, []);
-
-    const handleAddReward = async (event) => {
-        event.preventDefault();
-        try {
-            const result = await addReward(rewardInputs);
-            console.log("Reward added successfully", result);
-            setShowPopup(true);
-        } catch (error) {
-            console.error("Error adding reward:", error);
-        }
-    };
-
-    const addReward = async (newReward) => {
-        try {
-            const res = await fetch(
-                `${process.env.REACT_APP_API_URL}/api/rewards/addReward`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(newReward),
-                }
-            );
-
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-
-            const contentType = res.headers.get("Content-Type");
-            if (!contentType || !contentType.includes("application/json")) {
-                return;
-            }
-
-            const data = await res.json();
-            return data;
-        } catch (error) {
-            console.log("Failed to send message:", error);
-        }
-    };
 
     // TODO: Put all the categories of the rewards
     const departments = [
@@ -231,7 +269,7 @@ export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
                 btnTwoText={"Go to the Rewards"}
                 btnTwoOnClick={goToRewards}
             />
-            <form onSubmit={handleAddReward}>
+            <form onSubmit={functionToCreateReward}>
                 <surveyCreationContext.Provider
                     value={{ rewardInputs, setRewardInputs }}
                 >
@@ -339,7 +377,14 @@ export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
                             </CustomButton>
                             <CustomButton
                                 buttontype="primary"
-                                onClick={handleAddReward}
+                                onClick={(e) =>
+                                    functionToCreateReward(
+                                        e,
+                                        rewardInputs,
+                                        setShowPopup,
+                                        true
+                                    )
+                                }
                             >
                                 Next
                             </CustomButton>
@@ -350,3 +395,28 @@ export function CreateRewardStep({ disabled, rewardInputs, setRewardInputs }) {
         </>
     );
 }
+
+const ReviewStep = ({ rewardInputs }) => {
+    console.log(rewardInputs);
+
+    return (
+        <RewardDetailsCard
+            sx={{
+                mt: "24px",
+                mb: "24px",
+                boxShadow: "none !important",
+                padding: 0,
+                borderRadius: 0,
+            }}
+            rewardName={rewardInputs.name}
+            rewardType={rewardInputs.category}
+            pointsCost={rewardInputs.points}
+            period={[rewardInputs.startDate, rewardInputs.endDate]}
+            details={rewardInputs.description}
+            // image={rewardInputs.image}
+            imageSrc={
+                "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
+            }
+        />
+    );
+};
