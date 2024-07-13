@@ -16,5 +16,16 @@ router.get("/", getAllRewards);
 router.get("/:rewardId", getSingleReward);
 
 router.post("/add", addRewards);
+// http://localhost:5001/api/rewards/add
+// {
+//     "rewardId": 314,
+//     "title": "working",
+//     "image": "myImage",
+//     "category": "Category",
+//     "pointsCost": 999,
+//     "startDate": 2024,
+//     "endDate": 2025,
+//     "details": "Details Details Details "
+//   }
 
 module.exports = router;
