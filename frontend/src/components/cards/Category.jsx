@@ -9,7 +9,7 @@ export function Category(props) {
                     Category
                     <div className={style.cardPoints}>
                         <Supportive />
-                        {props.sender.category}
+                        {/* {props.sender.category} */}
                     </div>
                 </div>
             </div>

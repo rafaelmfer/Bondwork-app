@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 export function CardFrom(props) {
     const [svg, setSvg] = useState("");
-    console.log(props.sender.senderPicture);
+    // console.log(props.sender.senderPicture);
 
-    useEffect(() => {
-        const svgBase64 = `data:image/svg+xml;base64,${btoa(props.sender.senderPicture)}`;
-        setSvg(svgBase64);
-    }, []);
+    // useEffect(() => {
+    //     const svgBase64 = `data:image/svg+xml;base64,${btoa(props.sender.senderPicture)}`;
+    //     setSvg(svgBase64);
+    // }, []);
 
     return (
         <>
@@ -21,19 +21,20 @@ export function CardFrom(props) {
                         <img src={svg} width={48} />
                         <div className={style.cardUserInfo}>
                             <p className={style.cardUserName}>
-                                {props.sender.senderName}
+                                {/* {props.sender.senderName} */}
                             </p>
                             <p className={style.cardUserTitle}>
-                                {props.sender.senderJobTitle}
+                                {/* {props.sender.senderJobTitle} */}
                             </p>
                         </div>
                     </div>
                     <div className={style.cardDepartment}>
-                        <p>Work ID</p> <span>{props.sender.sender}</span>
+                        <p>Work ID</p>
+                        {/* <span>{props.sender.sender}</span> */}
                         <p>Department</p>{" "}
-                        <span>{props.sender.senderDepartment}</span>
+                        {/* <span>{props.sender.senderDepartment}</span> */}
                         <p>Job Level</p>{" "}
-                        <span>{props.sender.senderJobLevel}</span>
+                        {/* <span>{props.sender.senderJobLevel}</span> */}
                     </div>
                 </div>
             </div>

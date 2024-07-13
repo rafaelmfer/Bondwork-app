@@ -21,6 +21,7 @@ const SurveyIndividualResponse = () => {
     // get array from local Storage and searh for one employee inside
     const storedData = localStorage.getItem("audienceDetails");
     const employeesList = JSON.parse(storedData);
+    console.log("Teste" + storedData);
 
     let employee = null;
     if (employeesList) {
@@ -44,7 +45,7 @@ const SurveyIndividualResponse = () => {
     let jobTitle = employee.jobTitle;
     let nps = employee.survey.NPS || "Neutral";
     let employeedID = employee.employeeID;
-    let department = employee.departmentName;
+    let department = employee.departmentName || " ";
 
     let period = [
         formatDate(new Date(employee.survey.startDate)),
@@ -56,13 +57,19 @@ const SurveyIndividualResponse = () => {
     // value = answer
     // chip = last answer
     const data = {
-        salary: { value: employee.survey.answers[0], previousAnswer: 3 },
+        salary: { value: employee.survey.answers[0] || "-", previousAnswer: 3 },
         companyCulture: {
-            value: employee.survey.answers[1],
+            value: employee.survey.answers[1] || "-",
             previousAnswer: -3,
         },
-        jobRole: { value: employee.survey.answers[2], previousAnswer: 3 },
-        colleagues: { value: employee.survey.answers[3], previousAnswer: 3 },
+        jobRole: {
+            value: employee.survey.answers[2] || "-",
+            previousAnswer: 3,
+        },
+        colleagues: {
+            value: employee.survey.answers[3] || "-",
+            previousAnswer: 3,
+        },
     };
 
     return (
@@ -212,19 +219,6 @@ const SurveyIndividualResponse = () => {
                             Status
                         </Typography>
                         <Box display="flex" alignItems="center" mb={1}>
-                            {/* <CircleIcon
-                                sx={{
-                                    color: theme.palette.neutrals.gray300,
-                                    fontSize: 8,
-                                    marginRight: "4px",
-                                }}
-                            />
-                            <Typography
-                                variant="small2"
-                                color={theme.palette.neutrals.gray300}
-                            >
-                                Completed
-                            </Typography> */}
                             <CheckStatus status={status} />
                         </Box>
                     </Box>
