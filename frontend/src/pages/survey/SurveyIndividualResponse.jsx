@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Box, Card, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -12,54 +12,57 @@ import theme from "../../theme/theme";
 
 import ProfilePlaceholder from "../../assets/icons/profile-large.svg";
 import CustomButton from "../../components/buttons/CustomButton";
+import { CheckStatus } from "../../components/checkStatus/CheckStatus";
 
 const SurveyIndividualResponse = () => {
     const navigate = useNavigate();
-    const { id, personId } = useParams();
-    const URL = `${process.env.REACT_APP_API_URL}/api/user/${personId}`;
+    const { personId } = useParams();
 
-    const [employee, setEmployee] = useState([]);
+    // get array from local Storage and searh for one employee inside
+    const storedData = localStorage.getItem("audienceDetails");
+    const employeesList = JSON.parse(storedData);
 
-    console.log(id, personId);
+    let employee = null;
+    if (employeesList) {
+        employee = employeesList.find(
+            (obj) => obj.employeeID === parseInt(personId)
+        );
+    }
 
-    // Fetching Rewards
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch(URL);
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                const data = await res.json();
-                setEmployee(data);
-            } catch (error) {
-                console.log("Error fetching data", error);
-            }
-        };
-        fetchData();
-    }, []);
+    // Function to change the first letter to uppercase
+    const capitalizeFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+    function formatDate(date) {
+        const options = { month: "short", day: "2-digit", year: "numeric" };
+        return date.toLocaleDateString("en-US", options);
+    }
 
-    // let { state } = useLocation();
-
-    //setEmployee(state);
-    console.log("Employee", employee);
-
-    let profilePicture = employee.profilePicture;
-    let userName = `${employee.firstName} ${employee.lastName}`;
+    // Employee Data
+    let profilePicture = employee.profilePicture || ProfilePlaceholder;
+    let userName = employee.userName;
     let jobTitle = employee.jobTitle;
-    let nps = "Promoter";
+    let nps = employee.survey.NPS || "Neutral";
     let employeedID = employee.employeeID;
     let department = employee.departmentName;
-    let period = ["May 29, 2024", "Jun 29, 2024"];
+
+    let period = [
+        formatDate(new Date(employee.survey.startDate)),
+        formatDate(new Date(employee.survey.endDate)),
+    ];
+    let status = capitalizeFirstLetter(employee.survey.status);
 
     // TODO: pick the answer of the survey:
     // value = answer
     // chip = last answer
     const data = {
-        salary: { value: 5, previousAnswer: 6 },
-        companyCulture: { value: 3, previousAnswer: -6 },
-        jobRole: { value: 4, previousAnswer: 6 },
-        colleagues: { value: 5, previousAnswer: 6 },
+        salary: { value: employee.survey.answers[0], previousAnswer: 3 },
+        companyCulture: {
+            value: employee.survey.answers[1],
+            previousAnswer: -3,
+        },
+        jobRole: { value: employee.survey.answers[2], previousAnswer: 3 },
+        colleagues: { value: employee.survey.answers[3], previousAnswer: 3 },
     };
 
     return (
@@ -85,15 +88,7 @@ const SurveyIndividualResponse = () => {
                         gap: "32px",
                     }}
                 >
-                    <img
-                        src={
-                            profilePicture === ""
-                                ? ProfilePlaceholder
-                                : profilePicture
-                        }
-                        width={85}
-                        alt="profile photo"
-                    />
+                    <img src={profilePicture} width={85} alt="profile" />
                     <Box
                         display="flex"
                         flexDirection="column"
@@ -217,7 +212,7 @@ const SurveyIndividualResponse = () => {
                             Status
                         </Typography>
                         <Box display="flex" alignItems="center" mb={1}>
-                            <CircleIcon
+                            {/* <CircleIcon
                                 sx={{
                                     color: theme.palette.neutrals.gray300,
                                     fontSize: 8,
@@ -229,7 +224,8 @@ const SurveyIndividualResponse = () => {
                                 color={theme.palette.neutrals.gray300}
                             >
                                 Completed
-                            </Typography>
+                            </Typography> */}
+                            <CheckStatus status={status} />
                         </Box>
                     </Box>
 

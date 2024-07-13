@@ -25,6 +25,8 @@ const ChipText = ({ chipText, sx }) => {
         } else if (chipText === "Workstyle" || chipText === "Performance") {
             chipBackground = theme.palette.info[100];
             chipTextColor = theme.palette.info[300];
+        } else {
+            chipBackground = "transparent";
         }
 
         return { chipBackground, chipTextColor };
