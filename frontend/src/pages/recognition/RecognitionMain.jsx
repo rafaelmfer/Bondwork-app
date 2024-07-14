@@ -122,6 +122,7 @@ const RecognitionMain = () => {
                     statusColor3={theme.palette.error.main}
                     number3={30}
                     chipText3={16}
+                    disabled={true}
                 />
                 <CardStacked />
             </div>
