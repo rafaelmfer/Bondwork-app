@@ -49,16 +49,49 @@ const allRecognition = async (req, res) => {
 
 const getRecognition = async (req, res) => {
     try {
-        console.log(req.params);
         const { id } = req.params;
-
-        const showRecognition = await Recognition.findOne({
-            recognition_id: parseInt(id, 10),
+        const singleRecognition = await Recognition.findOne({
+            recognitionId: id,
         });
-        console.log("end funcionando");
-        return res.status(200).json(showRecognition);
+
+        if (!singleRecognition) {
+            return res.status(404).json({ message: "Recognition not found" });
+        }
+
+        const sender = await User.findOne({
+            employeeID: singleRecognition.sender,
+        });
+        const receiver = await User.findOne({
+            employeeID: singleRecognition.receiver,
+        });
+
+        const recognitionDetail = {
+            ...singleRecognition._doc,
+            sender: {
+                profileImage: sender ? sender.profilePicture : null,
+                name: sender
+                    ? `${sender.firstName} ${sender.lastName.charAt(0).toUpperCase()}.`
+                    : null,
+                jobTitle: sender ? sender.jobTitle : null,
+                id: sender ? sender.employeeID : null,
+                departmentName: sender ? sender.department.name : null,
+                jobLevel: sender ? sender.jobLevel : null,
+            },
+            receiver: {
+                profileImage: receiver ? receiver.profilePicture : null,
+                name: receiver
+                    ? `${receiver.firstName} ${receiver.lastName.charAt(0).toUpperCase()}.`
+                    : null,
+                jobTitle: receiver ? receiver.jobTitle : null,
+                id: receiver ? receiver.employeeID : null,
+                departmentName: receiver ? receiver.department.name : null,
+                jobLevel: receiver ? receiver.jobLevel : null,
+            },
+        };
+
+        return res.status(200).json(recognitionDetail);
     } catch (error) {
-        return res.status(500).json({ messsage: error.message });
+        return res.status(500).json({ message: error.message });
     }
 };
 

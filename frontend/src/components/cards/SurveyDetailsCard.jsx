@@ -91,7 +91,7 @@ const SurveyDetailsCard = ({
                 </Typography>
             </Header>
             <Row sx={{ marginBottom: "8px" }}>
-                <Column>
+                <Column sx={{ paddingRight: "2rem" }}>
                     <TextContainer>
                         <TextBlue>Deparment</TextBlue>
                         <Typography color={theme.palette.neutrals.black}>
@@ -103,7 +103,10 @@ const SurveyDetailsCard = ({
                     <TextContainer>
                         <TextBlue>Job Level</TextBlue>
                         <Typography color={theme.palette.neutrals.black}>
-                            {jobLevel.join(", ")}
+                            {/* To avoid conflicts when there isn't a ',' */}
+                            {Array.isArray(jobLevel)
+                                ? jobLevel.join(", ")
+                                : " "}
                         </Typography>
                     </TextContainer>
                 </Column>

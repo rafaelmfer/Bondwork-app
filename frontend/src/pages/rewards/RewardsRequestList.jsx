@@ -72,7 +72,7 @@ const RewardsRequestList = () => {
                         },
                         object.title,
                         object.category,
-                        object.pointsCosts,
+                        object.pointsCost,
                         redeemItem.requestDate,
                         redeemItem.status
                     )

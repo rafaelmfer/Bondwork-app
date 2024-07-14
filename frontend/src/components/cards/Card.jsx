@@ -16,7 +16,7 @@ export function Card(props) {
         <>
             <div className={style.cardColumn}>
                 <div className={style.cardDivStatus}>
-                    <CheckStatus status={state.obj.status} />
+                    <CheckStatus status={"Pending"} />
                     <select name="request" className={style.cardRequest}>
                         <option value="Request1">
                             Requested Date: Jun 24, 2024
@@ -40,7 +40,7 @@ export function Card(props) {
                             <div className={style.cardFrom}>
                                 Details
                                 <div className={style.cardDetails}>
-                                    <p>{state.obj.details}</p>
+                                    <p>{""} </p>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ export function Card(props) {
                                         Reject
                                     </button>
                                     <button className={style.cardBtnApprove}>
-                                        Aprove
+                                        Approve
                                     </button>
                                 </div>
                             </div>
