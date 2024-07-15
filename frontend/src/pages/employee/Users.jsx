@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import CustomTooltip from "../../components/CustomTooltip";
 import CustomButton from "../../components/buttons/CustomButton";
 import TableWithProfile from "../../components/TableWithProfile";
+import IconNormal from "../../assets/icons/sort-black-neutral.svg";
 const URL = `${process.env.REACT_APP_API_URL}/api/user/`;
 
 const Users = () => {

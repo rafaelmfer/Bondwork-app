@@ -70,28 +70,12 @@ const CustomButtonStyled = styled(Button)(
                     boxShadow: "none",
                 },
                 "&.Mui-disabled": {
-                    backgroundColor: theme.palette.neutrals.gray200,
-                    color: theme.palette.neutrals.white,
+                    backgroundColor: theme.palette.neutrals.white,
+                    color: theme.palette.neutrals.gray200,
                     border: `2px solid ${theme.palette.neutrals.gray200}`,
-                },
-            }),
-        ...(buttontype === "secondary" &&
-            !isOutlined && {
-                backgroundColor: theme.palette.neutrals.white,
-                color: theme.palette.secondary[600],
-                "& .MuiButton-startIcon, & .MuiButton-endIcon": {
-                    filter: "brightness(0) saturate(100%) invert(32%) sepia(64%) saturate(2804%) hue-rotate(174deg) brightness(97%) contrast(89%)",
-                },
-                "&:hover": {
                     "& .MuiButton-startIcon, & .MuiButton-endIcon": {
-                        filter: "brightness(0) saturate(100%) invert(32%) sepia(64%) saturate(2804%) hue-rotate(174deg) brightness(97%) contrast(89%)",
+                        filter: "brightness(0) saturate(100%) invert(74%) sepia(1%) saturate(1088%) hue-rotate(180deg) brightness(92%) contrast(85%)",
                     },
-                    backgroundColor: theme.palette.secondary[100],
-                    boxShadow: "none",
-                },
-                "&.Mui-disabled": {
-                    backgroundColor: theme.palette.neutrals.gray200,
-                    color: theme.palette.neutrals.white,
                 },
             }),
     })

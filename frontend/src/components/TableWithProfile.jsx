@@ -383,6 +383,7 @@ export default function TableWithProfile({
                                     buttonVariant="textIconLeft"
                                     isOutlined
                                     iconLeft={FilterIcon}
+                                    isDisabled={selected.length <= 0}
                                     onClick={() => {
                                         alert(
                                             "Sorry for the inconvinience we're still working on this"
@@ -399,6 +400,7 @@ export default function TableWithProfile({
                                     buttonVariant="textIconLeft"
                                     isOutlined
                                     iconLeft={SendIcon}
+                                    isDisabled={selected.length <= 0}
                                     onClick={() => {
                                         alert(
                                             "Again, sorry we're still working on this"
