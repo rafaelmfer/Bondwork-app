@@ -70,6 +70,7 @@ const CustomButtonStyled = styled(Button)(
                     backgroundColor: theme.palette.secondary[100],
                     border: `2px solid ${theme.palette.secondary[600]}`,
                     boxShadow: "none",
+                    color: theme.palette.secondary[600],
                 },
                 "&.Mui-disabled": {
                     backgroundColor: theme.palette.neutrals.gray200,
@@ -80,6 +81,7 @@ const CustomButtonStyled = styled(Button)(
         ...(buttontype === "secondary" &&
             !isOutlined && {
                 backgroundColor: theme.palette.neutrals.white,
+                color: theme.palette.secondary[600],
                 "& .MuiButton-startIcon, & .MuiButton-endIcon": {
                     filter: "brightness(0) saturate(100%) invert(32%) sepia(64%) saturate(2804%) hue-rotate(174deg) brightness(97%) contrast(89%)",
                 },
