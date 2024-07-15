@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
 const CustomButtonStyled = styled(Button)(
-    ({ theme, buttontype, isOutlined, buttonVariant }) => ({
+    ({ theme, buttontype, isOutlined, buttonVariant, darkBorder }) => ({
         minWidth: "48px",
         height: "48px",
         display: "flex",
@@ -42,7 +42,7 @@ const CustomButtonStyled = styled(Button)(
             },
             "&:hover": {
                 "& .MuiButton-startIcon, & .MuiButton-endIcon": {
-                    filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(3903%) hue-rotate(356deg) brightness(91%) contrast(109%)",
+                    filter: "brightness(0) saturate(100%)  invert(12%) sepia(84%) saturate(3903%) hue-rotate(356deg) brightness(91%) contrast(109%)",
                 },
                 backgroundColor: theme.palette.primary[300],
                 color: theme.palette.primary[900],
@@ -56,10 +56,12 @@ const CustomButtonStyled = styled(Button)(
         ...(buttontype === "secondary" &&
             isOutlined && {
                 backgroundColor: theme.palette.neutrals.white,
-                color: theme.palette.secondary[600],
-                border: `2px solid ${theme.palette.secondary[600]}`,
+                color: `${darkBorder ? "black" : theme.palette.secondary[600]}`,
+                border: `2px solid ${darkBorder ? "black" : theme.palette.secondary[600]}`,
                 "& .MuiButton-startIcon, & .MuiButton-endIcon": {
-                    filter: "brightness(0) saturate(100%) invert(32%) sepia(64%) saturate(2804%) hue-rotate(174deg) brightness(97%) contrast(89%)",
+                    filter: darkBorder
+                        ? "brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)"
+                        : "brightness(0) saturate(100%) invert(32%) sepia(64%) saturate(2804%) hue-rotate(174deg) brightness(97%) contrast(89%)",
                 },
                 "&:hover": {
                     "& .MuiButton-startIcon, & .MuiButton-endIcon": {
@@ -78,7 +80,6 @@ const CustomButtonStyled = styled(Button)(
         ...(buttontype === "secondary" &&
             !isOutlined && {
                 backgroundColor: theme.palette.neutrals.white,
-                color: theme.palette.secondary[600],
                 "& .MuiButton-startIcon, & .MuiButton-endIcon": {
                     filter: "brightness(0) saturate(100%) invert(32%) sepia(64%) saturate(2804%) hue-rotate(174deg) brightness(97%) contrast(89%)",
                 },
@@ -107,6 +108,7 @@ const CustomButton = ({
     onClick,
     children,
     sx,
+    darkBorder,
 }) => {
     return (
         <CustomButtonStyled
@@ -115,6 +117,7 @@ const CustomButton = ({
             isOutlined={isOutlined}
             disabled={isDisabled}
             buttonVariant={buttonVariant}
+            darkBorder={darkBorder}
             startIcon={
                 buttonVariant === "textIconLeft" ? (
                     <img

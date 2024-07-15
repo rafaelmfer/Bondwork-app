@@ -79,6 +79,7 @@ export default function TableSeven({
     showCheckboxColumn = true,
     showBtnColumn = true,
     showPagination = true,
+    darkBorder,
 }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState();
@@ -267,6 +268,7 @@ export default function TableSeven({
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    paddingBottom: "10px",
                 }}
             >
                 <Box className="flex flex-col gap-[16px]">
@@ -311,6 +313,7 @@ export default function TableSeven({
                                     buttontype="secondary"
                                     buttonVariant="textIconLeft"
                                     isOutlined
+                                    darkBorder={darkBorder}
                                     iconLeft={FilterIcon}
                                     onClick={() => {
                                         alert(
@@ -327,6 +330,7 @@ export default function TableSeven({
                                     buttontype="secondary"
                                     buttonVariant="textIconLeft"
                                     isOutlined
+                                    darkBorder={darkBorder}
                                     iconLeft={SendIcon}
                                     onClick={() => {
                                         alert(

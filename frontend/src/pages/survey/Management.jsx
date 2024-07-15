@@ -104,6 +104,7 @@ const Management = () => {
                     rowsNumber="15"
                     showSecondLastColumn={false}
                     showLastColumn={false}
+                    darkBorder={true}
                 />
             </main>
         </div>

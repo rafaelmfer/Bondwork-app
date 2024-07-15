@@ -18,9 +18,8 @@ const CustomFormControl = styled(FormControl)(({ theme }) => ({
         borderRadius: "8px",
         backgroundColor: theme.palette.primary[50],
         "& fieldset": {
-            borderColor: "none",
+            borderColor: theme.palette.neutrals.black,
             borderWidth: "1px",
-            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         },
         "&:hover:not(.Mui-disabled) fieldset": {
             borderColor: theme.palette.secondary[300],
