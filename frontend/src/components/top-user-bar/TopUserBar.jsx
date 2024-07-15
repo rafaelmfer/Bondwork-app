@@ -27,7 +27,26 @@ const TopUserBar = ({ titleScreen, arrowIcon, arrowBack }) => {
 
     return (
         <div className={styles.topBar}>
-            <div className="text-h2">{titleScreen}</div>
+            <div className="text-h2">
+                {arrowBack ? (
+                    <button
+                        className="flex items-center  gap-[10px]"
+                        onClick={goBack}
+                    >
+                        <img
+                            src={arrowBack}
+                            alt="Back"
+                            className={styles.logo}
+                        />{" "}
+                        {titleScreen} {arrowIcon && arrowIcon}{" "}
+                    </button>
+                ) : (
+                    <>
+                        {titleScreen} {arrowIcon && arrowIcon}{" "}
+                    </>
+                )}
+            </div>
+
             <div className={styles.right_side}>
                 {/* <img src={iconBell} alt="icon" className={styles.logo} /> */}
                 <NotificationBadge />
