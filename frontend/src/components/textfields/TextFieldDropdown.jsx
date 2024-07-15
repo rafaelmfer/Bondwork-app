@@ -13,12 +13,14 @@ import iconArrow from "../../assets/icons/dropdown-black-neutral-opened.svg";
 const CustomFormControl = styled(FormControl)(({ theme }) => ({
     width: "100%",
     "& .MuiInputBase-root": {
+        border: "none",
         height: "48px",
         borderRadius: "8px",
         backgroundColor: theme.palette.primary[50],
         "& fieldset": {
-            borderColor: theme.palette.neutrals.black,
+            borderColor: "none",
             borderWidth: "1px",
+            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         },
         "&:hover:not(.Mui-disabled) fieldset": {
             borderColor: theme.palette.secondary[300],
@@ -33,6 +35,10 @@ const CustomFormControl = styled(FormControl)(({ theme }) => ({
             backgroundColor: theme.palette.neutrals.gray50,
             borderColor: theme.palette.neutrals.gray200,
         },
+    },
+    "& .MuiInputBase-input": {
+        border: "none",
+        padding: "10px ",
     },
     "& .MuiOutlinedInput-notchedOutline": {
         borderColor: "transparent",
@@ -59,6 +65,7 @@ const CustomFormControl = styled(FormControl)(({ theme }) => ({
         display: "flex",
         alignItems: "center",
         height: "100%",
+
         "& .MuiSelect-selectMenu": {
             ...theme.typography.p,
             padding: "12px 16px",
