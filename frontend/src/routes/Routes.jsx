@@ -33,6 +33,7 @@ import iconSurveySelected from "../assets/icons/survey-orange-primary.svg";
 import iconEmployees from "../assets/icons/employees-black-neutral.svg";
 import iconEmployeesSelected from "../assets/icons/employees-orange-primary.svg";
 import iconArrowDown from "../assets/icons/dropdown-black-neutral-opened.svg";
+import SurveyAudienceList from "../pages/survey/SurveyAudienceList";
 
 const routes = [
     {
@@ -86,13 +87,13 @@ const routes = [
             {
                 path: "/rewards/management/:id",
                 element: <RewardsDetails />,
-                menuLabel: "Management",
+                menuLabel: "Reward Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "/rewards/requests/:id",
+                path: "/rewards/requests/:id/:personId",
                 element: <RewardsRequestDetails />,
-                menuLabel: "Management",
+                menuLabel: "Request Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
@@ -125,6 +126,12 @@ const routes = [
                 path: "/surveys/management/:id",
                 element: <SurveyDetails />,
                 menuLabel: "Survey Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+            {
+                path: "/surveys/management/list/:id",
+                element: <SurveyAudienceList />,
+                menuLabel: "Audience List",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {

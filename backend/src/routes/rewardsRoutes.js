@@ -5,6 +5,7 @@ const {
     getAllRewards,
     addRewards,
     getSingleReward,
+    getRewardRequestDetails,
 } = require("../controllers/rewardsController");
 
 const router = express.Router(); // Use express.Router() to create a router instance
@@ -16,5 +17,7 @@ router.get("/", getAllRewards);
 router.get("/:rewardId", getSingleReward);
 
 router.post("/add", addRewards);
+
+router.get("/:rewardId/request/:employeeId", getRewardRequestDetails);
 
 module.exports = router;

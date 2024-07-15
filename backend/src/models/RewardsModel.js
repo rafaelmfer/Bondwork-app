@@ -11,6 +11,9 @@ const redeemSchema = new mongoose.Schema(
         requestDate: {
             type: Date,
         },
+        date: {
+            type: Date,
+        },
     },
     { _id: false }
 );
@@ -30,7 +33,7 @@ const rewards = new mongoose.Schema({
     image: {
         type: String,
     },
-    pointsCosts: {
+    pointsCost: {
         type: Number,
     },
     startDate: {

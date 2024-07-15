@@ -18,7 +18,7 @@ const RecognitionMain = () => {
     useEffect(() => {
         function createRows(dataArray) {
             if (!Array.isArray(dataArray)) {
-                console.error("dataArray não é um array", dataArray);
+                console.error("dataArray is not an array", dataArray);
                 return [];
             }
 
@@ -122,6 +122,7 @@ const RecognitionMain = () => {
                     statusColor3={theme.palette.error.main}
                     number3={30}
                     chipText3={16}
+                    disabled={true}
                 />
                 <CardStacked />
             </div>

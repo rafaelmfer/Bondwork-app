@@ -31,6 +31,7 @@ const CardWithThreeStatus = ({
     statusColor3,
     number3,
     chipText3,
+    disabled,
 }) => {
     return (
         <Card
@@ -55,7 +56,11 @@ const CardWithThreeStatus = ({
                             "&:hover": {
                                 backgroundColor: "transparent",
                             },
+                            "&:disabled": {
+                                color: "black", // Text color for disabled state
+                            },
                         }}
+                        disabled={disabled}
                     >
                         {title}
                     </Button>

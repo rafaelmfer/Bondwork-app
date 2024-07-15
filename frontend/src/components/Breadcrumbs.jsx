@@ -4,6 +4,7 @@ import { useLocation, Link as RouterLink } from "react-router-dom";
 import routes from "../routes/Routes";
 import DashboardIcon from "../assets/icons/dashboard-dark-gray-neutral.svg";
 import iconArrow from "../assets/icons/breadcrumbs-dark-gray-neutral.svg";
+import theme from "../theme/theme";
 
 const Breadcrumbs = ({ dynamicTexts = [] }) => {
     const location = useLocation();
@@ -45,21 +46,31 @@ const Breadcrumbs = ({ dynamicTexts = [] }) => {
 
     return (
         <MUIBreadcrumbs
-            sx={{ mt: 1 }}
+            sx={{
+                mt: 1,
+                "& .MuiBreadcrumbs-separator": {
+                    marginLeft: "4px",
+                    marginRight: "4px",
+                },
+                "& .MuiBreadcrumbs-ol": {
+                    display: "flex",
+                    alignItems: "center",
+                },
+                "& .MuiBreadcrumbs-li": {
+                    display: "flex",
+                    alignItems: "center",
+                },
+            }}
             aria-label="breadcrumb"
-            separator={
-                <img
-                    src={iconArrow}
-                    alt="separator"
-                    style={{ margin: "0 2px" }}
-                />
-            }
+            separator={<img src={iconArrow} alt="separator" style={{}} />}
         >
             <Link
                 component={RouterLink}
                 to="/dashboard"
                 underline="hover"
-                color="inherit"
+                variant="small2"
+                fontWeight={500}
+                color={theme.palette.neutrals.gray300}
             >
                 <img src={DashboardIcon} alt="Dashboard" />
             </Link>
@@ -68,7 +79,12 @@ const Breadcrumbs = ({ dynamicTexts = [] }) => {
                 const displayLabel = getDisplayLabel(url, index);
 
                 return index === pathnames.length - 1 ? (
-                    <Typography color="textPrimary" key={url}>
+                    <Typography
+                        variant="small2"
+                        color={theme.palette.neutrals.gray300}
+                        fontWeight={500}
+                        key={url}
+                    >
                         {displayLabel}
                     </Typography>
                 ) : (
@@ -76,7 +92,9 @@ const Breadcrumbs = ({ dynamicTexts = [] }) => {
                         component={RouterLink}
                         to={url}
                         underline="hover"
-                        color="inherit"
+                        variant="small2"
+                        fontWeight={500}
+                        color={theme.palette.neutrals.gray300}
                         key={url}
                     >
                         {displayLabel}
