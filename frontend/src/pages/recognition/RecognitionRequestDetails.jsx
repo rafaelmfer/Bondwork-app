@@ -12,7 +12,6 @@ import SupportiveIcon from "../../assets/icons/supportive-dark-gray-neutral.svg"
 import PerfomanceIcon from "../../assets/icons/performance-dark-gray-neutral.svg";
 import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
-
 import { formatDate } from "../../common/commonFunctions";
 
 const RecognitionRequestDetails = () => {

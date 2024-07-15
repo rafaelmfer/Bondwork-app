@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TopUserBar.module.css";
 import NotificationBadge from "../NotificationBadge";
-import arrowBack from "../../../../frontend/src/assets/icons/arrow-back.svg";
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 const TopUserBar = ({ titleScreen, arrowIcon, arrowBack }) => {
