@@ -22,7 +22,7 @@ const getAllRewards = async (req, res) => {
 
                         // Format the full name with only the first letter capitalized followed by a dot
                         const fullName = user
-                            ? `${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()} ${user.lastName.charAt(0).toUpperCase()}.`
+                            ? `${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)} ${user.lastName.charAt(0).toUpperCase()}.`
                             : "";
 
                         // Return enriched redeem data
@@ -38,6 +38,7 @@ const getAllRewards = async (req, res) => {
                             jobLevel: user ? user.jobLevel : "",
                             status: redeemEntry.status,
                             requestDate: redeemEntry.requestDate,
+                            date: redeemEntry.date,
                         };
                     })
                 );
@@ -92,7 +93,7 @@ const getSingleReward = async (req, res) => {
 
                 // Format the full name with only the first letter capitalized followed by a dot
                 const fullName = user
-                    ? `${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()} ${user.lastName.charAt(0).toUpperCase()}.`
+                    ? `${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)} ${user.lastName.charAt(0).toUpperCase()}.`
                     : "";
 
                 // Return enriched redeem entry
@@ -106,6 +107,7 @@ const getSingleReward = async (req, res) => {
                     jobLevel: user ? user.jobLevel : "",
                     status: redeemEntry.status,
                     requestDate: redeemEntry.requestDate,
+                    date: redeemEntry.date,
                 };
             })
         );
@@ -132,8 +134,6 @@ const getSingleReward = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
-
-// ----Add Rewards---
 
 const addRewards = async (req, res) => {
     const {
@@ -169,8 +169,63 @@ const addRewards = async (req, res) => {
     }
 };
 
+const getRewardRequestDetails = async (req, res) => {
+    try {
+        const { rewardId, employeeId } = req.params;
+
+        // Find the single reward by rewardId
+        const reward = await Rewards.findOne({ rewardId });
+        if (!reward) {
+            return res.status(404).json({ message: "Reward not found" });
+        }
+
+        // Find the single user by employeeID
+        const user = await Users.findOne({ employeeID: Number(employeeId) });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Find if inside the array reward.redeem I have the employeeID
+        const redeem = reward.redeem.find(
+            (redeemEntry) => redeemEntry.id === Number(employeeId)
+        );
+
+        if (!redeem) {
+            return res.status(404).json({ message: "Redeem not found" });
+        }
+
+        // Format the full name with only the first letter capitalized followed by a dot
+        const fullName = user
+            ? `${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)} ${user.lastName.charAt(0).toUpperCase()}.`
+            : "";
+
+        const rewardRequestDetails = {
+            employeeId: user.employeeID,
+            rewardId: reward.rewardId,
+            fullName,
+            profilePicture: user ? user.profilePicture : "",
+            departmentName: user && user.department ? user.department.name : "",
+            jobTitle: user ? user.jobTitle : "",
+            jobLevel: user ? user.jobLevel : "",
+            rewardTitle: reward.title,
+            status: redeem.status,
+            requestDate: redeem.requestDate,
+            date: redeem.date,
+            category: reward.category,
+            pointsCost: reward.pointsCost,
+        };
+
+        // Send the reward Request Details as response
+        return res.status(200).json(rewardRequestDetails);
+    } catch (error) {
+        // Send error response if any exception occurs
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     addRewards,
     getAllRewards,
     getSingleReward,
+    getRewardRequestDetails,
 };

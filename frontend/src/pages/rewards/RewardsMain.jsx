@@ -8,6 +8,8 @@ import TableSeven from "../../components/TableSeven";
 import TableWithProfile from "../../components/TableWithProfile";
 import theme from "../../theme/theme";
 
+import { formatDate } from "../../common/commonFunctions";
+
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 
 const RewardsMain = () => {
@@ -43,11 +45,7 @@ const RewardsMain = () => {
         "Redeem",
         "Status",
     ];
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // method with the columns needed for the table
     function createData(id, title, category, points, endDate, redeem, status) {
         return {
@@ -102,7 +100,8 @@ const RewardsMain = () => {
         category,
         points,
         dateRequest,
-        status
+        status,
+        rewardId
     ) {
         return {
             id,
@@ -115,6 +114,7 @@ const RewardsMain = () => {
             points,
             dateRequest,
             status,
+            rewardId,
         };
     }
 
@@ -137,7 +137,8 @@ const RewardsMain = () => {
                         object.pointsCost,
 
                         redeemItem.requestDate,
-                        redeemItem.status
+                        redeemItem.status,
+                        object.rewardId
                     )
                 );
             });
@@ -230,6 +231,7 @@ const RewardsMain = () => {
                     showCheckboxColumn={false}
                     showBtnColumn={false}
                     showPagination={false}
+                    pathCompound={true}
                 />
             </div>
         </main>

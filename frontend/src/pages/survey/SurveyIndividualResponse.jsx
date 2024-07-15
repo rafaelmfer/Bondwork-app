@@ -14,6 +14,8 @@ import ProfilePlaceholder from "../../assets/icons/profile-large.svg";
 import CustomButton from "../../components/buttons/CustomButton";
 import { CheckStatus } from "../../components/checkStatus/CheckStatus";
 
+import { formatDate } from "../../common/commonFunctions";
+
 const SurveyIndividualResponse = () => {
     const navigate = useNavigate();
     const { personId } = useParams();
@@ -34,10 +36,6 @@ const SurveyIndividualResponse = () => {
     const capitalizeFirstLetter = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
 
     // Employee Data
     let profilePicture = employee.profilePicture || ProfilePlaceholder;

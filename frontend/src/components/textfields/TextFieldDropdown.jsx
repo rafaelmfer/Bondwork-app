@@ -156,7 +156,7 @@ const DropdownSelect = ({
 
     return (
         <Box sx={{ position: "relative", ...sx }}>
-            <CustomInputLabel>{label}</CustomInputLabel>
+            {label && <CustomInputLabel>{label}</CustomInputLabel>}
             <CustomFormControl variant="outlined" theme={theme}>
                 <Select
                     displayEmpty

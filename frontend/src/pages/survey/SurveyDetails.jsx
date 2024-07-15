@@ -1,10 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import SurveyDetailsCard from "../../components/cards/SurveyDetailsCard";
 import TableWithProfile from "../../components/TableWithProfile";
+
+import { formatDate } from "../../common/commonFunctions";
 
 const SurveyDetails = () => {
     const { id } = useParams();
@@ -12,10 +13,6 @@ const SurveyDetails = () => {
     const [rows, setRows] = useState([]);
     const [survey, setSurveys] = useState([]);
 
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
     // Fetch the details of the survey
     useEffect(() => {
         const fetchData = async () => {
@@ -64,7 +61,6 @@ const SurveyDetails = () => {
         setRows(createRows(survey.audienceDetails));
     }, [survey.audienceDetails]);
 
-    console.log("survey", survey);
     // Save de rows into localstorage to use them in audience list table
     localStorage.setItem("audienceRows", JSON.stringify(rows));
     localStorage.setItem(

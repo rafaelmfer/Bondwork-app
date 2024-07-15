@@ -18,7 +18,7 @@ const RecognitionMain = () => {
     useEffect(() => {
         function createRows(dataArray) {
             if (!Array.isArray(dataArray)) {
-                console.error("dataArray não é um array", dataArray);
+                console.error("dataArray is not an array", dataArray);
                 return [];
             }
 

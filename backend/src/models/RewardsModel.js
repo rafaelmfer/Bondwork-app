@@ -11,6 +11,9 @@ const redeemSchema = new mongoose.Schema(
         requestDate: {
             type: Date,
         },
+        date: {
+            type: Date,
+        },
     },
     { _id: false }
 );

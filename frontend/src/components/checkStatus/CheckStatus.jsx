@@ -43,3 +43,5 @@ export function CheckStatus({ status }) {
         </p>
     );
 }
+
+export default CheckStatus;
