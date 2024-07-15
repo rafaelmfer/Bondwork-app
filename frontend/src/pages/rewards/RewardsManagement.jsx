@@ -72,7 +72,7 @@ const RewardsManagement = () => {
                     object.rewardId,
                     object.title,
                     object.category,
-                    object.pointsCosts,
+                    object.pointsCost,
                     object.endDate,
                     approvedRedeems.length,
                     object.status

@@ -9,7 +9,7 @@ export function Points(props) {
                     Points
                     <div className={style.cardPoints}>
                         <PointSvg />
-                        {props.sender.points}
+                        {/* {props.sender.points} */}
                     </div>
                 </div>
             </div>

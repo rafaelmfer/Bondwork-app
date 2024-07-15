@@ -56,9 +56,9 @@ const Sidebar = ({ profileName }) => {
 
     return (
         <div className="w-menuWidth bg-neutrals-white border-r border-[#EEEEEE] flex flex-col fixed top-0 left-0 px-6 pb-4 h-screen">
-            <div className="h-[80px] box-content flex">
+            <Link to="/dashboard" className="h-[80px] box-content flex">
                 <img src={logo} alt="Logo" />
-            </div>
+            </Link>
 
             <div className="listContainer grow mt-4">
                 <ul className="flex flex-col items-start justify-between list-none p-0 m-0">
@@ -114,8 +114,8 @@ const Sidebar = ({ profileName }) => {
                                         <img
                                             className={`transform ${
                                                 activeIndexes.includes(index)
-                                                    ? ""
-                                                    : "-rotate-90"
+                                                    ? "transform transition-transform duration-300 ease-in-out"
+                                                    : "transform transition-transform duration-300 ease-in-out -rotate-90"
                                             } mr-2 ${
                                                 isActive
                                                     ? "fill-main"

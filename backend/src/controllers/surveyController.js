@@ -47,7 +47,7 @@ const getSingleSurveyID = async (req, res) => {
             return res.status(404).json({ message: "Survey not found" });
         }
 
-        const audienceDetails = await Promise.all(
+        const audienceDetailsCreated = await Promise.all(
             singleSurvey.sent.map(async (id) => {
                 const user = await User.findOne({ employeeID: id });
 
@@ -88,7 +88,12 @@ const getSingleSurveyID = async (req, res) => {
             })
         );
 
-        return res.status(200).json({ survey: singleSurvey, audienceDetails });
+        const newSurvey = {
+            ...singleSurvey._doc,
+            audienceDetails: audienceDetailsCreated,
+        };
+
+        return res.status(200).json(newSurvey);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
