@@ -16,7 +16,7 @@ const Home = () => {
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
-            <TopUserBar titleScreen={"Dashboard"} />
+            <TopUserBar titleScreen={"Dashboard"} backIcon={false} />
             <Breadcrumbs />
             <div className="flex row gap-4 mt-6">
                 <CardTurnoverRate

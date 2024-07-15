@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TopUserBar.module.css";
 import NotificationBadge from "../NotificationBadge";
-
+import arrowBack from "../../assets/icons/back-dark-gray-neutral.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const TopUserBar = ({ titleScreen, arrowIcon, arrowBack }) => {
+const TopUserBar = ({ titleScreen, backIcon = true }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [canGoBack, setCanGoBack] = useState(false);
@@ -28,7 +28,22 @@ const TopUserBar = ({ titleScreen, arrowIcon, arrowBack }) => {
     return (
         <div className={styles.topBar}>
             <div className="text-h2">
-                {arrowBack ? (
+                {backIcon ? (
+                    <button
+                        className="flex items-center  gap-[10px]"
+                        onClick={goBack}
+                    >
+                        <img
+                            src={arrowBack}
+                            alt="Back"
+                            className={styles.logo}
+                        />{" "}
+                        {titleScreen}
+                    </button>
+                ) : (
+                    <>{titleScreen}</>
+                )}
+                {/* {arrowBack ? (
                     <button
                         className="flex items-center  gap-[10px]"
                         onClick={goBack}
@@ -44,7 +59,7 @@ const TopUserBar = ({ titleScreen, arrowIcon, arrowBack }) => {
                     <>
                         {titleScreen} {arrowIcon && arrowIcon}{" "}
                     </>
-                )}
+                )} */}
             </div>
 
             <div className={styles.right_side}>
