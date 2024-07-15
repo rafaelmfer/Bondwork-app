@@ -807,6 +807,7 @@ export default function TableWithProfile({
                                                 );
                                             case "dateRequest":
                                             case "endDate":
+                                            case "completed":
                                                 return formatDate(
                                                     new Date(
                                                         row[
