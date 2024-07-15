@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 
 const RewardsDetails = () => {
+    const { id } = useParams();
+    const URL = `${process.env.REACT_APP_API_URL}/api/rewards/${id}`;
+
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Rewards"} />

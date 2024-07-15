@@ -26,47 +26,6 @@ import { ReactComponent as SortActive } from "../assets/icons/activated/activate
 import { ReactComponent as SortDeactive } from "../assets/icons/deactivated/deactivated-sort.svg";
 import { ReactComponent as ArrowBack } from "../assets/icons/activated/activated-back.svg";
 
-// function formatDate(date) {
-//     const options = { month: "short", day: "2-digit", year: "numeric" };
-//     return date.toLocaleDateString("en-US", options);
-// }
-// function createData(
-//     id,
-//     surveyName,
-//     createdIn,
-//     expired,
-//     status,
-//     viewed,
-//     completed,
-//     dropouts
-// ) {
-//     return {
-//         id,
-//         surveyName,
-//         createdIn,
-//         expired,
-//         status,
-//         viewed,
-//         completed,
-//         dropouts,
-//     };
-// }
-
-// function createRows(dataArray) {
-//     return dataArray.map((object, index) =>
-//         createData(
-//             index + 1,
-//             object.surveyName,
-//             formatDate(new Date(object.createdIn)),
-//             formatDate(new Date(object.expired)),
-//             object.status,
-//             object.viewed,
-//             object.completed,
-//             object.dropouts
-//         )
-//     );
-// }
-
 // Sorting functions
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {

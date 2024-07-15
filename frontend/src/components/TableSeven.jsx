@@ -27,6 +27,8 @@ import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primar
 import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
 import { ReactComponent as ArrowBack } from "../assets/icons/back-dark-gray-neutral.svg";
 
+import { formatDate } from "../common/commonFunctions";
+
 // Sorting functions
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -109,11 +111,6 @@ export default function TableSeven({
         tabLabels = tabLabels3;
     } else {
         tabLabels = tabLabels1;
-    }
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
     }
 
     // Method to filter and sort the rows

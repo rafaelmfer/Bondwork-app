@@ -40,7 +40,9 @@ const RewardsRequestList = () => {
         category,
         points,
         dateRequest,
-        status
+        status,
+        rewardId,
+        date
     ) {
         return {
             id,
@@ -53,6 +55,7 @@ const RewardsRequestList = () => {
             points,
             dateRequest,
             status,
+            rewardId,
         };
     }
 
@@ -74,7 +77,8 @@ const RewardsRequestList = () => {
                         object.category,
                         object.pointsCost,
                         redeemItem.requestDate,
-                        redeemItem.status
+                        redeemItem.status,
+                        object.rewardId
                     )
                 );
             });
@@ -108,6 +112,7 @@ const RewardsRequestList = () => {
                     showAdd={false}
                     showCheckboxColumn={false}
                     showBtnColumn={false}
+                    pathCompound={true}
                 />
             </div>
         </main>

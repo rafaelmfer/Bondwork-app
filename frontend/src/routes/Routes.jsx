@@ -87,13 +87,13 @@ const routes = [
             {
                 path: "/rewards/management/:id",
                 element: <RewardsDetails />,
-                menuLabel: "Management",
+                menuLabel: "Reward Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "/rewards/requests/:id",
+                path: "/rewards/requests/:id/:personId",
                 element: <RewardsRequestDetails />,
-                menuLabel: "Management",
+                menuLabel: "Request Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {

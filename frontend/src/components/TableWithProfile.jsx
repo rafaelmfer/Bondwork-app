@@ -28,6 +28,8 @@ import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primar
 import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
 import { ReactComponent as ArrowBack } from "../assets/icons/back-dark-gray-neutral.svg";
 
+import { formatDate } from "../common/commonFunctions";
+
 // Sorting functions
 function descendingComparator(a, b, orderBy) {
     if (!orderBy) return 0; // Si orderBy no está definido, no ordenar.
@@ -111,6 +113,7 @@ export default function TableWithProfile({
     showCheckboxColumn = true,
     showBtnColumn = true,
     showPagination = true,
+    pathCompound,
 }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState();
@@ -158,12 +161,6 @@ export default function TableWithProfile({
                 return tabLabels1;
         }
     })();
-
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
 
     // Method to filter and sort the rows
     const getFilteredAndSortedRows = () => {
@@ -296,6 +293,7 @@ export default function TableWithProfile({
             },
         }));
     };
+    console.log(rows);
 
     return (
         <Box
@@ -790,7 +788,11 @@ export default function TableWithProfile({
 
                                 <td>
                                     <Link
-                                        to={`${pathRowTo}/${row.id}`}
+                                        to={
+                                            pathCompound
+                                                ? `${pathRowTo}/${row.rewardId}/${row.id}`
+                                                : `${pathRowTo}/${row.id}`
+                                        }
                                         style={{
                                             display: "flex",
                                             alignItems: "center",

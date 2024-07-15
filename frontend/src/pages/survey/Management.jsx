@@ -4,6 +4,8 @@ import TableSeven from "../../components/TableSeven";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
+import { formatDate } from "../../common/commonFunctions";
+
 // const PORT = process.env.REACT_APP_PORT || 5000;
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
@@ -46,11 +48,7 @@ const Management = () => {
         "Completed",
         "Status",
     ];
-    // Method to format the date in eg. Jul 01, 2024
-    function formatDate(date) {
-        const options = { month: "short", day: "2-digit", year: "numeric" };
-        return date.toLocaleDateString("en-US", options);
-    }
+
     // method with the columns needed for the table
     function createData(
         id,

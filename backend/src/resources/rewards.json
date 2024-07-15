@@ -1,5 +1,65 @@
 [
     {
+        "rewardId": 314,
+        "category": "Well-being",
+        "details": "Experience the rejuvenating benefits of a personalized yoga session tailored to your needs. Whether you're a beginner or seasoned practitioner, this session offers an opportunity to unwind and recharge. You'll learn foundational poses, focus on breath awareness, and explore relaxation techniques to enhance your well-being. Our certified instructor will guide you through a calming practice aimed at improving flexibility, reducing stress, and promoting inner peace. Treat yourself to a session that nurtures both body and mind, leaving you feeling refreshed and revitalized.",
+        "pointsCost": 5000,
+        "status": "Ongoing",
+        "startDate": "2024-04-01",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 9864,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-01"
+            },
+            { "id": 6666, "status": "Pending", "requestDate": "2023-07-10" },
+            { "id": 9874, "status": "Pending", "requestDate": "2024-07-10" },
+            {
+                "id": 3000,
+                "status": "Rejected",
+                "requestDate": "2023-06-10",
+                "date": "2023-06-29"
+            }
+        ],
+        "title": "Yoga Lesson",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FYogaLesson.jpg?alt=media&token=11a488ed-bf91-4ba7-ac33-c83ed8fc4caa",
+        "publish": true
+    },
+    {
+        "rewardId": 312,
+        "category": "Well-being",
+        "details": "Enjoy a delightful dining experience with a complimentary lunch valued at $25. Indulge in a delicious meal of your choice from our menu, featuring a variety of gourmet options to satisfy your palate. Whether you're craving a savory dish or a healthy selection, our restaurant offers a warm and inviting atmosphere perfect for enjoying your meal. Treat yourself to a well-deserved break and savor the flavors, courtesy of our company. Bon appétit!",
+        "pointsCost": 9000,
+        "status": "Ongoing",
+        "startDate": "2024-01-01",
+        "endDate": "2024-07-30",
+        "redeem": [
+            {
+                "id": 9864,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2023-06-15"
+            },
+            {
+                "id": 6666,
+                "status": "Approved",
+                "requestDate": "2024-06-19",
+                "date": "2023-07-01"
+            },
+            {
+                "id": 2500,
+                "status": "Rejected",
+                "requestDate": "2024-07-10",
+                "date": "2023-07-14"
+            }
+        ],
+        "title": "Free Lunch ($25)",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FFreeLunch20.jpg?alt=media&token=2fe37bc2-3bfa-48ad-9c1c-22fe52ffe056",
+        "publish": true
+    },
+    {
         "rewardId": 301,
         "category": "Operational",
         "details": "Amazon Gift Card",
@@ -8,10 +68,20 @@
         "startDate": "2023-01-01",
         "endDate": "2024-12-31",
         "redeem": [
-            { "id": 7426, "status": "Approved", "requestDate": "2023-06-10" },
+            {
+                "id": 7426,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-01"
+            },
             { "id": 6666, "status": "Pending", "requestDate": "2023-07-10" },
             { "id": 3300, "status": "Pending", "requestDate": "2024-07-10" },
-            { "id": 3000, "status": "Rejected", "requestDate": "2023-06-10" }
+            {
+                "id": 3000,
+                "status": "Rejected",
+                "requestDate": "2023-06-10",
+                "date": "2023-06-29"
+            }
         ],
         "title": "Amazon Gift Card",
         "image": "",
@@ -20,28 +90,43 @@
     {
         "rewardId": 302,
         "category": "Workstyle",
-        "details": "Extra Day Off",
+        "details": "Congratulations! You've earned a well-deserved day of relaxation and rejuvenation. Enjoy a day off to unwind and recharge at your leisure. Whether you choose to explore a new hobby, spend quality time with loved ones, or simply indulge in some self-care, this day is yours to cherish. Take this opportunity to rest, recharge, and return refreshed to continue making a difference. Thank you for your hard work and dedication!",
         "pointsCost": 7000,
         "status": "Upcoming",
         "startDate": "2024-09-01",
         "endDate": "2024-12-31",
         "redeem": [],
         "title": "Extra Day Off",
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FTimeOff.jpg?alt=media&token=b186e419-0c5a-43c9-b345-3a3aa5cbda1c",
         "publish": true
     },
     {
         "rewardId": 303,
         "category": "Well-being",
-        "details": "Gym Membership for Anytime",
+        "details": "Unlock the benefits of fitness with a complimentary membership to Anytime Fitness. Enjoy 24/7 access to state-of-the-art facilities, including cardio and strength training equipment, group fitness classes, and personalized training sessions. Whether you're focusing on strength, endurance, or overall wellness, Anytime Fitness provides a supportive environment to achieve your fitness goals. Take advantage of flexible workout hours that fit your schedule, ensuring you can prioritize your health and well-being whenever it suits you. Elevate your fitness journey with convenience and accessibility at Anytime Fitness, courtesy of our company.",
         "pointsCost": 10000,
         "status": "Finished",
         "startDate": "2023-01-01",
         "endDate": "2023-12-31",
         "redeem": [
-            { "id": 4922, "status": "Approved", "requestDate": "2023-06-10" },
-            { "id": 9874, "status": "Approved", "requestDate": "2023-06-10" },
-            { "id": 2900, "status": "Rejected", "requestDate": "2023-05-10" }
+            {
+                "id": 4922,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-02"
+            },
+            {
+                "id": 9874,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-04"
+            },
+            {
+                "id": 2900,
+                "status": "Rejected",
+                "requestDate": "2023-05-10",
+                "date": "2023-06-01"
+            }
         ],
         "title": "Gym Membership",
         "image": "",
@@ -56,9 +141,24 @@
         "startDate": "2024-01-15",
         "endDate": "2024-07-15",
         "redeem": [
-            { "id": 3200, "status": "Approved", "requestDate": "2024-06-10" },
-            { "id": 3000, "status": "Approved", "requestDate": "2024-06-10" },
-            { "id": 2900, "status": "Rejected", "requestDate": "2024-06-10" }
+            {
+                "id": 3200,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2024-07-01"
+            },
+            {
+                "id": 3000,
+                "status": "Approved",
+                "requestDate": "2024-06-12",
+                "date": "2024-07-03"
+            },
+            {
+                "id": 2900,
+                "status": "Rejected",
+                "requestDate": "2024-06-11",
+                "date": "2024-07-02"
+            }
         ],
         "title": "Office Supplies Voucher",
         "image": "",
@@ -67,7 +167,7 @@
     {
         "rewardId": 305,
         "category": "Workstyle",
-        "details": "Flexible work hours for one month.",
+        "details": "Experience the freedom and flexibility of a month-long opportunity to manage your work schedule according to your needs. Enjoy the convenience of adjusting your work hours to accommodate personal commitments, optimize productivity, and achieve a healthy work-life balance. Whether you prefer early mornings, late evenings, or compressed workweeks, this benefit allows you to structure your time effectively. Embrace the flexibility to work when you're most productive and enjoy the benefits of a balanced approach to your professional and personal life.",
         "pointsCost": 7000,
         "status": "Upcoming",
         "startDate": "2024-08-01",
@@ -98,14 +198,24 @@
     {
         "rewardId": 307,
         "category": "Operational",
-        "details": "Extra vacation day.",
+        "details": "Congratulations! You've earned an additional day to relax, recharge, and enjoy time away from work. Use this extra vacation day to explore new adventures, reconnect with loved ones, or simply indulge in some well-deserved rest. Whether you choose to unwind at home or embark on a getaway, this day is yours to savor. Take this opportunity to refresh your mind, rejuvenate your spirit, and return to work feeling energized and inspired. Thank you for your dedication and hard work!",
         "pointsCost": 5000,
         "status": "Ongoing",
         "startDate": "2023-09-01",
         "endDate": "2024-09-01",
         "redeem": [
-            { "id": 9874, "status": "Approved", "requestDate": "2024-02-10" },
-            { "id": 2321, "status": "Approved", "requestDate": "2024-05-10" },
+            {
+                "id": 9874,
+                "status": "Approved",
+                "requestDate": "2024-02-10",
+                "date": "2024-02-20"
+            },
+            {
+                "id": 2321,
+                "status": "Approved",
+                "requestDate": "2024-05-10",
+                "date": "2024-05-22"
+            },
             { "id": 2103, "status": "Pending", "requestDate": "2024-06-10" },
             { "id": 3400, "status": "Pending", "requestDate": "2024-06-10" }
         ],
@@ -122,8 +232,18 @@
         "startDate": "2024-02-01",
         "endDate": "2024-08-01",
         "redeem": [
-            { "id": 2700, "status": "Approved", "requestDate": "2024-04-10" },
-            { "id": 3500, "status": "Approved", "requestDate": "2024-07-10" }
+            {
+                "id": 2700,
+                "status": "Approved",
+                "requestDate": "2024-04-10",
+                "date": "2024-05-15"
+            },
+            {
+                "id": 3500,
+                "status": "Approved",
+                "requestDate": "2024-07-10",
+                "date": "2024-08-15"
+            }
         ],
         "title": "Ergonomic Chair",
         "image": "",
@@ -151,9 +271,24 @@
         "startDate": "2023-03-01",
         "endDate": "2024-03-01",
         "redeem": [
-            { "id": 7232, "status": "Approved", "requestDate": "2023-06-10" },
-            { "id": 3100, "status": "Rejected", "requestDate": "2023-07-10" },
-            { "id": 2800, "status": "Rejected", "requestDate": "2023-07-10" }
+            {
+                "id": 7232,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-15"
+            },
+            {
+                "id": 3100,
+                "status": "Rejected",
+                "requestDate": "2023-07-10",
+                "date": "2023-08-01"
+            },
+            {
+                "id": 2800,
+                "status": "Rejected",
+                "requestDate": "2023-07-10",
+                "date": "2023-08-01"
+            }
         ],
         "title": "Laptop Upgrade",
         "image": "",
@@ -162,37 +297,36 @@
     {
         "rewardId": 311,
         "category": "Workstyle",
-        "details": "Home office setup package.",
+        "details": "Transform your workspace with a personalized home office setup designed to enhance your productivity and comfort. Receive everything you need to create an efficient and inspiring environment, including a comfortable ergonomic chair, a spacious desk, adjustable lighting, and essential organizational tools. Whether you're focused on improving your workflow, enhancing communication, or simply creating a more enjoyable work atmosphere, this setup is tailored to meet your professional needs. Enjoy the convenience of working from home with the support of a well-equipped workspace that promotes efficiency and creativity. Elevate your remote work experience and achieve optimal performance, courtesy of company.",
         "pointsCost": 20000,
         "status": "Ongoing",
         "startDate": "2024-05-01",
         "endDate": "2024-11-01",
         "redeem": [
-            { "id": 2300, "status": "Approved", "requestDate": "2024-06-10" },
-            { "id": 9864, "status": "Approved", "requestDate": "2024-07-10" },
-            { "id": 3200, "status": "Rejected", "requestDate": "2024-07-10" }
+            {
+                "id": 2300,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2023-07-20"
+            },
+            {
+                "id": 9864,
+                "status": "Approved",
+                "requestDate": "2024-07-10",
+                "date": "2023-08-20"
+            },
+            {
+                "id": 3200,
+                "status": "Rejected",
+                "requestDate": "2024-08-10",
+                "date": "2023-08-25"
+            }
         ],
         "title": "Home Office Setup",
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FWorkfromHomeEquipment.jpg?alt=media&token=9ac2d31f-8326-45c4-b1d0-47d34c2641f2",
         "publish": true
     },
-    {
-        "rewardId": 312,
-        "category": "Well-being",
-        "details": "Healthy meal delivery service.",
-        "pointsCost": 9000,
-        "status": "Ongoing",
-        "startDate": "2024-01-01",
-        "endDate": "2024-07-30",
-        "redeem": [
-            { "id": 9864, "status": "Approved", "requestDate": "2024-06-10" },
-            { "id": 6666, "status": "Approved", "requestDate": "2024-06-19" },
-            { "id": 2500, "status": "Rejected", "requestDate": "2024-07-10" }
-        ],
-        "title": "Healthy Meal Delivery",
-        "image": "",
-        "publish": true
-    },
+
     {
         "rewardId": 313,
         "category": "Operational",
@@ -202,8 +336,18 @@
         "startDate": "2023-04-01",
         "endDate": "2024-04-01",
         "redeem": [
-            { "id": 2321, "status": "Approved", "requestDate": "2023-06-10" },
-            { "id": 6666, "status": "Approved", "requestDate": "2023-06-19" }
+            {
+                "id": 2321,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-06-20"
+            },
+            {
+                "id": 6666,
+                "status": "Approved",
+                "requestDate": "2023-06-19",
+                "date": "2023-06-29"
+            }
         ],
         "title": "Training Course",
         "image": "",
