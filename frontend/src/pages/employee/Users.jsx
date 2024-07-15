@@ -76,17 +76,6 @@ const Users = () => {
             <TopUserBar titleScreen={"Employees"} />
             <Breadcrumbs />
             <div className="mt-4">
-                <CustomButton
-                    buttontype="secondary"
-                    buttonVariant="textIconLeft"
-                    isOutlined
-                    isDisabled={true}
-                    iconLeft={IconNormal}
-                    onClick={() => alert("Secondary outlined button clicked!")}
-                >
-                    Secondary Outlined
-                </CustomButton>
-                ;
                 <TableWithProfile
                     width="100%"
                     margin="0"
