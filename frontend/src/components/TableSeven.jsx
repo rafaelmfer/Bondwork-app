@@ -267,6 +267,7 @@ export default function TableSeven({
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    paddingBottom: "10px",
                 }}
             >
                 <Box className="flex flex-col gap-[16px]">
@@ -312,6 +313,7 @@ export default function TableSeven({
                                     buttonVariant="textIconLeft"
                                     isOutlined
                                     iconLeft={FilterIcon}
+                                    isDisabled={selected.length <= 0}
                                     onClick={() => {
                                         alert(
                                             "Sorry for the inconvinience we're still working on this"
@@ -328,6 +330,7 @@ export default function TableSeven({
                                     buttonVariant="textIconLeft"
                                     isOutlined
                                     iconLeft={SendIcon}
+                                    isDisabled={selected.length <= 0}
                                     onClick={() => {
                                         alert(
                                             "Again, sorry we're still working on this"
