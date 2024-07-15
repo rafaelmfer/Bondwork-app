@@ -7,12 +7,11 @@ import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import ProfileCard from "../../components/cards/CardProfile";
 import CardDescription from "../../components/cards/CardDescription";
 import CustomButton from "../../components/buttons/CustomButton";
-
+import backDarkGray from "../../assets/icons/back-dark-gray-neutral.svg";
 import SupportiveIcon from "../../assets/icons/supportive-dark-gray-neutral.svg";
 import PerfomanceIcon from "../../assets/icons/performance-dark-gray-neutral.svg";
 import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
-
 import { formatDate } from "../../common/commonFunctions";
 
 const RecognitionRequestDetails = () => {
@@ -70,7 +69,7 @@ const RecognitionRequestDetails = () => {
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
-            <TopUserBar titleScreen={"Details"} />
+            <TopUserBar titleScreen={"Details"} arrowBack={backDarkGray} />
 
             <Box
                 display={"flex"}
