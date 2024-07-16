@@ -5,8 +5,42 @@ const Surveys = require("../models/SurveyModel");
 
 const allUser = async (req, res) => {
     try {
-        const showAllUsers = await User.find({});
-        return res.status(200).json(showAllUsers);
+        const showAllUsers = await User.find({}).lean();
+        const surveyCache = {};
+
+        // Iterate over each user's surveys
+        const enrichedUsers = await Promise.all(
+            showAllUsers.map(async (user) => {
+                const enrichedSurveys = await Promise.all(
+                    // Iterate over each survey
+                    user.surveys.map(async (survey) => {
+                        if (!surveyCache[survey.id]) {
+                            surveyCache[survey.id] = await Surveys.findOne({
+                                surveyId: survey.id,
+                            }).lean();
+                        }
+                        const surveyData = surveyCache[survey.id];
+
+                        if (surveyData) {
+                            return {
+                                ...survey,
+                                surveyName: surveyData.name,
+                                startDate: surveyData.startDate,
+                                endDate: surveyData.endDate,
+                            };
+                        }
+                        return survey;
+                    })
+                );
+
+                return {
+                    ...user,
+                    surveys: enrichedSurveys,
+                };
+            })
+        );
+
+        return res.status(200).json(enrichedUsers);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
