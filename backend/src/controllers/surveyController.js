@@ -102,16 +102,38 @@ const getSingleSurveyID = async (req, res) => {
 const updateSurvey = async (req, res) => {
     try {
         const { id } = req.params;
-        const surveyUpdate = await Survey.findByIdAndUpdate(id, req.body);
+        const survey = await Survey.findOne({ surveyId: id });
+        if (!survey) {
+            return res
+                .status(404)
+                .json({ message: `Cannot find any survey with id: ${survey}` });
+        }
+
+        const updates = {};
+        const allowedFields = [
+            ["departments"],
+            ["jobLevel"],
+            "startDate",
+            "endDate",
+            "description",
+        ];
+        allowedFields.forEach((field) => {
+            if (req.body[field] !== undefined) {
+                updates[field] = req.body[field];
+            }
+        });
+
+        const surveyUpdate = await Survey.findByIdAndUpdate(survey, updates, {
+            new: true,
+        });
 
         if (!surveyUpdate) {
             return res
                 .status(404)
-                .json({ message: `Cannot find any prodcut with id: ${id}` });
+                .json({ message: `Cannot update survey with id: ${survey}` });
         }
 
-        const showUpdate = await Survey.findById(id);
-        return res.status(200).json(showUpdate);
+        return res.status(200).json(surveyUpdate);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
