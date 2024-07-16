@@ -3,7 +3,7 @@ const Rewards = require("../models/RewardsModel");
 const Recognitions = require("../models/RecognitionModel");
 const Surveys = require("../models/SurveyModel");
 
-const allUser = async (req, res) => {
+const allUser = async () => {
     try {
         const showAllUsers = await User.find({}).lean();
         const surveyCache = {};
@@ -40,7 +40,16 @@ const allUser = async (req, res) => {
             })
         );
 
-        return res.status(200).json(enrichedUsers);
+        return enrichedUsers;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await allUser();
+        return res.status(200).json(users);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -312,6 +321,7 @@ const addUser = async (req, res) => {
 module.exports = {
     addUser,
     allUser,
+    getAllUsers,
     getOneUser,
     getEmployeeID,
     postDepartments,

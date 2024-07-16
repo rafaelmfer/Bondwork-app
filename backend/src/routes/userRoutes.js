@@ -12,7 +12,7 @@ router.use(express.urlencoded({ extended: true })); // To parse form data
 
 const {
     addUser,
-    allUser,
+    getAllUsers,
     getOneUser,
     getEmployeeID,
     postDepartments,
@@ -21,7 +21,7 @@ const {
     getEmployeeStaff,
 } = require("../controllers/userController");
 
-router.get("/", allUser);
+router.get("/", getAllUsers);
 
 router.get("/:employeeID", getOneUser);
 
