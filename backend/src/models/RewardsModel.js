@@ -4,15 +4,23 @@ const redeemSchema = new mongoose.Schema(
     {
         id: {
             type: Number,
+            required: true,
         },
         status: {
             type: String,
+            required: true,
         },
         requestDate: {
             type: Date,
         },
         date: {
             type: Date,
+        },
+        reason: {
+            type: String,
+        },
+        rejectDetails: {
+            type: String,
         },
     },
     { _id: false }
