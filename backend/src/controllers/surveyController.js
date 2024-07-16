@@ -153,6 +153,7 @@ const addSurvey = async (req, res) => {
         departments,
         answered,
         requested,
+        surveyId,
     } = req.body;
 
     try {
@@ -168,6 +169,7 @@ const addSurvey = async (req, res) => {
             departments,
             answered,
             requested,
+            surveyId,
         });
         await newSurvey.save();
         return res.status(200).send("Survey Saved");
