@@ -76,6 +76,9 @@ const users = new mongoose.Schema(
             type: Date,
             required: true,
         },
+        terminationDate: {
+            type: Date,
+        },
         jobTitle: {
             type: String,
         },
