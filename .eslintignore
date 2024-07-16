@@ -9,3 +9,5 @@ userController.js
 dashboardController.js
 recognitionController.js
 surveyController.js
+chartsController.js
+utils.js
