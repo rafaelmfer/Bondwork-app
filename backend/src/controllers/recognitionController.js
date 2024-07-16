@@ -100,31 +100,34 @@ const getRecognition = async (req, res) => {
 const updateRecognition = async (req, res) => {
     try {
         const { id } = req.params;
-        const { approve } = req.body;
-        const recognitionId = await Recognition.findOne({
+        const { approve, reason, rejectDetails } = req.body;
+        const recognition = await Recognition.findOne({
             recognitionId: id,
         });
 
-        let status;
+        if (!recognition) {
+            return res.status(404).json({
+                message: `Cannot find any recognition with id: ${id}`,
+            });
+        }
+
+        let updateFields = { status: "" };
+
         if (approve === true) {
-            status = "Approved";
+            updateFields.status = "Approved";
         } else if (approve === false) {
-            status = "Rejected";
+            updateFields.status = "Rejected";
+            if (reason) updateFields.reason = reason; // Only add reason if provided
+            if (rejectDetails) updateFields.rejectDetails = rejectDetails; // Only add rejectDetails if provided
         } else {
             return res.status(400).json({ message: "Invalid action" });
         }
 
         const recognitionUpdate = await Recognition.findByIdAndUpdate(
-            recognitionId,
-            { status },
+            recognition,
+            updateFields,
             { new: true }
         );
-
-        if (!recognitionUpdate) {
-            return res.status(404).json({
-                message: `Cannot find any recognition with id: ${recognitionId}`,
-            });
-        }
 
         return res.status(200).json(recognitionUpdate);
     } catch (error) {

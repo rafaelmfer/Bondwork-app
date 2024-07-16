@@ -39,6 +39,8 @@ const getAllRewards = async (req, res) => {
                             status: redeemEntry.status,
                             requestDate: redeemEntry.requestDate,
                             date: redeemEntry.date,
+                            reason: redeemEntry.reason,
+                            rejectDetails: redeemEntry.rejectDetails,
                         };
                     })
                 );
@@ -223,9 +225,46 @@ const getRewardRequestDetails = async (req, res) => {
     }
 };
 
+const updateRewardRedeem = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { approve, reason, rejectDetails } = req.body;
+
+        const reward = await Rewards.findOne({ "redeem.id": id });
+
+        if (!reward) {
+            return res.status(404).json({
+                message: `Cannot find any reward redeem entry with id: ${id}`,
+            });
+        }
+
+        const updateFields = {
+            "redeem.$.status": approve === true ? "Approved" : "Rejected",
+            "redeem.$.date": new Date(), // Add the current date
+        };
+
+        if (approve === false) {
+            if (reason) updateFields["redeem.$.reason"] = reason;
+            if (rejectDetails)
+                updateFields["redeem.$.rejectDetails"] = rejectDetails;
+        }
+
+        const rewardUpdate = await Rewards.findOneAndUpdate(
+            { "redeem.id": id },
+            { $set: updateFields },
+            { new: true }
+        );
+
+        return res.status(200).json(rewardUpdate);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     addRewards,
     getAllRewards,
     getSingleReward,
     getRewardRequestDetails,
+    updateRewardRedeem,
 };
