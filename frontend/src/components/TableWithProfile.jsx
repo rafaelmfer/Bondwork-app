@@ -1,18 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import {
-    Box,
-    Tabs,
-    Tab,
-    IconButton,
-    TextField,
-    Checkbox,
-    InputAdornment,
-} from "@mui/material";
+import { Box, Tabs, Tab, IconButton, Checkbox } from "@mui/material";
 import ThemePagination from "./ThemePagination";
 import ChipText from "./chip/ChipText";
 import { CheckStatus } from "./checkStatus/CheckStatus";
+import TextFieldRegular from "./textfields/TextFieldRegular";
 import theme from "../theme/theme";
 import CustomButton from "./buttons/CustomButton";
 import IconNormal from "../assets/icons/add-white-neutral.svg";
@@ -22,7 +15,7 @@ import ProfilePlaceHolder from "../assets/icons/profile-medium.svg";
 import { ReactComponent as DefaultBox } from "../assets/icons/checkbox-black-neutral-empty.svg";
 import { ReactComponent as CheckedBox } from "../assets/icons/checkbox-black-neutral-filled.svg";
 import { ReactComponent as IndetermBox } from "../assets/icons/checkbox-black-neutral-table-multi.svg";
-import { ReactComponent as SearchIcon } from "../assets/icons/search-black-neutral.svg";
+import SearchIcon from "../assets/icons/search-black-neutral.svg";
 import { ReactComponent as MenuDots } from "../assets/icons/menu3dots-black-neutral.svg";
 import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primary.svg";
 import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
@@ -268,7 +261,6 @@ export default function TableWithProfile({
     const CustomDefaultIcon = () => <DefaultBox width="24" height="24" />;
     const CustomCheckedIcon = () => <CheckedBox width="24" height="24" />;
     const CustomIndetermIcon = () => <IndetermBox width="24" height="24" />;
-    const CustomSearchIcon = () => <SearchIcon width="24" height="24" />;
     const CustomMenuIcon = () => <MenuDots width="24" height="24" />;
     const CustomSortActiveIcon = () => <SortActive width="24" height="24" />;
     const CustomSortIcon = () => <SortDeactive width="24" height="24" />;
@@ -419,22 +411,14 @@ export default function TableWithProfile({
 
                 <Box className="flex content-center h-[48px] self-end gap-[12px]">
                     {showSearch && (
-                        <TextField
-                            className="m-0"
-                            id="search-bar"
-                            variant="outlined"
+                        <TextFieldRegular
+                            id="searchInput"
                             placeholder="Search"
-                            size="small"
                             value={searchQuery}
+                            disabled={false}
                             onChange={handleSearch}
-                            InputProps={{
-                                style: { height: "100%" },
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <CustomSearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
+                            sx={{ width: "100%" }}
+                            iconLeft={SearchIcon}
                         />
                     )}
 
