@@ -4,23 +4,16 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import TableWithProfile from "../../components/TableWithProfile";
-//import CategoryCard from "../../components/cards/CardDescription";
 import { formatDate } from "../../common/commonFunctions";
 
 const RewardsDetails = () => {
     const { id } = useParams();
-    //const URL = `${process.env.REACT_APP_API_URL}/api/rewards/${id}`;
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchRewards = async () => {
-            const headers = new Headers();
-            headers.set("Authorization", "Basic " + btoa("admin: secret"));
             const response = await fetch(
-                `${process.env.REACT_APP_API_URL}/api/rewards/${id}`,
-                {
-                    headers,
-                }
+                `${process.env.REACT_APP_API_URL}/api/rewards/${id}`
             );
 
             if (response.ok) {
