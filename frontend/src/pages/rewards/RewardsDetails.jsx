@@ -12,7 +12,6 @@ const RewardsDetails = () => {
     //const URL = `${process.env.REACT_APP_API_URL}/api/rewards/${id}`;
     const [data, setData] = useState([]);
 
-    console.log(data);
     useEffect(() => {
         const fetchRewards = async () => {
             const headers = new Headers();
@@ -26,7 +25,6 @@ const RewardsDetails = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("LET'S SEE:", data);
                 setData(data);
             }
         };
@@ -66,8 +64,6 @@ const RewardsDetails = () => {
         );
     }
     const rewardsRows = data?.redeem ? createRowsReward(data.redeem) : [];
-
-    console.log("LAS REWARDS FILTRADAS: ", rewardsRows);
 
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
