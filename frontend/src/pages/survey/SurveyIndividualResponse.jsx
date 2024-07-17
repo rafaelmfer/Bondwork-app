@@ -38,7 +38,9 @@ const SurveyIndividualResponse = () => {
     };
 
     // Employee Data
-    let profilePicture = employee.profilePicture || ProfilePlaceholder;
+    let profilePicture = employee
+        ? employee.profilePicture || ProfilePlaceholder
+        : ProfilePlaceholder;
     let userName = employee.userName;
     let jobTitle = employee.jobTitle;
     let nps = employee.survey.NPS || "Neutral";

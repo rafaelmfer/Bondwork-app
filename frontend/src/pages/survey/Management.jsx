@@ -101,8 +101,8 @@ const Management = () => {
                     showFilter={true}
                     rows={rows}
                     columns={columnsTable}
-                    rowsNumber="15"
-                    showSecondLastColumn={false}
+                    rowsNumber="7"
+                    showSecondLastColumn={true}
                     showLastColumn={false}
                 />
             </main>

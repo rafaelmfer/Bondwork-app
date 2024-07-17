@@ -26,7 +26,7 @@ import { ReactComponent as SearchIcon } from "../assets/icons/search-black-neutr
 import { ReactComponent as MenuDots } from "../assets/icons/menu3dots-black-neutral.svg";
 import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primary.svg";
 import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
-import { ReactComponent as ArrowBack } from "../assets/icons/back-dark-gray-neutral.svg";
+import { ReactComponent as ArrowBack } from "../assets/icons/back-orange-primary-small.svg";
 
 import { formatDate } from "../common/commonFunctions";
 
@@ -99,6 +99,7 @@ export default function TableWithProfile({
     tabsVariant,
     rows,
     columns,
+    showViewAll = true,
     showFilter = false,
     showSend = false,
     showSearch = true,
@@ -113,7 +114,6 @@ export default function TableWithProfile({
     showCheckboxColumn = true,
     showBtnColumn = true,
     showPagination = true,
-    pathCompound,
 }) {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState();
@@ -125,6 +125,8 @@ export default function TableWithProfile({
     const navigate = useNavigate();
     const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
     let count = 0;
+    const shouldDisplay =
+        showTabs || showFilter || showSend || showSearch || showAdd; // Checks if all of them are false
 
     useEffect(() => {
         if (rows && rows.length > 0) {
@@ -293,7 +295,6 @@ export default function TableWithProfile({
             },
         }));
     };
-    console.log(rows);
 
     return (
         <Box
@@ -309,33 +310,35 @@ export default function TableWithProfile({
                     <h3 className="pr-4 text-h3 text-neutrals-black">
                         {title}
                     </h3>
-                    <Link
-                        to={{
-                            pathname:
-                                pathViewAllTo === ""
-                                    ? `/${title.toLowerCase()}/management}`
-                                    : pathViewAllTo,
-                            state: rows,
-                        }}
-                        className={
-                            location.pathname !==
-                            `/${title.toLowerCase()}/management`
-                                ? "border-l border-neutrals-gray100 pl-4 flex items-center"
-                                : "hidden"
-                        }
-                    >
-                        <span className="text-main text-[16px] text-center  flex">
-                            <p>View all</p>
-                            <div style={{ rotate: "180deg" }}>
-                                <CustomArrowIcon />
-                            </div>
-                        </span>
-                    </Link>
+                    {showViewAll && (
+                        <Link
+                            to={{
+                                pathname:
+                                    pathViewAllTo === ""
+                                        ? `/${title.toLowerCase()}/management}`
+                                        : pathViewAllTo,
+                                state: rows,
+                            }}
+                            className={
+                                location.pathname !==
+                                `/${title.toLowerCase()}/management`
+                                    ? "border-l border-neutrals-gray100 pl-4 flex items-center"
+                                    : "hidden"
+                            }
+                        >
+                            <span className="text-main text-[16px] text-center flex font-medium">
+                                <p>View all</p>
+                                <div style={{ rotate: "180deg" }}>
+                                    <CustomArrowIcon />
+                                </div>
+                            </span>
+                        </Link>
+                    )}
                 </Box>
             )}
             <Box
                 style={{
-                    display: "flex",
+                    display: shouldDisplay ? "flex" : "none",
                     justifyContent: "space-between",
                     alignItems: "center",
                 }}
@@ -455,7 +458,7 @@ export default function TableWithProfile({
                     ${title} Results
                 </caption>
                 <thead>
-                    <tr className="h-[56px]" key={1}>
+                    <tr className="h-[56px] cursor-pointer">
                         <th
                             style={{
                                 borderTopLeftRadius: "12px",
@@ -477,7 +480,13 @@ export default function TableWithProfile({
                                         rowsToShow.length > 0 &&
                                         selected.length === rowsToShow.length
                                     }
-                                    onChange={handleSelectAllClick}
+                                    onChange={(event) =>
+                                        handleSelectAllClick(
+                                            event,
+                                            rowsToShow,
+                                            setSelected
+                                        )
+                                    }
                                     icon={<CustomDefaultIcon />}
                                     checkedIcon={<CustomCheckedIcon />}
                                     indeterminateIcon={<CustomIndetermIcon />}
@@ -506,7 +515,23 @@ export default function TableWithProfile({
                                 onMouseEnter={() => handleColumnHover(1, true)}
                                 onMouseLeave={() => handleColumnHover(1, false)}
                             >
-                                {columns[1]}
+                                {columns[1].includes("/") ? (
+                                    <div>
+                                        {columns[1]
+                                            .split("/")
+                                            .map((text, index) => (
+                                                <p
+                                                    key={index}
+                                                    className="text-left"
+                                                >
+                                                    {text}
+                                                </p>
+                                            ))}
+                                    </div>
+                                ) : (
+                                    columns[1]
+                                )}
+
                                 {columnState[1]?.isClicked ||
                                 columnState[1]?.isHovered ? (
                                     <CustomSortActiveIcon />
@@ -768,7 +793,25 @@ export default function TableWithProfile({
                                 role="checkbox"
                                 aria-checked={isItemSelected}
                                 selected={isItemSelected}
-                                onClick={(event) => handleClick(event, row.id)}
+                                onClick={() => {
+                                    let finalPath;
+                                    if (pathRowTo.includes("{rowId}")) {
+                                        finalPath = pathRowTo.replace(
+                                            "{rowId}",
+                                            row.id
+                                        );
+                                    } else if (row.rewardId) {
+                                        finalPath = `${pathRowTo}/${row.rewardId}/${row.id}`;
+                                    } else {
+                                        finalPath = `${pathRowTo}/${row.id}`;
+                                    }
+                                    navigate(finalPath);
+                                }}
+                                style={{
+                                    cursor: "pointer",
+                                    borderTop: "1px solid #EEEEEE",
+                                    fontSize: "1rem", // TODO: Adjust fontsize together with the <CheckStatus /> fontsize. Should be small2
+                                }}
                             >
                                 <td
                                     style={{
@@ -784,24 +827,29 @@ export default function TableWithProfile({
                                             inputProps={{
                                                 "aria-labelledby": row.id,
                                             }}
+                                            sx={{ zIndex: 10 }}
+                                            onClick={(event) => {
+                                                event.stopPropagation(); // Avoids the click from the row
+                                                handleClick(
+                                                    event,
+                                                    row.id,
+                                                    selected,
+                                                    setSelected
+                                                );
+                                            }}
                                         />
                                     )}
                                 </td>
 
                                 <td>
-                                    <Link
-                                        to={
-                                            pathCompound
-                                                ? `${pathRowTo}/${row.rewardId}/${row.id}`
-                                                : `${pathRowTo}/${row.id}`
-                                        }
+                                    <div
+                                        className="profileContainter"
                                         style={{
                                             display: "flex",
                                             alignItems: "center",
                                             padding: "0 8px",
                                             gap: "12px",
                                         }}
-                                        state={{ rows }}
                                     >
                                         <img
                                             src={
@@ -819,7 +867,7 @@ export default function TableWithProfile({
                                         <div className="flex flex-col">
                                             {row[keysObject[1]] && (
                                                 <>
-                                                    <p className="text-small1">
+                                                    <p className="text-small1 font-semibold">
                                                         {row.from.displayName
                                                             .split("(")[0]
                                                             .trim()}
@@ -840,7 +888,7 @@ export default function TableWithProfile({
                                                 </>
                                             )}
                                         </div>
-                                    </Link>
+                                    </div>
                                 </td>
                                 {showSecondColumn && (
                                     <td
@@ -868,7 +916,7 @@ export default function TableWithProfile({
                                         <div className="flex flex-col">
                                             {row[keysObject[2]] && (
                                                 <>
-                                                    <p className="text-small1">
+                                                    <p className="text-small1 font-semibold">
                                                         {row.to.displayName
                                                             .split("(")[0]
                                                             .trim()}
@@ -893,16 +941,39 @@ export default function TableWithProfile({
                                 )}
 
                                 <td>
-                                    {keysObject[numCol - 4] === "category" ? (
-                                        <ChipText
-                                            chipText={
-                                                row[keysObject[numCol - 4]]
-                                            }
-                                            sx={{ marginTop: "8px" }}
-                                        />
-                                    ) : (
-                                        row[keysObject[numCol - 4]]
-                                    )}
+                                    {(() => {
+                                        switch (keysObject[numCol - 4]) {
+                                            case "category":
+                                                return (
+                                                    <ChipText
+                                                        chipText={
+                                                            row[
+                                                                keysObject[
+                                                                    numCol - 4
+                                                                ]
+                                                            ]
+                                                        }
+                                                        sx={{
+                                                            marginTop: "8px",
+                                                        }}
+                                                    />
+                                                );
+                                            case "dateRequest":
+                                                return formatDate(
+                                                    new Date(
+                                                        row[
+                                                            keysObject[
+                                                                numCol - 4
+                                                            ]
+                                                        ]
+                                                    )
+                                                );
+                                            default:
+                                                return row[
+                                                    keysObject[numCol - 4]
+                                                ];
+                                        }
+                                    })()}
                                 </td>
                                 <td>
                                     {(() => {
