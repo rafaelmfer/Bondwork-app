@@ -30,7 +30,13 @@ const Users = () => {
 
     // TABLE
     // Array to map the table headings for Management Table
-    const columnsTable = ["id", "Name", "Department", "Email", "Last Access"];
+    const columnsTable = [
+        "id",
+        "Name / Role",
+        "Department",
+        "Email",
+        "Last Access",
+    ];
 
     // method with the columns needed for the table
     function createData(id, from, department, email, lastAccess) {

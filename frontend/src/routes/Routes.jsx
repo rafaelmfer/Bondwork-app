@@ -18,6 +18,7 @@ import SurveyIndividualResponse from "../pages/survey/SurveyIndividualResponse";
 
 import Users from "../pages/employee/Users";
 import EmployeeProfileDetails from "../pages/employee/EmployeeProfileDetails";
+import EmployeeDetailsRewards from "../pages/employee/EmployeeDetailsRewards";
 
 import Login from "../pages/auth/Login";
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
@@ -34,6 +35,8 @@ import iconEmployees from "../assets/icons/employees-black-neutral.svg";
 import iconEmployeesSelected from "../assets/icons/employees-orange-primary.svg";
 import iconArrowDown from "../assets/icons/dropdown-black-neutral-opened.svg";
 import SurveyAudienceList from "../pages/survey/SurveyAudienceList";
+import { EmployeeDetailsRecognitions } from "../pages/employee/EmployeeDetailsRecognitions";
+import { EmployeeDetailsSurveys } from "../pages/employee/EmployeeDetailsSurveys";
 
 const routes = [
     {
@@ -157,6 +160,24 @@ const routes = [
             {
                 path: "users/details/:id",
                 element: <EmployeeProfileDetails />,
+                menuLabel: "Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+            {
+                path: "users/details/:id/rewards",
+                element: <EmployeeDetailsRewards />,
+                menuLabel: "Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+            {
+                path: "users/details/:id/recognitions",
+                element: <EmployeeDetailsRecognitions />,
+                menuLabel: "Details",
+                hideInSidebar: true, // Don't Show in Sidebar Component
+            },
+            {
+                path: "users/details/:id/surveys",
+                element: <EmployeeDetailsSurveys />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },

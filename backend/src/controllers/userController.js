@@ -191,6 +191,7 @@ async function getUserDetails(employeeID, currentUser, userDetailCache) {
             firstName: currentUser.firstName,
             lastName: currentUser.lastName,
             jobTitle: currentUser.jobTitle,
+            profilePicture: currentUser.profilePicture,
         };
     }
 
@@ -201,6 +202,7 @@ async function getUserDetails(employeeID, currentUser, userDetailCache) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 jobTitle: user.jobTitle,
+                profilePicture: user.profilePicture,
             };
         }
     }

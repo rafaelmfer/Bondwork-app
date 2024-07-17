@@ -25,8 +25,7 @@ import { ReactComponent as SearchIcon } from "../assets/icons/search-black-neutr
 import { ReactComponent as MenuDots } from "../assets/icons/menu3dots-black-neutral.svg";
 import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primary.svg";
 import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
-import { ReactComponent as ArrowBack } from "../assets/icons/back-dark-gray-neutral.svg";
-
+import { ReactComponent as ArrowBack } from "../assets/icons/back-orange-primary-small.svg";
 import { formatDate } from "../common/commonFunctions";
 
 // Sorting functions
@@ -60,6 +59,7 @@ function stableSort(array, comparator) {
 // ===============================================
 export default function TableSeven({
     width = "inherit",
+    margin = 2,
     showTitle = true,
     title,
     pathRowTo,
@@ -67,6 +67,7 @@ export default function TableSeven({
     tabsVariant,
     rows,
     columns,
+    showViewAll = true,
     showFilter = false,
     showSend = false,
     showSearch = true,
@@ -74,6 +75,7 @@ export default function TableSeven({
     pathAddTo,
     pathViewAllTo,
     rowsNumber,
+    showThirdLastColumn = true,
     showSecondLastColumn = true,
     showLastColumn = true,
     showCheckboxColumn = true,
@@ -89,7 +91,9 @@ export default function TableSeven({
     const [keysObject, setKeysObject] = useState([]);
     const navigate = useNavigate();
     const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
-
+    let count = 0; // for key property in rows
+    const shouldDisplay =
+        showTabs || showFilter || showSend || showSearch || showAdd; // Checks if all of them are false
     useEffect(() => {
         if (rows && rows.length > 0) {
             const firstObject = rows[0];
@@ -219,18 +223,34 @@ export default function TableSeven({
     const CustomSortIcon = () => <SortDeactive width="24" height="24" />;
     const CustomArrowIcon = () => <ArrowBack width="24" height="24" />;
 
-    // Switch arrow icons
-    const [isHovered, setIsHovered] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+    // State to switch arrow icons
+    const [columnState, setColumnState] = useState({});
+    // const handleColumnClick = (columnName) => {
+    //     setColumnState((prevState) => ({
+    //         ...prevState,
+    //         [columnName]: {
+    //             ...prevState[columnName],
+    //             isClicked: !prevState[columnName]?.isClicked,
+    //         },
+    //     }));
+    // };
 
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
-    const handleClickSort = () => setIsClicked(!isClicked);
+    const handleColumnHover = (columnName, isHovered) => {
+        setColumnState((prevState) => ({
+            ...prevState,
+            [columnName]: {
+                ...prevState[columnName],
+                isHovered: isHovered,
+            },
+        }));
+    };
 
-    const IconToDisplay =
-        isClicked || isHovered ? CustomSortActiveIcon : CustomSortIcon;
     return (
-        <Box component="section" className="table" sx={{ m: 2, width: width }}>
+        <Box
+            component="section"
+            className="table"
+            sx={{ m: margin, width: width }}
+        >
             {showTitle && (
                 <Box
                     className="titleContainer"
@@ -239,32 +259,34 @@ export default function TableSeven({
                     <h3 className="pr-4 text-h3 text-neutrals-black">
                         {title}
                     </h3>
-                    <Link
-                        to={{
-                            pathname:
-                                pathViewAllTo === ""
-                                    ? `/${title.toLowerCase()}/management}`
-                                    : pathViewAllTo,
-                            state: rows,
-                        }}
-                        className={
-                            location.pathname !== `/${title.toLowerCase()}`
-                                ? "border-l border-neutrals-gray100 pl-4 flex items-center"
-                                : "hidden"
-                        }
-                    >
-                        <span className="text-main text-[16px] text-center  flex">
-                            <p>View all</p>
-                            <div style={{ rotate: "180deg" }}>
-                                <CustomArrowIcon />
-                            </div>
-                        </span>
-                    </Link>
+                    {showViewAll && (
+                        <Link
+                            to={{
+                                pathname:
+                                    pathViewAllTo === ""
+                                        ? `/${title.toLowerCase()}/management}`
+                                        : pathViewAllTo,
+                                state: rows,
+                            }}
+                            className={
+                                location.pathname !== `/${title.toLowerCase()}`
+                                    ? "border-l border-neutrals-gray100 pl-4 flex items-center"
+                                    : "hidden"
+                            }
+                        >
+                            <span className="text-main text-[16px] text-center flex font-medium">
+                                <p>View all</p>
+                                <div style={{ rotate: "180deg" }}>
+                                    <CustomArrowIcon />
+                                </div>
+                            </span>
+                        </Link>
+                    )}
                 </Box>
             )}
             <Box
                 style={{
-                    display: "flex",
+                    display: shouldDisplay ? "flex" : "none",
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingBottom: "10px",
@@ -385,7 +407,7 @@ export default function TableSeven({
                     ${title} Results
                 </caption>
                 <thead>
-                    <tr className="h-[56px]">
+                    <tr className="h-[56px] cursor-pointer">
                         <th
                             style={{
                                 borderTopLeftRadius: "12px",
@@ -407,7 +429,13 @@ export default function TableSeven({
                                         rowsToShow.length > 0 &&
                                         selected.length === rowsToShow.length
                                     }
-                                    onChange={handleSelectAllClick}
+                                    onChange={(event) =>
+                                        handleSelectAllClick(
+                                            event,
+                                            rowsToShow,
+                                            setSelected
+                                        )
+                                    }
                                     icon={<CustomDefaultIcon />}
                                     checkedIcon={<CustomCheckedIcon />}
                                     indeterminateIcon={<CustomIndetermIcon />}
@@ -422,7 +450,7 @@ export default function TableSeven({
                                 verticalAlign: "middle",
                                 borderBottom: 0,
                                 width: "220px",
-                                maxWidth: "400px",
+                                maxWidth: "100%",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -431,12 +459,15 @@ export default function TableSeven({
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onMouseEnter={() => handleColumnHover(1, true)}
+                                onMouseLeave={() => handleColumnHover(1, false)}
                             >
                                 {columns[1]}
-                                <IconToDisplay />
+                                {columnState[1]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
                         <th
@@ -445,8 +476,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                maxWidth: "160px",
-                                width: "120px",
+                                width: "150px",
+                                maxWidth: "190px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -455,11 +486,15 @@ export default function TableSeven({
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onMouseEnter={() => handleColumnHover(2, true)}
+                                onMouseLeave={() => handleColumnHover(2, false)}
                             >
-                                {columns[2]} <IconToDisplay />
+                                {columns[2]}
+                                {columnState[2]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
                         <th
@@ -468,8 +503,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                maxWidth: "160px",
-                                width: "120px",
+                                width: "150px",
+                                maxWidth: "190px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -478,11 +513,15 @@ export default function TableSeven({
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onMouseEnter={() => handleColumnHover(3, true)}
+                                onMouseLeave={() => handleColumnHover(3, false)}
                             >
-                                {columns[3]} <IconToDisplay />
+                                {columns[3]}
+                                {columnState[3]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
                         <th
@@ -491,8 +530,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
+                                width: "130px",
                                 maxWidth: "160px",
-                                width: "120px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -501,36 +540,51 @@ export default function TableSeven({
                         >
                             <div
                                 className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                                onMouseEnter={() => handleColumnHover(4, true)}
+                                onMouseLeave={() => handleColumnHover(4, false)}
                             >
-                                {columns[4]} <IconToDisplay />
+                                {columns[4]}
+                                {columnState[4]?.isHovered ? (
+                                    <CustomSortActiveIcon />
+                                ) : (
+                                    <CustomSortIcon />
+                                )}
                             </div>
                         </th>
-                        <th
-                            scope="col"
-                            style={{
-                                backgroundColor: theme.palette.secondary[100],
-                                verticalAlign: "middle",
-                                borderBottom: 0,
-                                maxWidth: "160px",
-                                width: "120px",
-                                padding: "0px",
-                            }}
-                            onClick={() =>
-                                handleRequestSort(keysObject[5].toString())
-                            }
-                        >
-                            <div
-                                className="flex items-center"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleClickSort}
+                        {showThirdLastColumn && (
+                            <th
+                                scope="col"
+                                style={{
+                                    backgroundColor:
+                                        theme.palette.secondary[100],
+                                    verticalAlign: "middle",
+                                    borderBottom: 0,
+                                    width: "130px",
+                                    maxWidth: "160px",
+                                    padding: "0px",
+                                }}
+                                onClick={() =>
+                                    handleRequestSort(keysObject[5].toString())
+                                }
                             >
-                                {columns[5]} <IconToDisplay />
-                            </div>
-                        </th>
+                                <div
+                                    className="flex items-center"
+                                    onMouseEnter={() =>
+                                        handleColumnHover(5, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(5, false)
+                                    }
+                                >
+                                    {columns[5]}
+                                    {columnState[5]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
+                                </div>
+                            </th>
+                        )}
                         {showSecondLastColumn && (
                             <th
                                 scope="col"
@@ -539,8 +593,8 @@ export default function TableSeven({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
+                                    width: "130px",
                                     maxWidth: "160px",
-                                    width: "120px",
                                     padding: "0px",
                                 }}
                                 onClick={() =>
@@ -549,11 +603,19 @@ export default function TableSeven({
                             >
                                 <div
                                     className="flex items-center"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClickSort}
+                                    onMouseEnter={() =>
+                                        handleColumnHover(6, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(6, false)
+                                    }
                                 >
-                                    {columns[6]} <IconToDisplay />
+                                    {columns[6]}
+                                    {columnState[6]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
                                 </div>
                             </th>
                         )}
@@ -566,8 +628,8 @@ export default function TableSeven({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
+                                    width: "130px",
                                     maxWidth: "160px",
-                                    width: "120px",
                                 }}
                                 onClick={() =>
                                     handleRequestSort(keysObject[7].toString())
@@ -575,12 +637,19 @@ export default function TableSeven({
                             >
                                 <div
                                     className="flex items-center"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClickSort}
+                                    onMouseEnter={() =>
+                                        handleColumnHover(7, true)
+                                    }
+                                    onMouseLeave={() =>
+                                        handleColumnHover(7, false)
+                                    }
                                 >
                                     {columns[7]}
-                                    <IconToDisplay />
+                                    {columnState[7]?.isHovered ? (
+                                        <CustomSortActiveIcon />
+                                    ) : (
+                                        <CustomSortIcon />
+                                    )}
                                 </div>
                             </th>
                         )}
@@ -602,12 +671,30 @@ export default function TableSeven({
                         const isItemSelected = isSelected(row.id);
                         return (
                             <tr
-                                key={row.id}
+                                key={count++}
                                 className="text-left"
                                 role="checkbox"
                                 aria-checked={isItemSelected}
                                 selected={isItemSelected}
-                                onClick={(event) => handleClick(event, row.id)}
+                                onClick={() => {
+                                    let finalPath;
+                                    if (pathRowTo.includes("{rowId}")) {
+                                        finalPath = pathRowTo.replace(
+                                            "{rowId}",
+                                            row.id
+                                        );
+                                    } else if (row.rewardId) {
+                                        finalPath = `${pathRowTo}/${row.rewardId}/${row.id}`;
+                                    } else {
+                                        finalPath = `${pathRowTo}/${row.id}`;
+                                    }
+                                    navigate(finalPath);
+                                }} // Redirect the user
+                                style={{
+                                    cursor: "pointer",
+                                    borderTop: "1px solid #EEEEEE",
+                                    fontSize: "1rem", // TODO: Adjust fontsize together with the <CheckStatus /> fontsize
+                                }}
                             >
                                 <td
                                     style={{
@@ -624,14 +711,23 @@ export default function TableSeven({
                                             inputProps={{
                                                 "aria-labelledby": row.id,
                                             }}
+                                            onClick={(event) => {
+                                                event.stopPropagation(); // Avoid the click from the row
+                                                handleClick(
+                                                    event,
+                                                    row.id,
+                                                    selected,
+                                                    setSelected
+                                                );
+                                            }}
                                         />
                                     )}
                                 </td>
 
                                 <td>
-                                    <Link to={`${pathRowTo}/${row.id}`}>
+                                    <p className="line-clamp-1 pr-4">
                                         {row[keysObject[1]]}
-                                    </Link>
+                                    </p>
                                 </td>
                                 <td>
                                     {(() => {
@@ -697,6 +793,7 @@ export default function TableSeven({
                                                 );
                                             case "endDate":
                                             case "expired":
+                                            case "requestDate":
                                                 return formatDate(
                                                     new Date(row[keysObject[4]])
                                                 );
@@ -705,34 +802,38 @@ export default function TableSeven({
                                         }
                                     })()}
                                 </td>
-                                <td>
-                                    {(() => {
-                                        switch (keysObject[5]) {
-                                            case "status":
-                                                return (
-                                                    <CheckStatus
-                                                        status={
-                                                            row[keysObject[5]]
-                                                        }
-                                                    />
-                                                );
-                                            // case "redeem":
-                                            //     //case "completed":
-                                            //     return (
-                                            //         <p
-                                            //             style={{
-                                            //                 textAlign: "right",
-                                            //                 marginRight: "2rem",
-                                            //             }}
-                                            //         >
-                                            //             {row[keysObject[5]]}
-                                            //         </p>
-                                            //     );
-                                            default:
-                                                return row[keysObject[5]];
-                                        }
-                                    })()}
-                                </td>
+                                {showThirdLastColumn && (
+                                    <td>
+                                        {(() => {
+                                            switch (keysObject[5]) {
+                                                case "status":
+                                                    return (
+                                                        <CheckStatus
+                                                            status={
+                                                                row[
+                                                                    keysObject[5]
+                                                                ]
+                                                            }
+                                                        />
+                                                    );
+                                                // case "redeem":
+                                                //     //case "completed":
+                                                //     return (
+                                                //         <p
+                                                //             style={{
+                                                //                 textAlign: "right",
+                                                //                 marginRight: "2rem",
+                                                //             }}
+                                                //         >
+                                                //             {row[keysObject[5]]}
+                                                //         </p>
+                                                //     );
+                                                default:
+                                                    return row[keysObject[5]];
+                                            }
+                                        })()}
+                                    </td>
+                                )}
 
                                 {showSecondLastColumn && (
                                     <td>
@@ -761,6 +862,11 @@ export default function TableSeven({
                                                 margin: "0 4px",
                                             }}
                                             aria-label="Example"
+                                            onClick={(event) => {
+                                                event.stopPropagation();
+                                                alert("Work in progress ...");
+                                                // Add piece of code
+                                            }}
                                         >
                                             <CustomMenuIcon />
                                         </IconButton>

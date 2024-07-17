@@ -3,6 +3,7 @@ import { Box, Card, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import theme from "../../theme/theme";
 import ChipText from "../chip/ChipText";
+import ProfilePlaceHolder from "../../assets/icons/profile-large.svg";
 
 const StyledCard = styled(Card)(({ theme }) => ({
     borderRadius: "8px",
@@ -16,7 +17,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: "16px",
-    marginTop: "24px",
+    marginTop: "0px",
 }));
 
 const Column = styled(Box)({
@@ -83,15 +84,20 @@ const EmployeeProfileTitleCard = ({
         <StyledCard sx={sx}>
             <Box
                 sx={{
+                    width: "100%",
                     display: "flex",
                     flexDirection: "row",
-                    gap: "40px",
+                    gap: "20px",
                 }}
             >
-                <Column>
+                <Column
+                    sx={{
+                        flex: "0 0 auto",
+                    }}
+                >
                     <ImgContainer>
                         <img
-                            src={imageSrc}
+                            src={imageSrc ? imageSrc : ProfilePlaceHolder}
                             alt="profileImage"
                             style={{
                                 maxWidth: "100%",
@@ -107,14 +113,18 @@ const EmployeeProfileTitleCard = ({
                 </Column>
                 <Box
                     sx={{
+                        flexGrow: "1",
                         display: "flex",
                         flexDirection: "column",
                         gap: "4px",
+                        alignItems: "center",
+                        justifyContent: "center",
                     }}
                 >
                     <TextContainer>
                         <Typography
                             variant="h3"
+                            textAlign={"center"}
                             color={theme.palette.neutrals.black}
                         >
                             {Name}
@@ -132,6 +142,7 @@ const EmployeeProfileTitleCard = ({
                         <Typography
                             variant="small2"
                             color={theme.palette.neutrals.black}
+                            textAlign={"center"}
                         >
                             Employee Since: {OnBoardingDate}
                         </Typography>
