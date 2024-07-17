@@ -28,7 +28,7 @@ const EmployeeDetailsRewards = () => {
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
             <TopUserBar titleScreen={"Employees"} />
-            <Breadcrumbs />
+            <Breadcrumbs dynamicTexts={["Rewards", "Details"]} />
 
             <div className="mt-4 grid grid-cols-[336px_minmax(600px,_1fr)] gap-x-4">
                 {user && (

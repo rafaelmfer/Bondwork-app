@@ -158,25 +158,25 @@ const routes = [
         iconSelected: iconEmployeesSelected,
         subItems: [
             {
-                path: "users/details/:id",
+                path: "users/:id",
                 element: <EmployeeProfileDetails />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "users/details/:id/rewards",
+                path: "users/:id/rewards",
                 element: <EmployeeDetailsRewards />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "users/details/:id/recognitions",
+                path: "users/:id/recognitions",
                 element: <EmployeeDetailsRecognitions />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "users/details/:id/surveys",
+                path: "users/:id/surveys",
                 element: <EmployeeDetailsSurveys />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
