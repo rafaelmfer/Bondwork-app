@@ -40,9 +40,10 @@ const Hint = styled("p")(({ theme, error, focused, hovered, disabled }) => {
 
 const CustomTextField = styled(TextField)(({ theme, disabled }) => ({
     width: "inherit",
+    height: "inherit",
     "& .MuiInputBase-root": {
         borderRadius: "8px",
-        height: "44px",
+        height: "48px",
         backgroundColor: disabled
             ? theme.palette.neutrals.gray50
             : theme.palette.primary[50],
@@ -188,31 +189,34 @@ const TextFieldRegular = ({
             aria-disabled={disabled} // ARIA attribute to indicate disabled state
             aria-invalid={error} // ARIA attribute to indicate error state
         >
-            <Label htmlFor={id}>
-                {label}
-                {infoTooltipText && (
-                    <CustomTooltip
-                        tooltipContent={
-                            <Typography variant="small2">
-                                {infoTooltipText}
-                            </Typography>
-                        }
-                        triggerComponent={
-                            <IconButton
-                                aria-label="info"
-                                sx={{
-                                    position: "relative",
-                                    marginLeft: "0px",
-                                    height: "28px",
-                                    width: "48px",
-                                }}
-                            >
-                                <img src={InfoIcon} alt="info icon" />
-                            </IconButton>
-                        }
-                    />
-                )}
-            </Label>
+            {label && (
+                <Label htmlFor={id}>
+                    {label}
+                    {infoTooltipText && (
+                        <CustomTooltip
+                            tooltipContent={
+                                <Typography variant="small2">
+                                    {infoTooltipText}
+                                </Typography>
+                            }
+                            triggerComponent={
+                                <IconButton
+                                    aria-label="info"
+                                    sx={{
+                                        position: "relative",
+                                        marginLeft: "0px",
+                                        height: "28px",
+                                        width: "48px",
+                                    }}
+                                >
+                                    <img src={InfoIcon} alt="info icon" />
+                                </IconButton>
+                            }
+                        />
+                    )}
+                </Label>
+            )}
+
             <CustomTextField
                 id={id}
                 placeholder={placeholder}
@@ -251,17 +255,19 @@ const TextFieldRegular = ({
                 aria-describedby={`${id}-hint`} // Reference to hint for accessibility
             />
 
-            <Hint
-                id={`${id}-hint`}
-                error={error}
-                focused={focused && !disabled}
-                hovered={hovered && !focused && !disabled}
-                disabled={disabled}
-                role="status" // ARIA attribute to indicate the role of the element
-                aria-live="polite" // ARIA attribute for polite notification of changes
-            >
-                {getHintText()}
-            </Hint>
+            {hint && (
+                <Hint
+                    id={`${id}-hint`}
+                    error={error}
+                    focused={focused && !disabled}
+                    hovered={hovered && !focused && !disabled}
+                    disabled={disabled}
+                    role="status" // ARIA attribute to indicate the role of the element
+                    aria-live="polite" // ARIA attribute for polite notification of changes
+                >
+                    {getHintText()}
+                </Hint>
+            )}
         </Box>
     );
 };

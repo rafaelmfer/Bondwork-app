@@ -1,18 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import {
-    Box,
-    Tabs,
-    Tab,
-    IconButton,
-    TextField,
-    Checkbox,
-    InputAdornment,
-} from "@mui/material";
+import { Box, Tabs, Tab, IconButton, Checkbox } from "@mui/material";
 import ThemePagination from "./ThemePagination";
 import ChipText from "./chip/ChipText";
 import { CheckStatus } from "./checkStatus/CheckStatus";
+import TextFieldRegular from "./textfields/TextFieldRegular";
 import theme from "../theme/theme";
 import CustomButton from "./buttons/CustomButton";
 import IconNormal from "../assets/icons/add-white-neutral.svg";
@@ -21,7 +14,7 @@ import SendIcon from "../assets/icons/send-orange-primary.svg";
 import { ReactComponent as DefaultBox } from "../assets/icons/checkbox-black-neutral-empty.svg";
 import { ReactComponent as CheckedBox } from "../assets/icons/checkbox-black-neutral-filled.svg";
 import { ReactComponent as IndetermBox } from "../assets/icons/checkbox-black-neutral-table-multi.svg";
-import { ReactComponent as SearchIcon } from "../assets/icons/search-black-neutral.svg";
+import SearchIcon from "../assets/icons/search-black-neutral.svg";
 import { ReactComponent as MenuDots } from "../assets/icons/menu3dots-black-neutral.svg";
 import { ReactComponent as SortActive } from "../assets/icons/sort-orange-primary.svg";
 import { ReactComponent as SortDeactive } from "../assets/icons/sort-black-neutral.svg";
@@ -217,7 +210,6 @@ export default function TableSeven({
     const CustomDefaultIcon = () => <DefaultBox width="24" height="24" />;
     const CustomCheckedIcon = () => <CheckedBox width="24" height="24" />;
     const CustomIndetermIcon = () => <IndetermBox width="24" height="24" />;
-    const CustomSearchIcon = () => <SearchIcon width="24" height="24" />;
     const CustomMenuIcon = () => <MenuDots width="24" height="24" />;
     const CustomSortActiveIcon = () => <SortActive width="24" height="24" />;
     const CustomSortIcon = () => <SortDeactive width="24" height="24" />;
@@ -368,22 +360,14 @@ export default function TableSeven({
 
                 <Box className="flex content-center h-[48px] self-end gap-[12px]">
                     {showSearch && (
-                        <TextField
-                            className="m-0"
-                            id="search-bar"
-                            variant="outlined"
+                        <TextFieldRegular
+                            id="searchInput"
                             placeholder="Search"
-                            size="small"
                             value={searchQuery}
+                            disabled={false}
                             onChange={handleSearch}
-                            InputProps={{
-                                style: { height: "100%" },
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <CustomSearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
+                            sx={{ width: "100%", height: "48px" }}
+                            iconLeft={SearchIcon}
                         />
                     )}
 
@@ -476,8 +460,8 @@ export default function TableSeven({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "150px",
-                                maxWidth: "190px",
+                                width: "120px",
+                                maxWidth: "160px",
                                 padding: "0px",
                             }}
                             onClick={() =>
@@ -512,7 +496,7 @@ export default function TableSeven({
                             }
                         >
                             <div
-                                className="flex items-center"
+                                className={`flex items-center ${columns[3] === "Points" ? "justify-center" : ""}`}
                                 onMouseEnter={() => handleColumnHover(3, true)}
                                 onMouseLeave={() => handleColumnHover(3, false)}
                             >
@@ -762,7 +746,7 @@ export default function TableSeven({
                                                     <p
                                                         style={{
                                                             textAlign: "right",
-                                                            marginRight: "3rem",
+                                                            width: "100px",
                                                         }}
                                                     >
                                                         {row[
