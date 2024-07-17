@@ -1,7 +1,3 @@
-// TODO Delete it
-const fs = require("fs");
-const path = require("path");
-
 const Survey = require("../models/SurveyModel");
 const User = require("../models/UserModel");
 
@@ -12,19 +8,6 @@ const getAllSurvey = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
-};
-// TODO Delete it after
-const getFromBackEnd = async (req, res) => {
-    const filePath = path.join(__dirname, "../..", "survies.json");
-    // Read the file survies.json
-    fs.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send("Error reading the surveys file.");
-        }
-        const jsonData = JSON.parse(data);
-        return res.status(200).json(jsonData);
-    });
 };
 
 const getSingleSurvey = async (req, res) => {
@@ -195,7 +178,6 @@ const getSurveysByStatus = async (req, res) => {
 
 module.exports = {
     getAllSurvey,
-    getFromBackEnd,
     getSingleSurvey,
     getSingleSurveyID,
     updateSurvey,

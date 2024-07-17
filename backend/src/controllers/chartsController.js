@@ -7,9 +7,107 @@ const { getPeriodDates } = require("../utils/utils");
 
 const { allUser } = require("./userController");
 
+const getDashboardCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const chart1 = await averageScoreSurveys(date);
+        const chart2 = await averageScoreSurveys(date);
+        const chart3 = await recognitionsByStatus(date);
+        const chart4 = await rewardsRequestByStatus(date);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+            chart3,
+            chart4,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
 const getRecognitionsByStatus = async (req, res) => {
     try {
         const { date } = req.body;
+        const results = await recognitionsByStatus(date);
+
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching recognition data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getRewardsManagementByStatus = async (req, res) => {
+    try {
+        const { date } = req.body;
+        const results = await rewardsManagementByStatus(date);
+
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching rewards management data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getRewardsRequestByStatus = async (req, res) => {
+    try {
+        const { date } = req.body;
+        const results = rewardsRequestByStatus(date);
+
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching recognition data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getSurveysManagementByStatus = async (req, res) => {
+    try {
+        const { date } = req.body;
+        const results = await surveysManagementByStatus(date);
+
+        // Send the response with the calculated results
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching surveys management data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getSatisfactionIndex = async (req, res) => {
+    try {
+        const { date } = req.body; // Extract the date from the request body
+        const results = await satisfactionIndex(date); // Convert the date to a Date object
+
+        // Send the final results as a JSON response
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching satisfaction surveys data:", error); // Log errors
+        res.status(500).json({ message: "Server error" }); // Send an error response
+    }
+};
+
+const getAverageScore = async (req, res) => {
+    try {
+        // Extract the date from the request body
+        const { date } = req.body;
+        const results = await averageScoreSurveys(date);
+
+        console.log(results);
+        // Return the results as JSON
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching average score data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// HELPERS =======================================================================
+const recognitionsByStatus = async (date) => {
+    try {
         const initialDate = new Date(date);
 
         const units = [
@@ -121,16 +219,15 @@ const getRecognitionsByStatus = async (req, res) => {
             });
         }
 
-        res.status(200).json(results);
+        return results;
     } catch (error) {
         console.error("Error fetching recognition data:", error);
-        res.status(500).json({ message: "Server error" });
+        throw new Error(error.message);
     }
 };
 
-const getRewardsManagementByStatus = async (req, res) => {
+const rewardsManagementByStatus = async (date) => {
     try {
-        const { date } = req.body;
         const initialDate = new Date(date);
 
         const units = [
@@ -249,16 +346,16 @@ const getRewardsManagementByStatus = async (req, res) => {
             });
         }
 
-        res.status(200).json(results);
+        return results;
     } catch (error) {
         console.error("Error fetching rewards management data:", error);
-        res.status(500).json({ message: "Server error" });
+        throw new Error(error.message);
     }
 };
 
-const getRewardsRequestByStatus = async (req, res) => {
+// Get the rewards request data by status Pending, Approved and Rejected
+const rewardsRequestByStatus = async (date) => {
     try {
-        const { date } = req.body;
         const initialDate = new Date(date);
 
         const units = [
@@ -368,17 +465,18 @@ const getRewardsRequestByStatus = async (req, res) => {
             });
         }
 
-        res.status(200).json(results);
+        // Send the response with the calculated results
+        return results;
     } catch (error) {
-        console.error("Error fetching recognition data:", error);
-        res.status(500).json({ message: "Server error" });
+        console.error("Error fetching rewards data:", error);
+        throw new Error(error.message);
     }
 };
 
+//Get All Surveys, and separate them by status Pending and Completed
 // Fix this one.. its pending users to respond the survey and completed to answer?
-const getSurveysManagementByStatus = async (req, res) => {
+const surveysManagementByStatus = async (date) => {
     try {
-        const { date } = req.body;
         const initialDate = new Date(date);
 
         // Define the time units and periods to analyze
@@ -432,7 +530,7 @@ const getSurveysManagementByStatus = async (req, res) => {
                         // Check if the survey is within the current period and update the counts
                         if (
                             survey.status === "Ongoing" &&
-                            surveyEndDate <= endCurrent
+                            surveyEndDate <= periodEndDate
                         ) {
                             acc.ongoing += 1;
                             acc.totalAmount += 1;
@@ -508,25 +606,24 @@ const getSurveysManagementByStatus = async (req, res) => {
         }
 
         // Send the response with the calculated results
-        res.status(200).json(results);
+        return results;
     } catch (error) {
         console.error("Error fetching surveys management data:", error);
-        res.status(500).json({ message: "Server error" });
+        throw new Error(error.message);
     }
 };
 
-const getSatisfactionIndex = async (req, res) => {
+const satisfactionIndex = async (date) => {
     try {
-        const { date } = req.body; // Extract the date from the request body
         const initialDate = new Date(date); // Convert the date to a Date object
 
+        // Define the time units and the number of periods to analyze
         const units = [
             { unit: "week", periods: 3 },
             { unit: "month", periods: 3 },
             { unit: "quarter", periods: 3 },
             { unit: "annual", periods: 2 },
-        ]; // Define the time units and the number of periods to analyze
-
+        ];
         // Array to store results for each unit
         const results = [];
 
@@ -688,20 +785,19 @@ const getSatisfactionIndex = async (req, res) => {
             });
         }
 
-        // Send the final results as a JSON response
-        res.status(200).json(results);
+        return results;
     } catch (error) {
-        console.error("Error fetching satisfaction surveys data:", error); // Log errors
-        res.status(500).json({ message: "Server error" }); // Send an error response
+        console.error("Error fetching satisfaction surveys data:", error);
+        throw new Error(error.message);
     }
 };
 
-// IT DOENST WORK YET
-const getSatisfactionIndexByDay = async (req, res) => {
+const averageScoreSurveys = async (date) => {
     try {
-        const { date } = req.body;
+        console.log(date);
         const initialDate = new Date(date);
 
+        // Define the units and periods for the analysis
         const units = [
             { unit: "week", periods: 3 },
             { unit: "month", periods: 3 },
@@ -711,11 +807,14 @@ const getSatisfactionIndexByDay = async (req, res) => {
 
         const results = [];
 
+        // Loop through each unit (week, month, quarter, annual)
         for (const { unit, periods } of units) {
             const unitResults = [];
 
+            // Loop through each period within the unit
             for (let i = 0; i < periods; i++) {
                 const periodDate = new Date(initialDate);
+                // Adjust the period date based on the unit
                 switch (unit) {
                     case "week":
                         periodDate.setDate(initialDate.getDate() - 7 * i);
@@ -731,128 +830,50 @@ const getSatisfactionIndexByDay = async (req, res) => {
                         break;
                 }
 
-                const { startCurrent, endCurrent } = getPeriodDates(
-                    unit,
-                    periodDate
-                );
+                // Get the start and end dates for the current and previous periods
+                const { startCurrent, endCurrent, startPrevious, endPrevious } =
+                    getPeriodDates(unit, periodDate);
 
-                // Use initialDate for i = 0, otherwise use endCurrent
                 const periodEndDate = i === 0 ? initialDate : endCurrent;
 
-                // Calculate total employees in the period
+                // Fetch all users
                 const users = await User.find({});
-                const totalEmployees = users.filter((user) => {
+
+                // Filter users active in the period
+                const activeUsers = users.filter((user) => {
                     const onBoardingDate = new Date(user.onBoardingDate);
                     const terminationDate = user.terminationDate
                         ? new Date(user.terminationDate)
                         : null;
-                    if (i === 0) {
-                        return (
-                            onBoardingDate <= endCurrent &&
-                            (!terminationDate || terminationDate >= endCurrent)
-                        );
-                    }
                     return (
                         onBoardingDate <= periodEndDate &&
-                        (!terminationDate || terminationDate >= periodEndDate)
+                        (!terminationDate || terminationDate >= startCurrent)
                     );
                 });
 
-                let totalEmployeesWithSurveys = 0;
-                const weeklyTotals = {};
+                // Calculate the average before the period
+                const averageBeforePeriod = calculateAverageBeforePeriod(
+                    activeUsers,
+                    startCurrent
+                );
 
-                // Calculate weekly satisfaction indices
-                totalEmployees.forEach((user) => {
-                    const completedSurveys = user.surveys.filter((survey) => {
-                        const surveyDate = new Date(survey.date);
-                        return (
-                            survey.status === "completed" &&
-                            surveyDate <= periodEndDate
-                        );
-                    });
+                // Calculate the average within the period
+                const periodAverages = calculatePeriodAverages(
+                    activeUsers,
+                    unit,
+                    startCurrent,
+                    periodEndDate,
+                    averageBeforePeriod
+                );
 
-                    if (completedSurveys.length > 0) {
-                        totalEmployeesWithSurveys += 1;
-                        completedSurveys.forEach((survey) => {
-                            const surveyWeek = getISOWeek(
-                                new Date(survey.date)
-                            );
-                            if (!weeklyTotals[surveyWeek]) {
-                                weeklyTotals[surveyWeek] = { sum: 0, count: 0 };
-                            }
-                            const averageAnswer =
-                                survey.answers.reduce((a, b) => a + b, 0) /
-                                survey.answers.length;
-                            weeklyTotals[surveyWeek].sum += averageAnswer;
-                            weeklyTotals[surveyWeek].count += 1;
-                        });
-                    }
-                });
-
-                const totalAverage = [];
-                let cumulativeSum = 0;
-                let cumulativeCount = 0;
-
-                if (unit === "week") {
-                    for (
-                        let d = new Date(startCurrent);
-                        d <= endCurrent;
-                        d.setDate(d.getDate() + 1)
-                    ) {
-                        const dayStr = d.toISOString().split("T")[0];
-                        if (weeklyTotals[getISOWeek(d)]) {
-                            cumulativeSum += weeklyTotals[getISOWeek(d)].sum;
-                            cumulativeCount +=
-                                weeklyTotals[getISOWeek(d)].count;
-                        }
-                        if (cumulativeCount > 0) {
-                            totalAverage.push(cumulativeSum / cumulativeCount);
-                        } else {
-                            totalAverage.push(0);
-                        }
-                    }
-                } else if (unit === "month") {
-                    const weeksInMonth = getWeeksInMonth(
-                        initialDate.getMonth() - i,
-                        initialDate.getFullYear()
-                    );
-                    for (let w = 1; w <= weeksInMonth; w++) {
-                        const weekAverage = weeklyTotals[w]
-                            ? weeklyTotals[w].sum / weeklyTotals[w].count
-                            : 0;
-                        totalAverage.push(weekAverage);
-                    }
-                } else if (unit === "quarter") {
-                    const monthsInQuarter = getMonthsInQuarter(
-                        initialDate.getMonth() - 3 * i,
-                        initialDate.getFullYear()
-                    );
-                    for (let m = 1; m <= monthsInQuarter; m++) {
-                        const monthAverage = calculateMonthAverage(
-                            weeklyTotals,
-                            initialDate.getMonth() - 3 * i + m,
-                            initialDate.getFullYear()
-                        );
-                        totalAverage.push(monthAverage);
-                    }
-                } else if (unit === "annual") {
-                    const quartersInYear = 4;
-                    for (let q = 1; q <= quartersInYear; q++) {
-                        const quarterAverage = calculateQuarterAverage(
-                            weeklyTotals,
-                            initialDate.getFullYear() - i,
-                            q
-                        );
-                        totalAverage.push(quarterAverage);
-                    }
-                }
+                // Generate labels for the unit
+                const labels = generateLabels(unit, startCurrent, endCurrent);
 
                 unitResults.push({
                     from: startCurrent.toISOString().split("T")[0],
                     to: endCurrent.toISOString().split("T")[0],
-                    totalEmployees: totalEmployees.length,
-                    totalEmployeesWithSurveys,
-                    totalAverage,
+                    averages: periodAverages,
+                    labels: labels,
                 });
             }
 
@@ -862,66 +883,210 @@ const getSatisfactionIndexByDay = async (req, res) => {
             });
         }
 
-        res.status(200).json(results);
+        return results;
     } catch (error) {
-        console.error("Error fetching satisfaction index data:", error);
-        res.status(500).json({ message: "Server error" });
+        console.error("Error fetching average score data:", error);
+        throw new Error(error.message);
     }
 };
 
-// Função para obter o número da semana ISO
-function getISOWeek(date) {
-    const d = new Date(date);
-    d.setHours(0, 0, 0, 0);
-    d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7));
-    const yearStart = new Date(d.getFullYear(), 0, 1);
-    return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-}
+// Calculate the average score before the period starts
+const calculateAverageBeforePeriod = (users, startPeriod) => {
+    let totalAnswers = 0;
+    let totalCount = 0;
 
-// Função para obter o número de semanas em um mês específico
-function getWeeksInMonth(month, year) {
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const used = firstDay.getDay() + lastDay.getDate();
-    return Math.ceil(used / 7);
-}
+    users.forEach((user) => {
+        user.surveys.forEach((survey) => {
+            const surveyDate = new Date(survey.date);
+            if (survey.status === "completed" && surveyDate < startPeriod) {
+                totalAnswers += survey.answers.reduce(
+                    (acc, val) => acc + val,
+                    0
+                );
+                totalCount += survey.answers.length;
+            }
+        });
+    });
 
-// Função para calcular a média do mês com base nas semanas
-function calculateMonthAverage(weeklyTotals, month, year) {
-    let sum = 0;
-    let count = 0;
-    const weeksInMonth = getWeeksInMonth(month, year);
-    for (let w = 1; w <= weeksInMonth; w++) {
-        if (weeklyTotals[w]) {
-            sum += weeklyTotals[w].sum;
-            count += weeklyTotals[w].count;
+    return totalCount ? totalAnswers / totalCount : null;
+};
+
+// Calculate the average score within the period
+const calculatePeriodAverages = (
+    users,
+    unit,
+    startPeriod,
+    endPeriod,
+    averageBeforePeriod
+) => {
+    const periodAverages = [];
+    let currentPeriodStart = new Date(startPeriod);
+    let lastAverage = averageBeforePeriod;
+
+    if (unit === "quarter" || unit === "annual") {
+        const numberOfPeriods = unit === "quarter" ? 3 : 4;
+        for (let i = 0; i < numberOfPeriods; i++) {
+            let periodStart = new Date(startPeriod);
+            periodStart.setMonth(
+                startPeriod.getMonth() + (unit === "quarter" ? i : i * 3)
+            );
+            let periodEnd = new Date(periodStart);
+            periodEnd.setMonth(
+                periodStart.getMonth() + (unit === "quarter" ? 1 : 3)
+            );
+            periodEnd.setDate(0);
+
+            let totalAnswers = 0;
+            let totalCount = 0;
+
+            users.forEach((user) => {
+                user.surveys.forEach((survey) => {
+                    const surveyDate = new Date(survey.date);
+                    if (
+                        survey.status === "completed" &&
+                        surveyDate >= periodStart &&
+                        surveyDate <= periodEnd
+                    ) {
+                        totalAnswers += survey.answers.reduce(
+                            (acc, val) => acc + val,
+                            0
+                        );
+                        totalCount += survey.answers.length;
+                    }
+                });
+            });
+
+            const averageForCurrentPeriod = totalCount
+                ? totalAnswers / totalCount
+                : null;
+            lastAverage = calculateCombinedAverage(
+                lastAverage,
+                averageForCurrentPeriod
+            );
+            periodAverages.push(lastAverage);
+
+            if (
+                periodEnd.getMonth() >= endPeriod.getMonth() &&
+                periodEnd.getFullYear() === endPeriod.getFullYear()
+            ) {
+                break;
+            }
+        }
+    } else {
+        const timeUnitIncrements = {
+            week: 1,
+            month: 7,
+            quarter: 1,
+            annual: 3,
+        };
+
+        const increment = timeUnitIncrements[unit];
+
+        while (currentPeriodStart <= endPeriod) {
+            let currentPeriodEnd = new Date(currentPeriodStart);
+            currentPeriodEnd.setDate(currentPeriodEnd.getDate() + increment);
+
+            let totalAnswers = 0;
+            let totalCount = 0;
+
+            users.forEach((user) => {
+                user.surveys.forEach((survey) => {
+                    const surveyDate = new Date(survey.date);
+                    if (
+                        survey.status === "completed" &&
+                        surveyDate >= currentPeriodStart &&
+                        surveyDate < currentPeriodEnd
+                    ) {
+                        totalAnswers += survey.answers.reduce(
+                            (acc, val) => acc + val,
+                            0
+                        );
+                        totalCount += survey.answers.length;
+                    }
+                });
+            });
+
+            const averageForCurrentPeriod = totalCount
+                ? totalAnswers / totalCount
+                : null;
+            lastAverage = calculateCombinedAverage(
+                lastAverage,
+                averageForCurrentPeriod
+            );
+            periodAverages.push(lastAverage);
+
+            currentPeriodStart.setDate(
+                currentPeriodStart.getDate() + increment
+            );
+        }
+
+        const expectedLength = unit === "week" ? 7 : unit === "month" ? 4 : 4;
+        while (periodAverages.length < expectedLength) {
+            periodAverages.push(null);
         }
     }
-    return count > 0 ? sum / count : 0;
-}
 
-// Função para obter o número de meses em um trimestre específico
-function getMonthsInQuarter(quarterStartMonth, year) {
-    return quarterStartMonth < 0 ? 0 : Math.min(3, 11 - quarterStartMonth) + 1;
-}
+    return periodAverages;
+};
 
-// Função para calcular a média do trimestre com base nos meses
-function calculateQuarterAverage(weeklyTotals, year, quarter) {
-    let sum = 0;
-    let count = 0;
-    const monthsInQuarter = getMonthsInQuarter((quarter - 1) * 3, year);
-    for (let m = 1; m <= monthsInQuarter; m++) {
-        sum += calculateMonthAverage(weeklyTotals, (quarter - 1) * 3 + m, year);
-        count++;
+// Calculate the combined average of the last and current periods
+const calculateCombinedAverage = (lastAverage, currentAverage) => {
+    if (lastAverage === null) {
+        return currentAverage;
+    } else if (currentAverage === null) {
+        return lastAverage;
+    } else {
+        return (lastAverage + currentAverage) / 2;
     }
-    return count > 0 ? sum / count : 0;
-}
+};
 
+// Generate labels for the periods based on the unit
+const generateLabels = (unit, start, end) => {
+    const labels = [];
+    let currentDate = new Date(start);
+    currentDate.setHours(31);
+
+    switch (unit) {
+        case "week":
+            while (currentDate <= end) {
+                labels.push(currentDate.getDate());
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            break;
+        case "month":
+            labels.push("week1", "week2", "week3", "week4");
+            break;
+        case "quarter":
+            for (let i = 0; i < 3; i++) {
+                const monthName = currentDate.toLocaleString("default", {
+                    month: "short",
+                });
+                labels.push(monthName);
+                currentDate.setMonth(currentDate.getMonth() + 1);
+            }
+            break;
+        case "annual":
+            labels.push("Q1", "Q2", "Q3", "Q4");
+            break;
+    }
+
+    return labels;
+};
+
+// EXPORTS =======================================================================
 module.exports = {
+    getDashboardCharts,
     getRecognitionsByStatus,
     getRewardsRequestByStatus,
     getRewardsManagementByStatus,
     getSurveysManagementByStatus,
     getSatisfactionIndex,
-    getSatisfactionIndexByDay,
+    getAverageScore,
+    //HELPERS to call in another endpoint
+    recognitionsByStatus,
+    rewardsManagementByStatus,
+    rewardsRequestByStatus,
+    surveysManagementByStatus,
+    satisfactionIndex,
+    averageScoreSurveys,
 };

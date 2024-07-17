@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const {
+    getDashboardCharts,
     getRecognitionsByStatus,
     getRewardsManagementByStatus,
     getRewardsRequestByStatus,
     getSurveysManagementByStatus,
     getSatisfactionIndex,
-    getSatisfactionIndexByDay,
+    getAverageScore,
 } = require("../controllers/chartsController");
 
 const router = express();
@@ -17,6 +18,10 @@ router.use(cors()); // This will enable CORS for all routes
 // Configuring body-parser (integrated in Express)
 router.use(express.json()); // To parse JSON
 router.use(express.urlencoded({ extended: true })); // To parse form data
+
+// Dashboard Page Charts
+// body = { "date": "YYYY-MM-DD"}
+router.post("/dashboard", getDashboardCharts);
 
 // Recognition Card by Status route
 // body = { "date": "YYYY-MM-DD"}
@@ -40,6 +45,6 @@ router.get("/satisfactionIndex", getSatisfactionIndex);
 
 // Average Score Time by route
 // body = { "date": "YYYY-MM-DD"}
-router.get("/averageScoreTime", getSatisfactionIndexByDay);
+router.get("/averageScoreTime", getAverageScore);
 
 module.exports = router;
