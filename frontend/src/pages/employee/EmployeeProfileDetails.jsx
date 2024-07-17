@@ -173,7 +173,6 @@ const EmployeeProfileDetails = () => {
 
     const lastSurvey = user?.surveys ? getNPS(user.surveys) : " ";
 
-    // Save the arrays in local storage
     // Save de rows into localstorage to use them in audience list table
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("lastSurvey", JSON.stringify(lastSurvey));
@@ -184,7 +183,7 @@ const EmployeeProfileDetails = () => {
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
             <TopUserBar titleScreen={"Employees"} />
-            <Breadcrumbs />
+            <Breadcrumbs dynamicTexts={["Details"]} />
 
             <div className="mt-4 grid grid-cols-[336px_minmax(600px,_1fr)] gap-x-4">
                 {user && (
@@ -247,7 +246,7 @@ const EmployeeProfileDetails = () => {
                             margin="0"
                             title={"Recognitions"}
                             pathRowTo={"/recognitions/requests"}
-                            pathViewAllTo={`/users/details/${id}/recognitions`}
+                            pathViewAllTo={`/users/${id}/recognitions`}
                             rows={recognitionRows}
                             columns={recognitionHeaders}
                             rowsNumber="5"
@@ -266,7 +265,7 @@ const EmployeeProfileDetails = () => {
                             width="100%"
                             margin="0"
                             title={"Rewards"}
-                            pathViewAllTo={`/users/details/${id}/rewards`}
+                            pathViewAllTo={`/users/${id}/rewards`}
                             pathRowTo={`/rewards/requests/{rowId}/${id}`}
                             rows={rewardRows}
                             columns={rewardHeaders}
@@ -282,7 +281,7 @@ const EmployeeProfileDetails = () => {
                             width="100%"
                             margin="0"
                             title={"Surveys"}
-                            pathViewAllTo={`/users/details/${id}/surveys`}
+                            pathViewAllTo={`/users/${id}/surveys`}
                             pathRowTo={`/surveys/management/{rowId}/${id}`}
                             rows={surveyRows}
                             columns={surveyHeaders}

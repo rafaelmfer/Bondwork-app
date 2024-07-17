@@ -589,8 +589,8 @@ export default function TableWithProfile({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "150px",
-                                maxWidth: "190px",
+                                width: "160px",
+                                maxWidth: "200px",
                                 padding: "0px",
                             }}
                             onClick={() =>

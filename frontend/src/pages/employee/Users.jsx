@@ -88,7 +88,7 @@ const Users = () => {
                     title={"Employees"}
                     showTitle={false}
                     showTabs={false}
-                    pathRowTo={"/users/details"}
+                    pathRowTo={"/users"}
                     rows={rows}
                     columns={columnsTable}
                     rowsNumber="10"
