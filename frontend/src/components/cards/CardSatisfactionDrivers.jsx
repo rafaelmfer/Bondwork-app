@@ -1,17 +1,18 @@
 import React from "react";
-import {
-    Box,
-    Card,
-    CardContent,
-    Typography,
-    Chip,
-    Button,
-} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Box, Card, CardContent, Typography, Button } from "@mui/material";
 import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 import ChartLine from "../charts/ChartLine";
 import ChipNumber from "../chip/ChipNumber";
 
-const CardSatisfactionDrivers = ({ overall, chipText, isLegendBottom }) => {
+const CardSatisfactionDrivers = ({
+    overall,
+    chipText,
+    data,
+    isLegendBottom = true,
+}) => {
+    const navigate = useNavigate();
+
     // Format overall to the specified decimal places
     const formattedOverall = overall.toFixed(2);
 
@@ -43,6 +44,9 @@ const CardSatisfactionDrivers = ({ overall, chipText, isLegendBottom }) => {
                                 backgroundColor: "transparent",
                             },
                         }}
+                        onClick={() => {
+                            navigate("/surveys");
+                        }}
                     >
                         Satisfaction Drivers
                     </Button>
@@ -66,7 +70,11 @@ const CardSatisfactionDrivers = ({ overall, chipText, isLegendBottom }) => {
                         <ChipNumber chipText={chipText} sx={{ ml: 1 }} />
                     </Box>
                 </Box>
-                <ChartLine chartHeight={200} isLegendBottom />
+                <ChartLine
+                    chartHeight={200}
+                    data={data}
+                    isLegendBottom={isLegendBottom}
+                />
             </CardContent>
         </Card>
     );

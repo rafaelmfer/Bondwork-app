@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const {
     getDashboardCharts,
+    getRecognitionsCharts,
+    getRewardsCharts,
+    getSurveysCharts,
     getRecognitionsByStatus,
     getRecognitionByCategory,
     getRewardsManagementByStatus,
@@ -23,6 +26,18 @@ router.use(express.urlencoded({ extended: true })); // To parse form data
 // Dashboard Page Charts
 // body = { "date": "YYYY-MM-DD"}
 router.post("/dashboard", getDashboardCharts);
+
+// Recognitions Page Charts
+// body = { "date": "YYYY-MM-DD"}
+router.post("/recognitions", getRecognitionsCharts);
+
+// Rewards Page Charts
+// body = { "date": "YYYY-MM-DD"}
+router.post("/rewards", getRewardsCharts);
+
+// Surveys Page Charts
+// body = { "date": "YYYY-MM-DD"}
+router.post("/surveys", getSurveysCharts);
 
 // Recognition Card by Status route
 // body = { "date": "YYYY-MM-DD"}
