@@ -7,6 +7,7 @@ const { getPeriodDates } = require("../utils/utils");
 
 const { allUser } = require("./userController");
 
+// CHARTS by PAGES
 const getDashboardCharts = async (req, res) => {
     try {
         const { date } = req.body;
@@ -28,6 +29,62 @@ const getDashboardCharts = async (req, res) => {
     }
 };
 
+const getRecognitionsCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const chart1 = await recognitionsByStatus(date);
+        const chart2 = await recognitionByCategory(date);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getRewardsCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const chart1 = await rewardsManagementByStatus(date);
+        const chart2 = await rewardsRequestByStatus(date);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getSurveysCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const chart1 = await surveysManagementByStatus(date);
+        const chart2 = await satisfactionIndex(date);
+        const chart3 = await averageScoreSurveys(date);
+        const chart4 = await averageScoreSurveys(date);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+            chart3,
+            chart4,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// CHARTS
 const getRecognitionsByStatus = async (req, res) => {
     try {
         const { date } = req.body;
@@ -50,6 +107,7 @@ const getRecognitionByCategory = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
+
 const getRewardsManagementByStatus = async (req, res) => {
     try {
         const { date } = req.body;
@@ -922,7 +980,6 @@ const satisfactionIndex = async (date) => {
 
 const averageScoreSurveys = async (date) => {
     try {
-        console.log(date);
         const initialDate = new Date(date);
 
         // Define the units and periods for the analysis
@@ -1177,7 +1234,7 @@ const generateLabels = (unit, start, end) => {
     switch (unit) {
         case "week":
             while (currentDate <= end) {
-                labels.push(currentDate.getDate());
+                labels.push(currentDate.getDate().toString());
                 currentDate.setDate(currentDate.getDate() + 1);
             }
             break;
@@ -1203,7 +1260,12 @@ const generateLabels = (unit, start, end) => {
 
 // EXPORTS =======================================================================
 module.exports = {
+    //CHARTS BY PAGE
     getDashboardCharts,
+    getRecognitionsCharts,
+    getRewardsCharts,
+    getSurveysCharts,
+    //CHARTS
     getRecognitionsByStatus,
     getRecognitionByCategory,
     getRewardsRequestByStatus,

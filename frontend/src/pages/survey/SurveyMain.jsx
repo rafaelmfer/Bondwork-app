@@ -9,16 +9,15 @@ import TableSeven from "../../components/TableSeven";
 import theme from "../../theme/theme";
 import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 
-const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
+const URL = `${process.env.REACT_APP_API_URL}/api/surveys`;
+const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/surveys`;
 
 const SurveyMain = () => {
+    // let today = new Date().toISOString().split("T")[0];
+    let today = "2024-07-14";
+
     // Satisfaction Chart Data
     const chartDataSatisfaction = [
-        {
-            name: "Overall",
-            data: [2.5, 2.9, 2.4, 2.9, 3.2, 3.4, null],
-            color: "#8F0A06",
-        },
         {
             name: "Salary",
             data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
@@ -42,7 +41,6 @@ const SurveyMain = () => {
     ];
 
     const [surveys, setSurveys] = useState([]);
-
     // Fetching surveys
     useEffect(() => {
         const fetchData = async () => {

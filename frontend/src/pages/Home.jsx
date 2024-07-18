@@ -6,28 +6,31 @@ import CardSatisfactionDrivers from "../components/cards/CardSatisfactionDrivers
 import Breadcrumbs from "../components/Breadcrumbs";
 import theme from "../theme/theme";
 
-const URL = `${process.env.REACT_APP_API_URL}/api/charts/dashboard`;
+const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/dashboard`;
 
 const Home = () => {
+    // let today = new Date().toISOString().split("T")[0];
+    let today = "2024-07-14";
+
     const [dataApi, setDataApi] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     // Fetching charts dashboard
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(URL, {
+                const res = await fetch(URL_CHARTS, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ date: "2024-07-14" }),
+                    body: JSON.stringify({ date: today }),
                 });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
                 setDataApi(data);
-                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
