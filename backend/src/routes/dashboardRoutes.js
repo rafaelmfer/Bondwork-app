@@ -13,7 +13,7 @@ router.use(cors()); // This will enable CORS for all routes
 
 // ----Turnover Rate----
 // localhost:5000/api/dashboard/turnoverRate
-router.get("/turnoverRate", getTurnoverRate);
+router.post("/turnoverRate", getTurnoverRate);
 
 // ----Satisfaction Drivers----
 // localhost:5000/api/dashboard/satisfactionDrivers

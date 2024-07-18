@@ -1,62 +1,145 @@
 const Survey = require("../models/SurveyModel");
-const Users = require("../models/UserModel");
+const User = require("../models/UserModel");
 //const Recognition = require("../models/endorsementModel");
 const Rewards = require("../models/RewardsModel");
+const moment = require("moment");
+// const { getPeriodDates } = require("../utils/utils");
 
 // Show all number on dashboard:
 // Do the calculation after the logic is settle
 // Get numbers from each database, don't need to create new database and models for dashboard
 
-const getPeriodDates = async (unit) => {
-    const now = new Date();
-    let startCurrent;
-    let startPrevious;
-    let endPrevious;
-
-    switch (unit) {
-        case "week":
-            startCurrent = new Date(now.setDate(now.getDate() - now.getDay()));
-            startPrevious = new Date(now.setDate(now.getDate() - 7));
-            endPrevious = new Date(startCurrent);
-            break;
-        case "month":
-            startCurrent = new Date(now.getFullYear(), now.getMonth(), 1);
-            startPrevious = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-            endPrevious = new Date(startCurrent);
-            break;
-        case "quarter":
-            const currentQuarter = Math.floor((now.getMonth() + 3) / 3);
-            startCurrent = new Date(
-                now.getFullYear(),
-                (currentQuarter - 1) * 3,
-                1
-            );
-            startPrevious = new Date(
-                now.getFullYear(),
-                (currentQuarter - 2) * 3,
-                1
-            );
-            endPrevious = new Date(startCurrent);
-            break;
-        case "annual":
-            startCurrent = new Date(now.getFullYear(), 0, 1);
-            startPrevious = new Date(now.getFullYear() - 1, 0, 1);
-            endPrevious = new Date(startCurrent);
-            break;
-        default:
-            throw new Error("Invalid unit");
-    }
-
-    return { startCurrent, startPrevious, endPrevious };
-};
-
 // ----Turnover Rate----
 // based on users
-// calculation: get data from employees database (get amount of employees based on "start hiring date" and "leaving date")
+// current: percentage of the current day (not average!)
+// badge: compare current day this week to the same day in last week (friday vs last friday)
+// chart: all data for each day (frontend will call the range they want)
 const getTurnoverRate = async (req, res) => {
-    // current: percentage of the current day (not average!)
-    // badge: compare current day this week to the same day in last week (friday vs last friday)
-    // chart: all data for each day (frontend will call the range they want)
+    try {
+        const requestDate = moment(req.body.date);
+
+        // Define time periods
+        const getWeekResults = async (date) => {
+            const weekStart = date.startOf("isoWeek"); // Starting from Monday
+            const weekResults = [];
+
+            for (let i = 0; i < 7; i++) {
+                const from = weekStart
+                    .clone()
+                    .add(i, "days")
+                    .format("YYYY-MM-DD");
+                const to = weekStart
+                    .clone()
+                    .add(i, "days")
+                    .format("YYYY-MM-DD");
+                const turnoverRate = await calculateTurnoverRate(from, to);
+                weekResults.push({ from, to, turnoverRate });
+            }
+
+            return { unit: "week", unitResults: weekResults };
+        };
+
+        const getMonthResults = async (date) => {
+            const monthStart = date.clone().startOf("month");
+            const monthEnd = date.clone().endOf("month");
+            const monthResults = [];
+            console.log(
+                `Month Start: ${monthStart.format("YYYY-MM-DD")}, Month End: ${monthEnd.format("YYYY-MM-DD")}`
+            );
+
+            let weekStart = monthStart.clone().startOf("isoWeek");
+            while (weekStart.isBefore(monthEnd)) {
+                const from = weekStart.clone().format("YYYY-MM-DD");
+                const to = moment
+                    .min(weekStart.clone().endOf("isoWeek"), monthEnd)
+                    .format("YYYY-MM-DD");
+                console.log(`Week From: ${from}, Week To: ${to}`);
+
+                const turnoverRate = await calculateTurnoverRate(from, to);
+                monthResults.push({ from, to, turnoverRate });
+
+                // Move to the next week
+                weekStart.add(1, "week");
+            }
+
+            return { unit: "month", unitResults: monthResults };
+        };
+
+        const getQuarterResults = async (date) => {
+            const previousMonth = date.clone().subtract(1, "months");
+            const currentMonth = date.clone();
+            const nextMonth = date.clone().add(1, "months");
+
+            const quarterResults = [];
+            for (const month of [previousMonth, currentMonth, nextMonth]) {
+                const monthStart = month.startOf("month").format("YYYY-MM-DD");
+                const monthEnd = month.endOf("month").format("YYYY-MM-DD");
+                const turnoverRate = await calculateTurnoverRate(
+                    monthStart,
+                    monthEnd
+                );
+                quarterResults.push({
+                    from: monthStart,
+                    to: monthEnd,
+                    turnoverRate,
+                });
+            }
+
+            return { unit: "quarter", unitResults: quarterResults };
+        };
+
+        const getAnnualResults = async (date) => {
+            const yearStart = date.startOf("year");
+            const annualResults = [];
+
+            for (
+                let quarterStart = yearStart.clone();
+                quarterStart.isBefore(date.endOf("year"));
+                quarterStart.add(3, "months")
+            ) {
+                const from = quarterStart.format("YYYY-MM-DD");
+                const to = quarterStart
+                    .clone()
+                    .add(2, "months")
+                    .endOf("month")
+                    .format("YYYY-MM-DD");
+                const turnoverRate = await calculateTurnoverRate(from, to);
+                annualResults.push({ from, to, turnoverRate });
+            }
+
+            return { unit: "annual", unitResults: annualResults };
+        };
+
+        // Helper function to calculate turnover rate
+        const calculateTurnoverRate = async (start, end) => {
+            const totalEmployees = await User.countDocuments({
+                onBoardingDate: { $lte: end },
+            });
+
+            const terminatedEmployees = await User.countDocuments({
+                terminationDate: { $gte: start, $lte: end },
+            });
+
+            if (totalEmployees === 0) return "0.00%";
+            const turnoverRate = (
+                (terminatedEmployees / totalEmployees) *
+                100
+            ).toFixed(2);
+            return `${turnoverRate}%`;
+        };
+
+        // Get results for each time period
+        const weekResults = await getWeekResults(requestDate);
+        const monthResults = await getMonthResults(requestDate);
+        const quarterResults = await getQuarterResults(requestDate);
+        const annualResults = await getAnnualResults(requestDate);
+
+        res.json({
+            results: [weekResults, monthResults, quarterResults, annualResults],
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 // ----Satisfaction Drivers----
@@ -142,5 +225,4 @@ module.exports = {
     getSatisfactionDrivers,
     getRecognition,
     getRewardsRequest,
-    getPeriodDates,
 };
