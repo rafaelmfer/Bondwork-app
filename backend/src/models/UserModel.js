@@ -73,11 +73,11 @@ const users = new mongoose.Schema(
             type: departmentSchema,
         },
         onBoardingDate: {
-            type: Date,
+            type: String,
             required: true,
         },
         terminationDate: {
-            type: Date,
+            type: String,
         },
         jobTitle: {
             type: String,
