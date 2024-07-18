@@ -15,7 +15,7 @@ function ChartVerticalBar({ className, chartHeight }) {
         series: [
             {
                 name: "Previous",
-                data: [34, 45, 67, 66],
+                data: [30, 45, 67, 66],
                 color: "#EF6461",
             },
             {
