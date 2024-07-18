@@ -2,7 +2,6 @@ const Recognition = require("../models/RecognitionModel");
 const Rewards = require("../models/RewardsModel");
 const Surveys = require("../models/SurveyModel");
 const User = require("../models/UserModel");
-const moment = require("moment");
 
 const { getPeriodDates } = require("../utils/utils");
 
