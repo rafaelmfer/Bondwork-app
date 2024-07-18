@@ -40,6 +40,16 @@ const getRecognitionsByStatus = async (req, res) => {
     }
 };
 
+const getRecognitionByCategory = async (req, res) => {
+    try {
+        const { date } = req.body;
+        const results = await recognitionByCategory(date);
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching recognition data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
 const getRewardsManagementByStatus = async (req, res) => {
     try {
         const { date } = req.body;
@@ -210,6 +220,124 @@ const recognitionsByStatus = async (date) => {
                         rejected: currentStatusCounts.rejected,
                         rejectedBadge,
                     },
+                });
+            }
+
+            results.push({
+                filter: unit.charAt(0).toUpperCase() + unit.slice(1),
+                info: unitResults,
+            });
+        }
+
+        return results;
+    } catch (error) {
+        console.error("Error fetching recognition data:", error);
+        throw new Error(error.message);
+    }
+};
+
+const recognitionByCategory = async (date) => {
+    try {
+        const initialDate = new Date(date);
+
+        const units = [
+            { unit: "week", periods: 3 },
+            { unit: "month", periods: 3 },
+            { unit: "quarter", periods: 3 },
+            { unit: "annual", periods: 2 },
+        ];
+
+        const results = [];
+
+        for (const { unit, periods } of units) {
+            const unitResults = [];
+
+            for (let i = 0; i < periods; i++) {
+                const periodDate = new Date(initialDate);
+                switch (unit) {
+                    case "week":
+                        periodDate.setDate(initialDate.getDate() - 7 * i);
+                        break;
+                    case "month":
+                        periodDate.setMonth(initialDate.getMonth() - i);
+                        break;
+                    case "quarter":
+                        periodDate.setMonth(initialDate.getMonth() - 3 * i);
+                        break;
+                    case "annual":
+                        periodDate.setFullYear(initialDate.getFullYear() - i);
+                        break;
+                }
+
+                const { startCurrent, endCurrent, startPrevious, endPrevious } =
+                    getPeriodDates(unit, periodDate);
+
+                const currentRecognitions = await Recognition.find({});
+
+                const currentCategoryCounts = currentRecognitions.reduce(
+                    (acc, recognition) => {
+                        const requestDate = new Date(recognition.dateRequest);
+                        if (i === 0) {
+                            if (
+                                requestDate >= startCurrent &&
+                                requestDate <= initialDate
+                            ) {
+                                acc[recognition.category.toLowerCase()] += 1;
+                            }
+                            return acc;
+                        } else {
+                            if (
+                                requestDate >= startCurrent &&
+                                requestDate <= endCurrent
+                            ) {
+                                acc[recognition.category.toLowerCase()] += 1;
+                            }
+                            return acc;
+                        }
+                    },
+                    {
+                        performance: 0,
+                        leadership: 0,
+                        teamwork: 0,
+                        creativity: 0,
+                    }
+                );
+
+                const previousCategoryCounts = currentRecognitions.reduce(
+                    (acc, recognition) => {
+                        const requestDate = new Date(recognition.dateRequest);
+                        if (
+                            requestDate >= startPrevious &&
+                            requestDate <= endPrevious
+                        ) {
+                            acc.totalAmount += 1;
+                            acc[recognition.category.toLowerCase()] += 1;
+                        }
+                        return acc;
+                    },
+                    {
+                        performance: 0,
+                        leadership: 0,
+                        teamwork: 0,
+                        creativity: 0,
+                    }
+                );
+
+                unitResults.push({
+                    from: startCurrent.toISOString().split("T")[0],
+                    to: endCurrent.toISOString().split("T")[0],
+                    current: [
+                        currentCategoryCounts.performance,
+                        currentCategoryCounts.leadership,
+                        currentCategoryCounts.teamwork,
+                        currentCategoryCounts.creativity,
+                    ],
+                    previous: [
+                        previousCategoryCounts.performance,
+                        previousCategoryCounts.leadership,
+                        previousCategoryCounts.teamwork,
+                        previousCategoryCounts.creativity,
+                    ],
                 });
             }
 
@@ -1077,6 +1205,7 @@ const generateLabels = (unit, start, end) => {
 module.exports = {
     getDashboardCharts,
     getRecognitionsByStatus,
+    getRecognitionByCategory,
     getRewardsRequestByStatus,
     getRewardsManagementByStatus,
     getSurveysManagementByStatus,
@@ -1084,6 +1213,7 @@ module.exports = {
     getAverageScore,
     //HELPERS to call in another endpoint
     recognitionsByStatus,
+    recognitionByCategory,
     rewardsManagementByStatus,
     rewardsRequestByStatus,
     surveysManagementByStatus,
