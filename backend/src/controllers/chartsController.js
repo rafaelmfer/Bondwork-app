@@ -107,7 +107,6 @@ const getRecognitionByCategory = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
-
 const getRewardsManagementByStatus = async (req, res) => {
     try {
         const { date } = req.body;
