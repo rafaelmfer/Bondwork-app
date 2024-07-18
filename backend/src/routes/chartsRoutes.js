@@ -3,6 +3,7 @@ const cors = require("cors");
 const {
     getDashboardCharts,
     getRecognitionsByStatus,
+    getRecognitionByCategory,
     getRewardsManagementByStatus,
     getRewardsRequestByStatus,
     getSurveysManagementByStatus,
@@ -26,6 +27,10 @@ router.post("/dashboard", getDashboardCharts);
 // Recognition Card by Status route
 // body = { "date": "YYYY-MM-DD"}
 router.get("/recognitionsStatus", getRecognitionsByStatus);
+
+// Recognition Card by Category route
+// body = { "date": "YYYY-MM-DD"}
+router.get("/recognitionsCategory", getRecognitionByCategory);
 
 // Rewards Management Card by Status route
 // body = { "date": "YYYY-MM-DD"}
