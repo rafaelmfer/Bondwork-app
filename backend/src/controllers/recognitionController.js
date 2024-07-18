@@ -98,6 +98,7 @@ const getRecognition = async (req, res) => {
 //approve: boolean=true; change status: pending->approve
 //reject: boolean=false; change status: pending->reject
 const updateRecognition = async (req, res) => {
+    console.log(req.params);
     try {
         const { id } = req.params;
         const { approve, reason, rejectDetails } = req.body;
