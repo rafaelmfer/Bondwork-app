@@ -88,23 +88,24 @@ const Management = () => {
 
     return (
         <div>
-            <TopUserBar titleScreen={"Management"} />
             <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
+                <TopUserBar titleScreen={"Management"} />
                 <Breadcrumbs />
-                <TableSeven
-                    width="100%"
-                    showTitle={false}
-                    title={"Management"}
-                    pathAddTo={"/surveys/management/addSurvey"}
-                    pathRowTo={"/surveys/management"}
-                    showSend={true}
-                    showFilter={true}
-                    rows={rows}
-                    columns={columnsTable}
-                    rowsNumber="7"
-                    showSecondLastColumn={true}
-                    showLastColumn={false}
-                />
+                <div className="flex flex-col gap-4 mx-[-16px]">
+                    <TableSeven
+                        showTitle={false}
+                        title={"Management"}
+                        pathAddTo={"/surveys/management/addSurvey"}
+                        pathRowTo={"/surveys/management"}
+                        showSend={true}
+                        showFilter={true}
+                        rows={rows}
+                        columns={columnsTable}
+                        rowsNumber="7"
+                        showSecondLastColumn={true}
+                        showLastColumn={false}
+                    />
+                </div>
             </main>
         </div>
     );

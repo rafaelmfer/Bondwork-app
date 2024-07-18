@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Box, Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import SummaryCard from "../../components/cards/SummaryCard";
 import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
@@ -13,14 +12,34 @@ import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
 const SurveyMain = () => {
-    // Summary Card data
-    const Summarydata = {
-        totalEmployees: { value: 1500, chip: 6 },
-        surveySent: { value: 300, chip: -6 },
-        received: { value: 230, chip: 6 },
-        completed: { value: 150, chip: 6 },
-        averageTime: { value: 5, chip: -1 },
-    };
+    // Satisfaction Chart Data
+    const chartDataSatisfaction = [
+        {
+            name: "Overall",
+            data: [2.5, 2.9, 2.4, 2.9, 3.2, 3.4, null],
+            color: "#8F0A06",
+        },
+        {
+            name: "Salary",
+            data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
+            color: "#B1D6F9",
+        },
+        {
+            name: "Company Culture",
+            data: [2, 2.3, 2.5, 3, 4.5, 4.1, null],
+            color: "#2774BC",
+        },
+        {
+            name: "Job Role",
+            data: [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
+            color: "#FBD8D8",
+        },
+        {
+            name: "Collegues",
+            data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
+            color: "#EF6461",
+        },
+    ];
 
     const [surveys, setSurveys] = useState([]);
 
@@ -142,6 +161,7 @@ const SurveyMain = () => {
                     <ChartLine
                         className="chart-line-survey-main"
                         chartHeight={220}
+                        data={chartDataSatisfaction}
                         isLegendBottom={false}
                     />
                 </div>
