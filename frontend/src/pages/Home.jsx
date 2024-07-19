@@ -97,24 +97,24 @@ const Home = () => {
                     title={"Recognition"}
                     totalNumber={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].totalAmount
+                            ? dataApi.chart3[3].info[0].totalAmount
                             : 0
                     }
                     chipPreviousNumberText={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].badgeCount
+                            ? dataApi.chart3[3].info[0].badgeCount
                             : 0
                     }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
                     number1={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].statusCounts.pending
+                            ? dataApi.chart3[3].info[0].statusCounts.pending
                             : 0
                     }
                     chipText1={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].statusCounts
+                            ? dataApi.chart3[3].info[0].statusCounts
                                   .pendingBadge
                             : 0
                     }
@@ -122,12 +122,12 @@ const Home = () => {
                     statusColor2={theme.palette.success.main}
                     number2={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].statusCounts.approved
+                            ? dataApi.chart3[3].info[0].statusCounts.approved
                             : 0
                     }
                     chipText2={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].statusCounts
+                            ? dataApi.chart3[3].info[0].statusCounts
                                   .approvedBadge
                             : 0
                     }
@@ -135,12 +135,12 @@ const Home = () => {
                     statusColor3={theme.palette.error.main}
                     number3={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].statusCounts.rejected
+                            ? dataApi.chart3[3].info[0].statusCounts.rejected
                             : 0
                     }
                     chipText3={
                         dataApi.chart3
-                            ? dataApi.chart3[0].info[0].statusCounts
+                            ? dataApi.chart3[3].info[0].statusCounts
                                   .rejectedBadge
                             : 0
                     }
@@ -150,24 +150,24 @@ const Home = () => {
                     title={"Rewards Request"}
                     totalNumber={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].totalAmount
+                            ? dataApi.chart4[3].info[0].totalAmount
                             : 0
                     }
                     chipPreviousNumberText={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].badgeCount
+                            ? dataApi.chart4[3].info[0].badgeCount
                             : 0
                     }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
                     number1={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].statusCounts.pending
+                            ? dataApi.chart4[3].info[0].statusCounts.pending
                             : 0
                     }
                     chipText1={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].statusCounts
+                            ? dataApi.chart4[3].info[0].statusCounts
                                   .pendingBadge
                             : 0
                     }
@@ -175,12 +175,12 @@ const Home = () => {
                     statusColor2={theme.palette.success.main}
                     number2={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].statusCounts.approved
+                            ? dataApi.chart4[3].info[0].statusCounts.approved
                             : 0
                     }
                     chipText2={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].statusCounts
+                            ? dataApi.chart4[3].info[0].statusCounts
                                   .approvedBadge
                             : 0
                     }
@@ -188,12 +188,12 @@ const Home = () => {
                     statusColor3={theme.palette.error.main}
                     number3={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].statusCounts.rejected
+                            ? dataApi.chart4[3].info[0].statusCounts.rejected
                             : 0
                     }
                     chipText3={
                         dataApi.chart4
-                            ? dataApi.chart4[0].info[0].statusCounts
+                            ? dataApi.chart4[3].info[0].statusCounts
                                   .rejectedBadge
                             : 0
                     }

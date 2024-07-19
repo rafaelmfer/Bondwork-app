@@ -124,24 +124,24 @@ const RecognitionMain = () => {
                     title={"Recognition"}
                     totalNumber={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].totalAmount
+                            ? dataApi.chart1[3].info[0].totalAmount
                             : 0
                     }
                     chipPreviousNumberText={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].badgeCount
+                            ? dataApi.chart1[3].info[0].badgeCount
                             : 0
                     }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
                     number1={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].statusCounts.pending
+                            ? dataApi.chart1[3].info[0].statusCounts.pending
                             : 0
                     }
                     chipText1={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].statusCounts
+                            ? dataApi.chart1[3].info[0].statusCounts
                                   .pendingBadge
                             : 0
                     }
@@ -149,12 +149,12 @@ const RecognitionMain = () => {
                     statusColor2={theme.palette.success.main}
                     number2={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].statusCounts.approved
+                            ? dataApi.chart1[3].info[0].statusCounts.approved
                             : 0
                     }
                     chipText2={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].statusCounts
+                            ? dataApi.chart1[3].info[0].statusCounts
                                   .approvedBadge
                             : 0
                     }
@@ -162,12 +162,12 @@ const RecognitionMain = () => {
                     statusColor3={theme.palette.error.main}
                     number3={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].statusCounts.rejected
+                            ? dataApi.chart1[3].info[0].statusCounts.rejected
                             : 0
                     }
                     chipText3={
                         dataApi.chart1
-                            ? dataApi.chart1[0].info[0].statusCounts
+                            ? dataApi.chart1[3].info[0].statusCounts
                                   .rejectedBadge
                             : 0
                     }

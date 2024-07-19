@@ -68,7 +68,7 @@ function ChartVerticalBar({
         yaxis: {
             tickAmount: 4,
             title: {
-                text: "number",
+                // text: "number",
             },
         },
         fill: {

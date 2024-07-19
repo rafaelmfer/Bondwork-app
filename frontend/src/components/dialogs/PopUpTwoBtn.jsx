@@ -62,17 +62,13 @@ const PopUpTwoBtn = (props) => {
         };
 
         try {
-            const response = await fetch(
-                props.endPointUrl,
-                // `http://localhost:5001/api/recognition/update/${props.userId}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(approved),
-                }
-            );
+            const response = await fetch(props.endPointUrl, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(approved),
+            });
 
             if (!response.ok) {
                 throw new Error("Fetch FAILED " + response.statusText);

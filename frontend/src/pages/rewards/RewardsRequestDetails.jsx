@@ -118,7 +118,8 @@ const RewardsRequestDetails = () => {
                         />
                         <h3 className="text-h3">Approve</h3>
                         <p className="text-p text-center">
-                            Are you sure you want to approve this request?
+                            Are you sure you want to approve
+                            <br /> this request?
                         </p>
                     </div>
                 }
