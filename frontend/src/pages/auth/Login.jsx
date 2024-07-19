@@ -150,12 +150,18 @@ const Login = () => {
                             Remember me
                         </label>
 
-                        <Link
+                        {/* <Link
                             to="/forgot-password"
                             className="text-secondary-main text-small2-medium self-end"
                         >
                             Forgot Password?
-                        </Link>
+                        </Link> */}
+                        <label
+                            className="text-secondary-main text-small2-medium self-end"
+                            htmlFor=""
+                        >
+                            Forgot Password?
+                        </label>
                     </div>
                     <CustomButton
                         buttontype="primary"
@@ -168,7 +174,7 @@ const Login = () => {
                 <div className="flex items-center justify-center text-center my-5 gap-4">
                     <p className="text-small1">No account yet? </p>
                     <Link
-                        to="/forgot-password"
+                        to="/signup"
                         className="text-main text-small1 self-end"
                     >
                         Sign Up

@@ -21,6 +21,8 @@ import EmployeeProfileDetails from "../pages/employee/EmployeeProfileDetails";
 import EmployeeDetailsRewards from "../pages/employee/EmployeeDetailsRewards";
 
 import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/Signup";
+
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
 
 import iconDashboard from "../assets/icons/dashboard-black-neutral.svg";
@@ -43,6 +45,12 @@ const routes = [
         path: "/login",
         element: <Login />,
         menuLabel: "Login",
+        hideInSidebar: true, // Don't Show in Sidebar Component
+    },
+    {
+        path: "/signup",
+        element: <Signup />,
+        menuLabel: "Signup",
         hideInSidebar: true, // Don't Show in Sidebar Component
     },
     {
