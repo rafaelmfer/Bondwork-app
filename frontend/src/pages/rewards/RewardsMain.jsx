@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import FilterButtons from "../../components/FilterButtons";
 import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import TableSeven from "../../components/TableSeven";
@@ -176,8 +177,8 @@ const RewardsMain = () => {
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Rewards"} />
-
             <Breadcrumbs />
+            <FilterButtons sx={{ marginTop: "8px" }} />
             <div className="flex row gap-4 mt-4">
                 <CardWithTwoStatus
                     title={"Management"}

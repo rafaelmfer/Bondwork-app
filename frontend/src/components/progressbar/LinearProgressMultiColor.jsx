@@ -30,7 +30,7 @@ const LinearProgressMultiColor = ({
                     statusColor3={progressValues[2].color}
                     height={10}
                     borderRadius={5}
-                    animationDuration={1000}
+                    animationDuration={300}
                 />
             ) : progressValues.length === 2 ? (
                 <LinearProgressTwoColors
@@ -39,7 +39,7 @@ const LinearProgressMultiColor = ({
                     color2={progressValues[1].color}
                     height={10}
                     borderRadius={5}
-                    animationDuration={1000}
+                    animationDuration={300}
                 />
             ) : progressValues.length === 1 ? (
                 <LinearProgressOneColor

@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { Box, Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import FilterButtons from "../../components/FilterButtons";
+import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
 import TableSeven from "../../components/TableSeven";
 import theme from "../../theme/theme";
-import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys`;
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/surveys`;
@@ -110,8 +111,8 @@ const SurveyMain = () => {
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Surveys"} />
             <Breadcrumbs />
-
-            <Box className="h-full grid grid-cols-2 items-center gap-6 mt-6">
+            <FilterButtons sx={{ marginTop: "8px" }} />
+            <Box className="h-full grid grid-cols-2 items-center gap-6 mt-4">
                 <CardWithTwoStatus
                     title={"Management"}
                     totalNumber={98}

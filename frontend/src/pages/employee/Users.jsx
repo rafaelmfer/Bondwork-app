@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import CustomTooltip from "../../components/CustomTooltip";
 import CustomButton from "../../components/buttons/CustomButton";
 import TableWithProfile from "../../components/TableWithProfile";
-import IconNormal from "../../assets/icons/sort-black-neutral.svg";
+
 const URL = `${process.env.REACT_APP_API_URL}/api/user/`;
 
 const Users = () => {
@@ -81,6 +80,20 @@ const Users = () => {
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Employees"} />
             <Breadcrumbs />
+            <div className="flex justify-end gap-4">
+                <CustomButton
+                    buttontype="primary"
+                    onClick={() => console.log("Import")}
+                >
+                    Import
+                </CustomButton>
+                <CustomButton
+                    buttontype="primary"
+                    onClick={() => console.log("Export")}
+                >
+                    Export
+                </CustomButton>
+            </div>
             <div className="mt-4">
                 <TableWithProfile
                     width="100%"

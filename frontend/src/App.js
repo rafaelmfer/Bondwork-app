@@ -31,7 +31,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Sidebar profileName={"Izabela N."} />
+                <Sidebar profileName={"HR Manager"} />
                 <Routes>
                     <Route
                         path="/"
