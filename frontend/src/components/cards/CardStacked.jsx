@@ -1,13 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import {
-    Box,
-    Card,
-    CardContent,
-    Typography,
-    //Chip,
-    //Button,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import theme from "../../theme/theme";
 
 function ChartVerticalBar({
@@ -153,14 +146,6 @@ export default function CardStacked({ dataPrevious, dataCurrent }) {
                     dataPrevious={dataPrevious}
                     dataCurrent={dataCurrent}
                 />
-                {/* <div class="relative h-[25px]">
-                  <ul class="flex justify-between absolute w-full -top-[30px] pl-[10%] text-[15px]">
-                      <li>Great Performance</li>
-                      <li>Leadership</li>
-                      <li>Teamwork</li>
-                      <li>Innovative Idea</li>
-                  </ul>
-                </div> */}
             </CardContent>
         </Card>
     );

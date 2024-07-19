@@ -33,7 +33,6 @@ const RecognitionMain = () => {
                 }
                 const data = await res.json();
                 setDataApi(data);
-                console.log("Data for the charts,", dataApi);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -98,7 +97,6 @@ const RecognitionMain = () => {
             status,
         };
     }
-
     // ====================================================
     useEffect(() => {
         const fetchSvg = async () => {
