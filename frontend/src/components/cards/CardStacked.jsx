@@ -5,22 +5,27 @@ import {
     Card,
     CardContent,
     Typography,
-    Chip,
-    Button,
+    //Chip,
+    //Button,
 } from "@mui/material";
 import theme from "../../theme/theme";
 
-function ChartVerticalBar({ className, chartHeight }) {
+function ChartVerticalBar({
+    className,
+    chartHeight,
+    dataPrevious,
+    dataCurrent,
+}) {
     const options = {
         series: [
             {
                 name: "Previous",
-                data: [30, 45, 67, 66],
+                data: dataPrevious,
                 color: "#EF6461",
             },
             {
                 name: "Current",
-                data: [65, 55, 52, 46],
+                data: dataCurrent,
                 color: "#11689E",
             },
         ],
@@ -35,7 +40,7 @@ function ChartVerticalBar({ className, chartHeight }) {
         plotOptions: {
             bar: {
                 horizontal: false,
-                columnWidth: "30%",
+                columnWidth: "45%",
                 endingShape: "rounded",
             },
         },
@@ -44,7 +49,7 @@ function ChartVerticalBar({ className, chartHeight }) {
         },
         stroke: {
             show: true,
-            width: 10,
+            width: 2,
             colors: ["transparent"],
         },
         xaxis: {
@@ -112,7 +117,7 @@ function ChartVerticalBar({ className, chartHeight }) {
     );
 }
 
-export default function CardStacked() {
+export default function CardStacked({ dataPrevious, dataCurrent }) {
     return (
         <Card
             variant="outlined"
@@ -143,7 +148,11 @@ export default function CardStacked() {
                     </Typography>
                 </Box>
 
-                <ChartVerticalBar chartHeight={200} />
+                <ChartVerticalBar
+                    chartHeight={200}
+                    dataPrevious={dataPrevious}
+                    dataCurrent={dataCurrent}
+                />
                 {/* <div class="relative h-[25px]">
                   <ul class="flex justify-between absolute w-full -top-[30px] pl-[10%] text-[15px]">
                       <li>Great Performance</li>
