@@ -1,41 +1,33 @@
 import React from "react";
-import {
-    Box,
-    Card,
-    CardContent,
-    Typography,
-    Chip,
-    Button,
-} from "@mui/material";
-import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
+import { Box, Card, CardContent, Typography, Chip } from "@mui/material";
 import ChartNegativeArea from "../charts/ChartNegativeArea";
 import theme from "../../theme/theme";
 
-const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
-    const getChipColors = (chipText) => {
+const CardTurnoverRate = ({ title, currentRate, badge, chartData }) => {
+    const getChipColors = (badge) => {
         let chipBackground, chipTextColor;
 
-        if (chipText > 0) {
-            chipBackground = "#DEF6E0";
-            chipTextColor = "#227F2C";
-        } else if (chipText < 0) {
-            chipBackground = "#FFF4F1";
-            chipTextColor = "#CA310F";
+        if (badge > 0) {
+            chipBackground = theme.palette.success[100];
+            chipTextColor = theme.palette.success[300];
+        } else if (badge < 0) {
+            chipBackground = theme.palette.error[100];
+            chipTextColor = theme.palette.error[300];
         } else {
-            chipBackground = "#EEEEEE";
-            chipTextColor = "#727272";
+            chipBackground = theme.palette.neutrals.gray100;
+            chipTextColor = theme.palette.neutrals.gray300;
         }
 
         return { chipBackground, chipTextColor };
     };
 
-    const { chipBackground, chipTextColor } = getChipColors(chipText);
+    const { chipBackground, chipTextColor } = getChipColors(badge);
 
-    const formatChipLabel = (chipText) => {
-        if (chipText > 0) {
-            return `+${chipText}%`;
-        } else if (chipText < 0) {
-            return `-${Math.abs(chipText)}%`;
+    const formatChipLabel = (badge) => {
+        if (badge > 0) {
+            return `+${badge}%`;
+        } else if (badge < 0) {
+            return `-${Math.abs(badge)}%`;
         } else {
             return "±0%";
         }
@@ -60,21 +52,16 @@ const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
                     alignItems="center"
                     mb={2}
                 >
-                    <Button
-                        endIcon={<ArrowForwardIosIcon />}
+                    <Typography
+                        variant="h4"
                         sx={{
-                            textTransform: "none",
                             color: "inherit",
-                            fontSize: "1.25rem",
+                            ...theme.typography.h4,
                             fontWeight: "bold",
-                            padding: 0,
-                            "&:hover": {
-                                backgroundColor: "transparent",
-                            },
                         }}
                     >
                         {title}
-                    </Button>
+                    </Typography>
                     <Typography
                         variant="small1"
                         color={theme.palette.neutrals.gray300}
@@ -99,7 +86,7 @@ const CardTurnoverRate = ({ title, currentRate, chipText, chartData }) => {
                             {formattedCurrentRate}%
                         </Typography>
                         <Chip
-                            label={formatChipLabel(chipText)}
+                            label={formatChipLabel(badge)}
                             sx={{
                                 backgroundColor: chipBackground,
                                 color: chipTextColor,

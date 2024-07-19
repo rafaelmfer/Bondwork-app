@@ -22,6 +22,6 @@ router.post("/add", addRewards);
 router.get("/:rewardId/request/:employeeId", getRewardRequestDetails);
 
 // redeemId
-router.put("/update/:id", updateRewardRedeem);
+router.put("/update/:id/:redeem", updateRewardRedeem);
 
 module.exports = router;

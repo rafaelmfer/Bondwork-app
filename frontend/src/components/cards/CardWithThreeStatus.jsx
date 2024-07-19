@@ -1,24 +1,16 @@
 import React from "react";
-import {
-    Box,
-    Card,
-    CardContent,
-    Typography,
-    LinearProgress,
-    Button,
-} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Box, Card, CardContent, Typography, Button } from "@mui/material";
 import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
+import LinearProgressMultiColor from "../progressbar/LinearProgressMultiColor";
 import theme from "../../theme/theme";
 
 const CardWithThreeStatus = ({
     title,
     totalNumber,
     chipPreviousNumberText,
-    progressValue1,
-    progressValue2,
-    progressValue3,
     statusText1,
     statusColor1,
     number1,
@@ -31,8 +23,14 @@ const CardWithThreeStatus = ({
     statusColor3,
     number3,
     chipText3,
-    disabled,
+    pathButton,
 }) => {
+    const navigate = useNavigate();
+
+    const progressValue1 = (number1 * 100) / totalNumber;
+    const progressValue2 = (number2 * 100) / totalNumber;
+    const progressValue3 = (number3 * 100) / totalNumber;
+
     return (
         <Card
             variant="outlined"
@@ -45,25 +43,37 @@ const CardWithThreeStatus = ({
                     alignItems="center"
                     mb={2}
                 >
-                    <Button
-                        endIcon={<ArrowForwardIosIcon />}
-                        sx={{
-                            textTransform: "none",
-                            color: "inherit",
-                            ...theme.typography.h4,
-                            fontWeight: "bold",
-                            padding: 0,
-                            "&:hover": {
-                                backgroundColor: "transparent",
-                            },
-                            "&:disabled": {
-                                color: "black", // Text color for disabled state
-                            },
-                        }}
-                        disabled={disabled}
-                    >
-                        {title}
-                    </Button>
+                    {pathButton ? (
+                        <Button
+                            endIcon={<ArrowForwardIosIcon />}
+                            sx={{
+                                textTransform: "none",
+                                color: "inherit",
+                                ...theme.typography.h4,
+                                fontWeight: "bold",
+                                padding: 0,
+                                "&:hover": {
+                                    backgroundColor: "transparent",
+                                },
+                            }}
+                            onClick={() => {
+                                navigate(pathButton);
+                            }}
+                        >
+                            {title}
+                        </Button>
+                    ) : (
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                color: "inherit",
+                                ...theme.typography.h4,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            {title}
+                        </Typography>
+                    )}
                     <Typography
                         variant="small1"
                         color={theme.palette.neutrals.gray300}
@@ -93,45 +103,15 @@ const CardWithThreeStatus = ({
                         />
                     </Box>
                 </Box>
-                <Box display="flex" mb={2}>
-                    <LinearProgress
-                        variant="determinate"
-                        value={100}
-                        sx={{
-                            width: `${progressValue1}%`,
-                            height: 10,
-                            borderRadius: "5px 0 0 5px",
-                            "& .MuiLinearProgress-bar": {
-                                backgroundColor: statusColor1,
-                            },
-                        }}
-                    />
-                    <Box width="2%" bgcolor="white" />
-                    <LinearProgress
-                        variant="determinate"
-                        value={100}
-                        sx={{
-                            width: `${progressValue2}%`,
-                            height: 10,
-                            "& .MuiLinearProgress-bar": {
-                                backgroundColor: statusColor2,
-                            },
-                        }}
-                    />
-                    <Box width="2%" bgcolor="white" />
-                    <LinearProgress
-                        variant="determinate"
-                        value={100}
-                        sx={{
-                            width: `${progressValue3}%`,
-                            height: 10,
-                            borderRadius: "0 5px 5px 0",
-                            "& .MuiLinearProgress-bar": {
-                                backgroundColor: statusColor3,
-                            },
-                        }}
-                    />
-                </Box>
+                <LinearProgressMultiColor
+                    progressValue1={progressValue1}
+                    progressValue2={progressValue2}
+                    progressValue3={progressValue3}
+                    statusColor1={statusColor1}
+                    statusColor2={statusColor2}
+                    statusColor3={statusColor3}
+                    sx={{ marginBottom: "16px" }}
+                />
                 <Box display="flex" gap={2} flexGrow={1}>
                     <StatusCard
                         statusText={statusText1}

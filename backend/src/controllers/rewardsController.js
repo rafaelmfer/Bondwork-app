@@ -226,34 +226,59 @@ const getRewardRequestDetails = async (req, res) => {
 };
 
 const updateRewardRedeem = async (req, res) => {
+    console.log("Abcde");
+
     try {
-        const { id } = req.params;
+        const { id, redeem } = req.params;
         const { approve, reason, rejectDetails } = req.body;
 
-        const reward = await Rewards.findOne({ "redeem.id": id });
+        const rewardUpdate = await Rewards.updateOne(
+            { rewardId: id, "redeem.id": redeem },
+            {
+                $set: {
+                    "redeem.$.status":
+                        approve === true ? "Approved" : "Rejected",
+                    "redeem.$.date": new Date(),
+                    "redeem.$.reason": reason,
+                    "redeem.$.rejectDetails": rejectDetails,
+                },
+            }
+        );
 
-        if (!reward) {
+        if (rewardUpdate.matchedCount === 0) {
             return res.status(404).json({
-                message: `Cannot find any reward redeem entry with id: ${id}`,
+                message: `Cannot find any reward redeem entry with id: ${redeem}`,
             });
         }
 
-        const updateFields = {
-            "redeem.$.status": approve === true ? "Approved" : "Rejected",
-            "redeem.$.date": new Date(), // Add the current date
-        };
+        // console.log(id)
+        // console.log(redeem)
+        // const reward = await Rewards.findOne({ "rewardId": 303 });
 
-        if (approve === false) {
-            if (reason) updateFields["redeem.$.reason"] = reason;
-            if (rejectDetails)
-                updateFields["redeem.$.rejectDetails"] = rejectDetails;
-        }
+        // if (!reward) {
+        //     return res.status(404).json({
+        //         message: `Cannot find any reward redeem entry with id: ${id}`,
+        //     });
+        // }
 
-        const rewardUpdate = await Rewards.findOneAndUpdate(
-            { "redeem.id": id },
-            { $set: updateFields },
-            { new: true }
-        );
+        // const updateFields = {
+        //     "status": approve === true ? "Approved" : "Rejected",
+        //     "date": new Date(), // Add the current date
+        // };
+
+        // console.log(updateFields);
+
+        // if (approve === false) {
+        //     if (reason) updateFields["redeem.$.reason"] = reason;
+        //     if (rejectDetails)
+        //         updateFields["redeem.$.rejectDetails"] = rejectDetails;
+        // }
+
+        // const rewardUpdate = await Rewards.findOneAndUpdate(
+        //     { "redeem.id": id },
+        //     { $set: updateFields },
+        //     { new: true }
+        // );
 
         return res.status(200).json(rewardUpdate);
     } catch (error) {

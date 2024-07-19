@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -8,12 +7,38 @@ import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import CardStacked from "../../components/cards/CardStacked";
 import theme from "../../theme/theme";
 
+const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/recognitions`;
+
 const RecognitionMain = () => {
-    //const navigate = useNavigate();
-    //const [svg, setSvg] = useState("");
+    // let today = new Date().toISOString().split("T")[0];
+    let today = "2024-07-14";
+    const [dataApi, setDataApi] = useState({});
     const [dataInd, setData] = useState("");
-    //const [svgString, setSvgString] = useState("");
+
     const [recognitions, setRecognitions] = useState([]); // for the table
+
+    // Fetching charts recognitions
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(URL_CHARTS, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ date: today }),
+                });
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                const data = await res.json();
+                setDataApi(data);
+            } catch (error) {
+                console.log("Error fetching data", error);
+            }
+        };
+        fetchData();
+    }, [dataApi]);
 
     useEffect(() => {
         function createRows(dataArray) {

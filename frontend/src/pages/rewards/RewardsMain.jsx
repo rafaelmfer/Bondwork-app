@@ -8,14 +8,40 @@ import TableSeven from "../../components/TableSeven";
 import TableWithProfile from "../../components/TableWithProfile";
 import theme from "../../theme/theme";
 
-import { formatDate } from "../../common/commonFunctions";
-
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
+const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/rewards`;
 
 const RewardsMain = () => {
+    // let today = new Date().toISOString().split("T")[0];
+    let today = "2024-07-14";
+
+    const [dataApi, setDataApi] = useState({});
     const [rewards, setRewards] = useState([]);
     const [rows, setRows] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
+
+    // Fetching charts rewards
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(URL_CHARTS, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ date: today }),
+                });
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                const data = await res.json();
+                setDataApi(data);
+            } catch (error) {
+                console.log("Error fetching data", error);
+            }
+        };
+        fetchData();
+    }, [dataApi]);
 
     // Fetching Rewards
     useEffect(() => {

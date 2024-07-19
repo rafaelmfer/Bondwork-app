@@ -92,7 +92,7 @@ export default function ChartDonut({ className, chartHeight }) {
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                 const percentage = (series[seriesIndex] / 5) * 100;
                 return `<div class="custom-tooltip">
-                            <div class="tooltip-header">
+                            <div class="tooltip-header items-center">
                                 <p class="tooltip-percentage">${percentage}%</p>
                                 <div class="tooltip-extra">+3%</div>
                             </div>

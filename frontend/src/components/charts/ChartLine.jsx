@@ -1,6 +1,11 @@
 import Chart from "react-apexcharts";
 
-export default function ChartLine({ className, chartHeight, isLegendBottom }) {
+export default function ChartLine({
+    className,
+    chartHeight,
+    data,
+    isLegendBottom,
+}) {
     const options = {
         chart: {
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -9,33 +14,6 @@ export default function ChartLine({ className, chartHeight, isLegendBottom }) {
                 enabled: false,
             },
         },
-        series: [
-            {
-                name: "Overall",
-                data: [2.5, 2.9, 2.4, 2.9, 3.2, 3.4, null],
-                color: "#8F0A06",
-            },
-            {
-                name: "Salary",
-                data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
-                color: "#B1D6F9",
-            },
-            {
-                name: "Company Culture",
-                data: [2, 2.3, 2.5, 3, 4.5, 4.1, null],
-                color: "#2774BC",
-            },
-            {
-                name: "Job Role",
-                data: [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
-                color: "#FBD8D8",
-            },
-            {
-                name: "Collegues",
-                data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
-                color: "#EF6461",
-            },
-        ],
         legend: {
             show: true,
             position: isLegendBottom ? "bottom" : "right",
@@ -100,7 +78,7 @@ export default function ChartLine({ className, chartHeight, isLegendBottom }) {
         <Chart
             className={className}
             options={options}
-            series={options.series}
+            series={data}
             type="line"
             height={chartHeight}
         />
