@@ -97,20 +97,11 @@ const RecognitionMain = () => {
             status,
         };
     }
-
     // ====================================================
     useEffect(() => {
         const fetchSvg = async () => {
-            const headers = new Headers();
-            headers.set(
-                "Authorization",
-                "Basic " + btoa("admin" + ":" + "secret")
-            );
             const response = await fetch(
-                `${process.env.REACT_APP_API_URL}/api/recognition`,
-                {
-                    headers,
-                }
+                `${process.env.REACT_APP_API_URL}/api/recognition`
             );
 
             if (response.ok) {
@@ -130,26 +121,66 @@ const RecognitionMain = () => {
             <div className="flex row gap-4 mt-6">
                 <CardWithThreeStatus
                     title={"Recognition"}
-                    totalNumber={430}
-                    chipPreviousNumberText={6}
-                    progressValue1={30}
-                    progressValue2={60}
-                    progressValue3={10}
+                    totalNumber={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].totalAmount
+                            : 0
+                    }
+                    chipPreviousNumberText={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].badgeCount
+                            : 0
+                    }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
-                    number1={100}
-                    chipText1={-10}
+                    number1={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].statusCounts.pending
+                            : 0
+                    }
+                    chipText1={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].statusCounts
+                                  .pendingBadge
+                            : 0
+                    }
                     statusText2={"Approved"}
                     statusColor2={theme.palette.success.main}
-                    number2={300}
-                    chipText2={-10}
+                    number2={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].statusCounts.approved
+                            : 0
+                    }
+                    chipText2={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].statusCounts
+                                  .approvedBadge
+                            : 0
+                    }
                     statusText3={"Rejected"}
                     statusColor3={theme.palette.error.main}
-                    number3={30}
-                    chipText3={16}
+                    number3={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].statusCounts.rejected
+                            : 0
+                    }
+                    chipText3={
+                        dataApi.chart1
+                            ? dataApi.chart1[0].info[0].statusCounts
+                                  .rejectedBadge
+                            : 0
+                    }
                     disabled={true}
                 />
-                <CardStacked />
+
+                <CardStacked
+                    dataPrevious={
+                        dataApi.chart2 ? dataApi.chart2[2].info[0].previous : []
+                    }
+                    dataCurrent={
+                        dataApi.chart2 ? dataApi.chart2[2].info[0].current : []
+                    }
+                />
             </div>
             <Divider
                 sx={{

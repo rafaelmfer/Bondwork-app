@@ -102,6 +102,8 @@ const EmployeeDetailsRewards = () => {
                             showTabs={false}
                             showAdd={false}
                             showSearch={false}
+                            showFilter={true}
+                            showSend={true}
                         />
                     </section>
                 )}
