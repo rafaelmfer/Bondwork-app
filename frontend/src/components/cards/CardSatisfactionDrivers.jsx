@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Card, CardContent, Typography, Button } from "@mui/material";
-import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
+import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/arrow-right-dark-gray-neutral.svg";
 import ChartLine from "../charts/ChartLine";
 import ChipNumber from "../chip/ChipNumber";
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import FilterButtons from "../../components/FilterButtons";
 import TableWithProfile from "../../components/TableWithProfile";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import CardStacked from "../../components/cards/CardStacked";
@@ -117,8 +118,8 @@ const RecognitionMain = () => {
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Recognition"} />
             <Breadcrumbs />
-
-            <div className="flex row gap-4 mt-6">
+            <FilterButtons sx={{ marginTop: "8px" }} />
+            <div className="flex row gap-4 mt-4">
                 <CardWithThreeStatus
                     title={"Recognition"}
                     totalNumber={

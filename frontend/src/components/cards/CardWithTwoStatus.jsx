@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Card, CardContent, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowForwardIosIcon from "../../assets/icons/arrow-right-dark-gray-neutral.svg";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
 import theme from "../../theme/theme";
@@ -99,8 +99,8 @@ const CardWithTwoStatus = ({
                     </Box>
                 </Box>
                 <LinearProgressMultiColor
-                    progressValue1={progressValue1}
-                    progressValue2={progressValue2}
+                    progressValue1={number1}
+                    progressValue2={number2}
                     progressValue3={0}
                     statusColor1={statusColor1}
                     statusColor2={statusColor2}

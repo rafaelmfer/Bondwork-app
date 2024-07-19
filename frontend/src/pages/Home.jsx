@@ -5,6 +5,7 @@ import CardTurnoverRate from "../components/cards/CardTurnoverRate";
 import CardSatisfactionDrivers from "../components/cards/CardSatisfactionDrivers";
 import Breadcrumbs from "../components/Breadcrumbs";
 import theme from "../theme/theme";
+import FilterButtons from "../components/FilterButtons";
 
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/dashboard`;
 
@@ -77,7 +78,8 @@ const Home = () => {
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Dashboard"} backIcon={false} />
             <Breadcrumbs />
-            <div className="flex row gap-4 mt-6">
+            <FilterButtons sx={{ marginTop: "8px" }} />
+            <div className="flex row gap-4 mt-4">
                 <CardTurnoverRate
                     title={"Turnover Rate"}
                     currentRate={currentTurnOverRate}

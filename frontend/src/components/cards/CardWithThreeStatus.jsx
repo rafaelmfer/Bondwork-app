@@ -104,9 +104,9 @@ const CardWithThreeStatus = ({
                     </Box>
                 </Box>
                 <LinearProgressMultiColor
-                    progressValue1={progressValue1}
-                    progressValue2={progressValue2}
-                    progressValue3={progressValue3}
+                    progressValue1={number1}
+                    progressValue2={number2}
+                    progressValue3={number3}
                     statusColor1={statusColor1}
                     statusColor2={statusColor2}
                     statusColor3={statusColor3}

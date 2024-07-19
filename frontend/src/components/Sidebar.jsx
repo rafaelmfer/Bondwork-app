@@ -199,7 +199,7 @@ const Sidebar = ({ profileName }) => {
                 <div className="userProfile w-full cursor-pointer py-3 border-b border-neutrals-gray100 ">
                     <Link to="/profile" className="flex items-center px-[10px]">
                         <Avatar
-                            className="px-1"
+                            src="https://cdn.dribbble.com/users/10176582/screenshots/17361661/media/4b5ea865b97f2dbaa081c48cf4b79715.jpg?resize=400x300&vertical=center"
                             sx={{ width: 48, height: 48 }}
                         />
                         <span className="px-4">{profileName}</span>

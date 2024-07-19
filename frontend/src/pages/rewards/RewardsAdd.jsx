@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { Tab, Tabs, Box, Card } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
-import Breadcrumbs from "../../components/Breadcrumbs";
 import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import DropdownSelect from "../../components/textfields/TextFieldDropdown";
@@ -12,12 +11,12 @@ import CustomButton from "../../components/buttons/CustomButton";
 import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import { AddImage } from "../../components/addImage/AddImage";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
-import theme from "../../theme/theme";
-
 import { surveyCreationContext } from "../../context/Context";
 import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
 import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
+
+import theme from "../../theme/theme";
 
 const RewardsAdd = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -116,7 +115,6 @@ const RewardsAdd = () => {
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
             <TopUserBar titleScreen={"Add Reward"} />
-            {/* <Breadcrumbs /> */}
             <Card
                 sx={{
                     marginTop: "24px",
