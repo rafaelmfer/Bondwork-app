@@ -347,6 +347,7 @@ export function SurveyHtml({ disabled }) {
                                 <InputDate
                                     title="Period"
                                     setFunctionExecution={setSurveyInputs}
+                                    surveyInputs={{ endtDate: "" }}
                                 />
                                 <DropdownSelect
                                     label="Recurrence"
