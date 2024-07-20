@@ -74,8 +74,9 @@ const PopUpTwoBtn = (props) => {
                 throw new Error("Fetch FAILED " + response.statusText);
             }
 
-            const data = await response.text();
+            const data = await response.json();
             console.log("Success:", data);
+            window.location.reload();
         } catch (error) {
             console.error("Error:", error);
         }
@@ -199,7 +200,6 @@ const PopUpTwoBtn = (props) => {
                             isOutlined
                             onClick={() => {
                                 props.setTrigger(false);
-                                window.location.reload();
                             }}
                         >
                             Done
