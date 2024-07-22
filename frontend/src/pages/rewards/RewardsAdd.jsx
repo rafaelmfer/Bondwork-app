@@ -15,6 +15,7 @@ import { surveyCreationContext } from "../../context/Context";
 import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
 import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
+import document from "../../assets/icons/document-outline.svg";
 
 import theme from "../../theme/theme";
 
@@ -299,7 +300,50 @@ export function CreateRewardStep({
                         <Box mt={2}>
                             <AddImage id="addImage" label="Thumbnail Image" />
 
-                            {/* set the image here */}
+                            <Box
+                                component="div"
+                                sx={{
+                                    border: "1px solid black",
+                                    height: "auto",
+                                    color: "rgb(114, 114, 114)", // text color
+                                    // padding
+                                    padding: "16px 0px 16px 0px",
+                                    borderRadius: "8px",
+                                    // border radius
+                                    "&:hover": {
+                                        padding: "14.5px 0px 14.5px 0px",
+                                        border: "3px solid #B1D6F9", // hover border color
+                                        marginBottom: "-0.5px",
+                                    },
+                                }}
+                            >
+                                <Box
+                                    component="div"
+                                    sx={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                    }}
+                                >
+                                    <img
+                                        src={document}
+                                        width="24px"
+                                        height="24px"
+                                    />
+                                    <p
+                                        style={{
+                                            lineHeight: "18px",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        Drop your file here
+                                        <br />
+                                        or click to upload
+                                    </p>
+                                </Box>
+                            </Box>
                         </Box>
 
                         <Box mt={2}>
@@ -368,7 +412,6 @@ export function CreateRewardStep({
                             sx={{ mt: 3 }}
                             display="flex"
                             justifyContent="space-between"
-                            mt={4}
                         >
                             <CustomButton buttontype="secondary" isOutlined>
                                 Cancel
