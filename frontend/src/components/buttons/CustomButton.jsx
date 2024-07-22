@@ -13,7 +13,7 @@ const CustomButtonStyled = styled(Button)(
         borderRadius: "8px",
         textTransform: "none",
         boxShadow: "none",
-        boxSizing: "content-box",
+        // boxSizing: "content-box",
         fontFamily: theme.typography.fontFamily,
         ...theme.typography.p,
         "& .MuiButton-startIcon": {
