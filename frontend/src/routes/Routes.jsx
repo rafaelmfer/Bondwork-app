@@ -23,8 +23,6 @@ import EmployeeDetailsRewards from "../pages/employee/EmployeeDetailsRewards";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 
-import OnBoarding from "../pages/OnBoarding";
-
 import RecognitionRequestDetails from "../pages/recognition/RecognitionRequestDetails";
 
 import iconDashboard from "../assets/icons/dashboard-black-neutral.svg";
