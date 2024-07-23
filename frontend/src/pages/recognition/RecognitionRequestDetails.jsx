@@ -252,7 +252,7 @@ const RecognitionRequestDetails = () => {
                                             fontWeight: 500,
                                         }}
                                     >
-                                        Detailsx
+                                        Details
                                     </Typography>
                                     <Typography
                                         variant="p"
