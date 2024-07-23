@@ -13,14 +13,20 @@ const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/recognitions`;
 const RecognitionMain = () => {
     // let today = new Date().toISOString().split("T")[0];
     let today = "2024-07-14";
-    const [dataApi, setDataApi] = useState({});
+    const [chartsApi, setChartsApi] = useState({});
+    const [chartIndex, setChartIndex] = useState(0);
+
+    const handleFilterChange = (index) => {
+        setChartIndex(index);
+    };
+
     const [dataInd, setData] = useState("");
 
     const [recognitions, setRecognitions] = useState([]); // for the table
 
     // Fetching charts recognitions
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchCharts = async () => {
             try {
                 const res = await fetch(URL_CHARTS, {
                     method: "POST",
@@ -33,18 +39,18 @@ const RecognitionMain = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
-                setDataApi(data);
+                setChartsApi(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
-        fetchData();
-    }, [dataApi]);
+        fetchCharts();
+    }, []);
 
     useEffect(() => {
         function createRows(dataArray) {
             if (!Array.isArray(dataArray)) {
-                console.error("dataArray is not an array", dataArray);
+                // console.error("dataArray is not an array", dataArray);
                 return [];
             }
 
@@ -100,7 +106,7 @@ const RecognitionMain = () => {
     }
     // ====================================================
     useEffect(() => {
-        const fetchSvg = async () => {
+        const getRecognitions = async () => {
             const response = await fetch(
                 `${process.env.REACT_APP_API_URL}/api/recognition`
             );
@@ -111,63 +117,69 @@ const RecognitionMain = () => {
             }
         };
 
-        fetchSvg();
+        getRecognitions();
     }, []);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Recognition"} />
             <Breadcrumbs />
-            <FilterButtons sx={{ marginTop: "8px" }} />
+            <FilterButtons
+                sx={{ marginTop: "8px" }}
+                onFilterChange={handleFilterChange}
+            />
             <div className="flex row gap-4 mt-4">
                 <CardWithThreeStatus
                     title={"Recognition"}
                     totalNumber={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].totalAmount
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].totalAmount
                             : 0
                     }
                     chipPreviousNumberText={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].badgeCount
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].badgeCount
                             : 0
                     }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
                     number1={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].statusCounts.pending
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .pending
                             : 0
                     }
                     chipText1={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].statusCounts
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
                                   .pendingBadge
                             : 0
                     }
                     statusText2={"Approved"}
                     statusColor2={theme.palette.success.main}
                     number2={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].statusCounts.approved
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .approved
                             : 0
                     }
                     chipText2={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].statusCounts
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
                                   .approvedBadge
                             : 0
                     }
                     statusText3={"Rejected"}
                     statusColor3={theme.palette.error.main}
                     number3={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].statusCounts.rejected
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .rejected
                             : 0
                     }
                     chipText3={
-                        dataApi.chart1
-                            ? dataApi.chart1[3].info[0].statusCounts
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
                                   .rejectedBadge
                             : 0
                     }
@@ -176,10 +188,14 @@ const RecognitionMain = () => {
 
                 <CardStacked
                     dataPrevious={
-                        dataApi.chart2 ? dataApi.chart2[2].info[0].previous : []
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].previous
+                            : []
                     }
                     dataCurrent={
-                        dataApi.chart2 ? dataApi.chart2[2].info[0].current : []
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].current
+                            : []
                     }
                 />
             </div>

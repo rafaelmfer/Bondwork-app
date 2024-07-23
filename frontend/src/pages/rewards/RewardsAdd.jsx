@@ -259,7 +259,7 @@ export function CreateRewardStep({
                         />
                         <h3 className="text-h3">Published</h3>
                         <p className="text-p text-center">
-                            The employees have received the survey link.
+                            The Reward has been created.
                         </p>
                     </div>
                 }

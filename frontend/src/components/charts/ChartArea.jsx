@@ -1,7 +1,13 @@
 import React from "react";
 import Chart from "react-apexcharts";
+import { getChipColors, formatChipLabel } from "../chip/ChipNumber";
 
-export default function ChartArea({ className, chartHeight }) {
+export default function ChartArea({
+    className,
+    chartHeight,
+    chartData,
+    labels,
+}) {
     const options = {
         chart: {
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -14,7 +20,7 @@ export default function ChartArea({ className, chartHeight }) {
         series: [
             {
                 name: "Average",
-                data: [3.7, 4.5, 4, 2.8, 3.4, 4.3, 4.1, null],
+                data: chartData,
             },
         ],
         fill: {
@@ -53,8 +59,38 @@ export default function ChartArea({ className, chartHeight }) {
                 sizeOffset: 2,
             },
         },
+        tooltip: {
+            // series: An array of arrays containing the values of all series in the chart.
+            // seriesIndex: The index of the current series being processed.
+            // dataPointIndex: The index of the current data point in the series.
+            // w: An object that contains all the options and data for the chart.
+            enabled: true,
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                const category = w.globals.labels[dataPointIndex];
+                const prefix = seriesIndex === 0 ? "Previous" : "Current";
+                const badgeNumber =
+                    seriesIndex === 1
+                        ? series[seriesIndex][dataPointIndex] -
+                          series[seriesIndex - 1][dataPointIndex]
+                        : 0;
+                const { chipBackground, chipTextColor } =
+                    getChipColors(badgeNumber);
+                const showBadge =
+                    seriesIndex === 1
+                        ? `<div class="tooltip-extra" style="background-color: ${chipBackground};
+                        color: ${chipTextColor};">${formatChipLabel(badgeNumber)}</div>`
+                        : ``;
+                return `<div class="custom-tooltip">
+                            <div class="tooltip-header items-center">
+                                <h3 class="tooltip-percentage text-h3">${series[seriesIndex][dataPointIndex]}</p>
+                                ${showBadge}
+                            </div>
+                            <div class="tooltip-label">${w.globals.seriesNames[seriesIndex]}</div>
+                        </div>`;
+            },
+        },
         xaxis: {
-            categories: ["19", "20", "21", "22", "23", "24", "25"],
+            categories: labels,
         },
         yaxis: {
             min: 0,
@@ -64,12 +100,61 @@ export default function ChartArea({ className, chartHeight }) {
     };
 
     return (
-        <Chart
-            className={className}
-            options={options}
-            series={options.series}
-            type="area"
-            height={chartHeight}
-        />
+        <>
+            <style>
+                {`
+                    .${className} .apexcharts-tooltip.apexcharts-theme-light {
+                        border-radius: 8px;
+                        border: none;
+                        background: rgba(30, 30, 30, .8);
+                    }
+
+                    .custom-tooltip {
+                        width: 150px;
+                        background-color: rgba(5, 33, 60, 0.8);
+                        color: #FFFFFF;
+                        text-align: left;
+                        border-radius: 8px;
+                        padding: 16px;
+                        position: relative;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                        font-family: 'IBM Plex Sans', sans-serif;
+                    }
+
+                    .tooltip-header {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 6px;
+                    }
+
+                    .tooltip-percentage {
+                        font-weight: 500;
+                    }
+
+                    .tooltip-extra {
+                        border-radius: 12px;
+                        padding: 2px 12px;
+                        font-size: 16px;
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        justify-content: center;
+                        height: 20px;
+                    }
+
+                    .tooltip-label {
+                        font-size: 12.64px;
+                        margin-top: 4px;
+                    }
+                `}
+            </style>
+            <Chart
+                className={className}
+                options={options}
+                series={options.series}
+                type="area"
+                height={chartHeight}
+            />
+        </>
     );
 }

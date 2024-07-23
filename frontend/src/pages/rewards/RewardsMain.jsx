@@ -16,14 +16,19 @@ const RewardsMain = () => {
     // let today = new Date().toISOString().split("T")[0];
     let today = "2024-07-14";
 
-    const [dataApi, setDataApi] = useState({});
+    const [chartsApi, setChartsApi] = useState({});
     const [rewards, setRewards] = useState([]);
     const [rows, setRows] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
+    const [chartIndex, setChartIndex] = useState(0);
+
+    const handleFilterChange = (index) => {
+        setChartIndex(index);
+    };
 
     // Fetching charts rewards
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchCharts = async () => {
             try {
                 const res = await fetch(URL_CHARTS, {
                     method: "POST",
@@ -36,13 +41,14 @@ const RewardsMain = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
-                setDataApi(data);
+                setChartsApi(data);
+                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
-        fetchData();
-    }, [dataApi]);
+        fetchCharts();
+    }, []);
 
     // Fetching Rewards
     useEffect(() => {
@@ -178,41 +184,106 @@ const RewardsMain = () => {
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Rewards"} />
             <Breadcrumbs />
-            <FilterButtons sx={{ marginTop: "8px" }} />
+            <FilterButtons
+                sx={{ marginTop: "8px" }}
+                onFilterChange={handleFilterChange}
+            />
             <div className="flex row gap-4 mt-4">
                 <CardWithTwoStatus
                     title={"Management"}
-                    totalNumber={98}
-                    chipPreviousNumberText={6}
-                    progressValue={70}
+                    totalNumber={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].totalAmount
+                            : 0
+                    }
+                    chipPreviousNumberText={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].badgeCount
+                            : 0
+                    }
                     statusText1={"Ongoing"}
                     statusColor1={theme.palette.info.main}
-                    number1={54}
-                    chipText1={-10}
+                    number1={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .ongoing
+                            : 0
+                    }
+                    chipText1={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .ongoingBadge
+                            : 0
+                    }
                     statusText2={"Upcoming"}
                     statusColor2={theme.palette.warning.main}
-                    number2={44}
-                    chipText2={16}
+                    number2={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .upcoming
+                            : 0
+                    }
+                    chipText2={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .upcomingBadge
+                            : 0
+                    }
                 />
                 <CardWithThreeStatus
                     title={"Request"}
-                    totalNumber={60}
-                    chipPreviousNumberText={0}
-                    progressValue1={50}
-                    progressValue2={40}
-                    progressValue3={10}
+                    totalNumber={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].totalAmount
+                            : 0
+                    }
+                    chipPreviousNumberText={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].badgeCount
+                            : 0
+                    }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
-                    number1={40}
-                    chipText1={-20}
+                    number1={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
+                                  .pending
+                            : 0
+                    }
+                    chipText1={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
+                                  .pendingBadge
+                            : 0
+                    }
                     statusText2={"Approved"}
                     statusColor2={theme.palette.success.main}
-                    number2={18}
-                    chipText2={18}
+                    number2={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
+                                  .approved
+                            : 0
+                    }
+                    chipText2={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
+                                  .approvedBadge
+                            : 0
+                    }
                     statusText3={"Rejected"}
                     statusColor3={theme.palette.error.main}
-                    number3={2}
-                    chipText3={2}
+                    number3={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
+                                  .rejected
+                            : 0
+                    }
+                    chipText3={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
+                                  .rejectedBadge
+                            : 0
+                    }
                 />
             </div>
 

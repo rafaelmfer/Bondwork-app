@@ -12,10 +12,12 @@ const getDashboardCharts = async (req, res) => {
     try {
         const { date } = req.body;
 
-        const chart1 = await averageScoreSurveys(date);
-        const chart2 = await averageScoreSurveys(date);
-        const chart3 = await recognitionsByStatus(date);
-        const chart4 = await rewardsRequestByStatus(date);
+        const [chart1, chart2, chart3, chart4] = await Promise.all([
+            averageScoreSurveys(date),
+            averageScoreSurveys(date),
+            recognitionsByStatus(date),
+            rewardsRequestByStatus(date),
+        ]);
 
         res.status(200).json({
             chart1,
@@ -33,8 +35,10 @@ const getRecognitionsCharts = async (req, res) => {
     try {
         const { date } = req.body;
 
-        const chart1 = await recognitionsByStatus(date);
-        const chart2 = await recognitionByCategory(date);
+        const [chart1, chart2] = await Promise.all([
+            recognitionsByStatus(date),
+            recognitionByCategory(date),
+        ]);
 
         res.status(200).json({
             chart1,
@@ -50,8 +54,10 @@ const getRewardsCharts = async (req, res) => {
     try {
         const { date } = req.body;
 
-        const chart1 = await rewardsManagementByStatus(date);
-        const chart2 = await rewardsRequestByStatus(date);
+        const [chart1, chart2] = await Promise.all([
+            rewardsManagementByStatus(date),
+            rewardsRequestByStatus(date),
+        ]);
 
         res.status(200).json({
             chart1,
@@ -67,10 +73,12 @@ const getSurveysCharts = async (req, res) => {
     try {
         const { date } = req.body;
 
-        const chart1 = await surveysManagementByStatus(date);
-        const chart2 = await satisfactionIndex(date);
-        const chart3 = await averageScoreSurveys(date);
-        const chart4 = await averageScoreSurveys(date);
+        const [chart1, chart2, chart3, chart4] = await Promise.all([
+            surveysManagementByStatus(date),
+            satisfactionIndex(date),
+            averageScoreSurveys(date),
+            averageScoreSurveys(date),
+        ]);
 
         res.status(200).json({
             chart1,
@@ -928,13 +936,31 @@ const satisfactionIndex = async (date) => {
                 }
 
                 // Calculate the total average of all users
-                const totalAverage =
+                const totalAverage = Number(
                     totalCompletedSurveys > 0
                         ? totalSumOfAverages / totalCompletedSurveys
+                        : 0
+                ).toFixed(1);
+                // console.log(
+                //     `Period: ${i}, Total Employees: ${totalEmployees}, Total Employees with Surveys: ${totalEmployeesWithSurveys}, Total Average: ${totalAverage}`
+                // );
+
+                let promoterPercent =
+                    totalEmployeesWithSurveys > 0
+                        ? statusCounts.promoter / totalEmployeesWithSurveys
                         : 0;
-                console.log(
-                    `Period: ${i}, Total Employees: ${totalEmployees}, Total Employees with Surveys: ${totalEmployeesWithSurveys}, Total Average: ${totalAverage}`
-                );
+                let neutralPercent =
+                    totalEmployeesWithSurveys > 0
+                        ? statusCounts.neutral / totalEmployeesWithSurveys
+                        : 0;
+                let detractorPercent =
+                    totalEmployeesWithSurveys > 0
+                        ? statusCounts.detractor / totalEmployeesWithSurveys
+                        : 0;
+
+                console.log(statusCounts.promoter);
+                console.log(statusCounts.neutral);
+                console.log(statusCounts.detractor);
 
                 // Add the current period's results to the unit results array
                 unitResults.push({
@@ -943,23 +969,11 @@ const satisfactionIndex = async (date) => {
                     totalEmployees,
                     totalEmployeesWithSurveys,
                     totalAverage,
-                    statusCounts: {
-                        promoter:
-                            totalEmployeesWithSurveys > 0
-                                ? statusCounts.promoter /
-                                  totalEmployeesWithSurveys
-                                : 0,
-                        neutral:
-                            totalEmployeesWithSurveys > 0
-                                ? statusCounts.neutral /
-                                  totalEmployeesWithSurveys
-                                : 0,
-                        detractor:
-                            totalEmployeesWithSurveys > 0
-                                ? statusCounts.detractor /
-                                  totalEmployeesWithSurveys
-                                : 0,
-                    },
+                    percentages: [
+                        promoterPercent * 5,
+                        neutralPercent * 5,
+                        detractorPercent * 5,
+                    ],
                 });
             }
 
@@ -1147,7 +1161,9 @@ const calculatePeriodAverages = (
                 lastAverage,
                 averageForCurrentPeriod
             );
-            periodAverages.push(lastAverage);
+            periodAverages.push(
+                lastAverage ? Number(lastAverage.toFixed(1)) : lastAverage
+            );
 
             if (
                 periodEnd.getMonth() >= endPeriod.getMonth() &&
@@ -1197,7 +1213,7 @@ const calculatePeriodAverages = (
                 lastAverage,
                 averageForCurrentPeriod
             );
-            periodAverages.push(lastAverage);
+            periodAverages.push(Number(lastAverage.toFixed(1)));
 
             currentPeriodStart.setDate(
                 currentPeriodStart.getDate() + increment
