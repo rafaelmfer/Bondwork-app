@@ -13,8 +13,13 @@ const Home = () => {
     // let today = new Date().toISOString().split("T")[0];
     let today = "2024-07-14";
 
-    const [dataApi, setDataApi] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [chartsApi, setChartsApi] = useState({});
+    const [chartIndex, setChartIndex] = useState(0);
+
+    const handleFilterChange = (index) => {
+        setChartIndex(index);
+    };
 
     // Fetching charts dashboard
     useEffect(() => {
@@ -31,18 +36,20 @@ const Home = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
-                setDataApi(data);
+                setChartsApi(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchData();
-    }, [dataApi]);
+    }, []);
 
     const currentTurnOverRate = 10.0;
     const badgeTurnOver = 0.2;
     const chartData = {
-        categories: ["19", "20", "21", "22", "23", "24", "25"],
+        categories: chartsApi.chart1
+            ? chartsApi.chart1[chartIndex].info[0].labels
+            : [],
         series: [9, 6, 12, 17.5, 15, 7.5, 10],
     };
 
@@ -75,10 +82,13 @@ const Home = () => {
     ];
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Dashboard"} backIcon={false} />
             <Breadcrumbs />
-            <FilterButtons sx={{ marginTop: "8px" }} />
+            <FilterButtons
+                sx={{ marginTop: "8px" }}
+                onFilterChange={handleFilterChange}
+            />
             <div className="flex row gap-4 mt-4">
                 <CardTurnoverRate
                     title={"Turnover Rate"}
@@ -90,57 +100,65 @@ const Home = () => {
                     overall={3.25}
                     chipText={-0.2}
                     data={chartDataSatisfaction}
+                    labels={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].labels
+                            : []
+                    }
                 />
             </div>
-            <div className="flex row gap-4 mt-6">
+            <div className="flex row gap-4 mt-6 mb-8">
                 <CardWithThreeStatus
                     title={"Recognition"}
                     totalNumber={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].totalAmount
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].totalAmount
                             : 0
                     }
                     chipPreviousNumberText={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].badgeCount
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].badgeCount
                             : 0
                     }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
                     number1={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].statusCounts.pending
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].statusCounts
+                                  .pending
                             : 0
                     }
                     chipText1={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].statusCounts
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].statusCounts
                                   .pendingBadge
                             : 0
                     }
                     statusText2={"Approved"}
                     statusColor2={theme.palette.success.main}
                     number2={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].statusCounts.approved
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].statusCounts
+                                  .approved
                             : 0
                     }
                     chipText2={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].statusCounts
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].statusCounts
                                   .approvedBadge
                             : 0
                     }
                     statusText3={"Rejected"}
                     statusColor3={theme.palette.error.main}
                     number3={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].statusCounts.rejected
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].statusCounts
+                                  .rejected
                             : 0
                     }
                     chipText3={
-                        dataApi.chart3
-                            ? dataApi.chart3[3].info[0].statusCounts
+                        chartsApi.chart3
+                            ? chartsApi.chart3[chartIndex].info[0].statusCounts
                                   .rejectedBadge
                             : 0
                     }
@@ -149,51 +167,54 @@ const Home = () => {
                 <CardWithThreeStatus
                     title={"Rewards Request"}
                     totalNumber={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].totalAmount
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].totalAmount
                             : 0
                     }
                     chipPreviousNumberText={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].badgeCount
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].badgeCount
                             : 0
                     }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
                     number1={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].statusCounts.pending
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].statusCounts
+                                  .pending
                             : 0
                     }
                     chipText1={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].statusCounts
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].statusCounts
                                   .pendingBadge
                             : 0
                     }
                     statusText2={"Approved"}
                     statusColor2={theme.palette.success.main}
                     number2={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].statusCounts.approved
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].statusCounts
+                                  .approved
                             : 0
                     }
                     chipText2={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].statusCounts
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].statusCounts
                                   .approvedBadge
                             : 0
                     }
                     statusText3={"Rejected"}
                     statusColor3={theme.palette.error.main}
                     number3={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].statusCounts.rejected
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].statusCounts
+                                  .rejected
                             : 0
                     }
                     chipText3={
-                        dataApi.chart4
-                            ? dataApi.chart4[3].info[0].statusCounts
+                        chartsApi.chart4
+                            ? chartsApi.chart4[chartIndex].info[0].statusCounts
                                   .rejectedBadge
                             : 0
                     }

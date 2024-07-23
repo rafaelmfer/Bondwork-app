@@ -88,7 +88,7 @@ const Management = () => {
 
     return (
         <div>
-            <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
+            <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
                 <TopUserBar titleScreen={"Management"} />
                 <Breadcrumbs />
                 <div className="flex flex-col gap-4 mx-[-16px]">

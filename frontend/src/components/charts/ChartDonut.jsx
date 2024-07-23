@@ -1,6 +1,11 @@
 import Chart from "react-apexcharts";
 
-export default function ChartDonut({ className, chartHeight }) {
+export default function ChartDonut({
+    className,
+    chartHeight,
+    data,
+    totalAverage,
+}) {
     const options = {
         chart: {
             fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -10,7 +15,7 @@ export default function ChartDonut({ className, chartHeight }) {
         dataLabels: {
             enabled: false,
         },
-        series: [2.5, 1.5, 1],
+        series: data,
         colors: ["#FBD8D8", "#F38886", "#0B4A86"],
         labels: ["Promoters (4 - 5)", "Neutrals (3)", "Detractors (1 - 2)"],
         legend: {
@@ -57,7 +62,7 @@ export default function ChartDonut({ className, chartHeight }) {
                         total: {
                             show: true,
                             showAlways: true,
-                            label: "4.5",
+                            label: totalAverage,
                             fontSize: "18px",
                             fontWeight: 400,
                             color: "#0B0A0A",
@@ -91,10 +96,10 @@ export default function ChartDonut({ className, chartHeight }) {
             enabled: true,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                 const percentage = (series[seriesIndex] / 5) * 100;
-                return `<div class="custom-tooltip">
+                return `<div class="custom-tooltip donut">
                             <div class="tooltip-header items-center">
-                                <p class="tooltip-percentage">${percentage}%</p>
-                                <div class="tooltip-extra">+3%</div>
+                                <p class="tooltip-percentage text-h3">${percentage.toFixed(1)}%</p>
+                                <div class="tooltip-extra donut">+3%</div>
                             </div>
                             <div class="tooltip-label">${w.globals.labels[seriesIndex]}</div>
                         </div>`;
@@ -156,8 +161,8 @@ export default function ChartDonut({ className, chartHeight }) {
         <>
             <style>
                 {`
-                    .custom-tooltip {
-                        width: 150px;
+                    .custom-tooltip.donut {
+                        width: 170px;
                         background-color: rgba(5, 33, 60, 0.8);
                         color: #FFFFFF;
                         text-align: left;
@@ -168,8 +173,6 @@ export default function ChartDonut({ className, chartHeight }) {
                         font-family: 'IBM Plex Sans', sans-serif;
                     }
 
-                    
-
                     .tooltip-header {
                         display: flex;
                         flex-direction: row;
@@ -177,11 +180,10 @@ export default function ChartDonut({ className, chartHeight }) {
                     }
 
                     .tooltip-percentage {
-                        font-size: 24px;
                         font-weight: 500;
                     }
 
-                    .tooltip-extra {
+                    .tooltip-extra.donut {
                         background-color: #D3F9D8;
                         color: #4CAF50;
                         border-radius: 12px;

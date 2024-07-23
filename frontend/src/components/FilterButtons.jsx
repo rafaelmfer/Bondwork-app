@@ -24,13 +24,14 @@ const FilterButton = styled(Button)(({ theme, selected }) => ({
     },
 }));
 
-const FilterButtons = ({ sx }) => {
+const FilterButtons = ({ sx, onFilterChange }) => {
     const [selectedFilter, setSelectedFilter] = useState("Week");
     const [dateRange, setDateRange] = useState("Jun 24 - Jun 30");
 
-    const handleFilterChange = (filter, dateRange) => {
+    const handleFilterChange = (filter, dateRange, index) => {
         setSelectedFilter(filter);
         setDateRange(dateRange);
+        onFilterChange(index);
     };
 
     const options = ["2024", "2023"];
@@ -51,7 +52,7 @@ const FilterButtons = ({ sx }) => {
                 <FilterButton
                     selected={selectedFilter === "Week"}
                     onClick={() =>
-                        handleFilterChange("Week", "Jun 24 - Jun 30")
+                        handleFilterChange("Week", "Jun 24 - Jun 30", 0)
                     }
                 >
                     Week
@@ -59,7 +60,7 @@ const FilterButtons = ({ sx }) => {
                 <FilterButton
                     selected={selectedFilter === "Month"}
                     onClick={() =>
-                        handleFilterChange("Month", "Jun 01 - Jun 30")
+                        handleFilterChange("Month", "Jun 01 - Jun 30", 1)
                     }
                 >
                     Month
@@ -67,7 +68,7 @@ const FilterButtons = ({ sx }) => {
                 <FilterButton
                     selected={selectedFilter === "Quarter"}
                     onClick={() =>
-                        handleFilterChange("Quarter", "Apr 01 - Jun 30")
+                        handleFilterChange("Quarter", "Apr 01 - Jun 30", 2)
                     }
                 >
                     Quarter
@@ -75,7 +76,7 @@ const FilterButtons = ({ sx }) => {
                 <FilterButton
                     selected={selectedFilter === "Annual"}
                     onClick={() =>
-                        handleFilterChange("Annual", "Jan 01 - Dec 31")
+                        handleFilterChange("Annual", "Jan 01 - Dec 31", 3)
                     }
                 >
                     Annual
