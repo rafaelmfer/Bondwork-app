@@ -9,7 +9,7 @@ const Label = styled("label")(({ theme }) => ({
 }));
 
 const BoxImage = () => {
-    return <p>funcionando123</p>;
+    return <p></p>;
 };
 
 export function AddImage({

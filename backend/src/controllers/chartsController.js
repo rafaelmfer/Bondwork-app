@@ -7,14 +7,17 @@ const { getPeriodDates } = require("../utils/utils");
 
 const { allUser } = require("./userController");
 
+// CHARTS by PAGES
 const getDashboardCharts = async (req, res) => {
     try {
         const { date } = req.body;
 
-        const chart1 = await averageScoreSurveys(date);
-        const chart2 = await averageScoreSurveys(date);
-        const chart3 = await recognitionsByStatus(date);
-        const chart4 = await rewardsRequestByStatus(date);
+        const [chart1, chart2, chart3, chart4] = await Promise.all([
+            averageScoreSurveys(date),
+            averageScoreSurveys(date),
+            recognitionsByStatus(date),
+            rewardsRequestByStatus(date),
+        ]);
 
         res.status(200).json({
             chart1,
@@ -28,6 +31,68 @@ const getDashboardCharts = async (req, res) => {
     }
 };
 
+const getRecognitionsCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const [chart1, chart2] = await Promise.all([
+            recognitionsByStatus(date),
+            recognitionByCategory(date),
+        ]);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getRewardsCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const [chart1, chart2] = await Promise.all([
+            rewardsManagementByStatus(date),
+            rewardsRequestByStatus(date),
+        ]);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const getSurveysCharts = async (req, res) => {
+    try {
+        const { date } = req.body;
+
+        const [chart1, chart2, chart3, chart4] = await Promise.all([
+            surveysManagementByStatus(date),
+            satisfactionIndex(date),
+            averageScoreSurveys(date),
+            averageScoreSurveys(date),
+        ]);
+
+        res.status(200).json({
+            chart1,
+            chart2,
+            chart3,
+            chart4,
+        });
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// CHARTS
 const getRecognitionsByStatus = async (req, res) => {
     try {
         const { date } = req.body;
@@ -40,6 +105,16 @@ const getRecognitionsByStatus = async (req, res) => {
     }
 };
 
+const getRecognitionByCategory = async (req, res) => {
+    try {
+        const { date } = req.body;
+        const results = await recognitionByCategory(date);
+        res.status(200).json(results);
+    } catch (error) {
+        console.error("Error fetching recognition data:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
 const getRewardsManagementByStatus = async (req, res) => {
     try {
         const { date } = req.body;
@@ -210,6 +285,124 @@ const recognitionsByStatus = async (date) => {
                         rejected: currentStatusCounts.rejected,
                         rejectedBadge,
                     },
+                });
+            }
+
+            results.push({
+                filter: unit.charAt(0).toUpperCase() + unit.slice(1),
+                info: unitResults,
+            });
+        }
+
+        return results;
+    } catch (error) {
+        console.error("Error fetching recognition data:", error);
+        throw new Error(error.message);
+    }
+};
+
+const recognitionByCategory = async (date) => {
+    try {
+        const initialDate = new Date(date);
+
+        const units = [
+            { unit: "week", periods: 3 },
+            { unit: "month", periods: 3 },
+            { unit: "quarter", periods: 3 },
+            { unit: "annual", periods: 2 },
+        ];
+
+        const results = [];
+
+        for (const { unit, periods } of units) {
+            const unitResults = [];
+
+            for (let i = 0; i < periods; i++) {
+                const periodDate = new Date(initialDate);
+                switch (unit) {
+                    case "week":
+                        periodDate.setDate(initialDate.getDate() - 7 * i);
+                        break;
+                    case "month":
+                        periodDate.setMonth(initialDate.getMonth() - i);
+                        break;
+                    case "quarter":
+                        periodDate.setMonth(initialDate.getMonth() - 3 * i);
+                        break;
+                    case "annual":
+                        periodDate.setFullYear(initialDate.getFullYear() - i);
+                        break;
+                }
+
+                const { startCurrent, endCurrent, startPrevious, endPrevious } =
+                    getPeriodDates(unit, periodDate);
+
+                const currentRecognitions = await Recognition.find({});
+
+                const currentCategoryCounts = currentRecognitions.reduce(
+                    (acc, recognition) => {
+                        const requestDate = new Date(recognition.dateRequest);
+                        if (i === 0) {
+                            if (
+                                requestDate >= startCurrent &&
+                                requestDate <= initialDate
+                            ) {
+                                acc[recognition.category.toLowerCase()] += 1;
+                            }
+                            return acc;
+                        } else {
+                            if (
+                                requestDate >= startCurrent &&
+                                requestDate <= endCurrent
+                            ) {
+                                acc[recognition.category.toLowerCase()] += 1;
+                            }
+                            return acc;
+                        }
+                    },
+                    {
+                        performance: 0,
+                        leadership: 0,
+                        teamwork: 0,
+                        creativity: 0,
+                    }
+                );
+
+                const previousCategoryCounts = currentRecognitions.reduce(
+                    (acc, recognition) => {
+                        const requestDate = new Date(recognition.dateRequest);
+                        if (
+                            requestDate >= startPrevious &&
+                            requestDate <= endPrevious
+                        ) {
+                            acc.totalAmount += 1;
+                            acc[recognition.category.toLowerCase()] += 1;
+                        }
+                        return acc;
+                    },
+                    {
+                        performance: 0,
+                        leadership: 0,
+                        teamwork: 0,
+                        creativity: 0,
+                    }
+                );
+
+                unitResults.push({
+                    from: startCurrent.toISOString().split("T")[0],
+                    to: endCurrent.toISOString().split("T")[0],
+                    current: [
+                        currentCategoryCounts.performance,
+                        currentCategoryCounts.leadership,
+                        currentCategoryCounts.teamwork,
+                        currentCategoryCounts.creativity,
+                    ],
+                    previous: [
+                        previousCategoryCounts.performance,
+                        previousCategoryCounts.leadership,
+                        previousCategoryCounts.teamwork,
+                        previousCategoryCounts.creativity,
+                    ],
                 });
             }
 
@@ -743,13 +936,31 @@ const satisfactionIndex = async (date) => {
                 }
 
                 // Calculate the total average of all users
-                const totalAverage =
+                const totalAverage = Number(
                     totalCompletedSurveys > 0
                         ? totalSumOfAverages / totalCompletedSurveys
+                        : 0
+                ).toFixed(1);
+                // console.log(
+                //     `Period: ${i}, Total Employees: ${totalEmployees}, Total Employees with Surveys: ${totalEmployeesWithSurveys}, Total Average: ${totalAverage}`
+                // );
+
+                let promoterPercent =
+                    totalEmployeesWithSurveys > 0
+                        ? statusCounts.promoter / totalEmployeesWithSurveys
                         : 0;
-                console.log(
-                    `Period: ${i}, Total Employees: ${totalEmployees}, Total Employees with Surveys: ${totalEmployeesWithSurveys}, Total Average: ${totalAverage}`
-                );
+                let neutralPercent =
+                    totalEmployeesWithSurveys > 0
+                        ? statusCounts.neutral / totalEmployeesWithSurveys
+                        : 0;
+                let detractorPercent =
+                    totalEmployeesWithSurveys > 0
+                        ? statusCounts.detractor / totalEmployeesWithSurveys
+                        : 0;
+
+                console.log(statusCounts.promoter);
+                console.log(statusCounts.neutral);
+                console.log(statusCounts.detractor);
 
                 // Add the current period's results to the unit results array
                 unitResults.push({
@@ -758,23 +969,11 @@ const satisfactionIndex = async (date) => {
                     totalEmployees,
                     totalEmployeesWithSurveys,
                     totalAverage,
-                    statusCounts: {
-                        promoter:
-                            totalEmployeesWithSurveys > 0
-                                ? statusCounts.promoter /
-                                  totalEmployeesWithSurveys
-                                : 0,
-                        neutral:
-                            totalEmployeesWithSurveys > 0
-                                ? statusCounts.neutral /
-                                  totalEmployeesWithSurveys
-                                : 0,
-                        detractor:
-                            totalEmployeesWithSurveys > 0
-                                ? statusCounts.detractor /
-                                  totalEmployeesWithSurveys
-                                : 0,
-                    },
+                    percentages: [
+                        promoterPercent * 5,
+                        neutralPercent * 5,
+                        detractorPercent * 5,
+                    ],
                 });
             }
 
@@ -794,7 +993,6 @@ const satisfactionIndex = async (date) => {
 
 const averageScoreSurveys = async (date) => {
     try {
-        console.log(date);
         const initialDate = new Date(date);
 
         // Define the units and periods for the analysis
@@ -963,7 +1161,9 @@ const calculatePeriodAverages = (
                 lastAverage,
                 averageForCurrentPeriod
             );
-            periodAverages.push(lastAverage);
+            periodAverages.push(
+                lastAverage ? Number(lastAverage.toFixed(1)) : lastAverage
+            );
 
             if (
                 periodEnd.getMonth() >= endPeriod.getMonth() &&
@@ -1013,7 +1213,7 @@ const calculatePeriodAverages = (
                 lastAverage,
                 averageForCurrentPeriod
             );
-            periodAverages.push(lastAverage);
+            periodAverages.push(Number(lastAverage.toFixed(1)));
 
             currentPeriodStart.setDate(
                 currentPeriodStart.getDate() + increment
@@ -1049,7 +1249,7 @@ const generateLabels = (unit, start, end) => {
     switch (unit) {
         case "week":
             while (currentDate <= end) {
-                labels.push(currentDate.getDate());
+                labels.push(currentDate.getDate().toString());
                 currentDate.setDate(currentDate.getDate() + 1);
             }
             break;
@@ -1075,8 +1275,14 @@ const generateLabels = (unit, start, end) => {
 
 // EXPORTS =======================================================================
 module.exports = {
+    //CHARTS BY PAGE
     getDashboardCharts,
+    getRecognitionsCharts,
+    getRewardsCharts,
+    getSurveysCharts,
+    //CHARTS
     getRecognitionsByStatus,
+    getRecognitionByCategory,
     getRewardsRequestByStatus,
     getRewardsManagementByStatus,
     getSurveysManagementByStatus,
@@ -1084,6 +1290,7 @@ module.exports = {
     getAverageScore,
     //HELPERS to call in another endpoint
     recognitionsByStatus,
+    recognitionByCategory,
     rewardsManagementByStatus,
     rewardsRequestByStatus,
     surveysManagementByStatus,

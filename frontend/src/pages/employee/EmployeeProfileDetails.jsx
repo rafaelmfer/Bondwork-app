@@ -270,6 +270,8 @@ const EmployeeProfileDetails = () => {
                             rows={rewardRows}
                             columns={rewardHeaders}
                             rowsNumber="5"
+                            showBtnColumn={false}
+                            showCheckboxColumn={false}
                             showSecondLastColumn={false}
                             showLastColumn={false}
                             showPagination={false}
@@ -286,6 +288,8 @@ const EmployeeProfileDetails = () => {
                             rows={surveyRows}
                             columns={surveyHeaders}
                             rowsNumber="5"
+                            showBtnColumn={false}
+                            showCheckboxColumn={false}
                             showSecondLastColumn={false}
                             showThirdLastColumn={false}
                             showLastColumn={false}

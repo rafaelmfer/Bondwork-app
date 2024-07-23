@@ -1,5 +1,6 @@
 const Survey = require("../models/SurveyModel");
 const User = require("../models/UserModel");
+const User = require("../models/UserModel");
 //const Recognition = require("../models/endorsementModel");
 const Rewards = require("../models/RewardsModel");
 const moment = require("moment");

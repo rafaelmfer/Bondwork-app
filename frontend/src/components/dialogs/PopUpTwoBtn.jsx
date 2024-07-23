@@ -1,14 +1,18 @@
 import React from "react";
-import { useEffect, useRef } from "react";
-import close from "../../assets/icons/close-black-neutral.svg";
+import { useEffect, useRef, useState } from "react";
+import CustomButton from "../buttons/CustomButton";
 
 const PopUpTwoBtn = (props) => {
+    const [isVisible, setIsVisible] = useState(true);
+    const [isVisibleBtnReject, setIvisbleBtnReject] = useState(true);
+    const [isVisiblePreview, setIsVisiblePreview] = useState(true);
+    const [showTwoBtn, setShowTwoBtn] = useState(true);
     // For accesibility ============================
     const closeButtonRef = useRef(null);
     const previousFocusRef = useRef(null);
     // Problem: when clicking outside the box, the modal isn't closing
     const popUpInnerRef = useRef(null);
-
+    console.log(props);
     useEffect(() => {
         if (props.trigger) {
             previousFocusRef.current = document.activeElement;
@@ -49,6 +53,34 @@ const PopUpTwoBtn = (props) => {
         };
     }, [props.trigger, props.setTrigger]);
 
+    const fetchingData = async (status) => {
+        const approved = {
+            approve: status,
+            reason: props.reason || null,
+            rejectDetails: props.description || null,
+        };
+
+        try {
+            const response = await fetch(props.endPointUrl, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(approved),
+            });
+
+            if (!response.ok) {
+                throw new Error("Fetch FAILED " + response.statusText);
+            }
+
+            const data = await response.json();
+            console.log("Success:", data);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
     // =========================================
     /**
      * On the component call needs to have:
@@ -63,31 +95,116 @@ const PopUpTwoBtn = (props) => {
             className="popUp z-20 overflow-hidden flex justify-center items-center fixed top-0 left-0 w-full h-lvh backdrop-blur bg-contrastText1/25"
             role="dialog"
             aria-modal="true"
+            style={{ background: "#c0c0c057" }}
         >
-            <div className="popUp-inner relative bg-white w-[342px] h-[272px] rounded-[16px] p-4 flex flex-col justify-between">
-                <button
-                    className="absolute w-[24px] h-[24px] top-4 right-4 border-0 p-0"
-                    aria-label="Close the message"
-                    onClick={() => props.setTrigger(false)}
-                >
-                    <img src={close} alt="" />
-                </button>
+            <div
+                className="popUp-inner relative bg-white w-[342px] rounded-[16px] p-4 flex flex-col justify-between"
+                style={{ display: "inline-table", background: "white" }}
+            >
                 <div className="pt-[16px]">{props.children}</div>
 
-                <div className="btn-container flex justify-center gap-[16px]">
-                    <button
-                        className="btn-one w-[148.5px] h-[48] rounded-[8px] inline-block border-[2px] border-secondary text-secondary text-small1  px-2 py-2 hover:bg-gray-700"
-                        onClick={props.btnOneOnClick}
-                    >
-                        {props.btnOneText}
-                    </button>
-                    <button
-                        className="btn-two w-[148.5px] h-[48] rounded-[8px] inline-block bg-main text-white text-small1 px-2 py-2 hover:bg-gray-700"
-                        onClick={props.btnTwoOnClick}
-                    >
-                        {props.btnTwoText}
-                    </button>
-                </div>
+                {showTwoBtn ? (
+                    <div className="btn-container grid grid-cols-2 gap-4 w-full mt-4">
+                        <CustomButton
+                            buttontype="secondary"
+                            buttonVariant="text"
+                            isOutlined
+                            onClick={() => {
+                                props.setTrigger(false);
+                                props.setEditable("showReject");
+                                props.setDisplay(false);
+                                props.setReason("");
+                                props.setDescription({});
+                                setIsVisiblePreview(true);
+                                setIvisbleBtnReject(true);
+                                setIsVisible(true);
+                            }}
+                        >
+                            Cancel
+                        </CustomButton>
+
+                        {/* CHECK if the button will be APPROVE OR NEXT */}
+                        {props.btnApproved == true
+                            ? isVisible && (
+                                  <CustomButton
+                                      buttontype="primary"
+                                      buttonVariant="text"
+                                      isOutlined
+                                      onClick={() => {
+                                          fetchingData(true);
+                                          props.setTrigger(false);
+                                          window.location.reload();
+                                      }}
+                                  >
+                                      Approve
+                                  </CustomButton>
+                              )
+                            : isVisible && (
+                                  <CustomButton
+                                      buttontype="primary"
+                                      buttonVariant="text"
+                                      isOutlined
+                                      onClick={() => {
+                                          setIvisbleBtnReject(true);
+                                          props.setDisplay(true);
+                                          setIsVisible(false);
+                                          setIsVisiblePreview(false);
+                                      }}
+                                  >
+                                      Next
+                                  </CustomButton>
+                              )}
+
+                        {!isVisiblePreview && (
+                            <CustomButton
+                                buttontype="primary"
+                                buttonVariant="text"
+                                isOutlined
+                                onClick={() => {
+                                    setIsVisiblePreview(true);
+                                    setIvisbleBtnReject(false);
+                                    props.setEditable("showDescription");
+                                }}
+                            >
+                                Preview
+                            </CustomButton>
+                        )}
+
+                        {!isVisibleBtnReject && (
+                            <CustomButton
+                                buttontype="primary"
+                                buttonVariant="text"
+                                isOutlined
+                                onClick={async () => {
+                                    props.setEditable("none");
+                                    props.setDoneIcon(false);
+                                    const reject = {
+                                        approve: false,
+                                        reason: props.reason,
+                                        rejectDetails: props.description,
+                                    };
+                                    fetchingData(false);
+                                    setShowTwoBtn(false);
+                                }}
+                            >
+                                Reject
+                            </CustomButton>
+                        )}
+                    </div>
+                ) : (
+                    <div className="btn-container grid grid-cols-1 gap-4 w-full">
+                        <CustomButton
+                            buttontype="primary"
+                            buttonVariant="text"
+                            isOutlined
+                            onClick={() => {
+                                props.setTrigger(false);
+                            }}
+                        >
+                            Done
+                        </CustomButton>
+                    </div>
+                )}
             </div>
         </div>
     ) : (

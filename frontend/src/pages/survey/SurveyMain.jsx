@@ -2,28 +2,76 @@ import { useState, useEffect } from "react";
 import { Box, Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import SummaryCard from "../../components/cards/SummaryCard";
+import FilterButtons from "../../components/FilterButtons";
+import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
 import TableSeven from "../../components/TableSeven";
 import theme from "../../theme/theme";
-import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 
-const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
+const URL = `${process.env.REACT_APP_API_URL}/api/surveys`;
+const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/surveys`;
 
 const SurveyMain = () => {
-    // Summary Card data
-    const Summarydata = {
-        totalEmployees: { value: 1500, chip: 6 },
-        surveySent: { value: 300, chip: -6 },
-        received: { value: 230, chip: 6 },
-        completed: { value: 150, chip: 6 },
-        averageTime: { value: 5, chip: -1 },
+    // let today = new Date().toISOString().split("T")[0];
+    let today = "2024-07-12";
+    const [chartsApi, setChartsApi] = useState({});
+    const [chartIndex, setChartIndex] = useState(0);
+
+    const handleFilterChange = (index) => {
+        setChartIndex(index);
     };
 
-    const [surveys, setSurveys] = useState([]);
+    // Fetching charts rewards
+    useEffect(() => {
+        const fetchCharts = async () => {
+            try {
+                const res = await fetch(URL_CHARTS, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ date: today }),
+                });
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                const data = await res.json();
+                setChartsApi(data);
+                console.log(data);
+            } catch (error) {
+                console.log("Error fetching data", error);
+            }
+        };
+        fetchCharts();
+    }, []);
 
+    // Satisfaction Chart Data
+    const chartDataSatisfaction = [
+        {
+            name: "Salary",
+            data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
+            color: "#B1D6F9",
+        },
+        {
+            name: "Company Culture",
+            data: [2, 2.3, 2.5, 3, 4.5, 4.1, null],
+            color: "#2774BC",
+        },
+        {
+            name: "Job Role",
+            data: [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
+            color: "#FBD8D8",
+        },
+        {
+            name: "Collegues",
+            data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
+            color: "#EF6461",
+        },
+    ];
+
+    const [surveys, setSurveys] = useState([]);
     // Fetching surveys
     useEffect(() => {
         const fetchData = async () => {
@@ -93,21 +141,51 @@ const SurveyMain = () => {
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
             <TopUserBar titleScreen={"Surveys"} />
             <Breadcrumbs />
-
-            <Box className="h-full grid grid-cols-2 items-center gap-6 mt-6">
+            <FilterButtons
+                sx={{ marginTop: "8px" }}
+                onFilterChange={handleFilterChange}
+            />
+            <Box className="h-full grid grid-cols-2 items-center gap-6 mt-4">
                 <CardWithTwoStatus
                     title={"Management"}
-                    totalNumber={98}
-                    chipPreviousNumberText={6}
-                    progressValue={70}
-                    statusText1={"Pending"}
+                    totalNumber={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].totalAmount
+                            : 0
+                    }
+                    chipPreviousNumberText={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].badgeCount
+                            : 0
+                    }
+                    statusText1={"Ongoing"}
                     statusColor1={theme.palette.info.main}
-                    number1={54}
-                    chipText1={-10}
-                    statusText2={"Completed"}
-                    statusColor2={theme.palette.success.main}
-                    number2={44}
-                    chipText2={16}
+                    number1={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .ongoing
+                            : 0
+                    }
+                    chipText1={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .ongoingBadge
+                            : 0
+                    }
+                    statusText2={"Upcoming"}
+                    statusColor2={theme.palette.warning.main}
+                    number2={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .upcoming
+                            : 0
+                    }
+                    chipText2={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .upcomingBadge
+                            : 0
+                    }
                 />
 
                 <div className="chart-donut-card bg-main-50 flex flex-col h-full shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
@@ -117,6 +195,18 @@ const SurveyMain = () => {
                     <ChartDonut
                         className="chart-donut-survey-main flex flex-col justify-center h-full"
                         chartHeight={200}
+                        data={
+                            chartsApi.chart2
+                                ? chartsApi.chart2[chartIndex].info[0]
+                                      .percentages
+                                : [1, 1, 1]
+                        }
+                        totalAverage={
+                            chartsApi.chart2
+                                ? chartsApi.chart2[chartIndex].info[0]
+                                      .totalAverage
+                                : "0"
+                        }
                     />
                 </div>
             </Box>
@@ -132,6 +222,16 @@ const SurveyMain = () => {
                     <ChartArea
                         className="chart-area-survey-main"
                         chartHeight={220}
+                        chartData={
+                            chartsApi.chart3
+                                ? chartsApi.chart3[chartIndex].info[1].averages
+                                : [null, null, null, null, null]
+                        }
+                        labels={
+                            chartsApi.chart3
+                                ? chartsApi.chart3[chartIndex].info[1].labels
+                                : []
+                        }
                     />
                 </div>
 
@@ -142,7 +242,13 @@ const SurveyMain = () => {
                     <ChartLine
                         className="chart-line-survey-main"
                         chartHeight={220}
+                        data={chartDataSatisfaction}
                         isLegendBottom={false}
+                        labels={
+                            chartsApi.chart4
+                                ? chartsApi.chart4[chartIndex].info[0].labels
+                                : []
+                        }
                     />
                 </div>
             </div>

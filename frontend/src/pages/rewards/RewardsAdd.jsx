@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { Tab, Tabs, Box, Card } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
-import Breadcrumbs from "../../components/Breadcrumbs";
 import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import DropdownSelect from "../../components/textfields/TextFieldDropdown";
@@ -12,12 +11,13 @@ import CustomButton from "../../components/buttons/CustomButton";
 import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import { AddImage } from "../../components/addImage/AddImage";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
-import theme from "../../theme/theme";
-
 import { surveyCreationContext } from "../../context/Context";
 import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
 import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
+import document from "../../assets/icons/document-outline.svg";
+
+import theme from "../../theme/theme";
 
 const RewardsAdd = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -116,7 +116,6 @@ const RewardsAdd = () => {
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8">
             <TopUserBar titleScreen={"Add Reward"} />
-            {/* <Breadcrumbs /> */}
             <Card
                 sx={{
                     marginTop: "24px",
@@ -260,7 +259,7 @@ export function CreateRewardStep({
                         />
                         <h3 className="text-h3">Published</h3>
                         <p className="text-p text-center">
-                            The employees have received the survey link.
+                            The Reward has been created.
                         </p>
                     </div>
                 }
@@ -301,7 +300,50 @@ export function CreateRewardStep({
                         <Box mt={2}>
                             <AddImage id="addImage" label="Thumbnail Image" />
 
-                            {/* set the image here */}
+                            <Box
+                                component="div"
+                                sx={{
+                                    border: "1px solid black",
+                                    height: "auto",
+                                    color: "rgb(114, 114, 114)", // text color
+                                    // padding
+                                    padding: "16px 0px 16px 0px",
+                                    borderRadius: "8px",
+                                    // border radius
+                                    "&:hover": {
+                                        padding: "14.5px 0px 14.5px 0px",
+                                        border: "3px solid #B1D6F9", // hover border color
+                                        marginBottom: "-0.5px",
+                                    },
+                                }}
+                            >
+                                <Box
+                                    component="div"
+                                    sx={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                    }}
+                                >
+                                    <img
+                                        src={document}
+                                        width="24px"
+                                        height="24px"
+                                    />
+                                    <p
+                                        style={{
+                                            lineHeight: "18px",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        Drop your file here
+                                        <br />
+                                        or click to upload
+                                    </p>
+                                </Box>
+                            </Box>
                         </Box>
 
                         <Box mt={2}>
@@ -370,7 +412,6 @@ export function CreateRewardStep({
                             sx={{ mt: 3 }}
                             display="flex"
                             justifyContent="space-between"
-                            mt={4}
                         >
                             <CustomButton buttontype="secondary" isOutlined>
                                 Cancel

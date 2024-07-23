@@ -1,5 +1,7 @@
+import RewardsIcon from "../../assets/icons/reward-dark-gray-neutral.svg";
+
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import CheckStatus from "../../components/checkStatus/CheckStatus";
@@ -7,21 +9,39 @@ import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import ProfileCard from "../../components/cards/CardProfile";
 import CardDescription from "../../components/cards/CardDescription";
 import CustomButton from "../../components/buttons/CustomButton";
-
-import RewardsIcon from "../../assets/icons/reward-dark-gray-neutral.svg";
 import SupportiveIcon from "../../assets/icons/supportive-dark-gray-neutral.svg";
+import PerfomanceIcon from "../../assets/icons/performance-dark-gray-neutral.svg";
 import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
-
 import { formatDate } from "../../common/commonFunctions";
+import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import promptAlert from "../../assets/icons/prompt-alert.svg";
+import promptSuccess from "../../assets/icons/prompt-success.svg";
+import TextFieldArea from "../../components/textfields/TextFieldArea";
+import { Typography, useTheme } from "@mui/material";
 
 const RewardsRequestDetails = () => {
+    const theme = useTheme();
     const { id, personId } = useParams();
-
+    const [marginBottom, setMarginBottom] = useState(true);
     const [status, setStatus] = useState("");
     const [rewardsRequestDetails, setRewardsRequestDetails] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
     const [options, setOptions] = useState([]);
+    const [editable, setEditable] = useState("");
+    const [triggerRequest, setTriggerRequest] = useState(false);
+    const [display, setDisplay] = useState(false);
+    const [showPopupApproved, setShowPopupApproved] = useState(false);
+    const [surveyInputs, setSurveyInputs] = useState({});
+    const [value, setValue] = useState("");
+    const [doneIcon, setDoneIcon] = useState(true);
+
+    const rejectionOptions = [
+        "option onea",
+        "option two",
+        "option three",
+        "option four",
+    ];
 
     // Fetch the details of the recognition
     useEffect(() => {
@@ -70,8 +90,197 @@ const RewardsRequestDetails = () => {
         setSelectedOption(event.target.value);
     };
 
+    console.log(id);
+    console.log(personId);
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
+            {/* BTN APROVE CLICKED */}
+            <PopUpTwoBtn
+                trigger={showPopupApproved}
+                setTrigger={setShowPopupApproved}
+                setDisplay={setDisplay}
+                display={display}
+                setEditable={setEditable}
+                setDescription={setSurveyInputs}
+                setReason={setValue}
+                reason={value}
+                description={surveyInputs.description}
+                userId={id}
+                btnApproved={true}
+                endPointUrl={`http://localhost:5001/api/rewards/update/${id}/${personId}`}
+                children={
+                    <div className="successTex flex flex-col gap-4 items-center mb-4">
+                        <img
+                            src={promptSuccess}
+                            alt="ok symbol"
+                            className="w-12 h-12"
+                        />
+                        <h3 className="text-h3">Approve</h3>
+                        <p className="text-p text-center">
+                            Are you sure you want to approve
+                            <br /> this request?
+                        </p>
+                    </div>
+                }
+
+                // btnOneText={"Go to Home"}
+                // btnOneOnClick={goToHome}
+                // btnTwoText={"Next"}
+                // btnTwoOnClick={goToNext}
+            />
+
+            <PopUpTwoBtn
+                trigger={triggerRequest}
+                setTrigger={setTriggerRequest}
+                setDisplay={setDisplay}
+                display={display}
+                setReason={setValue}
+                setEditable={setEditable}
+                setDescription={setSurveyInputs}
+                reason={value}
+                description={surveyInputs.description}
+                userId={id}
+                personId={personId}
+                setDoneIcon={setDoneIcon}
+                endPointUrl={`http://localhost:5001/api/rewards/update/${id}/${personId}`}
+                children={
+                    <div className="successTex flex flex-col gap-4 items-center">
+                        {!doneIcon ? (
+                            <>
+                                <img
+                                    src={promptSuccess}
+                                    alt="ok symbol"
+                                    className="w-12 h-12"
+                                />
+                                <h3 className="text-h3">Rejected</h3>
+                            </>
+                        ) : (
+                            <>
+                                <img
+                                    src={promptAlert}
+                                    alt="ok symbol"
+                                    className="w-12 h-12"
+                                />
+                                <h3 className="text-h3">Reject</h3>
+                                <p className="text-p text-center">
+                                    Please select the reason for rejection.
+                                </p>
+                            </>
+                        )}
+
+                        {editable === "showReject" ? (
+                            <div className="w-full">
+                                <DropdownSelect
+                                    sx={{
+                                        mt: 2,
+                                        width: "100%",
+                                        paddingBottom: `${!marginBottom ? "0px" : "20px"}`,
+                                    }}
+                                    label="Reason"
+                                    placeholder="Select"
+                                    options={rejectionOptions}
+                                    disabled={false}
+                                    value={value}
+                                    onChange={(e) => {
+                                        console.log("working");
+                                        console.log(e.target.value);
+                                        setValue(e.target.value);
+                                    }}
+                                />
+
+                                {display && (
+                                    <Box
+                                        sx={{
+                                            width: "100%",
+                                            paddingBottom: "20px",
+                                        }}
+                                    >
+                                        <TextFieldArea
+                                            sx={{ mt: 2, width: "100%" }}
+                                            label="Description"
+                                            id="description"
+                                            placeholder="Text here"
+                                            hint={200}
+                                            value={
+                                                surveyInputs.description || ""
+                                            }
+                                            disabled={false}
+                                            onChange={(e) => {
+                                                setSurveyInputs(
+                                                    (prevInputs) => ({
+                                                        ...prevInputs,
+                                                        description:
+                                                            e.target.value,
+                                                    })
+                                                );
+                                            }}
+                                        />
+                                    </Box>
+                                )}
+                            </div>
+                        ) : editable === "showDescription" ? (
+                            <div className="w-full flex flex-col gap-4">
+                                <div>
+                                    <Typography
+                                        variant="h6"
+                                        color={theme.palette.neutrals.black}
+                                        sx={{
+                                            ...theme.typography.small1,
+                                            fontWeight: 500,
+                                        }}
+                                    >
+                                        Reason
+                                    </Typography>
+
+                                    <Typography
+                                        variant="p"
+                                        color={theme.palette.neutrals.black}
+                                        fontWeight={600}
+                                    >
+                                        {value}
+                                    </Typography>
+                                </div>
+
+                                <div className="mb-4">
+                                    <Typography
+                                        variant="h6"
+                                        color={theme.palette.neutrals.black}
+                                        sx={{
+                                            ...theme.typography.small1,
+                                            fontWeight: 500,
+                                        }}
+                                    >
+                                        Details
+                                    </Typography>
+                                    <Typography
+                                        variant="p"
+                                        color={theme.palette.neutrals.black}
+                                        fontWeight={600}
+                                    >
+                                        {surveyInputs.description}
+                                    </Typography>
+                                </div>
+                            </div>
+                        ) : (
+                            <Typography
+                                variant="h6"
+                                color={theme.palette.neutrals.black}
+                                sx={{
+                                    marginBottom: "20px",
+                                    ...theme.typography.small1,
+                                    fontWeight: 500,
+                                    textAlign: "center",
+                                }}
+                            >
+                                Request has been rejected. Reject notification
+                                will be sent to the employees.
+                            </Typography>
+                        )}
+                    </div>
+                }
+            />
+
             <TopUserBar titleScreen={"Request Details"} />
 
             <Box
@@ -145,14 +354,19 @@ const RewardsRequestDetails = () => {
                         buttontype="secondary"
                         buttonVariant="text"
                         isOutlined
-                        onClick={() => alert("Reject clicked!")}
+                        onClick={() => {
+                            setEditable("showReject");
+                            setTriggerRequest(true);
+                        }}
                     >
                         Reject
                     </CustomButton>
                     <CustomButton
                         buttontype="primary"
                         buttonVariant="text"
-                        onClick={() => alert("Approve clicked!")}
+                        onClick={() => {
+                            setShowPopupApproved(true);
+                        }}
                     >
                         Approve
                     </CustomButton>

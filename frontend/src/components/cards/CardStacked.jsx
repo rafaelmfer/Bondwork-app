@@ -1,27 +1,26 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import {
-    Box,
-    Card,
-    CardContent,
-    Typography,
-    Chip,
-    Button,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
+import { getChipColors, formatChipLabel } from "../chip/ChipNumber";
 import theme from "../../theme/theme";
 
-function ChartVerticalBar({ className, chartHeight }) {
+function ChartVerticalBar({
+    className,
+    chartHeight,
+    dataPrevious,
+    dataCurrent,
+}) {
     const options = {
         series: [
             {
                 name: "Previous",
-                data: [34, 45, 67, 66],
-                color: "#EF6461",
+                data: dataPrevious,
+                color: theme.palette.primary.main,
             },
             {
                 name: "Current",
-                data: [65, 55, 52, 46],
-                color: "#11689E",
+                data: dataCurrent,
+                color: theme.palette.info[300],
             },
         ],
         chart: {
@@ -35,7 +34,7 @@ function ChartVerticalBar({ className, chartHeight }) {
         plotOptions: {
             bar: {
                 horizontal: false,
-                columnWidth: "30%",
+                columnWidth: "45%",
                 endingShape: "rounded",
             },
         },
@@ -44,7 +43,7 @@ function ChartVerticalBar({ className, chartHeight }) {
         },
         stroke: {
             show: true,
-            width: 10,
+            width: 2,
             colors: ["transparent"],
         },
         xaxis: {
@@ -70,7 +69,7 @@ function ChartVerticalBar({ className, chartHeight }) {
         yaxis: {
             tickAmount: 4,
             title: {
-                text: "number",
+                // text: "number",
             },
         },
         fill: {
@@ -92,27 +91,104 @@ function ChartVerticalBar({ className, chartHeight }) {
             },
         },
         tooltip: {
-            enabled: false,
-            y: {
-                formatter: function (val) {
-                    return "$ " + val + " thousandss";
-                },
+            // series: An array of arrays containing the values of all series in the chart.
+            // seriesIndex: The index of the current series being processed.
+            // dataPointIndex: The index of the current data point in the series.
+            // w: An object that contains all the options and data for the chart.
+            enabled: true,
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                const category = w.globals.labels[dataPointIndex];
+                const prefix = seriesIndex === 0 ? "Previous" : "Current";
+                const badgeNumber =
+                    seriesIndex === 1
+                        ? series[seriesIndex][dataPointIndex] -
+                          series[seriesIndex - 1][dataPointIndex]
+                        : 0;
+                const { chipBackground, chipTextColor } =
+                    getChipColors(badgeNumber);
+                const showBadge =
+                    seriesIndex === 1
+                        ? `<div class="tooltip-extra" style="background-color: ${chipBackground};
+                        color: ${chipTextColor};">${formatChipLabel(badgeNumber)}</div>`
+                        : ``;
+                return `<div class="custom-tooltip">
+                            <div class="tooltip-header items-center">
+                                <p class="tooltip-percentage"><span>${prefix}:</span> ${series[seriesIndex][dataPointIndex]}</p>
+                                ${showBadge}
+                            </div>
+                            <div class="tooltip-label">${category}</div>
+                        </div>`;
             },
         },
     };
 
     return (
-        <Chart
-            className={className}
-            options={options}
-            series={options.series}
-            type="bar"
-            height={chartHeight}
-        />
+        <>
+            <style>
+                {`
+                    .apexcharts-tooltip.apexcharts-theme-light {
+                        border-radius: 8px;
+                        border: none;
+                        background: rgba(30, 30, 30, .8);
+                    }
+                    
+                    .custom-tooltip {
+                        width: 170px;
+                        background-color: rgba(5, 33, 60, 0.8);
+                        color: #FFFFFF;
+                        text-align: left;
+                        border-radius: 8px;
+                        padding: 16px;
+                        position: relative;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                        font-family: 'IBM Plex Sans', sans-serif;
+                    }
+
+                    .tooltip-header {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 6px;
+                    }
+
+                    .tooltip-percentage {
+                        font-size: 24px;
+                        font-weight: 500;
+                    }
+
+                    .tooltip-percentage span {
+                        font-size: 18px;
+                        font-weight: 500;
+                    }
+
+                    .tooltip-extra {
+                        border-radius: 12px;
+                        padding: 2px 12px;
+                        font-size: 16px;
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        justify-content: center;
+                        height: 20px;
+                    }
+
+                    .tooltip-label {
+                        font-size: 18px;
+                        margin-top: 8px;
+                    }
+                `}
+            </style>
+            <Chart
+                className={className}
+                options={options}
+                series={options.series}
+                type="bar"
+                height={chartHeight}
+            />
+        </>
     );
 }
 
-export default function CardStacked() {
+export default function CardStacked({ dataPrevious, dataCurrent }) {
     return (
         <Card
             variant="outlined"
@@ -143,15 +219,11 @@ export default function CardStacked() {
                     </Typography>
                 </Box>
 
-                <ChartVerticalBar chartHeight={200} />
-                {/* <div class="relative h-[25px]">
-                  <ul class="flex justify-between absolute w-full -top-[30px] pl-[10%] text-[15px]">
-                      <li>Great Performance</li>
-                      <li>Leadership</li>
-                      <li>Teamwork</li>
-                      <li>Innovative Idea</li>
-                  </ul>
-                </div> */}
+                <ChartVerticalBar
+                    chartHeight={200}
+                    dataPrevious={dataPrevious}
+                    dataCurrent={dataCurrent}
+                />
             </CardContent>
         </Card>
     );

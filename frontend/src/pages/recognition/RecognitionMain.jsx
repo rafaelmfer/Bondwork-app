@@ -1,24 +1,56 @@
 import React, { useState, useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import FilterButtons from "../../components/FilterButtons";
 import TableWithProfile from "../../components/TableWithProfile";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import CardStacked from "../../components/cards/CardStacked";
 import theme from "../../theme/theme";
 
+const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/recognitions`;
+
 const RecognitionMain = () => {
-    //const navigate = useNavigate();
-    //const [svg, setSvg] = useState("");
+    // let today = new Date().toISOString().split("T")[0];
+    let today = "2024-07-14";
+    const [chartsApi, setChartsApi] = useState({});
+    const [chartIndex, setChartIndex] = useState(0);
+
+    const handleFilterChange = (index) => {
+        setChartIndex(index);
+    };
+
     const [dataInd, setData] = useState("");
-    //const [svgString, setSvgString] = useState("");
+
     const [recognitions, setRecognitions] = useState([]); // for the table
+
+    // Fetching charts recognitions
+    useEffect(() => {
+        const fetchCharts = async () => {
+            try {
+                const res = await fetch(URL_CHARTS, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ date: today }),
+                });
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                const data = await res.json();
+                setChartsApi(data);
+            } catch (error) {
+                console.log("Error fetching data", error);
+            }
+        };
+        fetchCharts();
+    }, []);
 
     useEffect(() => {
         function createRows(dataArray) {
             if (!Array.isArray(dataArray)) {
-                console.error("dataArray is not an array", dataArray);
+                // console.error("dataArray is not an array", dataArray);
                 return [];
             }
 
@@ -72,20 +104,11 @@ const RecognitionMain = () => {
             status,
         };
     }
-
     // ====================================================
     useEffect(() => {
-        const fetchSvg = async () => {
-            const headers = new Headers();
-            headers.set(
-                "Authorization",
-                "Basic " + btoa("admin" + ":" + "secret")
-            );
+        const getRecognitions = async () => {
             const response = await fetch(
-                `${process.env.REACT_APP_API_URL}/api/recognition`,
-                {
-                    headers,
-                }
+                `${process.env.REACT_APP_API_URL}/api/recognition`
             );
 
             if (response.ok) {
@@ -94,37 +117,87 @@ const RecognitionMain = () => {
             }
         };
 
-        fetchSvg();
+        getRecognitions();
     }, []);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
+        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             <TopUserBar titleScreen={"Recognition"} />
             <Breadcrumbs />
-
-            <div className="flex row gap-4 mt-6">
+            <FilterButtons
+                sx={{ marginTop: "8px" }}
+                onFilterChange={handleFilterChange}
+            />
+            <div className="flex row gap-4 mt-4">
                 <CardWithThreeStatus
                     title={"Recognition"}
-                    totalNumber={430}
-                    chipPreviousNumberText={6}
-                    progressValue1={30}
-                    progressValue2={60}
-                    progressValue3={10}
+                    totalNumber={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].totalAmount
+                            : 0
+                    }
+                    chipPreviousNumberText={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].badgeCount
+                            : 0
+                    }
                     statusText1={"Pending"}
                     statusColor1={theme.palette.info.main}
-                    number1={100}
-                    chipText1={-10}
+                    number1={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .pending
+                            : 0
+                    }
+                    chipText1={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .pendingBadge
+                            : 0
+                    }
                     statusText2={"Approved"}
                     statusColor2={theme.palette.success.main}
-                    number2={300}
-                    chipText2={-10}
+                    number2={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .approved
+                            : 0
+                    }
+                    chipText2={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .approvedBadge
+                            : 0
+                    }
                     statusText3={"Rejected"}
                     statusColor3={theme.palette.error.main}
-                    number3={30}
-                    chipText3={16}
+                    number3={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .rejected
+                            : 0
+                    }
+                    chipText3={
+                        chartsApi.chart1
+                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
+                                  .rejectedBadge
+                            : 0
+                    }
                     disabled={true}
                 />
-                <CardStacked />
+
+                <CardStacked
+                    dataPrevious={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].previous
+                            : []
+                    }
+                    dataCurrent={
+                        chartsApi.chart2
+                            ? chartsApi.chart2[chartIndex].info[0].current
+                            : []
+                    }
+                />
             </div>
             <Divider
                 sx={{
