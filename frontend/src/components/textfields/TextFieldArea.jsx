@@ -53,7 +53,8 @@ const TextAreaElement = styled("textarea")(
         resize: "vertical",
         transition: "border-color 0s ease, padding 0s ease",
         "&:hover": {
-            padding: disabled ? "8px 4px 4px 16px" : "6px 2px 2px 14px",
+            padding: disabled ? "8px 4px 4px 16px" : "6px 1.5px 1.5px 14px",
+            marginBottom: disabled ? "0px" : "0.5px",
             border: disabled ? "1px solid" : "3px solid",
             borderColor: error
                 ? theme.palette.error[300]
