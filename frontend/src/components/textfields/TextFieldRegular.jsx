@@ -165,6 +165,7 @@ const TextFieldRegular = ({
     disabled,
     value,
     type,
+    star,
     onChange,
     sx,
 }) => {
@@ -191,7 +192,7 @@ const TextFieldRegular = ({
         >
             {label && (
                 <Label htmlFor={id}>
-                    {label}
+                    {label} {star && <span style={{ color: "red" }}>*</span>}
                     {infoTooltipText && (
                         <CustomTooltip
                             tooltipContent={

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
+import OnBoarding from "./pages/OnBoarding";
 
 // Method to recurservely create the routes
 const renderRoutes = (routes) => {
@@ -33,10 +34,7 @@ function App() {
             <div className="App">
                 <Sidebar profileName={"HR Manager"} />
                 <Routes>
-                    <Route
-                        path="/"
-                        element={<Navigate to="/login" replace={true} />}
-                    />
+                    <Route path="/" element={<OnBoarding />} />
                     {renderRoutes(routes)}
                 </Routes>
             </div>
