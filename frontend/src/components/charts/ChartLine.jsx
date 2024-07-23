@@ -5,6 +5,7 @@ export default function ChartLine({
     chartHeight,
     data,
     isLegendBottom,
+    labels,
 }) {
     const options = {
         chart: {
@@ -39,7 +40,7 @@ export default function ChartLine({
             width: 2,
         },
         markers: {
-            colors: ["#8F0A06", "#B1D6F9", "#2774BC", "#FBD8D8", "#EF6461"],
+            colors: data.map((item) => item.color),
             size: 2,
             strokeColors: "#fff",
             strokeWidth: 0,
@@ -60,7 +61,7 @@ export default function ChartLine({
             },
         },
         xaxis: {
-            categories: ["19", "20", "21", "22", "23", "24", "25"],
+            categories: labels,
             lines: {
                 show: true,
             },
@@ -75,12 +76,25 @@ export default function ChartLine({
         },
     };
     return (
-        <Chart
-            className={className}
-            options={options}
-            series={data}
-            type="line"
-            height={chartHeight}
-        />
+        <>
+            <style>
+                {`
+                    .chart-satisfaction-drivers {
+                        min-height: ${chartHeight}px !important;
+                    }
+
+                    .apexcharts-legend {
+                        margin-top: 4px;
+                    }
+                `}
+            </style>
+            <Chart
+                className={className}
+                options={options}
+                series={data}
+                type="line"
+                height={chartHeight}
+            />
+        </>
     );
 }
