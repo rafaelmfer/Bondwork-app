@@ -50,12 +50,6 @@ const routes = [
         hideInSidebar: true, // Don't Show in Sidebar Component
     },
     {
-        path: "/onboarding",
-        element: <OnBoarding />,
-        menuLabel: "onboarding",
-        hideInSidebar: true, // Don't Show in Sidebar Component
-    },
-    {
         path: "/signup",
         element: <Signup />,
         menuLabel: "Signup",
