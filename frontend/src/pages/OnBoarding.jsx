@@ -1,15 +1,7 @@
 import { Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import TextFieldRegular from "../components/textfields/TextFieldRegular";
-import TextFieldArea from "../components/textfields/TextFieldArea";
-import redStar from "../../src/assets/icons/red_Star.svg";
-import companyName from "../../src/assets/icons/CompanyName.svg";
-import PopUpOneBtn from "../components/dialogs/PopUpOneBtn";
-import CustomButton from "../components/buttons/CustomButton";
-import recImage from "../../src/assets/images/RectangleImage.png";
-import chartImage from "../../src/assets/images/chartImage.png";
-import PhotoChart from "../../src/assets/images/PhotoChart.png";
+
 import { ContactUs } from "../components/landing-page/ContactUs";
 import { Proposal } from "../components/landing-page/Proposal";
 
