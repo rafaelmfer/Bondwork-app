@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import close from "../../assets/icons/close-black-neutral.svg";
 import CustomButton from "../buttons/CustomButton";
 
 const PopUpTwoBtn = (props) => {
@@ -99,13 +98,13 @@ const PopUpTwoBtn = (props) => {
             style={{ background: "#c0c0c057" }}
         >
             <div
-                className="popUp-inner relative bg-white w-[342px] h-[272px] rounded-[16px] p-4 flex flex-col justify-between"
+                className="popUp-inner relative bg-white w-[342px] rounded-[16px] p-4 flex flex-col justify-between"
                 style={{ display: "inline-table", background: "white" }}
             >
                 <div className="pt-[16px]">{props.children}</div>
 
                 {showTwoBtn ? (
-                    <div className="btn-container grid grid-cols-2 gap-4 w-full mb-4">
+                    <div className="btn-container grid grid-cols-2 gap-4 w-full mt-4">
                         <CustomButton
                             buttontype="secondary"
                             buttonVariant="text"

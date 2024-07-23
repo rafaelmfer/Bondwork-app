@@ -10,6 +10,7 @@ const CardSatisfactionDrivers = ({
     chipText,
     data,
     isLegendBottom = true,
+    labels,
 }) => {
     const navigate = useNavigate();
 
@@ -71,9 +72,11 @@ const CardSatisfactionDrivers = ({
                     </Box>
                 </Box>
                 <ChartLine
+                    className={"chart-satisfaction-drivers"}
                     chartHeight={200}
                     data={data}
                     isLegendBottom={isLegendBottom}
+                    label={labels}
                 />
             </CardContent>
         </Card>

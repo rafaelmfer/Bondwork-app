@@ -493,7 +493,7 @@ export default function TableWithProfile({
                             }}
                         >
                             <div
-                                className="flex items-center"
+                                className="flex items-center ml-2"
                                 onClick={() => handleColumnClick(1)}
                                 onMouseEnter={() => handleColumnHover(1, true)}
                                 onMouseLeave={() => handleColumnHover(1, false)}
@@ -545,7 +545,7 @@ export default function TableWithProfile({
                                 }}
                             >
                                 <div
-                                    className="flex items-center"
+                                    className="flex items-center ml-2"
                                     onClick={() => handleColumnClick(2)}
                                     onMouseEnter={() =>
                                         handleColumnHover(2, true)
