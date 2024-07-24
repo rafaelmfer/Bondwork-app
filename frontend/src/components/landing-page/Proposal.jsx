@@ -8,7 +8,6 @@ export function Proposal({ matches }) {
     return (
         <>
             <Box
-                component="div"
                 sx={{
                     width: "100%",
                     display: "grid",

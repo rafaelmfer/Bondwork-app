@@ -19,7 +19,6 @@ export function BusinessModel({ matches }) {
             </div>
 
             <Box
-                component="div"
                 sx={{
                     width: "100%",
                     display: "grid",
@@ -84,8 +83,6 @@ export function BusinessModel({ matches }) {
                         buttonVariant="text"
                         isOutlined
                         sx={{
-                            float: "left",
-                            width: "fit-content",
                             margin: "0 auto 0 auto",
                         }}
                     >
@@ -164,8 +161,6 @@ export function BusinessModel({ matches }) {
                         buttonVariant="text"
                         isOutlined
                         sx={{
-                            float: "left",
-                            width: "fit-content",
                             margin: "0 auto 0 auto",
                         }}
                     >

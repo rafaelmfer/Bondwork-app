@@ -7,7 +7,6 @@ export function ContactUs() {
     return (
         <>
             <Box
-                component="div"
                 sx={{
                     width: "100%",
                     display: "flex",
@@ -23,7 +22,6 @@ export function ContactUs() {
                 </Typography>
 
                 <Box
-                    component="div"
                     sx={{
                         width: "100%",
                         maxWidth: "700px",
