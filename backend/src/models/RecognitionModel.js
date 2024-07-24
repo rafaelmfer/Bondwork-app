@@ -27,7 +27,6 @@ const RecognitionSchema = new mongoose.Schema({
     },
     dateRequest: {
         type: Date,
-        required: true,
     },
     date: {
         type: Date,

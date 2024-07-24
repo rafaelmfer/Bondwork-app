@@ -121,8 +121,6 @@ const updateSurvey = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
-
-// TODO Fix it to save into database
 const addSurvey = async (req, res) => {
     const {
         name,
@@ -161,6 +159,67 @@ const addSurvey = async (req, res) => {
     }
 };
 
+const createSurvey = async (req, res) => {
+    const {
+        surveyId,
+        name,
+        description,
+        jobLevel,
+        startDate,
+        endDate,
+        status,
+        recurrence,
+        points,
+        departments,
+        departmentId,
+        completed,
+        sent,
+        questions,
+        publish,
+    } = req.body;
+
+    try {
+        const newSurvey = new Survey({
+            surveyId,
+            name,
+            description,
+            jobLevel,
+            startDate,
+            endDate,
+            status,
+            recurrence,
+            points,
+            departments,
+            departmentId,
+            completed,
+            sent,
+            questions,
+            publish,
+        });
+        await newSurvey.save();
+
+        // Update users collection
+        const surveyDetails = {
+            id: surveyId,
+            status: "sent",
+            surveyName: name,
+            startDate: startDate,
+            endDate: endDate,
+        };
+
+        await User.updateMany(
+            { employeeID: { $in: sent } },
+            { $push: { surveys: surveyDetails } }
+        );
+
+        return res
+            .status(200)
+            .json({ message: "Survey Saved and users updated" });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+};
+
 const getSurveysByStatus = async (req, res) => {
     const { status } = req.params;
     try {
@@ -182,5 +241,6 @@ module.exports = {
     getSingleSurveyID,
     updateSurvey,
     addSurvey,
+    createSurvey,
     getSurveysByStatus,
 };

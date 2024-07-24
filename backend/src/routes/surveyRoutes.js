@@ -7,6 +7,7 @@ const {
     getSingleSurveyID,
     updateSurvey,
     addSurvey,
+    createSurvey,
     getSurveysByStatus,
 } = require("../controllers/surveyController");
 
@@ -26,6 +27,8 @@ router.get("/surveyId/:surveyId", getSingleSurveyID);
 router.put("/updateSurvey/:id", updateSurvey);
 
 router.post("/addsurvey", addSurvey);
+// Endpoint only to add in the DB and update user objects
+router.post("/createSurvey", createSurvey);
 
 // Routes for getting surveys by status
 // localhost:5000/survey/status/ongoing
