@@ -5,19 +5,22 @@ import theme from "../../theme/theme";
 
 export default function BusinessModel({ matches }) {
     return (
-        <Box>
-            <div className={`flex flex-col gap-6`}>
-                <Typography variant="h1" align="center">
+        <Box className={`flex flex-col gap-6`}>
+            <Box className={`flex flex-col gap-6`}>
+                <Typography variant={matches ? "h3" : "h1"} align="center">
                     Business Model
                 </Typography>
 
-                <Typography variant="p" align="center">
+                <Typography
+                    variant="p"
+                    sx={{ maxWidth: "760px", margin: "auto" }}
+                >
                     BondWork aim to see employees more satisfied and companies
-                    achieve success in each respective fields.
-                    <br /> We constantly need your support to make us a better
-                    one as well. Enjoy great deal now and wait no more!
+                    achieve success in each respective fields. We constantly
+                    need your support to make us a better one as well. Enjoy
+                    great deal now and wait no more!
                 </Typography>
-            </div>
+            </Box>
 
             <Box
                 sx={{
@@ -35,7 +38,9 @@ export default function BusinessModel({ matches }) {
                     className={`flex flex-col gap-6 items-center border border-[#D9D9D9] rounded-[8px] p-[37px] min-h-[460px]`}
                 >
                     <div className={`flex flex-col items-center`}>
-                        <Typography variant="h1">Starter</Typography>
+                        <Typography variant={matches ? "h3" : "h1"}>
+                            Starter
+                        </Typography>
 
                         <Typography variant="p">
                             Enjoy basic and effective features
@@ -43,7 +48,9 @@ export default function BusinessModel({ matches }) {
                     </div>
 
                     <div className={`flex flex-col items-center`}>
-                        <Typography variant="h1">$5.99</Typography>
+                        <Typography variant={matches ? "h3" : "h1"}>
+                            $5.99
+                        </Typography>
 
                         <Typography variant="small2" sx={{ fontWeight: "500" }}>
                             per employee / month
@@ -111,7 +118,9 @@ export default function BusinessModel({ matches }) {
                     </Typography>
 
                     <div className={`flex flex-col items-center`}>
-                        <Typography variant="h1">Growth</Typography>
+                        <Typography variant={matches ? "h3" : "h1"}>
+                            Growth
+                        </Typography>
 
                         <Typography variant="p">
                             Enjoy basic and effective features
@@ -120,7 +129,9 @@ export default function BusinessModel({ matches }) {
 
                     <div className={`flex flex-col items-center`}>
                         <Typography variant="h4">Starting at</Typography>
-                        <Typography variant="h1">$7.00</Typography>
+                        <Typography variant={matches ? "h3" : "h1"}>
+                            $7.00
+                        </Typography>
 
                         <Typography variant="small2" sx={{ fontWeight: "500" }}>
                             per employee / month
