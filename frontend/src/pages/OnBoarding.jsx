@@ -5,6 +5,7 @@ import BusinessModel from "../components/landing-page/BusinessModel";
 import Proposal from "../components/landing-page/Proposal";
 import ContactUs from "../components/landing-page/ContactUs";
 import Cards from "../components/landing-page/Cards";
+import Menu from "../components/landing-page/Menu";
 
 export default function OnBoarding() {
     const theme = useTheme();
@@ -13,6 +14,7 @@ export default function OnBoarding() {
     return (
         <main className="landing-page bg-main-100 relative gap-10 flex flex-col items-center">
             <div className="max-width: 1440px">
+                <Menu matches={matches} />
                 <Cards matches={matches} />
                 <Team />
                 <BusinessModel matches={matches} />
