@@ -65,7 +65,7 @@ const SurveyMain = () => {
             color: "#FBD8D8",
         },
         {
-            name: "Collegues",
+            name: "Colleagues",
             data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
             color: "#EF6461",
         },
@@ -143,6 +143,7 @@ const SurveyMain = () => {
             <Breadcrumbs />
             <FilterButtons
                 sx={{ marginTop: "8px" }}
+                filterEnabled={"Week"}
                 onFilterChange={handleFilterChange}
             />
             <Box className="h-full grid grid-cols-2 items-center gap-6 mt-4">

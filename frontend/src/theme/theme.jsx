@@ -98,6 +98,12 @@ const theme = createTheme({
         small1: { fontSize: "0.889rem", fontWeight: 400, lineHeight: "150%" },
         small2: { fontSize: "0.79rem", fontWeight: 400, lineHeight: "120%" },
     },
+    breakpoints: {
+        values: {
+            mobile: 0,
+            desktop: 500,
+        },
+    },
     components: {
         MuiTypography: {
             defaultProps: {

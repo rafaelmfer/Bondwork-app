@@ -3,7 +3,7 @@ import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import CustomButton from "../buttons/CustomButton";
 import { Box, Typography } from "@mui/material";
 
-export function ContactUs() {
+export default function ContactUs() {
     return (
         <>
             <Box

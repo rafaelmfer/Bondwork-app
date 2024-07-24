@@ -24,8 +24,8 @@ const FilterButton = styled(Button)(({ theme, selected }) => ({
     },
 }));
 
-const FilterButtons = ({ sx, onFilterChange }) => {
-    const [selectedFilter, setSelectedFilter] = useState("Week");
+const FilterButtons = ({ sx, filterEnabled, onFilterChange }) => {
+    const [selectedFilter, setSelectedFilter] = useState(filterEnabled);
     const [dateRange, setDateRange] = useState("Jun 24 - Jun 30");
 
     const handleFilterChange = (filter, dateRange, index) => {

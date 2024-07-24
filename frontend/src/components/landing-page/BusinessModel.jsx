@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import CustomButton from "../buttons/CustomButton";
 import checkBoxIcon from "../../../src/assets/icons/checkboxIcon.svg";
+import theme from "../../theme/theme";
 
-export function BusinessModel({ matches }) {
+export default function BusinessModel({ matches }) {
     return (
-        <>
+        <Box>
             <div className={`flex flex-col gap-6`}>
                 <Typography variant="h1" align="center">
                     Business Model
@@ -168,6 +169,6 @@ export function BusinessModel({ matches }) {
                     </CustomButton>
                 </div>
             </Box>
-        </>
+        </Box>
     );
 }

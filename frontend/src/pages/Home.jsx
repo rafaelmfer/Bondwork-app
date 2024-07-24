@@ -11,7 +11,7 @@ const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/dashboard`;
 
 const Home = () => {
     // let today = new Date().toISOString().split("T")[0];
-    let today = "2024-07-14";
+    let today = "2024-07-31";
 
     const [isLoading, setIsLoading] = useState(true);
     const [chartsApi, setChartsApi] = useState({});
@@ -75,7 +75,7 @@ const Home = () => {
             color: "#FBD8D8",
         },
         {
-            name: "Collegues",
+            name: "Colleagues",
             data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
             color: "#EF6461",
         },
@@ -87,6 +87,7 @@ const Home = () => {
             <Breadcrumbs />
             <FilterButtons
                 sx={{ marginTop: "8px" }}
+                filterEnabled={"Month"}
                 onFilterChange={handleFilterChange}
             />
             <div className="flex row gap-4 mt-4">

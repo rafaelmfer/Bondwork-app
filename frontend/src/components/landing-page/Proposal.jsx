@@ -4,7 +4,7 @@ import recImage from "../../../src/assets/images/RectangleImage.png";
 import PhotoChart from "../../../src/assets/images/PhotoChart.png";
 import { Typography } from "@mui/material";
 
-export function Proposal({ matches }) {
+export default function Proposal({ matches }) {
     return (
         <>
             <Box

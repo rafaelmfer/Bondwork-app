@@ -186,6 +186,7 @@ const RewardsMain = () => {
             <Breadcrumbs />
             <FilterButtons
                 sx={{ marginTop: "8px" }}
+                filterEnabled={"Week"}
                 onFilterChange={handleFilterChange}
             />
             <div className="flex row gap-4 mt-4">
