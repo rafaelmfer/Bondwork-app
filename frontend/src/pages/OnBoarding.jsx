@@ -4,6 +4,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { ContactUs } from "../components/landing-page/ContactUs";
 import { Proposal } from "../components/landing-page/Proposal";
+import { BusinessModel } from "../components/landing-page/BusinessModel";
 
 const CustomLabel = ({ label, imageSrc }) => (
     <Box display="flex" alignItems="center">
@@ -22,6 +23,7 @@ export default function OnBoarding() {
 
     return (
         <main className="landing-page bg-main-100 relative gap-10 h-screen flex flex-col items-center h-auto">
+            <BusinessModel matches={matches} />
             <Proposal matches={matches} />
             <ContactUs />
         </main>

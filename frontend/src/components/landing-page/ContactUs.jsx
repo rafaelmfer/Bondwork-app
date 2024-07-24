@@ -1,7 +1,7 @@
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import TextFieldRegular from "../../components/textfields/TextFieldRegular";
 import CustomButton from "../buttons/CustomButton";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export function ContactUs() {
     return (
@@ -17,16 +17,16 @@ export function ContactUs() {
                     fontWeight: "bold",
                 }}
             >
-                <h3 className="pr-4 text-h3 text-neutrals-black">Contact us</h3>
-                <p className="text-p text-center">
+                <Typography variant="h1">Contact us</Typography>
+                <Typography variant="p">
                     We will get in touch with you shortly!
-                </p>
+                </Typography>
 
                 <Box
                     component="div"
                     sx={{
                         width: "100%",
-                        maxWidth: "500px",
+                        maxWidth: "700px",
                         display: "flex",
                         flexDirection: "column",
                         gap: "16px",

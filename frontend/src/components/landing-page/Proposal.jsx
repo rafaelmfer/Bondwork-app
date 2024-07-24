@@ -2,10 +2,9 @@ import { Box } from "@mui/material";
 import CustomButton from "../buttons/CustomButton";
 import recImage from "../../../src/assets/images/RectangleImage.png";
 import PhotoChart from "../../../src/assets/images/PhotoChart.png";
+import { Typography } from "@mui/material";
 
 export function Proposal({ matches }) {
-    console.log("xxxxxxxxxxxxxxxxxx");
-
     return (
         <>
             <Box
@@ -28,27 +27,25 @@ export function Proposal({ matches }) {
                         srcset=""
                         className="w-120"
                     />
-                    {/* <img src={recImage} alt="" srcset="" className="w-120"/>
-            <img src={chartImage} alt="" style={{position: "absolute", top: "35%", right: "0px"}} /> */}
                 </div>
 
                 <div
                     className={`flex flex-col gap-5  ${matches && "items-center"}`}
                 >
-                    <h3 className="pr-4 text-h3 text-neutrals-black">
-                        Get the Proposal
-                    </h3>
-                    <p
-                        className={`text-p  ${matches ? "text-center" : "text-left"}`}
+                    <Typography variant="h1">Get the Proposal</Typography>
+                    <Typography
+                        variant="body1"
+                        align={matches ? "center" : "left"}
                     >
                         We'd be delighted to give you a personalized tour of our
                         product and services at a time that works best for you!
-                    </p>
+                    </Typography>
+
                     <CustomButton
                         buttontype="primary"
                         buttonVariant="text"
                         isOutlined
-                        sx={{ float: "left" }}
+                        sx={{ float: "left", width: "fit-Content" }}
                     >
                         Download now
                     </CustomButton>
