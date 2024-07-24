@@ -15,7 +15,7 @@ const Home = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [chartsApi, setChartsApi] = useState({});
-    const [chartIndex, setChartIndex] = useState(0);
+    const [chartIndex, setChartIndex] = useState(3);
 
     const handleFilterChange = (index) => {
         setChartIndex(index);
@@ -37,6 +37,7 @@ const Home = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
+                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -87,7 +88,7 @@ const Home = () => {
             <Breadcrumbs />
             <FilterButtons
                 sx={{ marginTop: "8px" }}
-                filterEnabled={"Month"}
+                filterEnabled={"Annual"}
                 onFilterChange={handleFilterChange}
             />
             <div className="flex row gap-4 mt-4">

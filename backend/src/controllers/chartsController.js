@@ -2,6 +2,7 @@ const Recognition = require("../models/RecognitionModel");
 const Rewards = require("../models/RewardsModel");
 const Surveys = require("../models/SurveyModel");
 const User = require("../models/UserModel");
+const moment = require("moment");
 
 const { getPeriodDates } = require("../utils/utils");
 
@@ -501,7 +502,7 @@ const turnoverRate = async (date) => {
                 }
 
                 badges.push(badge);
-                values.push(turnoverRate);
+                values.push(turnoverRate != null ? Number(turnoverRate) : null);
                 labels.push(currentMonth.format("MMMM"));
 
                 previousMonthTurnoverRate = turnoverRate;
@@ -509,15 +510,15 @@ const turnoverRate = async (date) => {
             }
 
             return {
-                unit: "quarter",
-                unitResults: [
+                filter: "Quarter",
+                info: [
                     {
                         from: quarterStart.format("YYYY-MM-DD"),
                         to: quarterEnd.format("YYYY-MM-DD"),
                         current: formattedRequestMonthTurnoverRate, // Always show the turnover rate of the request month
                         badge: badges,
                         value: values,
-                        label: labels,
+                        labels: labels,
                     },
                 ],
             };
@@ -628,7 +629,7 @@ const turnoverRate = async (date) => {
                 }
 
                 badges.push(badge);
-                values.push(turnoverRate);
+                values.push(turnoverRate != null ? Number(turnoverRate) : null);
                 labels.push(`Q${Math.floor((quarterStart.month() + 3) / 3)}`);
 
                 previousQuarterTurnoverRate = turnoverRate;
@@ -640,15 +641,15 @@ const turnoverRate = async (date) => {
             ).toFixed(2);
 
             return {
-                unit: "annual",
-                unitResults: [
+                filter: "Annual",
+                info: [
                     {
                         from: yearStart.format("YYYY-MM-DD"),
                         to: yearEnd.format("YYYY-MM-DD"),
                         current: currentQuarterTurnoverRate, // Always show the turnover rate of the quarter containing the request date
                         badge: badges,
                         value: values,
-                        label: labels,
+                        labels: labels,
                     },
                 ],
             };
@@ -677,6 +678,7 @@ const turnoverRate = async (date) => {
         const quarterResults = await getQuarterResults(requestDate);
         const annualResults = await getAnnualResults(requestDate);
 
+        let results = [];
         results.push(weekResults);
         results.push(monthResults);
         results.push(quarterResults);

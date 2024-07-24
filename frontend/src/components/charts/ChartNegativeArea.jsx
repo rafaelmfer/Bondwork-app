@@ -5,7 +5,7 @@ const ChartNegativeArea = ({ data }) => {
     const referenceValue = 10;
 
     const adjustedData = data.series.map((value, index) => ({
-        x: data.categories[index],
+        x: data.categories[index] ? data.categories[index] : [1],
         y: value - referenceValue,
     }));
 
