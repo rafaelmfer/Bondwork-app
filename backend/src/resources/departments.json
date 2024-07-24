@@ -2,36 +2,38 @@
     {
         "departmentId": 1,
         "departmentName": "Human Resources",
-        "employees": []
+        "employees": [4090, 4126, 4131]
     },
     {
         "departmentId": 2,
         "departmentName": "IT",
-        "employees": [7232, 9864, 2321, 2103, 2600, 2700, 3400]
+        "employees": [
+            7232, 9864, 2321, 2103, 2600, 2700, 2800, 3400, 4121, 4128
+        ]
     },
     {
         "departmentId": 3,
         "departmentName": "Accounting & Finance",
-        "employees": [2900, 3000]
+        "employees": [2900, 3000, 4123, 4133]
     },
     {
         "departmentId": 4,
         "departmentName": "Business Development",
-        "employees": [3100, 3200]
+        "employees": [3100, 3200, 4127, 4134]
     },
     {
         "departmentId": 5,
         "departmentName": "Marketing",
-        "employees": [9874, 6666, 4922, 7426, 2800]
+        "employees": [9874, 6666, 4922, 7426, 4100, 4122, 4129]
     },
     {
         "departmentId": 6,
         "departmentName": "R&D",
-        "employees": [3300, 3500]
+        "employees": [3300, 3500, 4110, 4124, 4132]
     },
     {
         "departmentId": 7,
         "departmentName": "Production",
-        "employees": [2300, 2400, 2500]
+        "employees": [2300, 2400, 2500, 4120, 4125, 4130]
     }
 ]

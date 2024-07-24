@@ -159,13 +159,14 @@ const updateRecognition = async (req, res) => {
 
 const addRecognition = async (req, res) => {
     const {
-        recognitionid,
+        recognitionId,
         details,
         sender,
         receiver,
         status,
         category,
         date,
+        dateRequest,
         points,
         receiverDepartment,
         receiverPicture,
@@ -181,13 +182,14 @@ const addRecognition = async (req, res) => {
 
     try {
         const newRecognition = new Recognition({
-            recognitionid,
+            recognitionId,
             details,
             sender,
             receiver,
             status,
             category,
             date,
+            dateRequest,
             points,
             receiverDepartment,
             receiverPicture,
@@ -201,9 +203,22 @@ const addRecognition = async (req, res) => {
             senderJobLevel,
         });
         await newRecognition.save();
-        return res.status(200).send("Recognition Saved");
+
+        // Update of the user collection
+        await User.findOneAndUpdate(
+            { employeeID: sender },
+            { $push: { "recognitions.sent": recognitionId } }
+        );
+        await User.findOneAndUpdate(
+            { employeeID: receiver },
+            { $push: { "recognitions.received": recognitionId } }
+        );
+
+        return res.status(200).json({
+            message: "Recognition saved and user collections updated",
+        });
     } catch (error) {
-        return res.status(400).send(error.message);
+        return res.status(400).json({ message: error.message });
     }
 };
 

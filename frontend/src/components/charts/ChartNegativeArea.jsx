@@ -72,8 +72,8 @@ const ChartNegativeArea = ({ data }) => {
         },
         yaxis: {
             min: -referenceValue,
-            max: 15,
-            tickAmount: 5,
+            max: 5,
+            tickAmount: 4,
             labels: {
                 formatter: (value) => value + referenceValue,
                 style: {

@@ -15,9 +15,9 @@ const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/surveys`;
 
 const SurveyMain = () => {
     // let today = new Date().toISOString().split("T")[0];
-    let today = "2024-07-12";
+    let today = "2024-07-31";
     const [chartsApi, setChartsApi] = useState({});
-    const [chartIndex, setChartIndex] = useState(0);
+    const [chartIndex, setChartIndex] = useState(3);
 
     const handleFilterChange = (index) => {
         setChartIndex(index);
@@ -143,7 +143,7 @@ const SurveyMain = () => {
             <Breadcrumbs />
             <FilterButtons
                 sx={{ marginTop: "8px" }}
-                filterEnabled={"Week"}
+                filterEnabled={"Annual"}
                 onFilterChange={handleFilterChange}
             />
             <Box className="h-full grid grid-cols-2 items-center gap-6 mt-4">

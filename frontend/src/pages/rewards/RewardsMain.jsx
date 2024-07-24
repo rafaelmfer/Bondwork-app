@@ -14,13 +14,13 @@ const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/rewards`;
 
 const RewardsMain = () => {
     // let today = new Date().toISOString().split("T")[0];
-    let today = "2024-07-14";
+    let today = "2024-07-31";
 
     const [chartsApi, setChartsApi] = useState({});
     const [rewards, setRewards] = useState([]);
     const [rows, setRows] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
-    const [chartIndex, setChartIndex] = useState(0);
+    const [chartIndex, setChartIndex] = useState(3);
 
     const handleFilterChange = (index) => {
         setChartIndex(index);
@@ -186,7 +186,7 @@ const RewardsMain = () => {
             <Breadcrumbs />
             <FilterButtons
                 sx={{ marginTop: "8px" }}
-                filterEnabled={"Week"}
+                filterEnabled={"Annual"}
                 onFilterChange={handleFilterChange}
             />
             <div className="flex row gap-4 mt-4">

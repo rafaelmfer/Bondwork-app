@@ -45,15 +45,20 @@ const Home = () => {
         fetchData();
     }, []);
 
-    const currentTurnOverRate = 10.0;
+    const currentTurnOverRate = chartsApi.chart1
+        ? chartsApi.chart1[chartIndex].info[0].current
+        : 0;
     const badgeTurnOver = 0.2;
     const chartData = {
         categories: chartsApi.chart1
             ? chartsApi.chart1[chartIndex].info[0].labels
             : [],
-        series: [9, 6, 12, 17.5, 15, 7.5, 10],
+        series: chartsApi.chart1
+            ? chartsApi.chart1[chartIndex].info[0].value
+            : [],
     };
 
+    console.log("Charts: ", chartData);
     const chartDataSatisfaction = [
         {
             name: "Overall",

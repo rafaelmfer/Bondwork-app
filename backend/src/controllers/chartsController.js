@@ -307,7 +307,7 @@ const turnoverRate = async (date) => {
                               ? previousWeek.dailyTurnoverRates[6] // Sunday of previousWeek
                               : weekBeforePreviousWeek.dailyTurnoverRates[6], // Sunday of weekBeforePreviousWeek
                     badge: badges[index],
-                    values: [currentWeek, previousWeek, weekBeforePreviousWeek][
+                    value: [currentWeek, previousWeek, weekBeforePreviousWeek][
                         index
                     ].values,
                     labels: [currentWeek, previousWeek, weekBeforePreviousWeek][
@@ -404,7 +404,7 @@ const turnoverRate = async (date) => {
                         to: monthEnd.format("YYYY-MM-DD"),
                         current: current, // The value of the current week
                         badge: badges,
-                        values,
+                        value: values,
                         labels,
                     },
                 ],
