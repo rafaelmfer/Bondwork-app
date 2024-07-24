@@ -36,3 +36,11 @@
 .apexcharts-toolbar {
     display: none !important;
 }
+
+body {
+    min-width: 360px;
+}
+
+.landing-page {
+    height: auto;
+}
