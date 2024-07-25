@@ -44,8 +44,8 @@ const Management = () => {
         "Survey Name",
         "Created In",
         "Expired Date",
-        "Viewed",
         "Completed",
+        "Sent",
         "Status",
     ];
 
@@ -55,8 +55,8 @@ const Management = () => {
         surveyName,
         createdIn,
         expired,
-        viewed,
         completed,
+        sent,
         status
     ) {
         return {
@@ -64,8 +64,8 @@ const Management = () => {
             surveyName,
             createdIn,
             expired,
-            viewed,
             completed,
+            sent,
             status,
         };
     }

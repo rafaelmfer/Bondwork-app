@@ -7,15 +7,17 @@ import ContactUs from "../components/landing-page/ContactUs";
 import Cards from "../components/landing-page/Cards";
 import Menu from "../components/landing-page/Menu";
 import Footer from "../components/landing-page/Footer";
+import HeroCard from "../components/landing-page/HeroCard";
 
 export default function OnBoarding() {
     const theme = useTheme();
     const matches = useMediaQuery("(max-width: 500px)");
 
     return (
-        <main className="landing-page bg-main-100 relative gap-10 flex flex-col items-center">
-            <div className="max-width: 1440px">
+        <main className="landing-page bg-main-100 relative  items-center">
+            <div className="flex flex-col gap-8">
                 <Menu matches={matches} />
+                <HeroCard />
                 <Cards matches={matches} />
                 <Team />
                 <BusinessModel matches={matches} />

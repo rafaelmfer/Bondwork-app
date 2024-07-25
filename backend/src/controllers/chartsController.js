@@ -197,21 +197,8 @@ const getAverageScore = async (req, res) => {
 const turnoverRate = async (date) => {
     try {
         const requestDate = moment(date);
-
-        const calculateTurnoverRateForDay = async (date) => {
-            const from = date.format("YYYY-MM-DD");
-            const to = date.format("YYYY-MM-DD");
-            return parseFloat(await calculateTurnoverRate(from, to)).toFixed(2);
-        };
-
         const getWeekResults = async (date) => {
             const requestDate = date.clone();
-            const dayBeforeRequestDate = requestDate.clone().subtract(1, "day");
-
-            const requestDayTurnoverRate =
-                await calculateTurnoverRateForDay(requestDate);
-            const dayBeforeRequestDayTurnoverRate =
-                await calculateTurnoverRateForDay(dayBeforeRequestDate);
 
             const calculateWeeklyResults = async (
                 startOfWeek,
@@ -246,9 +233,14 @@ const turnoverRate = async (date) => {
 
                 dailyDifferences.push("0.00"); // First day difference set to 0.00
                 for (let i = 1; i < dailyTurnoverRates.length; i++) {
-                    const difference = (
-                        dailyTurnoverRates[i] - dailyTurnoverRates[i - 1]
-                    ).toFixed(2);
+                    const difference =
+                        dailyTurnoverRates[i] !== null &&
+                        dailyTurnoverRates[i - 1] !== null
+                            ? (
+                                  dailyTurnoverRates[i] -
+                                  dailyTurnoverRates[i - 1]
+                              ).toFixed(2)
+                            : null;
                     dailyDifferences.push(difference);
                 }
 
@@ -273,52 +265,55 @@ const turnoverRate = async (date) => {
                 date.startOf("isoWeek"),
                 date.clone().subtract(1, "week").startOf("isoWeek"),
                 date.clone().subtract(2, "weeks").startOf("isoWeek"),
-                date.clone().subtract(3, "weeks").startOf("isoWeek"),
             ];
 
-            const [
-                currentWeek,
-                previousWeek,
-                weekBeforePreviousWeek,
-                weekBeforePreviousWeekComparison,
-            ] = await Promise.all(
-                weekStartDates.map((startOfWeek, index) =>
-                    calculateWeeklyResults(startOfWeek, index > 0)
-                )
-            );
+            const [currentWeek, previousWeek, weekBeforePreviousWeek] =
+                await Promise.all(
+                    weekStartDates.map((startOfWeek, index) =>
+                        calculateWeeklyResults(startOfWeek, index > 0)
+                    )
+                );
 
             const badges = [
-                (
-                    requestDayTurnoverRate - dayBeforeRequestDayTurnoverRate
-                ).toFixed(2),
+                currentWeek.dailyDifferences.map((diff, idx) =>
+                    idx < requestDate.day() ? diff : "null"
+                ),
                 previousWeek.dailyDifferences,
                 weekBeforePreviousWeek.dailyDifferences,
             ];
 
-            const results = weekStartDates
-                .slice(0, 3)
-                .map((startOfWeek, index) => ({
-                    from: startOfWeek.format("YYYY-MM-DD"),
-                    to: startOfWeek.clone().add(6, "days").format("YYYY-MM-DD"),
-                    current:
-                        index === 0
-                            ? requestDayTurnoverRate
-                            : index === 1
-                              ? previousWeek.dailyTurnoverRates[6] // Sunday of previousWeek
-                              : weekBeforePreviousWeek.dailyTurnoverRates[6], // Sunday of weekBeforePreviousWeek
-                    badge: badges[index],
-                    values: [currentWeek, previousWeek, weekBeforePreviousWeek][
-                        index
-                    ].values,
-                    labels: [currentWeek, previousWeek, weekBeforePreviousWeek][
-                        index
-                    ].labels,
-                }));
+            // Calculate the turnover rate for the current week and the previous week for currentBadge
+            const currentWeekTurnoverRate = currentWeek.weekTurnoverRate;
+            const previousWeekTurnoverRate = previousWeek.weekTurnoverRate;
+            const currentBadge = (
+                currentWeekTurnoverRate - previousWeekTurnoverRate
+            ).toFixed(2);
+
+            const results = [
+                {
+                    from: weekStartDates[0].format("YYYY-MM-DD"),
+                    to: weekStartDates[0]
+                        .clone()
+                        .add(6, "days")
+                        .format("YYYY-MM-DD"),
+                    current: currentWeekTurnoverRate,
+                    currentBadge: currentBadge,
+                    badge: badges[0],
+                    value: currentWeek.values,
+                    labels: currentWeek.labels,
+                },
+            ];
 
             return {
                 filter: "Week",
                 info: results,
             };
+        };
+
+        const calculateTurnoverRateForDay = async (date) => {
+            const from = date.format("YYYY-MM-DD");
+            const to = date.format("YYYY-MM-DD");
+            return parseFloat(await calculateTurnoverRate(from, to)).toFixed(2);
         };
 
         const getMonthResults = async (date) => {
@@ -329,10 +324,45 @@ const turnoverRate = async (date) => {
             const values = [];
             const labels = [];
             const badges = [];
-            let current = null;
 
             let weekStart = monthStart.clone();
             let lastWeekTurnoverRate = null;
+
+            // Calculate the turnover rate for the request month
+            const requestMonthStart = monthStart.format("YYYY-MM-DD");
+            const requestMonthEnd = monthEnd.format("YYYY-MM-DD");
+            const requestMonthTurnoverRate = await calculateTurnoverRate(
+                requestMonthStart,
+                requestMonthEnd
+            );
+            const formattedRequestMonthTurnoverRate = parseFloat(
+                requestMonthTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the turnover rate for the previous month
+            const previousMonthStart = monthStart
+                .clone()
+                .subtract(1, "month")
+                .startOf("month")
+                .format("YYYY-MM-DD");
+            const previousMonthEnd = monthStart
+                .clone()
+                .subtract(1, "month")
+                .endOf("month")
+                .format("YYYY-MM-DD");
+            const previousMonthTurnoverRate = await calculateTurnoverRate(
+                previousMonthStart,
+                previousMonthEnd
+            );
+            const formattedPreviousMonthTurnoverRate = parseFloat(
+                previousMonthTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the current badge by comparing the current month to the previous month
+            const currentBadge = (
+                formattedRequestMonthTurnoverRate -
+                formattedPreviousMonthTurnoverRate
+            ).toFixed(2);
 
             while (weekStart.isBefore(monthEnd)) {
                 const from = weekStart.clone().format("YYYY-MM-DD");
@@ -402,10 +432,11 @@ const turnoverRate = async (date) => {
                     {
                         from: monthStart.format("YYYY-MM-DD"),
                         to: monthEnd.format("YYYY-MM-DD"),
-                        current: current, // The value of the current week
-                        badge: badges,
-                        values,
-                        labels,
+                        current: formattedRequestMonthTurnoverRate, // Always show the turnover rate of the request month
+                        currentBadge: currentBadge, // Compare turnover rate of current month to previous month
+                        badge: badges, // Compare turnover rate of week to previous week in the month
+                        value: values,
+                        labels: labels,
                     },
                 ],
             };
@@ -420,7 +451,6 @@ const turnoverRate = async (date) => {
                 .startOf("quarter");
             const quarterEnd = date.clone().quarter(quarter).endOf("quarter");
 
-            const quarterResults = [];
             let currentMonth = quarterStart.clone();
             let previousMonthTurnoverRate = null;
             let quarterTurnoverRateSum = 0;
@@ -445,6 +475,40 @@ const turnoverRate = async (date) => {
             );
             const formattedRequestMonthTurnoverRate = parseFloat(
                 requestMonthTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the turnover rate for the current quarter
+            const currentQuarterTurnoverRate = await calculateTurnoverRate(
+                quarterStart.format("YYYY-MM-DD"),
+                quarterEnd.format("YYYY-MM-DD")
+            );
+            const formattedCurrentQuarterTurnoverRate = parseFloat(
+                currentQuarterTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the turnover rate for the previous quarter
+            const previousQuarterStart = quarterStart
+                .clone()
+                .subtract(3, "months")
+                .startOf("quarter")
+                .format("YYYY-MM-DD");
+            const previousQuarterEnd = quarterStart
+                .clone()
+                .subtract(3, "months")
+                .endOf("quarter")
+                .format("YYYY-MM-DD");
+            const previousQuarterTurnoverRate = await calculateTurnoverRate(
+                previousQuarterStart,
+                previousQuarterEnd
+            );
+            const formattedPreviousQuarterTurnoverRate = parseFloat(
+                previousQuarterTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the current badge by comparing the current quarter to the previous quarter
+            const currentBadge = (
+                formattedCurrentQuarterTurnoverRate -
+                formattedPreviousQuarterTurnoverRate
             ).toFixed(2);
 
             // Get the turnover rate for the month before the quarter starts, if it exists
@@ -502,7 +566,7 @@ const turnoverRate = async (date) => {
                 }
 
                 badges.push(badge);
-                values.push(turnoverRate != null ? Number(turnoverRate) : null);
+                values.push(turnoverRate);
                 labels.push(currentMonth.format("MMMM"));
 
                 previousMonthTurnoverRate = turnoverRate;
@@ -515,8 +579,9 @@ const turnoverRate = async (date) => {
                     {
                         from: quarterStart.format("YYYY-MM-DD"),
                         to: quarterEnd.format("YYYY-MM-DD"),
-                        current: formattedRequestMonthTurnoverRate, // Always show the turnover rate of the request month
-                        badge: badges,
+                        current: formattedCurrentQuarterTurnoverRate, // Always show the turnover rate of the request quarter
+                        currentBadge: currentBadge, // Compare turnover rate of current quarter to previous quarter
+                        badge: badges, // Compare turnover rate of month to previous month in the quarter
                         value: values,
                         labels: labels,
                     },
@@ -527,7 +592,6 @@ const turnoverRate = async (date) => {
         const getAnnualResults = async (date) => {
             const yearStart = date.clone().startOf("year");
             const yearEnd = date.clone().endOf("year");
-            const annualResults = [];
 
             let quarterStart = yearStart.clone();
             let previousQuarterTurnoverRate = null;
@@ -537,9 +601,6 @@ const turnoverRate = async (date) => {
             const badges = [];
             const values = [];
             const labels = [];
-
-            // Variable to store the turnover rate of the quarter containing the request date
-            let currentQuarterTurnoverRate = null;
 
             // Calculate the turnover rate for the quarter containing the request date
             const requestQuarterStart = date
@@ -554,8 +615,39 @@ const turnoverRate = async (date) => {
                 requestQuarterStart,
                 requestQuarterEnd
             );
-            const formattedRequestQuarterTurnoverRate = parseFloat(
-                requestQuarterTurnoverRate
+
+            // Calculate the turnover rate for the current year
+            const currentYearTurnoverRate = await calculateTurnoverRate(
+                yearStart.format("YYYY-MM-DD"),
+                yearEnd.format("YYYY-MM-DD")
+            );
+            const formattedCurrentYearTurnoverRate = parseFloat(
+                currentYearTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the turnover rate for the previous year
+            const previousYearStart = yearStart
+                .clone()
+                .subtract(1, "year")
+                .startOf("year")
+                .format("YYYY-MM-DD");
+            const previousYearEnd = yearStart
+                .clone()
+                .subtract(1, "year")
+                .endOf("year")
+                .format("YYYY-MM-DD");
+            const previousYearTurnoverRate = await calculateTurnoverRate(
+                previousYearStart,
+                previousYearEnd
+            );
+            const formattedPreviousYearTurnoverRate = parseFloat(
+                previousYearTurnoverRate
+            ).toFixed(2);
+
+            // Calculate the current badge
+            const currentBadge = (
+                formattedCurrentYearTurnoverRate -
+                formattedPreviousYearTurnoverRate
             ).toFixed(2);
 
             while (quarterStart.isSameOrBefore(yearEnd, "quarter")) {
@@ -636,18 +728,15 @@ const turnoverRate = async (date) => {
                 quarterStart.add(3, "months");
             }
 
-            const annualTurnoverRate = (
-                totalTurnoverRateSum / quartersCount
-            ).toFixed(2);
-
             return {
                 filter: "Annual",
                 info: [
                     {
                         from: yearStart.format("YYYY-MM-DD"),
                         to: yearEnd.format("YYYY-MM-DD"),
-                        current: currentQuarterTurnoverRate, // Always show the turnover rate of the quarter containing the request date
-                        badge: badges,
+                        current: formattedCurrentYearTurnoverRate, // Show the turnover rate of the current year
+                        currentBadge: currentBadge, // Compare turnover rate of current year to previous year
+                        badge: badges, // Compare turnover rate of quarter to previous quarter in the year
                         value: values,
                         labels: labels,
                     },

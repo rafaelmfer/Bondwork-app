@@ -34,7 +34,7 @@ const CardTurnoverRate = ({ title, currentRate, badge, chartData }) => {
     };
 
     // Format currentRate to the specified decimal places
-    const formattedCurrentRate = currentRate.toFixed(1);
+    const formattedCurrentRate = currentRate;
 
     return (
         <Card
