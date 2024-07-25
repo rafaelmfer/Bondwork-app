@@ -6,6 +6,7 @@ import Proposal from "../components/landing-page/Proposal";
 import ContactUs from "../components/landing-page/ContactUs";
 import Cards from "../components/landing-page/Cards";
 import Menu from "../components/landing-page/Menu";
+import Footer from "../components/landing-page/Footer";
 import HeroCard from "../components/landing-page/HeroCard";
 
 export default function OnBoarding() {
@@ -22,6 +23,7 @@ export default function OnBoarding() {
                 <BusinessModel matches={matches} />
                 <Proposal matches={matches} />
                 <ContactUs />
+                <Footer matches={matches} />
             </div>
         </main>
     );
