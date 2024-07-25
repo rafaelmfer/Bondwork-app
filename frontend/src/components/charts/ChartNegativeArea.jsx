@@ -106,7 +106,7 @@ const ChartNegativeArea = ({ data }) => {
                         : ``;
                 return `<div class="custom-tooltip">
                             <div class="tooltip-header items-center">
-                                <h3 class="tooltip-percentage text-h3">${series[seriesIndex][dataPointIndex] + 10}%</p>
+                                <h3 class="tooltip-percentage text-h3">${(series[seriesIndex][dataPointIndex] + 10).toFixed(2)}%</p>
                                 ${showBadge}
                             </div>
                             <div class="tooltip-label">${w.globals.seriesNames[seriesIndex]}</div>
