@@ -48,7 +48,9 @@ const Home = () => {
     const currentTurnOverRate = chartsApi.chart1
         ? chartsApi.chart1[chartIndex].info[0].current
         : 0;
-    const badgeTurnOver = 0.2;
+    const badgeTurnOver = chartsApi.chart1
+        ? chartsApi.chart1[chartIndex].info[0].currentBadge
+        : 0;
     const chartData = {
         categories: chartsApi.chart1
             ? chartsApi.chart1[chartIndex].info[0].labels
