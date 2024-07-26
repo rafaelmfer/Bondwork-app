@@ -67,12 +67,12 @@ const TeamMember = ({ name, role, image, gridRow, gridColumn }) => (
     </Box>
 );
 
-const Team = () => {
+const Team = ({ id, sx }) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up("desktop"));
 
     return (
-        <Box sx={{ margin: "84px 0" }}>
+        <Box id={id} sx={{ width: "100%", ...sx }}>
             <Typography
                 variant="h3"
                 align="center"
@@ -96,7 +96,7 @@ const Team = () => {
             <Box
                 sx={{
                     maxWidth: "960px",
-                    margin: "0 auto",
+                    margin: "32px auto 0 auto",
                     display: "grid",
                     gridTemplateColumns: isDesktop
                         ? "repeat(4, 1fr)"
@@ -107,8 +107,6 @@ const Team = () => {
                     gap: "0 12px",
                     alignItems: "center",
                     justifyItems: "center",
-                    marginTop: "32px",
-                    padding: "0 8px",
                 }}
             >
                 <TeamMember

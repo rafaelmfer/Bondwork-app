@@ -8,23 +8,69 @@ import Cards from "../components/landing-page/Cards";
 import Menu from "../components/landing-page/Menu";
 import Footer from "../components/landing-page/Footer";
 import HeroCard from "../components/landing-page/HeroCard";
+import Carousel from "../components/landing-page/Carousel";
 
-export default function OnBoarding() {
+export default function Onboarding() {
     const theme = useTheme();
-    const matches = useMediaQuery("(max-width: 500px)");
+    const isMobile = useMediaQuery(theme.breakpoints.down("desktop"));
+
+    const proposalLink =
+        "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/Files%2FBondwork_Project_Proposal.pdf?alt=media&token=a8052f02-8ed9-47be-8426-2add0cdf0db1";
 
     return (
-        <main className="landing-page bg-main-100 relative  items-center">
-            <div className="flex flex-col gap-8">
-                <Menu matches={matches} />
-                <HeroCard />
-                <Cards matches={matches} />
-                <Team />
-                <BusinessModel matches={matches} />
-                <Proposal matches={matches} />
-                <ContactUs />
-                <Footer matches={matches} />
-            </div>
+        <main className="landing-page bg-neutrals-background items-center">
+            <Menu matches={isMobile} linkProposal={proposalLink} />
+            <HeroCard linkProposal={proposalLink} />
+            <Cards
+                matches={isMobile}
+                sx={{
+                    marginTop: isMobile ? "32px" : "80px",
+                    paddingLeft: "16px",
+                    paddingRight: "16px",
+                }}
+            />
+            <Carousel
+                id="solutions"
+                sx={{
+                    paddingTop: isMobile ? "32px" : "80px",
+                }}
+            />
+            <Team
+                id="team"
+                sx={{
+                    paddingTop: isMobile ? "32px" : "80px",
+                    paddingLeft: "16px",
+                    paddingRight: "16px",
+                }}
+            />
+            <BusinessModel
+                id="business"
+                matches={isMobile}
+                sx={{
+                    marginTop: isMobile ? "32px" : "80px",
+                    paddingLeft: "16px",
+                    paddingRight: "16px",
+                }}
+            />
+            <Proposal
+                id="proposal"
+                matches={isMobile}
+                linkProposal={proposalLink}
+                sx={{
+                    marginTop: isMobile ? "32px" : "80px",
+                    paddingLeft: isMobile ? "16px" : "3%",
+                    paddingRight: isMobile ? "16px" : "3%",
+                }}
+            />
+            <ContactUs
+                id="contact"
+                sx={{
+                    marginTop: isMobile ? "32px" : "80px",
+                    paddingLeft: "16px",
+                    paddingRight: "16px",
+                }}
+            />
+            <Footer matches={isMobile} />
         </main>
     );
 }

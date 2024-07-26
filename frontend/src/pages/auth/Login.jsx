@@ -166,7 +166,7 @@ const Login = () => {
                     <CustomButton
                         buttontype="primary"
                         onClick={handleLogin}
-                        sx={{ width: "calc(100% - 48px)" }}
+                        sx={{ width: "100%" }}
                     >
                         Log In
                     </CustomButton>
