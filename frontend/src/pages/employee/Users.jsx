@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CustomButton from "../../components/buttons/CustomButton";
 import TableWithProfile from "../../components/TableWithProfile";
 import useAuthToken from "../../common/decodeToken";
+import { Box, CircularProgress } from "@mui/material";
+import theme from "../../theme/theme";
+
 const URL = `${process.env.REACT_APP_API_URL}/api/user/`;
 
 const Users = () => {
@@ -14,6 +16,7 @@ const Users = () => {
 
     const [users, setUsers] = useState([]);
     const [rows, setRows] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Fetching Rewards
     useEffect(() => {
@@ -36,6 +39,7 @@ const Users = () => {
                 }
                 const data = await res.json();
                 setUsers(data);
+                setIsLoading(true);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -93,43 +97,76 @@ const Users = () => {
     }, [users]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
-            <TopUserBar titleScreen={"Employees"} />
-            <Breadcrumbs />
-            <div className="flex justify-end gap-4">
-                <CustomButton
-                    buttontype="primary"
-                    onClick={() => console.log("Import")}
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
                 >
-                    Import
-                </CustomButton>
-                <CustomButton
-                    buttontype="primary"
-                    onClick={() => console.log("Export")}
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
+
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <main
+                    style={{ animation: "fadeIn 1.5s" }}
+                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
                 >
-                    Export
-                </CustomButton>
-            </div>
-            <div className="mt-4">
-                <TableWithProfile
-                    width="100%"
-                    margin="0"
-                    title={"Employees"}
-                    showTitle={false}
-                    showTabs={false}
-                    pathRowTo={"/users"}
-                    rows={rows}
-                    columns={columnsTable}
-                    rowsNumber="10"
-                    showSecondColumn={false}
-                    showThirdLastColumn={true}
-                    showSecondLastColumn={false}
-                    showFilter={true}
-                    showSend={true}
-                    showAdd={false}
-                />
-            </div>
-        </main>
+                    <TopUserBar titleScreen={"Employees"} />
+                    <Breadcrumbs />
+                    <div className="flex justify-end gap-4">
+                        <CustomButton
+                            buttontype="primary"
+                            onClick={() => console.log("Import")}
+                        >
+                            Import
+                        </CustomButton>
+                        <CustomButton
+                            buttontype="primary"
+                            onClick={() => console.log("Export")}
+                        >
+                            Export
+                        </CustomButton>
+                    </div>
+                    <div className="mt-4">
+                        <TableWithProfile
+                            width="100%"
+                            margin="0"
+                            title={"Employees"}
+                            showTitle={false}
+                            showTabs={false}
+                            pathRowTo={"/users"}
+                            rows={rows}
+                            columns={columnsTable}
+                            rowsNumber="10"
+                            showSecondColumn={false}
+                            showThirdLastColumn={true}
+                            showSecondLastColumn={false}
+                            showFilter={true}
+                            showSend={true}
+                            showAdd={false}
+                        />
+                    </div>
+                </main>
+            )}
+        </>
     );
 };
 

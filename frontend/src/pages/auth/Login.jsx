@@ -13,6 +13,8 @@ import PasswordIconOpen from "../../assets/icons/eye-dark-gray-neutral-opened.sv
 import PasswordIconClosedHover from "../../assets/icons/eye-orange-primary-closed.svg";
 import PasswordIconOpenHover from "../../assets/icons/eye-orange-primary-opened.svg";
 
+import CircularProgress from "@mui/material/CircularProgress";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,6 +23,7 @@ const Login = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const [btnAnimation, setBtnAnimation] = useState(false);
 
     const navigate = useNavigate();
 
@@ -65,6 +68,8 @@ const Login = () => {
             return;
         }
 
+        setBtnAnimation(true);
+
         try {
             const response = await fetch(
                 `${process.env.REACT_APP_API_URL}/api/auth/login`,
@@ -80,6 +85,7 @@ const Login = () => {
             if (!response.ok) {
                 const errorData = await response.json();
                 alert(errorData.message || "Login failed");
+                setBtnAnimation(false);
                 return;
             }
 
@@ -93,6 +99,7 @@ const Login = () => {
             navigate("/dashboard");
         } catch (error) {
             console.error("Error during login:", error);
+            setBtnAnimation(false);
             alert("Login failed. Please try again.");
         }
     };
@@ -166,9 +173,26 @@ const Login = () => {
                     <CustomButton
                         buttontype="primary"
                         onClick={handleLogin}
-                        sx={{ width: "100%" }}
+                        sx={{
+                            width: "100%",
+                            display: "flex",
+                            gap: "20px",
+                            position: "relative",
+                        }}
                     >
                         Log In
+                        {/* <CircularProgress size={20} style={{ color: 'white', position: "absolute", left: "60%", top: "30%" }}/> */}
+                        {btnAnimation && (
+                            <CircularProgress
+                                size={20}
+                                style={{
+                                    color: "white",
+                                    position: "absolute",
+                                    left: "60%",
+                                    top: "30%",
+                                }}
+                            />
+                        )}
                     </CustomButton>
                 </form>
                 <div className="flex items-center justify-center text-center my-5 gap-4">

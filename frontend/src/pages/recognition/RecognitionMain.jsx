@@ -11,6 +11,8 @@ import CardStacked from "../../components/cards/CardStacked";
 import useAuthToken from "../../common/decodeToken";
 
 import theme from "../../theme/theme";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/recognitions`;
 
@@ -28,7 +30,7 @@ const RecognitionMain = () => {
     };
 
     const [dataInd, setData] = useState("");
-
+    const [isLoading, setIsLoading] = useState(false);
     const [recognitions, setRecognitions] = useState([]); // for the table
 
     // Fetching charts recognitions
@@ -51,6 +53,7 @@ const RecognitionMain = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
+                setIsLoading(true);
                 setChartsApi(data);
             } catch (error) {
                 console.log("Error fetching data", error);
@@ -120,7 +123,7 @@ const RecognitionMain = () => {
         const getRecognitions = async () => {
             if (!isTokenValid) {
                 console.log("Token is invalid or has expired");
-                navigate("/login"); // Redirige al login si el token no es válido
+                navigate("/login");
                 return;
             }
 
@@ -154,111 +157,148 @@ const RecognitionMain = () => {
     }, [isTokenValid, token, navigate]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
-            <TopUserBar titleScreen={"Recognition"} />
-            <Breadcrumbs />
-            <FilterButtons
-                sx={{ marginTop: "8px" }}
-                filterEnabled={"Annual"}
-                onFilterChange={handleFilterChange}
-            />
-            <div className="flex row gap-4 mt-4">
-                <CardWithThreeStatus
-                    title={"Recognition"}
-                    totalNumber={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].totalAmount
-                            : 0
-                    }
-                    chipPreviousNumberText={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].badgeCount
-                            : 0
-                    }
-                    statusText1={"Pending"}
-                    statusColor1={theme.palette.info.main}
-                    number1={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .pending
-                            : 0
-                    }
-                    chipText1={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .pendingBadge
-                            : 0
-                    }
-                    statusText2={"Approved"}
-                    statusColor2={theme.palette.success.main}
-                    number2={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .approved
-                            : 0
-                    }
-                    chipText2={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .approvedBadge
-                            : 0
-                    }
-                    statusText3={"Rejected"}
-                    statusColor3={theme.palette.error.main}
-                    number3={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .rejected
-                            : 0
-                    }
-                    chipText3={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .rejectedBadge
-                            : 0
-                    }
-                    disabled={true}
-                />
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
 
-                <CardStacked
-                    dataPrevious={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].previous
-                            : []
-                    }
-                    dataCurrent={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].current
-                            : []
-                    }
-                />
-            </div>
-            <Divider
-                sx={{
-                    background: theme.palette.neutrals.divider,
-                    marginTop: "32px",
-                }}
-            />
-            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
-                <TableWithProfile
-                    title={"Request"}
-                    pathRowTo={"/recognitions/requests"}
-                    pathViewAllTo={"/recognitions/requests"}
-                    tabsVariant={"variant2"}
-                    rows={recognitions}
-                    columns={columnsTable}
-                    rowsNumber="5"
-                    showSecondColumn={true}
-                    showThirdLastColumn={true}
-                    showSecondLastColumn={false}
-                    showSearch={false}
-                    showAdd={false}
-                    showCheckboxColumn={false}
-                    showBtnColumn={false}
-                    showPagination={false}
-                />
-            </div>
-        </main>
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
+
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <main
+                    style={{ animation: "fadeIn 1.5s" }}
+                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
+                >
+                    <TopUserBar titleScreen={"Recognition"} />
+                    <Breadcrumbs />
+                    <FilterButtons
+                        sx={{ marginTop: "8px" }}
+                        filterEnabled={"Annual"}
+                        onFilterChange={handleFilterChange}
+                    />
+                    <div className="flex row gap-4 mt-4">
+                        <CardWithThreeStatus
+                            title={"Recognition"}
+                            totalNumber={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .totalAmount
+                                    : 0
+                            }
+                            chipPreviousNumberText={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .badgeCount
+                                    : 0
+                            }
+                            statusText1={"Pending"}
+                            statusColor1={theme.palette.info.main}
+                            number1={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.pending
+                                    : 0
+                            }
+                            chipText1={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.pendingBadge
+                                    : 0
+                            }
+                            statusText2={"Approved"}
+                            statusColor2={theme.palette.success.main}
+                            number2={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.approved
+                                    : 0
+                            }
+                            chipText2={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.approvedBadge
+                                    : 0
+                            }
+                            statusText3={"Rejected"}
+                            statusColor3={theme.palette.error.main}
+                            number3={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.rejected
+                                    : 0
+                            }
+                            chipText3={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.rejectedBadge
+                                    : 0
+                            }
+                            disabled={true}
+                        />
+
+                        <CardStacked
+                            dataPrevious={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .previous
+                                    : []
+                            }
+                            dataCurrent={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .current
+                                    : []
+                            }
+                        />
+                    </div>
+                    <Divider
+                        sx={{
+                            background: theme.palette.neutrals.divider,
+                            marginTop: "32px",
+                        }}
+                    />
+                    <div className="flex flex-col gap-4 mx-[-16px] mt-4">
+                        <TableWithProfile
+                            title={"Request"}
+                            pathRowTo={"/recognitions/requests"}
+                            pathViewAllTo={"/recognitions/requests"}
+                            tabsVariant={"variant2"}
+                            rows={recognitions}
+                            columns={columnsTable}
+                            rowsNumber="5"
+                            showSecondColumn={true}
+                            showThirdLastColumn={true}
+                            showSecondLastColumn={false}
+                            showSearch={false}
+                            showAdd={false}
+                            showCheckboxColumn={false}
+                            showBtnColumn={false}
+                            showPagination={false}
+                        />
+                    </div>
+                </main>
+            )}
+        </>
     );
 };
 

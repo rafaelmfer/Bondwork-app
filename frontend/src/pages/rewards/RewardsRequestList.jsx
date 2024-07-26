@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
-import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
+import { Box, CircularProgress } from "@mui/material";
+import Breadcrumbs from "../../components/Breadcrumbs";
 import useAuthToken from "../../common/decodeToken";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
@@ -14,6 +14,8 @@ const RewardsRequestList = () => {
 
     const [rewards, setRewards] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     // Fetching Rewards
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +36,7 @@ const RewardsRequestList = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
+                setIsLoading(true);
                 setRewards(data);
             } catch (error) {
                 console.log("Error fetching data", error);
@@ -106,34 +109,67 @@ const RewardsRequestList = () => {
     }, [rewards]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
-            <TopUserBar titleScreen={"Requests"} />
-            <Breadcrumbs />
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
 
-            <div className="mt-4">
-                <TableWithProfile
-                    width="100%"
-                    margin="0"
-                    title={"Request"}
-                    showTitle={false}
-                    pathRowTo={"/rewards/requests"}
-                    pathViewAllTo={"/rewards/requests"}
-                    tabsVariant={"variant2"}
-                    rows={rowsRequest}
-                    columns={columnsTableRequest}
-                    rowsNumber="10"
-                    showSecondColumn={false}
-                    showThirdLastColumn={true}
-                    showSecondLastColumn={true}
-                    showLastColumn={true}
-                    showFilter={true}
-                    showAdd={false}
-                    showCheckboxColumn={false}
-                    showBtnColumn={false}
-                    pathCompound={true}
-                />
-            </div>
-        </main>
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
+
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <main
+                    style={{ animation: "fadeIn 1.5s" }}
+                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full"
+                >
+                    <TopUserBar titleScreen={"Requests"} />
+                    <Breadcrumbs />
+
+                    <div className="mt-4">
+                        <TableWithProfile
+                            width="100%"
+                            margin="0"
+                            title={"Request"}
+                            showTitle={false}
+                            pathRowTo={"/rewards/requests"}
+                            pathViewAllTo={"/rewards/requests"}
+                            tabsVariant={"variant2"}
+                            rows={rowsRequest}
+                            columns={columnsTableRequest}
+                            rowsNumber="10"
+                            showSecondColumn={false}
+                            showThirdLastColumn={true}
+                            showSecondLastColumn={true}
+                            showLastColumn={true}
+                            showFilter={true}
+                            showAdd={false}
+                            showCheckboxColumn={false}
+                            showBtnColumn={false}
+                            pathCompound={true}
+                        />
+                    </div>
+                </main>
+            )}
+        </>
     );
 };
 

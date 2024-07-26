@@ -4,6 +4,7 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
 import useAuthToken from "../../common/decodeToken";
+import { Box, CircularProgress } from "@mui/material";
 
 const RecognitionRequestList = () => {
     const { token, isTokenValid } = useAuthToken();
@@ -11,6 +12,7 @@ const RecognitionRequestList = () => {
 
     const [dataInd, setData] = useState([]);
     const [recognitions, setRecognitions] = useState([]); // for the table
+    const [isLoading, setIsLoading] = useState(false);
 
     // Método para crear los datos necesarios para las filas de la tabla
     const createData = (id, from, to, category, dateRequest, status) => {
@@ -86,6 +88,7 @@ const RecognitionRequestList = () => {
 
             const data = await response.json();
             setData(data);
+            setIsLoading(true);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -106,30 +109,63 @@ const RecognitionRequestList = () => {
     ];
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
-            <TopUserBar titleScreen={"Requests"} />
-            <Breadcrumbs />
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
 
-            <TableWithProfile
-                width="100%"
-                margin="0"
-                title={"Request"}
-                showTitle={false}
-                pathRowTo={"/recognitions/requests"}
-                pathViewAllTo={"/recognitions/requests"}
-                tabsVariant={"variant2"}
-                rows={recognitions}
-                columns={columnsTable}
-                rowsNumber="10"
-                showSecondColumn={true}
-                showThirdLastColumn={true}
-                showSecondLastColumn={false}
-                showFilter={true}
-                showAdd={false}
-                showCheckboxColumn={false}
-                showBtnColumn={false}
-            />
-        </main>
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
+
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <main
+                    style={{ animation: "fadeIn 1.5s" }}
+                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full"
+                >
+                    <TopUserBar titleScreen={"Requests"} />
+                    <Breadcrumbs />
+
+                    <TableWithProfile
+                        width="100%"
+                        margin="0"
+                        title={"Request"}
+                        showTitle={false}
+                        pathRowTo={"/recognitions/requests"}
+                        pathViewAllTo={"/recognitions/requests"}
+                        tabsVariant={"variant2"}
+                        rows={recognitions}
+                        columns={columnsTable}
+                        rowsNumber="10"
+                        showSecondColumn={true}
+                        showThirdLastColumn={true}
+                        showSecondLastColumn={false}
+                        showFilter={true}
+                        showAdd={false}
+                        showCheckboxColumn={false}
+                        showBtnColumn={false}
+                    />
+                </main>
+            )}
+        </>
     );
 };
 

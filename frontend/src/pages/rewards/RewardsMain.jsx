@@ -11,6 +11,8 @@ import TableSeven from "../../components/TableSeven";
 import TableWithProfile from "../../components/TableWithProfile";
 import useAuthToken from "../../common/decodeToken";
 import theme from "../../theme/theme";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/rewards`;
@@ -26,6 +28,7 @@ const RewardsMain = () => {
     const [rows, setRows] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
     const [chartIndex, setChartIndex] = useState(3);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFilterChange = (index) => {
         setChartIndex(index);
@@ -53,6 +56,7 @@ const RewardsMain = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
+                setIsLoading(true);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -197,159 +201,196 @@ const RewardsMain = () => {
     }, [rewards]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
-            <TopUserBar titleScreen={"Rewards"} />
-            <Breadcrumbs />
-            <FilterButtons
-                sx={{ marginTop: "8px" }}
-                filterEnabled={"Annual"}
-                onFilterChange={handleFilterChange}
-            />
-            <div className="flex row gap-4 mt-4">
-                <CardWithTwoStatus
-                    title={"Management"}
-                    totalNumber={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].totalAmount
-                            : 0
-                    }
-                    chipPreviousNumberText={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].badgeCount
-                            : 0
-                    }
-                    statusText1={"Ongoing"}
-                    statusColor1={theme.palette.info.main}
-                    number1={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .ongoing
-                            : 0
-                    }
-                    chipText1={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .ongoingBadge
-                            : 0
-                    }
-                    statusText2={"Upcoming"}
-                    statusColor2={theme.palette.warning.main}
-                    number2={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .upcoming
-                            : 0
-                    }
-                    chipText2={
-                        chartsApi.chart1
-                            ? chartsApi.chart1[chartIndex].info[0].statusCounts
-                                  .upcomingBadge
-                            : 0
-                    }
-                />
-                <CardWithThreeStatus
-                    title={"Request"}
-                    totalNumber={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].totalAmount
-                            : 0
-                    }
-                    chipPreviousNumberText={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].badgeCount
-                            : 0
-                    }
-                    statusText1={"Pending"}
-                    statusColor1={theme.palette.info.main}
-                    number1={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
-                                  .pending
-                            : 0
-                    }
-                    chipText1={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
-                                  .pendingBadge
-                            : 0
-                    }
-                    statusText2={"Approved"}
-                    statusColor2={theme.palette.success.main}
-                    number2={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
-                                  .approved
-                            : 0
-                    }
-                    chipText2={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
-                                  .approvedBadge
-                            : 0
-                    }
-                    statusText3={"Rejected"}
-                    statusColor3={theme.palette.error.main}
-                    number3={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
-                                  .rejected
-                            : 0
-                    }
-                    chipText3={
-                        chartsApi.chart2
-                            ? chartsApi.chart2[chartIndex].info[0].statusCounts
-                                  .rejectedBadge
-                            : 0
-                    }
-                />
-            </div>
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
 
-            <Divider
-                sx={{
-                    background: theme.palette.neutrals.divider,
-                    marginTop: "32px",
-                }}
-            />
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-4">
-                <TableSeven
-                    title={"Management"}
-                    pathViewAllTo={"/rewards/management"}
-                    pathAddTo={"/rewards/management/addReward"}
-                    pathRowTo={"/rewards/management"}
-                    rows={rows}
-                    columns={columnsTable}
-                    rowsNumber="5"
-                    showLastColumn={false}
-                    showSearch={false}
-                    showCheckboxColumn={false}
-                    showBtnColumn={false}
-                    showPagination={false}
-                />
-            </div>
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <main
+                    style={{ animation: "fadeIn 1.5s" }}
+                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
+                >
+                    <TopUserBar titleScreen={"Rewards"} />
+                    <Breadcrumbs />
+                    <FilterButtons
+                        sx={{ marginTop: "8px" }}
+                        filterEnabled={"Annual"}
+                        onFilterChange={handleFilterChange}
+                    />
+                    <div className="flex row gap-4 mt-4">
+                        <CardWithTwoStatus
+                            title={"Management"}
+                            totalNumber={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .totalAmount
+                                    : 0
+                            }
+                            chipPreviousNumberText={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .badgeCount
+                                    : 0
+                            }
+                            statusText1={"Ongoing"}
+                            statusColor1={theme.palette.info.main}
+                            number1={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.ongoing
+                                    : 0
+                            }
+                            chipText1={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.ongoingBadge
+                                    : 0
+                            }
+                            statusText2={"Upcoming"}
+                            statusColor2={theme.palette.warning.main}
+                            number2={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.upcoming
+                                    : 0
+                            }
+                            chipText2={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.upcomingBadge
+                                    : 0
+                            }
+                        />
+                        <CardWithThreeStatus
+                            title={"Request"}
+                            totalNumber={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .totalAmount
+                                    : 0
+                            }
+                            chipPreviousNumberText={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .badgeCount
+                                    : 0
+                            }
+                            statusText1={"Pending"}
+                            statusColor1={theme.palette.info.main}
+                            number1={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .statusCounts.pending
+                                    : 0
+                            }
+                            chipText1={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .statusCounts.pendingBadge
+                                    : 0
+                            }
+                            statusText2={"Approved"}
+                            statusColor2={theme.palette.success.main}
+                            number2={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .statusCounts.approved
+                                    : 0
+                            }
+                            chipText2={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .statusCounts.approvedBadge
+                                    : 0
+                            }
+                            statusText3={"Rejected"}
+                            statusColor3={theme.palette.error.main}
+                            number3={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .statusCounts.rejected
+                                    : 0
+                            }
+                            chipText3={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info[0]
+                                          .statusCounts.rejectedBadge
+                                    : 0
+                            }
+                        />
+                    </div>
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-[24px]">
-                <TableWithProfile
-                    title={"Request"}
-                    pathRowTo={"/rewards/requests"}
-                    pathViewAllTo={"/rewards/requests"}
-                    tabsVariant={"variant2"}
-                    rows={rowsRequest}
-                    columns={columnsTableRequest}
-                    rowsNumber="5"
-                    showSecondColumn={false}
-                    showThirdLastColumn={true}
-                    showSecondLastColumn={true}
-                    showLastColumn={true}
-                    showSearch={false}
-                    showAdd={false}
-                    showCheckboxColumn={false}
-                    showBtnColumn={false}
-                    showPagination={false}
-                    pathCompound={true}
-                />
-            </div>
-        </main>
+                    <Divider
+                        sx={{
+                            background: theme.palette.neutrals.divider,
+                            marginTop: "32px",
+                        }}
+                    />
+
+                    <div className="flex flex-col gap-4 mx-[-16px] mt-4">
+                        <TableSeven
+                            title={"Management"}
+                            pathViewAllTo={"/rewards/management"}
+                            pathAddTo={"/rewards/management/addReward"}
+                            pathRowTo={"/rewards/management"}
+                            rows={rows}
+                            columns={columnsTable}
+                            rowsNumber="5"
+                            showLastColumn={false}
+                            showSearch={false}
+                            showCheckboxColumn={false}
+                            showBtnColumn={false}
+                            showPagination={false}
+                        />
+                    </div>
+
+                    <div className="flex flex-col gap-4 mx-[-16px] mt-[24px]">
+                        <TableWithProfile
+                            title={"Request"}
+                            pathRowTo={"/rewards/requests"}
+                            pathViewAllTo={"/rewards/requests"}
+                            tabsVariant={"variant2"}
+                            rows={rowsRequest}
+                            columns={columnsTableRequest}
+                            rowsNumber="5"
+                            showSecondColumn={false}
+                            showThirdLastColumn={true}
+                            showSecondLastColumn={true}
+                            showLastColumn={true}
+                            showSearch={false}
+                            showAdd={false}
+                            showCheckboxColumn={false}
+                            showBtnColumn={false}
+                            showPagination={false}
+                            pathCompound={true}
+                        />
+                    </div>
+                </main>
+            )}
+        </>
     );
 };
 

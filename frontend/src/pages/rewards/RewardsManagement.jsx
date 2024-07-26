@@ -4,6 +4,7 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableSeven from "../../components/TableSeven";
 import useAuthToken from "../../common/decodeToken";
+import { Box, CircularProgress } from "@mui/material";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 
@@ -16,6 +17,8 @@ const RewardsManagement = () => {
 
     const location = useLocation();
     const { data } = location.state || {};
+
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,6 +39,7 @@ const RewardsManagement = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
+                setIsLoading(true);
                 setRewards(data);
             } catch (error) {
                 console.log("Error fetching data", error);
@@ -99,24 +103,57 @@ const RewardsManagement = () => {
     }, [rewards]);
 
     return (
-        <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full">
-            <TopUserBar titleScreen={"Management"} />
-            <Breadcrumbs />
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
 
-            <div className="flex flex-col gap-4 mx-[-16px] mt-2">
-                <TableSeven
-                    title={"Management"}
-                    showTitle={false}
-                    showFilter={true}
-                    pathAddTo={"/rewards/management/addReward"}
-                    pathRowTo={"/rewards/management"}
-                    rows={rows}
-                    columns={columnsTable}
-                    rowsNumber="10"
-                    showLastColumn={false}
-                />
-            </div>
-        </main>
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
+
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <main
+                    style={{ animation: "fadeIn 1.5s" }}
+                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full"
+                >
+                    <TopUserBar titleScreen={"Management"} />
+                    <Breadcrumbs />
+
+                    <div className="flex flex-col gap-4 mx-[-16px] mt-2">
+                        <TableSeven
+                            title={"Management"}
+                            showTitle={false}
+                            showFilter={true}
+                            pathAddTo={"/rewards/management/addReward"}
+                            pathRowTo={"/rewards/management"}
+                            rows={rows}
+                            columns={columnsTable}
+                            rowsNumber="10"
+                            showLastColumn={false}
+                        />
+                    </div>
+                </main>
+            )}
+        </>
     );
 };
 
