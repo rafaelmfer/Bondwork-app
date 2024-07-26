@@ -1,93 +1,113 @@
 import { Box, Typography } from "@mui/material";
-import CustomButton from "../buttons/CustomButton";
 import logo from "../../assets/icons/logo.svg";
-import LoginIcon from "../../assets/icons/login-blue-secondary.svg";
-import LoginRedIcon from "../../assets/icons/login-orange-primary.svg";
-import mobileMenuIcon from "../../assets/icons/menu-orange-primary.svg";
-import LineIcon from "../../assets/icons/Line.svg";
 import theme from "../../theme/theme";
-import { Link, useNavigate } from "react-router-dom";
 
 export default function Footer({ matches }) {
-    const navigate = useNavigate();
-
-    const handleBtnLogin = () => {
-        navigate("/login");
+    const handleClick = (event, targetId) => {
+        event.preventDefault();
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
-        <>
+        <Box
+            sx={{
+                borderTop: `1px solid ${theme.palette.neutrals.divider}`,
+                paddingTop: matches ? "0" : "24px",
+                paddingBottom: matches ? "16px" : "24px",
+                [theme.breakpoints.up("desktop")]: {
+                    paddingLeft: "44px",
+                    paddingRight: "44px",
+                },
+            }}
+        >
             <Box
+                className={`flex justify-between ${matches && "flex-col"}`}
                 sx={{
-                    borderTop: `1px solid ${theme.palette.neutrals.divider}`,
-                    marginTop: "80px",
-                    padding: matches ? "12px 2px 12px 12px" : "22px 0px",
+                    gap: "20px",
                 }}
             >
                 <Box
-                    className={`flex justify-between ${matches && "flex-col"}`}
                     sx={{
-                        padding: matches ? "12px 2px 12px 12px" : "12px 44px",
-                        gap: "20px",
+                        margin: matches ? "12px auto" : undefined,
                     }}
                 >
-                    <Box
-                        sx={{
-                            margin: matches ? "auto" : undefined,
-                        }}
-                    >
-                        <img src={logo} alt="Logo" height={"12px"} />
-                    </Box>
-                    <ul
-                        className={`flex  ${matches ? "gap-[16px]" : "gap-[25px]"} items-center ${matches && "flex-col"}`}
-                    >
-                        <li>
-                            <Typography variant="p" sx={{ fontWeight: 600 }}>
-                                Solutions
-                            </Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p" sx={{ fontWeight: 600 }}>
-                                Team
-                            </Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p" sx={{ fontWeight: 600 }}>
-                                Business Model
-                            </Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p" sx={{ fontWeight: 600 }}>
-                                Demo
-                            </Typography>
-                        </li>
-                        <li>
-                            <Typography variant="p" sx={{ fontWeight: 600 }}>
-                                Contact Us
-                            </Typography>
-                        </li>
-                    </ul>
+                    <img src={logo} alt="Logo" height={"12px"} />
                 </Box>
-
-                <Box
-                    className={`flex justify-between`}
-                    sx={{
-                        padding: matches
-                            ? "12px 2px 12px 12px"
-                            : "0px 44px 0px 44px",
-                    }}
+                <ul
+                    className={`flex  ${matches ? "gap-[16px]" : "gap-[25px]"} items-center ${matches && "flex-col"}`}
                 >
-                    <Typography
-                        variant="small1"
-                        sx={{
-                            textAlign: matches ? "center" : "right",
-                            width: "100%",
-                        }}
-                    >
-                        Jigglypuff @ 2024. All rights reserved.
-                    </Typography>
-                </Box>
+                    <li>
+                        <Typography
+                            component="a"
+                            href="#solutions"
+                            onClick={(e) => handleClick(e, "solutions")}
+                            sx={{ ...theme.typography.p, fontWeight: 600 }}
+                        >
+                            Solutions
+                        </Typography>
+                    </li>
+                    <li>
+                        <Typography
+                            component="a"
+                            href="#team"
+                            onClick={(e) => handleClick(e, "team")}
+                            sx={{ ...theme.typography.p, fontWeight: 600 }}
+                        >
+                            Team
+                        </Typography>
+                    </li>
+                    <li>
+                        <Typography
+                            component="a"
+                            href="#business"
+                            onClick={(e) => handleClick(e, "business")}
+                            sx={{ ...theme.typography.p, fontWeight: 600 }}
+                        >
+                            Business Model
+                        </Typography>
+                    </li>
+                    <li>
+                        <Typography
+                            component="a"
+                            href="#contact"
+                            onClick={(e) => handleClick(e, "contact")}
+                            sx={{ ...theme.typography.p, fontWeight: 600 }}
+                        >
+                            Demo
+                        </Typography>
+                    </li>
+                    <li>
+                        <Typography
+                            component="a"
+                            href="#contact"
+                            onClick={(e) => handleClick(e, "contact")}
+                            sx={{ ...theme.typography.p, fontWeight: 600 }}
+                        >
+                            Contact Us
+                        </Typography>
+                    </li>
+                </ul>
             </Box>
-        </>
+
+            <Box
+                className={`flex justify-between`}
+                sx={{
+                    padding: matches ? "16px 0 0 0" : "40px 0 0 0",
+                }}
+            >
+                <Typography
+                    variant="small1"
+                    sx={{
+                        textAlign: matches ? "center" : "right",
+                        width: "100%",
+                    }}
+                >
+                    Jigglypuff @ 2024. All rights reserved.
+                </Typography>
+            </Box>
+        </Box>
     );
 }
