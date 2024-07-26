@@ -24,6 +24,10 @@ module.exports = {
             boxShadow: {
                 table: "0 0 6px 2px rgba(0, 0, 0, 0.06)",
             },
+            screens: {
+                sm: "0px", // Small devices
+                lg: "500px", // Large devices
+            },
         },
         colors: {
             transparent: "transparent",

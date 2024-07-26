@@ -2,37 +2,6 @@ const User = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const basicAuth = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-        res.setHeader("WWW-Authenticate", "Basic");
-        return res.status(401).send("Authorization required");
-    }
-
-    const auth = Buffer.from(authHeader.split(" ")[1], "base64")
-        .toString()
-        .split(":");
-    const reqUsername = auth[0];
-    const reqPassword = auth[1];
-
-    if (
-        reqUsername === process.env.REACT_APP_USERNAME &&
-        reqPassword === process.env.REACT_APP_PASSWORD
-    ) {
-        return next();
-    }
-    res.setHeader("WWW-Authenticate", "Basic");
-    return res.status(401).send("Authorization required");
-};
-
-const loginRequired = (req, res, next) => {
-    if (req.user) {
-        next();
-    } else {
-        return res.status(401).json({ message: "Unauthorized user!" });
-    }
-};
-
 const register = async (req, res) => {
     try {
         const newUser = new User(req.body);
@@ -117,8 +86,6 @@ const authenticateJWT = (req, res, next) => {
 };
 
 module.exports = {
-    basicAuth,
-    loginRequired,
     login,
     register,
     authenticateJWT,

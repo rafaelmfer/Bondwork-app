@@ -11,7 +11,6 @@ const HeroCard = ({ linkProposal }) => {
             className="hero-section"
             sx={{
                 maxWidth: "1440px",
-                marginTop: isDesktop ? "72px" : "66px",
                 marginLeft: "auto",
                 marginRight: "auto",
                 display: "flex",

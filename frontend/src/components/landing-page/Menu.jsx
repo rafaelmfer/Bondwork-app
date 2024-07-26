@@ -1,24 +1,19 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-    Box,
-    Typography,
-    Drawer,
-    List,
-    ListItem,
-    ListItemText,
-} from "@mui/material";
+import { Box, Typography, Drawer, List, ListItem } from "@mui/material";
 import CustomButton from "../buttons/CustomButton";
 import logo from "../../assets/icons/logo.svg";
 import LoginIcon from "../../assets/icons/login-blue-secondary.svg";
 import LoginRedIcon from "../../assets/icons/login-orange-primary.svg";
-import mobileMenuIcon from "../../assets/icons/menu-orange-primary.svg";
 import LineIcon from "../../assets/icons/Line.svg";
 import theme from "../../theme/theme";
+import { Player } from "@lottiefiles/react-lottie-player"; // Import Lottie Player
+import menuAnimation from "../../assets/animations/menu-default.json"; // Import your Lottie animation
 
 export default function Menu({ matches, linkProposal }) {
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const playerRef = useRef(null); // Reference to control the Lottie animation
 
     const handleBtnLogin = () => {
         navigate("/login");
@@ -40,6 +35,13 @@ export default function Menu({ matches, linkProposal }) {
             return;
         }
         setIsDrawerOpen(open);
+        if (open) {
+            playerRef.current.setPlayerSpeed(1); // Set playback rate to normal
+            playerRef.current.play(); // Play opening animation
+        } else {
+            playerRef.current.setPlayerSpeed(-1); // Set playback rate to reverse
+            playerRef.current.play(); // Play closing animation
+        }
     };
 
     const drawerContent = (
@@ -49,12 +51,12 @@ export default function Menu({ matches, linkProposal }) {
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
         >
-            <List>
+            <List sx={{ paddingTop: "16px" }}>
                 {[
                     { text: "Solutions", id: "solutions" },
                     { text: "Team", id: "team" },
                     { text: "Business Model", id: "business" },
-                    { text: "Demo", id: "demo" },
+                    { text: "Proposal", id: "proposal" },
                     { text: "Contact Us", id: "contact" },
                 ].map(({ text, id }) => (
                     <ListItem
@@ -62,6 +64,13 @@ export default function Menu({ matches, linkProposal }) {
                         key={text}
                         onClick={(e) => handleClick(e, id)}
                         sx={{
+                            width: "unset",
+                            borderRadius: "10px",
+                            paddingLeft: "8px",
+                            paddingTop: "12px",
+                            paddingBottom: "12px",
+                            marginLeft: "24px",
+                            marginRight: "24px",
                             "&:hover": {
                                 backgroundColor: theme.palette.primary[200],
                             },
@@ -76,15 +85,16 @@ export default function Menu({ matches, linkProposal }) {
         </Box>
     );
 
+    const drawerHeight = `calc(100vh - 66px)`;
+
     return (
         <Box
             sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                position: "fixed",
+                position: "sticky",
                 background: theme.palette.neutrals.background,
                 top: "0px",
-                right: "0px",
                 left: "0px",
                 zIndex: 10,
                 padding: matches ? "12px 2px 12px 12px" : "12px 44px",
@@ -93,12 +103,12 @@ export default function Menu({ matches, linkProposal }) {
             <img src={logo} alt="Logo" height={"42px"} />
 
             {matches ? (
-                <Box className={`flex items-center `}>
+                <Box className="flex items-center mr-1">
                     <Box
-                        className={`flex items-center gap-2`}
+                        className="flex items-center gap-2"
                         sx={{ padding: "0px 10px" }}
                     >
-                        <a href="/login" className={`flex items-center gap-2`}>
+                        <a href="/login" className="flex items-center gap-2">
                             <img
                                 src={LoginRedIcon}
                                 alt="Logo"
@@ -107,6 +117,7 @@ export default function Menu({ matches, linkProposal }) {
                             <Typography
                                 variant="p"
                                 sx={{
+                                    ...theme.typography.p,
                                     fontWeight: 600,
                                     color: theme.palette.primary.main,
                                 }}
@@ -118,17 +129,25 @@ export default function Menu({ matches, linkProposal }) {
                     <Box>
                         <img src={LineIcon} alt="Logo" height={"42px"} />
                     </Box>
-                    <img
-                        id="mobileMenuIcon"
-                        src={mobileMenuIcon}
-                        alt="Menu"
-                        height={"42px"}
-                        style={{ padding: "0px 10px" }}
+
+                    <Box
                         onClick={toggleDrawer(true)}
-                    />
+                        sx={{ cursor: "pointer" }}
+                    >
+                        <Player
+                            ref={playerRef}
+                            src={menuAnimation}
+                            style={{
+                                height: "48px",
+                                width: "48px",
+                                padding: "0px 10px",
+                            }}
+                            keepLastFrame
+                        />
+                    </Box>
                 </Box>
             ) : (
-                <ul className={`flex gap-[25px] items-center`}>
+                <ul className="flex gap-[25px] items-center">
                     <li>
                         <Typography
                             component="a"
@@ -215,6 +234,19 @@ export default function Menu({ matches, linkProposal }) {
                 open={isDrawerOpen}
                 onClose={toggleDrawer(false)}
                 transitionDuration={{ enter: 1000, exit: 1000 }}
+                PaperProps={{
+                    sx: {
+                        height: drawerHeight,
+                        top: "66px", // Ajuste conforme a altura da Toolbar
+                    },
+                }}
+                ModalProps={{
+                    BackdropProps: {
+                        sx: {
+                            backgroundColor: "transparent",
+                        },
+                    },
+                }}
             >
                 {drawerContent}
             </Drawer>

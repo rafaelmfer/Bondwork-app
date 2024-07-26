@@ -142,25 +142,6 @@ export function SurveyHtml({ disabled }) {
     };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    `${process.env.REACT_APP_API_URL}/api/questions`
-                );
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                setQuestions(JSON.parse(data));
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    useEffect(() => {
         setSurveyInputs((prevInputs) => ({
             ...prevInputs,
             status: "Upcoming",

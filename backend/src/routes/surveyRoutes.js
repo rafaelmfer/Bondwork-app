@@ -28,12 +28,9 @@ router.get("/surveyId/:surveyId", authenticateJWT, getSingleSurveyID);
 router.put("/updateSurvey/:id", authenticateJWT, updateSurvey);
 
 router.post("/addsurvey", authenticateJWT, addSurvey);
-// Endpoint only to add in the DB and update user objects
+
 router.post("/createSurvey", authenticateJWT, createSurvey);
 
-// Routes for getting surveys by status
-// localhost:5000/survey/status/ongoing
-// status could be: ongoing ,upcoming, finished, draft
 router.get("/survey/status/:status", authenticateJWT, getSurveysByStatus);
 
 module.exports = router;

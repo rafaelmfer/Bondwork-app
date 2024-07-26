@@ -26,7 +26,7 @@ const FilterButton = styled(Button)(({ theme, selected }) => ({
 
 const FilterButtons = ({ sx, filterEnabled, onFilterChange }) => {
     const [selectedFilter, setSelectedFilter] = useState(filterEnabled);
-    const [dateRange, setDateRange] = useState("Jun 24 - Jun 30");
+    const [dateRange, setDateRange] = useState("Jan 01 - Dec 31");
 
     const handleFilterChange = (filter, dateRange, index) => {
         setSelectedFilter(filter);
@@ -52,7 +52,7 @@ const FilterButtons = ({ sx, filterEnabled, onFilterChange }) => {
                 <FilterButton
                     selected={selectedFilter === "Week"}
                     onClick={() =>
-                        handleFilterChange("Week", "Jun 24 - Jun 30", 0)
+                        handleFilterChange("Week", "Jul 28 - Aug 03", 0)
                     }
                 >
                     Week
@@ -60,7 +60,7 @@ const FilterButtons = ({ sx, filterEnabled, onFilterChange }) => {
                 <FilterButton
                     selected={selectedFilter === "Month"}
                     onClick={() =>
-                        handleFilterChange("Month", "Jun 01 - Jun 30", 1)
+                        handleFilterChange("Month", "Jul 01 - Jul 31", 1)
                     }
                 >
                     Month
@@ -68,7 +68,7 @@ const FilterButtons = ({ sx, filterEnabled, onFilterChange }) => {
                 <FilterButton
                     selected={selectedFilter === "Quarter"}
                     onClick={() =>
-                        handleFilterChange("Quarter", "Apr 01 - Jun 30", 2)
+                        handleFilterChange("Quarter", "Jul 01 - Set 30", 2)
                     }
                 >
                     Quarter

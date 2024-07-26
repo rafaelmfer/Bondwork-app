@@ -2,26 +2,25 @@ import React from "react";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import { FiBell } from "react-icons/fi";
-import theme from "../theme/theme";
-import { ThemeProvider } from "@mui/material/styles";
+import { ReactComponent as FiBell } from "../assets/icons/bell-dark-gray-neutral.svg";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
-        right: -3,
-        top: 13,
-        padding: "0 4px",
+        right: 2,
+        top: 0,
+        minWidth: "18px",
+        height: "18px",
+        padding: "0px",
+        backgroundColor: theme.palette.primary.main,
     },
 }));
 
 export default function NotificationBadge() {
     return (
-        <ThemeProvider theme={theme}>
-            <IconButton aria-label="bell">
-                <StyledBadge badgeContent={4} color="secondary">
-                    <FiBell />
-                </StyledBadge>
-            </IconButton>
-        </ThemeProvider>
+        <IconButton aria-label="bell">
+            <StyledBadge badgeContent={4} color="secondary">
+                <FiBell />
+            </StyledBadge>
+        </IconButton>
     );
 }

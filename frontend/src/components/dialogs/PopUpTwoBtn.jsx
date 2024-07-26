@@ -75,6 +75,7 @@ const PopUpTwoBtn = (props) => {
 
             const data = await response.json();
             console.log("Success:", data);
+
             window.location.reload();
         } catch (error) {
             console.error("Error:", error);

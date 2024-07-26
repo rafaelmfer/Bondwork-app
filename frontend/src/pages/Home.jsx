@@ -51,7 +51,7 @@ const Home = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
-                setIsLoading(true);
+                setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -104,7 +104,7 @@ const Home = () => {
 
     return (
         <>
-            {!isLoading ? (
+            {isLoading ? (
                 <Box
                     sx={{
                         display: "flex",

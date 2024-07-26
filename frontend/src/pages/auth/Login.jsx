@@ -109,7 +109,7 @@ const Login = () => {
             <div className="flex justify-center mb-12">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
-            <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg w-full max-w-lg">
+            <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg lg:w-full max-w-lg mx-4">
                 <h1 className="text-center text-h2 mb-6">Log In</h1>
                 <form
                     className="pb-8 border-b-neutrals-divider border-b"

@@ -79,8 +79,8 @@ const Signup = () => {
                         />
                         <h3 className="text-h3">Account has been created</h3>
                         <p className="text-p text-center">
-                            Your account has been created now you can login with
-                            you Account.
+                            Your account has been created, request the demo with
+                            us to login with your account.
                         </p>
                     </div>
                 }
@@ -88,7 +88,7 @@ const Signup = () => {
             <div className="flex justify-center mb-12">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
-            <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg w-full max-w-lg">
+            <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg lg:w-full max-w-lg mx-4">
                 <h1 className="text-center text-h2 mb-6">Sign up</h1>
                 <form
                     className="pb-8 border-b-neutrals-divider border-b"
