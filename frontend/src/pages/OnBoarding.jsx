@@ -1,4 +1,4 @@
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Team from "../components/landing-page/Team";
 import BusinessModel from "../components/landing-page/BusinessModel";
