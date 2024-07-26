@@ -11,6 +11,7 @@ import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
 import CustomButton from "../../components/buttons/CustomButton";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import useAuthToken from "../../common/decodeToken";
 import theme from "../../theme/theme";
 
 import { surveyCreationContext } from "../../context/Context";
@@ -107,6 +108,7 @@ const Survey = () => {
 export default Survey;
 
 export function SurveyHtml({ disabled }) {
+    const { token, isTokenValid } = useAuthToken();
     const [questions, setQuestions] = useState([]);
     const [surveyInputs, setSurveyInputs] = useState({});
     const [showPopup, setShowPopup] = useState(false);
@@ -187,17 +189,17 @@ export function SurveyHtml({ disabled }) {
         };
 
         try {
-            const headers = new Headers();
-            headers.set(
-                "Authorization",
-                "Basic " + btoa("admin" + ":" + "secret")
-            );
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
             const res = await fetch(
                 `${process.env.REACT_APP_API_URL}/api/surveys/addSurvey`,
                 {
-                    headers,
                     method: "POST",
                     headers: {
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(newSurveyUpdate),

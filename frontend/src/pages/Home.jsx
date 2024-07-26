@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import TopUserBar from "../components/top-user-bar/TopUserBar";
 import CardWithThreeStatus from "../components/cards/CardWithThreeStatus";
 import CardTurnoverRate from "../components/cards/CardTurnoverRate";
@@ -6,14 +8,15 @@ import CardSatisfactionDrivers from "../components/cards/CardSatisfactionDrivers
 import Breadcrumbs from "../components/Breadcrumbs";
 import theme from "../theme/theme";
 import FilterButtons from "../components/FilterButtons";
-
+import useAuthToken from "../common/decodeToken";
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/dashboard`;
 
 const Home = () => {
-    // let today = new Date().toISOString().split("T")[0];
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     let today = "2024-07-31";
 
-    const [isLoading, setIsLoading] = useState(true);
     const [chartsApi, setChartsApi] = useState({});
     const [chartIndex, setChartIndex] = useState(3);
 
@@ -24,10 +27,17 @@ const Home = () => {
     // Fetching charts dashboard
     useEffect(() => {
         const fetchData = async () => {
+            //handle the scenario where the token might expire during an active session.
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login"); // Back to login screen
+                return;
+            }
             try {
                 const res = await fetch(URL_CHARTS, {
                     method: "POST",
                     headers: {
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ date: today }),
@@ -37,13 +47,12 @@ const Home = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
-                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchData();
-    }, []);
+    }, [token, isTokenValid, navigate, today]);
 
     const currentTurnOverRate = chartsApi.chart1
         ? chartsApi.chart1[chartIndex].info[0].current
@@ -60,7 +69,6 @@ const Home = () => {
             : [],
     };
 
-    console.log("Charts: ", chartData);
     const chartDataSatisfaction = [
         {
             name: "Overall",

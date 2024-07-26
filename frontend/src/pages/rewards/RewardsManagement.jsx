@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableSeven from "../../components/TableSeven";
+import useAuthToken from "../../common/decodeToken";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 
 const RewardsManagement = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const [rewards, setRewards] = useState([]);
     const [rows, setRows] = useState([]);
 
@@ -15,8 +19,19 @@ const RewardsManagement = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
             try {
-                const res = await fetch(URL);
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -33,7 +48,7 @@ const RewardsManagement = () => {
         } else {
             fetchData();
         }
-    }, [data]);
+    }, [data, isTokenValid, token, navigate]);
 
     // Array to map the table headings
     const columnsTable = [

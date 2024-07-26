@@ -12,6 +12,7 @@ import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import { AddImage } from "../../components/addImage/AddImage";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import { surveyCreationContext } from "../../context/Context";
+import useAuthToken from "../../common/decodeToken";
 import { ReactComponent as Pie } from "../../assets/icons/step-orange-primary-InProgress.svg";
 import SaveIcon from "../../assets/icons/save-blue-neutral.svg";
 import promptOk from "../../assets/icons/prompt-success.svg";
@@ -20,6 +21,9 @@ import document from "../../assets/icons/document-outline.svg";
 import theme from "../../theme/theme";
 
 const RewardsAdd = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const [activeTab, setActiveTab] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [rewardInputs, setRewardInputs] = useState({});
@@ -87,10 +91,17 @@ const RewardsAdd = () => {
         };
 
         try {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
+
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(rewardData),
             });

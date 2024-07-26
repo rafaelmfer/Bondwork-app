@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { authenticateJWT } = require("../controllers/authController");
 
 const router = express();
 router.use(express.json());
@@ -13,14 +14,14 @@ const {
     updateRecognition,
 } = require("../controllers/recognitionController");
 
-router.post("/", addRecognition);
+router.post("/", authenticateJWT, addRecognition);
 
-router.get("/", allRecognition);
+router.get("/", authenticateJWT, allRecognition);
 
-router.get("/:id", getRecognition);
+router.get("/:id", authenticateJWT, getRecognition);
 
-router.put("/update/:id", updateRecognition);
+router.put("/update/:id", authenticateJWT, updateRecognition);
 
-router.post("/addRecognition", addRecognition);
+router.post("/addRecognition", authenticateJWT, addRecognition);
 
 module.exports = router;

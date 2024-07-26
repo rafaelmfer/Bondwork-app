@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-// const router = express.Router();
+const { authenticateJWT } = require("../controllers/authController");
+
 const router = express();
 router.use(express.json());
 // Use CORS middleware
@@ -11,8 +12,8 @@ const {
     getSingleDepartment,
 } = require("../controllers/departmentController");
 
-router.get("/", allDepartment);
+router.get("/", authenticateJWT, allDepartment);
 
-router.post("/:departmentId", getSingleDepartment);
+router.post("/:departmentId", authenticateJWT, getSingleDepartment);
 
 module.exports = router;

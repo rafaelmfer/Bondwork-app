@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
+import useAuthToken from "../../common/decodeToken";
 
 const RecognitionRequestList = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const [dataInd, setData] = useState([]);
     const [recognitions, setRecognitions] = useState([]); // for the table
 
@@ -57,13 +62,22 @@ const RecognitionRequestList = () => {
     }, [dataInd, createRows]);
 
     const fetchSvg = useCallback(async () => {
-        const headers = new Headers();
-        headers.set("Authorization", "Basic " + btoa("admin:secret"));
+        if (!isTokenValid) {
+            console.log("Token is invalid or has expired");
+            navigate("/login");
+            return;
+        }
 
         try {
             const response = await fetch(
                 `${process.env.REACT_APP_API_URL}/api/recognition`,
-                { headers }
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
             );
 
             if (!response.ok) {
@@ -75,7 +89,7 @@ const RecognitionRequestList = () => {
         } catch (error) {
             console.error("Error fetching data:", error);
         }
-    }, []);
+    }, [token, isTokenValid, navigate]);
 
     useEffect(() => {
         fetchSvg();

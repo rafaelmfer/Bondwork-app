@@ -1,20 +1,36 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CustomButton from "../../components/buttons/CustomButton";
 import TableWithProfile from "../../components/TableWithProfile";
-
+import useAuthToken from "../../common/decodeToken";
 const URL = `${process.env.REACT_APP_API_URL}/api/user/`;
 
 const Users = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const [users, setUsers] = useState([]);
     const [rows, setRows] = useState([]);
 
     // Fetching Rewards
     useEffect(() => {
         const fetchData = async () => {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
             try {
-                const res = await fetch(URL);
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -25,7 +41,7 @@ const Users = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [isTokenValid, token, navigate]);
 
     // TABLE
     // Array to map the table headings for Management Table

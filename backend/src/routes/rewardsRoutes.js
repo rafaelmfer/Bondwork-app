@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { authenticateJWT } = require("../controllers/authController");
 
 const {
     getAllRewards,
@@ -13,15 +14,19 @@ const router = express.Router(); // Use express.Router() to create a router inst
 router.use(express.json());
 router.use(cors()); // This will enable CORS for all routes
 
-router.get("/", getAllRewards);
+router.get("/", authenticateJWT, getAllRewards);
 
-router.get("/:rewardId", getSingleReward);
+router.get("/:rewardId", authenticateJWT, getSingleReward);
 
-router.post("/add", addRewards);
+router.post("/add", authenticateJWT, addRewards);
 
-router.get("/:rewardId/request/:employeeId", getRewardRequestDetails);
+router.get(
+    "/:rewardId/request/:employeeId",
+    authenticateJWT,
+    getRewardRequestDetails
+);
 
 // redeemId
-router.put("/update/:id/:redeem", updateRewardRedeem);
+router.put("/update/:id/:redeem", authenticateJWT, updateRewardRedeem);
 
 module.exports = router;

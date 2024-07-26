@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -8,12 +9,15 @@ import ChartArea from "../../components/charts/ChartArea";
 import ChartDonut from "../../components/charts/ChartDonut";
 import ChartLine from "../../components/charts/ChartLine";
 import TableSeven from "../../components/TableSeven";
+import useAuthToken from "../../common/decodeToken";
 import theme from "../../theme/theme";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys`;
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/surveys`;
 
 const SurveyMain = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
     // let today = new Date().toISOString().split("T")[0];
     let today = "2024-07-31";
     const [chartsApi, setChartsApi] = useState({});
@@ -27,9 +31,15 @@ const SurveyMain = () => {
     useEffect(() => {
         const fetchCharts = async () => {
             try {
+                if (!isTokenValid) {
+                    console.log("Token is invalid or has expired");
+                    navigate("/login");
+                    return;
+                }
                 const res = await fetch(URL_CHARTS, {
                     method: "POST",
                     headers: {
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ date: today }),
@@ -39,13 +49,12 @@ const SurveyMain = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
-                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchCharts();
-    }, []);
+    }, [isTokenValid, token, navigate, today]);
 
     // Satisfaction Chart Data
     const chartDataSatisfaction = [
@@ -76,7 +85,13 @@ const SurveyMain = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(URL);
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -87,7 +102,7 @@ const SurveyMain = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [token]);
 
     // Array to map the table headings
     const columnsTable = [

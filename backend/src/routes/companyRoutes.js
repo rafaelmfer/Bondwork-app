@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { authenticateJWT } = require("../controllers/authController");
 // const router = express.Router();
 const router = express();
 router.use(express.json());
@@ -13,12 +14,12 @@ const {
 } = require("../controllers/companyController");
 
 // localhost:5000/api/company/companyName
-router.get("/companyName", getCompanyName);
+router.get("/companyName", authenticateJWT, getCompanyName);
 
 // localhost:5000/api/company/ROI
-router.get("/ROI", getROI);
+router.get("/ROI", authenticateJWT, getROI);
 
 // localhost:5000/api/company/employeesId
-router.get("/employeesId", getEmployeesID);
+router.get("/employeesId", authenticateJWT, getEmployeesID);
 
 module.exports = router;

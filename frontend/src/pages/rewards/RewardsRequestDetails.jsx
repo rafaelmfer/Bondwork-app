@@ -10,7 +10,6 @@ import ProfileCard from "../../components/cards/CardProfile";
 import CardDescription from "../../components/cards/CardDescription";
 import CustomButton from "../../components/buttons/CustomButton";
 import SupportiveIcon from "../../assets/icons/supportive-dark-gray-neutral.svg";
-import PerfomanceIcon from "../../assets/icons/performance-dark-gray-neutral.svg";
 import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
 import { formatDate } from "../../common/commonFunctions";
@@ -18,9 +17,13 @@ import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
+import useAuthToken from "../../common/decodeToken";
 import { Typography, useTheme } from "@mui/material";
 
 const RewardsRequestDetails = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const theme = useTheme();
     const { id, personId } = useParams();
     const [marginBottom, setMarginBottom] = useState(true);
@@ -47,8 +50,20 @@ const RewardsRequestDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                if (!isTokenValid) {
+                    console.log("Token is invalid or has expired");
+                    navigate("/login");
+                    return;
+                }
                 const res = await fetch(
-                    `${process.env.REACT_APP_API_URL}/api/rewards/${id}/request/${personId}`
+                    `${process.env.REACT_APP_API_URL}/api/rewards/${id}/request/${personId}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
@@ -71,13 +86,12 @@ const RewardsRequestDetails = () => {
                 setOptions(optionsArray);
                 setSelectedOption(optionsArray[0]);
                 setStatus(data.status);
-                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, personId, isTokenValid, token, navigate]);
 
     useEffect(() => {
         // Call the API to approve or reject and update the status and the options of dropdown component
@@ -90,9 +104,6 @@ const RewardsRequestDetails = () => {
         setSelectedOption(event.target.value);
     };
 
-    console.log(id);
-    console.log(personId);
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     return (
         <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
             {/* BTN APROVE CLICKED */}
@@ -183,8 +194,6 @@ const RewardsRequestDetails = () => {
                                     disabled={false}
                                     value={value}
                                     onChange={(e) => {
-                                        console.log("working");
-                                        console.log(e.target.value);
                                         setValue(e.target.value);
                                     }}
                                 />

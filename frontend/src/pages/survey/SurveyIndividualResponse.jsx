@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Box, Card, Typography } from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import ChipText from "../../components/chip/ChipText";

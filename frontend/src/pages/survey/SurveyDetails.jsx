@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import SurveyDetailsCard from "../../components/cards/SurveyDetailsCard";
 import TableWithProfile from "../../components/TableWithProfile";
+import useAuthToken from "../../common/decodeToken";
 
 import { formatDate } from "../../common/commonFunctions";
 
 const SurveyDetails = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
     const { id } = useParams();
 
     const [rows, setRows] = useState([]);
@@ -17,8 +20,20 @@ const SurveyDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                if (!isTokenValid) {
+                    console.log("Token is invalid or has expired");
+                    navigate("/login");
+                    return;
+                }
                 const res = await fetch(
-                    `${process.env.REACT_APP_API_URL}/api/surveys/surveyID/${id}`
+                    `${process.env.REACT_APP_API_URL}/api/surveys/surveyID/${id}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
@@ -31,7 +46,7 @@ const SurveyDetails = () => {
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, isTokenValid, token, navigate]);
 
     // Method to create the rows with the employees
     useEffect(() => {
