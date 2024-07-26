@@ -5,6 +5,8 @@ import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import useAuthToken from "../../common/decodeToken";
 import { formatDate } from "../../common/commonFunctions";
+import { Box } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // const PORT = process.env.REACT_APP_PORT || 5000;
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
@@ -17,6 +19,8 @@ const Management = () => {
 
     const location = useLocation();
     const { data } = location.state || {};
+
+    const [isLoading, setIsLoading] = useState(false);
 
     // Fetching the survey.json @Backend
     useEffect(() => {
@@ -39,6 +43,7 @@ const Management = () => {
                 }
                 const data = await res.json();
                 setSurveys(data);
+                setIsLoading(true);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -100,27 +105,56 @@ const Management = () => {
     const rows = createRows(surveys);
 
     return (
-        <div>
-            <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
-                <TopUserBar titleScreen={"Management"} />
-                <Breadcrumbs />
-                <div className="flex flex-col gap-4 mx-[-16px]">
-                    <TableSeven
-                        showTitle={false}
-                        title={"Management"}
-                        pathAddTo={"/surveys/management/addSurvey"}
-                        pathRowTo={"/surveys/management"}
-                        showSend={true}
-                        showFilter={true}
-                        rows={rows}
-                        columns={columnsTable}
-                        rowsNumber="7"
-                        showSecondLastColumn={true}
-                        showLastColumn={false}
-                    />
+        <>
+            {!isLoading ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100vh", // Ensures it takes full height of the viewport
+                    }}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <CircularProgress size={120} />
+
+                        <p
+                            style={{
+                                position: "absolute",
+                                top: "40%",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                            }}
+                        >
+                            Loading
+                        </p>
+                    </Box>
+                </Box>
+            ) : (
+                <div style={{ animation: "fadeIn 1.5s" }}>
+                    <main className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]">
+                        <TopUserBar titleScreen={"Management"} />
+                        <Breadcrumbs />
+                        <div className="flex flex-col gap-4 mx-[-16px]">
+                            <TableSeven
+                                showTitle={false}
+                                title={"Management"}
+                                pathAddTo={"/surveys/management/addSurvey"}
+                                pathRowTo={"/surveys/management"}
+                                showSend={true}
+                                showFilter={true}
+                                rows={rows}
+                                columns={columnsTable}
+                                rowsNumber="7"
+                                showSecondLastColumn={true}
+                                showLastColumn={false}
+                            />
+                        </div>
+                    </main>
                 </div>
-            </main>
-        </div>
+            )}
+        </>
     );
 };
 
