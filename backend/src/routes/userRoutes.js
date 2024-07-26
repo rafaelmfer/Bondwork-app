@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { authenticateJWT } = require("../controllers/authController");
 
 const router = express();
 
@@ -21,25 +22,25 @@ const {
     getEmployeeStaff,
 } = require("../controllers/userController");
 
-router.get("/", getAllUsers);
+router.get("/", authenticateJWT, getAllUsers);
 
-router.get("/:employeeID", getOneUser);
+router.get("/:employeeID", authenticateJWT, getOneUser);
 
-router.post("/addUser", addUser);
+router.post("/addUser", authenticateJWT, addUser);
 
-router.put("/updateUser/:id", updateUser);
+router.put("/updateUser/:id", authenticateJWT, updateUser);
 
 // localhost:5000/api/user/employeestaff
-router.get("/employeestaff", getEmployeeStaff);
+router.get("/employeestaff", authenticateJWT, getEmployeeStaff);
 
 // localhost:5000/api/user/hrstaff
-router.get("/hrstaff", getHrStaff);
+router.get("/hrstaff", authenticateJWT, getHrStaff);
 
 // localhost:5000/api/user/department
-router.post("/department", postDepartments);
+router.post("/department", authenticateJWT, postDepartments);
 
 // localhost:5000/api/user/employee/11
-router.get("/employee/:employeeID", getEmployeeID);
+router.get("/employee/:employeeID", authenticateJWT, getEmployeeID);
 
 // {
 //   "email": "tsteste4@langara.ca",

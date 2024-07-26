@@ -84,8 +84,8 @@ const login = async (req, res) => {
                 email: user.email,
                 _id: user._id,
             },
-            process.env.SECRET_JWT_SIGN
-            // { expiresIn: '1h' } // Set token expiration time
+            process.env.SECRET_JWT_SIGN,
+            { expiresIn: "1h" } // Set token expiration time
         );
 
         return res.json({ token });
@@ -96,9 +96,30 @@ const login = async (req, res) => {
     }
 };
 
+// Middleware of the authentication
+const authenticateJWT = (req, res, next) => {
+    const token = req.header("Authorization");
+
+    if (!token) {
+        return res.status(401).json({ message: "Access Denied" });
+    }
+
+    try {
+        const decoded = jwt.verify(
+            token.split(" ")[1],
+            process.env.SECRET_JWT_SIGN
+        );
+        req.user = decoded;
+        next();
+    } catch (err) {
+        return res.status(401).json({ message: "Invalid Token" });
+    }
+};
+
 module.exports = {
     basicAuth,
     loginRequired,
     login,
     register,
+    authenticateJWT,
 };

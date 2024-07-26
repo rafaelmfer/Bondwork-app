@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TableSeven from "../../components/TableSeven";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
-
+import useAuthToken from "../../common/decodeToken";
 import { formatDate } from "../../common/commonFunctions";
 
 // const PORT = process.env.REACT_APP_PORT || 5000;
 const URL = `${process.env.REACT_APP_API_URL}/api/surveys/`;
 
 const Management = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
     //Hook for the survey array
     const [surveys, setSurveys] = useState([]);
 
@@ -20,7 +22,18 @@ const Management = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(URL);
+                if (!isTokenValid) {
+                    console.log("Token is invalid or has expired");
+                    navigate("/login");
+                    return;
+                }
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -37,7 +50,7 @@ const Management = () => {
         } else {
             fetchData();
         }
-    }, [data]);
+    }, [data, isTokenValid, token, navigate]);
     // Array to map the table headings
     const columnsTable = [
         "id",

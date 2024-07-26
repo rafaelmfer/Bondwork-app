@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Divider } from "@mui/material";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -7,12 +9,15 @@ import CardWithTwoStatus from "../../components/cards/CardWithTwoStatus";
 import CardWithThreeStatus from "../../components/cards/CardWithThreeStatus";
 import TableSeven from "../../components/TableSeven";
 import TableWithProfile from "../../components/TableWithProfile";
+import useAuthToken from "../../common/decodeToken";
 import theme from "../../theme/theme";
 
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 const URL_CHARTS = `${process.env.REACT_APP_API_URL}/api/charts/rewards`;
 
 const RewardsMain = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
     // let today = new Date().toISOString().split("T")[0];
     let today = "2024-07-31";
 
@@ -29,10 +34,16 @@ const RewardsMain = () => {
     // Fetching charts rewards
     useEffect(() => {
         const fetchCharts = async () => {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
             try {
                 const res = await fetch(URL_CHARTS, {
                     method: "POST",
                     headers: {
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ date: today }),
@@ -42,19 +53,24 @@ const RewardsMain = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
-                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchCharts();
-    }, []);
+    }, [isTokenValid, token, navigate, today]);
 
     // Fetching Rewards
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(URL);
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -65,7 +81,7 @@ const RewardsMain = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [token]);
 
     // MANAGEMENT TABLE -------------------------------------
     // Array to map the table headings for Management Table

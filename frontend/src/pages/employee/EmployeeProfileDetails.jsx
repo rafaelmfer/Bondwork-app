@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import EmployeeProfileTitleCard from "../../components/cards/EmployeeProfileTitleCard";
@@ -7,6 +7,8 @@ import EmployeeProfileInfoCard from "../../components/cards/EmployeeProfileInfoC
 import EmployeeProfilePointsCard from "../../components/cards/EmployeeProfilePointsCard";
 import TableSeven from "../../components/TableSeven";
 import TableWithProfile from "../../components/TableWithProfile";
+import useAuthToken from "../../common/decodeToken";
+
 import {
     formatDate,
     formatDate2,
@@ -14,6 +16,8 @@ import {
 } from "../../common/commonFunctions";
 
 const EmployeeProfileDetails = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
     const { id } = useParams();
     const URL = `${process.env.REACT_APP_API_URL}/api/user/${id}`;
 
@@ -22,8 +26,19 @@ const EmployeeProfileDetails = () => {
     // Fetching user details
     useEffect(() => {
         const fetchData = async () => {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
             try {
-                const res = await fetch(URL);
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -34,7 +49,7 @@ const EmployeeProfileDetails = () => {
             }
         };
         fetchData();
-    }, [URL]);
+    }, [URL, token, isTokenValid, navigate]);
 
     // ----- Recognition table ----------------------------------
     const recognitionHeaders = ["id", "From", "To", "Date", "Status"];

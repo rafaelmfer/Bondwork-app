@@ -1,17 +1,35 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import TableWithProfile from "../../components/TableWithProfile";
+import useAuthToken from "../../common/decodeToken";
+
 const URL = `${process.env.REACT_APP_API_URL}/api/rewards/`;
 
 const RewardsRequestList = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const [rewards, setRewards] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
     // Fetching Rewards
     useEffect(() => {
         const fetchData = async () => {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
             try {
-                const res = await fetch(URL);
+                const res = await fetch(URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -22,7 +40,7 @@ const RewardsRequestList = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [isTokenValid, token, navigate]);
     // REQUEST TABLE -------------------------------------
     const columnsTableRequest = [
         "id",

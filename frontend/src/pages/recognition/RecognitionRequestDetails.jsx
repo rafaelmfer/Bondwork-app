@@ -16,12 +16,14 @@ import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
+import useAuthToken from "../../common/decodeToken";
 import { Typography, useTheme } from "@mui/material";
 
 const RecognitionRequestDetails = () => {
     const theme = useTheme();
     const { id } = useParams();
-    const [selectedRejection, setSelectedRejection] = useState("");
+    const { token, isTokenValid } = useAuthToken();
+
     const [status, setStatus] = useState("");
     const [recognitionDetails, setRecognitionDetails] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
@@ -53,10 +55,24 @@ const RecognitionRequestDetails = () => {
     // Fetch the details of the recognition
     useEffect(() => {
         const fetchData = async () => {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
+
             try {
                 const res = await fetch(
-                    `${process.env.REACT_APP_API_URL}/api/recognition/${id}`
+                    `${process.env.REACT_APP_API_URL}/api/recognition/${id}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
+
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
@@ -82,7 +98,7 @@ const RecognitionRequestDetails = () => {
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, isTokenValid, token, navigate]);
 
     useEffect(() => {
         // Call the API to approve or reject and update the status and the options of dropdown component
@@ -184,8 +200,6 @@ const RecognitionRequestDetails = () => {
                                     disabled={false}
                                     value={value}
                                     onChange={(e) => {
-                                        console.log("working");
-                                        console.log(e.target.value);
                                         setValue(e.target.value);
                                     }}
                                 />

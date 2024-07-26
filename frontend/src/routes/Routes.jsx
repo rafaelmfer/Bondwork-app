@@ -40,6 +40,8 @@ import SurveyAudienceList from "../pages/survey/SurveyAudienceList";
 import { EmployeeDetailsRecognitions } from "../pages/employee/EmployeeDetailsRecognitions";
 import { EmployeeDetailsSurveys } from "../pages/employee/EmployeeDetailsSurveys";
 
+import PrivateRoute from "./PrivateRoute"; // Importa el componente PrivateRoute
+
 const routes = [
     {
         path: "/login",
@@ -55,14 +57,14 @@ const routes = [
     },
     {
         path: "/dashboard",
-        element: <Home />,
+        element: <PrivateRoute element={Home} />,
         menuLabel: "Dashboard",
         icon: iconDashboard,
         iconSelected: iconDashboardSelected,
     },
     {
         path: "/recognitions",
-        element: <RecognitionMain />,
+        element: <PrivateRoute element={RecognitionMain} />,
         menuLabel: "Recognitions",
         icon: iconRecognition,
         iconSelected: iconRecognitionSelected,
@@ -70,20 +72,20 @@ const routes = [
         subItems: [
             {
                 path: "/recognitions/requests/:id",
-                element: <RecognitionRequestDetails />,
+                element: <PrivateRoute element={RecognitionRequestDetails} />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/recognitions/requests",
-                element: <RecognitionRequestList />,
+                element: <PrivateRoute element={RecognitionRequestList} />,
                 menuLabel: "Requests",
             },
         ],
     },
     {
         path: "/rewards",
-        element: <RewardsMain />,
+        element: <PrivateRoute element={RewardsMain} />,
         menuLabel: "Rewards",
         icon: iconRewards,
         iconSelected: iconRewardsSelected,
@@ -91,37 +93,37 @@ const routes = [
         subItems: [
             {
                 path: "/rewards/management/addReward",
-                element: <RewardsAdd />,
+                element: <PrivateRoute element={RewardsAdd} />,
                 menuLabel: "Add Reward",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/rewards/management/:id",
-                element: <RewardsDetails />,
+                element: <PrivateRoute element={RewardsDetails} />,
                 menuLabel: "Reward Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/rewards/requests/:id/:personId",
-                element: <RewardsRequestDetails />,
+                element: <PrivateRoute element={RewardsRequestDetails} />,
                 menuLabel: "Request Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/rewards/management",
-                element: <RewardsManagement />,
+                element: <PrivateRoute element={RewardsManagement} />,
                 menuLabel: "Management",
             },
             {
                 path: "/rewards/requests",
-                element: <RewardsRequestList />,
+                element: <PrivateRoute element={RewardsRequestList} />,
                 menuLabel: "Requests",
             },
         ],
     },
     {
         path: "/surveys",
-        element: <SurveyMain />,
+        element: <PrivateRoute element={SurveyMain} />,
         menuLabel: "Surveys",
         icon: iconSurvey,
         iconSelected: iconSurveySelected,
@@ -129,63 +131,63 @@ const routes = [
         subItems: [
             {
                 path: "/surveys/management/addSurvey",
-                element: <Survey />,
+                element: <PrivateRoute element={Survey} />,
                 menuLabel: "Add Survey",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/surveys/management/:id",
-                element: <SurveyDetails />,
+                element: <PrivateRoute element={SurveyDetails} />,
                 menuLabel: "Survey Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/surveys/management/list/:id",
-                element: <SurveyAudienceList />,
+                element: <PrivateRoute element={SurveyAudienceList} />,
                 menuLabel: "Audience List",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/surveys/management/:id/:personId",
-                element: <SurveyIndividualResponse />,
+                element: <PrivateRoute element={SurveyIndividualResponse} />,
                 menuLabel: "Response",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "/surveys/management",
-                element: <Management />,
+                element: <PrivateRoute element={Management} />,
                 menuLabel: "Management",
             },
         ],
     },
     {
         path: "/users",
-        element: <Users />,
+        element: <PrivateRoute element={Users} />,
         menuLabel: "Employees",
         icon: iconEmployees,
         iconSelected: iconEmployeesSelected,
         subItems: [
             {
                 path: "users/:id",
-                element: <EmployeeProfileDetails />,
+                element: <PrivateRoute element={EmployeeProfileDetails} />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "users/:id/rewards",
-                element: <EmployeeDetailsRewards />,
+                element: <PrivateRoute element={EmployeeDetailsRewards} />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "users/:id/recognitions",
-                element: <EmployeeDetailsRecognitions />,
+                element: <PrivateRoute element={EmployeeDetailsRecognitions} />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
                 path: "users/:id/surveys",
-                element: <EmployeeDetailsSurveys />,
+                element: <PrivateRoute element={EmployeeDetailsSurveys} />,
                 menuLabel: "Details",
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },

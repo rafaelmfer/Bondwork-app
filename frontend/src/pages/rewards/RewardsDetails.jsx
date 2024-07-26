@@ -1,29 +1,52 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import TopUserBar from "../../components/top-user-bar/TopUserBar";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import TableWithProfile from "../../components/TableWithProfile";
 import { formatDate } from "../../common/commonFunctions";
+import useAuthToken from "../../common/decodeToken";
 
 const RewardsDetails = () => {
+    const { token, isTokenValid } = useAuthToken();
+    const navigate = useNavigate();
+
     const { id } = useParams();
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchRewards = async () => {
-            const response = await fetch(
-                `${process.env.REACT_APP_API_URL}/api/rewards/${id}`
-            );
+            try {
+                if (!isTokenValid) {
+                    console.log("Token is invalid or has expired");
+                    navigate("/login");
+                    return;
+                }
 
-            if (response.ok) {
+                const response = await fetch(
+                    `${process.env.REACT_APP_API_URL}/api/rewards/${id}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 setData(data);
+            } catch (error) {
+                console.error("Error fetching rewards:", error);
             }
         };
 
         fetchRewards();
-    }, [id]);
+    }, [id, isTokenValid, token, navigate]);
 
     //------ Table --------------------
     // Array to map the table headings
