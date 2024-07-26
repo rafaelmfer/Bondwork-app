@@ -37,6 +37,8 @@ const Carousel = ({ id, sx }) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        nextArrow: null,
+        prevArrow: null,
         beforeChange: (current, next) => setActiveTab(next),
     };
 
