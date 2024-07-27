@@ -14,6 +14,7 @@ import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
 import { formatDate } from "../../common/commonFunctions";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import Reject from "../../components/dialogs/Reject";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
@@ -26,7 +27,6 @@ const RewardsRequestDetails = () => {
 
     const theme = useTheme();
     const { id, personId } = useParams();
-    const [marginBottom, setMarginBottom] = useState(true);
     const [status, setStatus] = useState("");
     const [rewardsRequestDetails, setRewardsRequestDetails] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
@@ -37,13 +37,13 @@ const RewardsRequestDetails = () => {
     const [showPopupApproved, setShowPopupApproved] = useState(false);
     const [surveyInputs, setSurveyInputs] = useState({});
     const [value, setValue] = useState("");
-    const [doneIcon, setDoneIcon] = useState(true);
 
     const rejectionOptions = [
-        "option onea",
-        "option two",
-        "option three",
-        "option four",
+        "Inappropriate Content",
+        "Missing Information",
+        "Not Aligned with Reward Criteria",
+        "Duplicate Submission",
+        "Others",
     ];
 
     // Fetch the details of the recognition
@@ -93,13 +93,6 @@ const RewardsRequestDetails = () => {
         fetchData();
     }, [id, personId, isTokenValid, token, navigate]);
 
-    useEffect(() => {
-        // Call the API to approve or reject and update the status and the options of dropdown component
-        // setStatus(data.status);
-        // setOptions(optionsArray);
-        // setSelectedOption(optionsArray[0]);
-    });
-
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
@@ -140,24 +133,18 @@ const RewardsRequestDetails = () => {
                 // btnTwoText={"Next"}
                 // btnTwoOnClick={goToNext}
             />
-
-            <PopUpTwoBtn
+            {/* The previous call with two PopUp was working fine */}{" "}
+            <Reject
                 trigger={triggerRequest}
                 setTrigger={setTriggerRequest}
-                setDisplay={setDisplay}
-                display={display}
-                setReason={setValue}
                 setEditable={setEditable}
-                setDescription={setSurveyInputs}
+                setDisplay={setDisplay}
                 reason={value}
                 description={surveyInputs.description}
-                userId={id}
-                personId={personId}
-                setDoneIcon={setDoneIcon}
-                endPointUrl={`http://localhost:5001/api/rewards/update/${id}/${personId}`}
+                endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center">
-                        {!doneIcon ? (
+                        {editable === "showConfirmation" ? (
                             <>
                                 <img
                                     src={promptSuccess}
@@ -186,12 +173,11 @@ const RewardsRequestDetails = () => {
                                     sx={{
                                         mt: 2,
                                         width: "100%",
-                                        paddingBottom: `${!marginBottom ? "0px" : "20px"}`,
+                                        paddingBottom: "20px",
                                     }}
                                     label="Reason"
                                     placeholder="Select"
                                     options={rejectionOptions}
-                                    disabled={false}
                                     value={value}
                                     onChange={(e) => {
                                         setValue(e.target.value);
@@ -207,14 +193,13 @@ const RewardsRequestDetails = () => {
                                     >
                                         <TextFieldArea
                                             sx={{ mt: 2, width: "100%" }}
-                                            label="Description"
+                                            label="Details"
                                             id="description"
                                             placeholder="Text here"
                                             hint={200}
                                             value={
                                                 surveyInputs.description || ""
                                             }
-                                            disabled={false}
                                             onChange={(e) => {
                                                 setSurveyInputs(
                                                     (prevInputs) => ({
@@ -233,19 +218,18 @@ const RewardsRequestDetails = () => {
                                 <div>
                                     <Typography
                                         variant="h6"
-                                        color={theme.palette.neutrals.black}
+                                        color={theme.palette.neutrals.gray300}
                                         sx={{
                                             ...theme.typography.small1,
                                             fontWeight: 500,
                                         }}
                                     >
-                                        Reason
+                                        Selected Reason
                                     </Typography>
 
                                     <Typography
                                         variant="p"
                                         color={theme.palette.neutrals.black}
-                                        fontWeight={600}
                                     >
                                         {value}
                                     </Typography>
@@ -254,7 +238,7 @@ const RewardsRequestDetails = () => {
                                 <div className="mb-4">
                                     <Typography
                                         variant="h6"
-                                        color={theme.palette.neutrals.black}
+                                        color={theme.palette.neutrals.gray300}
                                         sx={{
                                             ...theme.typography.small1,
                                             fontWeight: 500,
@@ -265,13 +249,14 @@ const RewardsRequestDetails = () => {
                                     <Typography
                                         variant="p"
                                         color={theme.palette.neutrals.black}
-                                        fontWeight={600}
                                     >
-                                        {surveyInputs.description}
+                                        {surveyInputs.description
+                                            ? surveyInputs.description
+                                            : "-"}
                                     </Typography>
                                 </div>
                             </div>
-                        ) : (
+                        ) : editable === "showConfirmation" ? (
                             <Typography
                                 variant="h6"
                                 color={theme.palette.neutrals.black}
@@ -282,16 +267,14 @@ const RewardsRequestDetails = () => {
                                     textAlign: "center",
                                 }}
                             >
-                                Request has been rejected. Reject notification
-                                will be sent to the employees.
+                                Reward has been rejected. Reward notification
+                                will be sent to the employee.
                             </Typography>
-                        )}
+                        ) : null}
                     </div>
                 }
             />
-
             <TopUserBar titleScreen={"Request Details"} />
-
             <Box
                 display={"flex"}
                 flexDirection={"row"}
@@ -338,7 +321,6 @@ const RewardsRequestDetails = () => {
                     text={rewardsRequestDetails.pointsCost || ""}
                 />
             </Box>
-
             <Box
                 display={"flex"}
                 flexDirection={"row"}
@@ -351,7 +333,6 @@ const RewardsRequestDetails = () => {
                     text={rewardsRequestDetails.category || ""}
                 />
             </Box>
-
             {status === "Pending" && (
                 <Box
                     display={"flex"}

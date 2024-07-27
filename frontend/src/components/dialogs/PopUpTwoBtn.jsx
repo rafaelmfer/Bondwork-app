@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import CustomButton from "../buttons/CustomButton";
+import useAuthToken from "../../common/decodeToken";
 
 const PopUpTwoBtn = (props) => {
+    const { token } = useAuthToken();
     const [isVisible, setIsVisible] = useState(true);
     const [isVisibleBtnReject, setIvisbleBtnReject] = useState(true);
     const [isVisiblePreview, setIsVisiblePreview] = useState(true);
@@ -64,6 +66,7 @@ const PopUpTwoBtn = (props) => {
             const response = await fetch(props.endPointUrl, {
                 method: "PUT",
                 headers: {
+                    Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(approved),
@@ -125,7 +128,7 @@ const PopUpTwoBtn = (props) => {
                         </CustomButton>
 
                         {/* CHECK if the button will be APPROVE OR NEXT */}
-                        {props.btnApproved == true
+                        {props.btnApproved === true
                             ? isVisible && (
                                   <CustomButton
                                       buttontype="primary"

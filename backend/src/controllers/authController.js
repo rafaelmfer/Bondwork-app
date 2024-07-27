@@ -54,7 +54,7 @@ const login = async (req, res) => {
                 _id: user._id,
             },
             process.env.SECRET_JWT_SIGN,
-            { expiresIn: "1h" } // Set token expiration time
+            { expiresIn: "8h" } // Set token expiration time
         );
 
         return res.json({ token });

@@ -13,15 +13,18 @@ import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
 import { formatDate } from "../../common/commonFunctions";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import Reject from "../../components/dialogs/Reject";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import useAuthToken from "../../common/decodeToken";
+
 import { Typography, useTheme } from "@mui/material";
 
 const RecognitionRequestDetails = () => {
     const theme = useTheme();
     const { id } = useParams();
+
     const { token, isTokenValid } = useAuthToken();
 
     const [status, setStatus] = useState("");
@@ -38,10 +41,11 @@ const RecognitionRequestDetails = () => {
     const [doneIcon, setDoneIcon] = useState(true);
 
     const rejectionOptions = [
-        "option one",
-        "option two",
-        "option three",
-        "option four",
+        "Inappropriate Content",
+        "Incomplete Information",
+        "Not Aligned with Recognition Criteria",
+        "Duplicate Submission",
+        "Others",
     ];
     const navigate = useNavigate();
 
@@ -126,7 +130,8 @@ const RecognitionRequestDetails = () => {
                 description={surveyInputs.description}
                 userId={id}
                 btnApproved={true}
-                endPointUrl={`http://localhost:5001/api/recognition/update/${id}`}
+                endPointUrl={`http://l
+                    ocalhost:5001/api/recognition/update/${id}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center mb-4">
                         <img
@@ -148,22 +153,17 @@ const RecognitionRequestDetails = () => {
             />
 
             {/* BTN RECJECT CLICKED */}
-            <PopUpTwoBtn
+            <Reject
                 trigger={showPopup}
                 setTrigger={setShowPopup}
-                setDisplay={setDisplay}
-                display={display}
-                setReason={setValue}
                 setEditable={setEditable}
-                setDescription={setSurveyInputs}
+                setDisplay={setDisplay}
                 reason={value}
                 description={surveyInputs.description}
-                userId={id}
-                setDoneIcon={setDoneIcon}
-                endPointUrl={`http://localhost:5001/api/recognition/update/${id}`}
+                endPointUrl={`${process.env.REACT_APP_API_URL}/api/recognition/update/${id}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center">
-                        {!doneIcon ? (
+                        {editable === "showConfirmation" ? (
                             <>
                                 <img
                                     src={promptSuccess}
@@ -192,15 +192,22 @@ const RecognitionRequestDetails = () => {
                                     sx={{
                                         mt: 2,
                                         width: "100%",
-                                        paddingBottom: `${!marginBottom ? "0px" : "20px"}`,
+                                        paddingBottom: "20px",
                                     }}
                                     label="Reason"
                                     placeholder="Select"
                                     options={rejectionOptions}
-                                    disabled={false}
                                     value={value}
                                     onChange={(e) => {
                                         setValue(e.target.value);
+                                        // if (
+                                        //     e.target.value ===
+                                        //     rejectionOptions[
+                                        //         rejectionOptions.length - 1
+                                        //     ]
+                                        // ) {
+                                        //     setDisplay(true);
+                                        // }
                                     }}
                                 />
 
@@ -213,14 +220,13 @@ const RecognitionRequestDetails = () => {
                                     >
                                         <TextFieldArea
                                             sx={{ mt: 2, width: "100%" }}
-                                            label="Description"
+                                            label="Details"
                                             id="description"
                                             placeholder="Text here"
                                             hint={200}
                                             value={
                                                 surveyInputs.description || ""
                                             }
-                                            disabled={false}
                                             onChange={(e) => {
                                                 setSurveyInputs(
                                                     (prevInputs) => ({
@@ -239,19 +245,18 @@ const RecognitionRequestDetails = () => {
                                 <div>
                                     <Typography
                                         variant="h6"
-                                        color={theme.palette.neutrals.black}
+                                        color={theme.palette.neutrals.gray300}
                                         sx={{
                                             ...theme.typography.small1,
                                             fontWeight: 500,
                                         }}
                                     >
-                                        Reason
+                                        Selected Reason
                                     </Typography>
 
                                     <Typography
                                         variant="p"
                                         color={theme.palette.neutrals.black}
-                                        fontWeight={600}
                                     >
                                         {value}
                                     </Typography>
@@ -260,7 +265,7 @@ const RecognitionRequestDetails = () => {
                                 <div className="mb-4">
                                     <Typography
                                         variant="h6"
-                                        color={theme.palette.neutrals.black}
+                                        color={theme.palette.neutrals.gray300}
                                         sx={{
                                             ...theme.typography.small1,
                                             fontWeight: 500,
@@ -271,13 +276,14 @@ const RecognitionRequestDetails = () => {
                                     <Typography
                                         variant="p"
                                         color={theme.palette.neutrals.black}
-                                        fontWeight={600}
                                     >
-                                        {surveyInputs.description}
+                                        {surveyInputs.description
+                                            ? surveyInputs.description
+                                            : "-"}
                                     </Typography>
                                 </div>
                             </div>
-                        ) : (
+                        ) : editable === "showConfirmation" ? (
                             <Typography
                                 variant="h6"
                                 color={theme.palette.neutrals.black}
@@ -289,16 +295,11 @@ const RecognitionRequestDetails = () => {
                                 }}
                             >
                                 Request has been rejected. Reject notification
-                                will be sent to the employees.
+                                will be sent to the employee.
                             </Typography>
-                        )}
+                        ) : null}
                     </div>
                 }
-
-                // btnOneText={"Go to Home"}
-                // btnOneOnClick={goToHome}
-                // btnTwoText={"Next"}
-                // btnTwoOnClick={goToNext}
             />
 
             <TopUserBar titleScreen={"Details"} />
