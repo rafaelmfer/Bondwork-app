@@ -54,11 +54,22 @@ const Sidebar = ({ profileName }) => {
         );
     };
 
+    const dashboardRoute = ["/dashboard"];
+
     return (
         <div className="w-menuWidth bg-neutrals-white border-r border-[#EEEEEE] flex flex-col fixed top-0 left-0 px-6 pb-4 h-screen">
-            <Link to="/dashboard" className="h-[80px] box-content flex">
-                <img src={logo} alt="Logo" />
-            </Link>
+            {!dashboardRoute.includes(location.pathname) ? (
+                <Link
+                    to={dashboardRoute[0]}
+                    className="h-[80px] box-content flex"
+                >
+                    <img src={logo} alt="Logo" />
+                </Link>
+            ) : (
+                <div className="h-[80px] box-content flex">
+                    <img src={logo} alt="Logo" />
+                </div>
+            )}
 
             <div className="listContainer grow mt-4">
                 <ul className="flex flex-col items-start justify-between list-none p-0 m-0">
@@ -197,13 +208,13 @@ const Sidebar = ({ profileName }) => {
 
             <div className="flex flex-col gap-4 items-start">
                 <div className="userProfile w-full cursor-pointer py-3 border-b border-neutrals-gray100 ">
-                    <Link to="/profile" className="flex items-center px-[10px]">
+                    <div className="flex items-center px-[10px]">
                         <Avatar
                             src="https://cdn.dribbble.com/users/10176582/screenshots/17361661/media/4b5ea865b97f2dbaa081c48cf4b79715.jpg?resize=400x300&vertical=center"
                             sx={{ width: 48, height: 48 }}
                         />
                         <span className="px-4">{profileName}</span>
-                    </Link>
+                    </div>
                 </div>
                 <div className="copyright">
                     <span className="text-small2 text-center">

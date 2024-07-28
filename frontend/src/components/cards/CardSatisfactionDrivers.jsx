@@ -4,6 +4,7 @@ import { Box, Card, CardContent, Typography, Button } from "@mui/material";
 import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/arrow-right-dark-gray-neutral.svg";
 import ChartLine from "../charts/ChartLine";
 import ChipNumber from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 const CardSatisfactionDrivers = ({
     overall,
@@ -13,9 +14,6 @@ const CardSatisfactionDrivers = ({
     labels,
 }) => {
     const navigate = useNavigate();
-
-    // Format overall to the specified decimal places
-    const formattedOverall = overall.toFixed(2);
 
     return (
         <Card
@@ -51,7 +49,11 @@ const CardSatisfactionDrivers = ({
                     >
                         Satisfaction Drivers
                     </Button>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                        variant="small1"
+                        textAlign={"right"}
+                        color={theme.palette.neutrals.gray300}
+                    >
                         Compared to Previous Period
                     </Typography>
                 </Box>
@@ -66,7 +68,7 @@ const CardSatisfactionDrivers = ({
                     </Typography>
                     <Box display="flex" alignItems="center">
                         <Typography variant="h3" fontWeight="bold">
-                            {formattedOverall}
+                            {overall}
                         </Typography>
                         <ChipNumber chipText={chipText} sx={{ ml: 1 }} />
                     </Box>
@@ -76,7 +78,7 @@ const CardSatisfactionDrivers = ({
                     chartHeight={200}
                     data={data}
                     isLegendBottom={isLegendBottom}
-                    label={labels}
+                    labels={labels}
                 />
             </CardContent>
         </Card>

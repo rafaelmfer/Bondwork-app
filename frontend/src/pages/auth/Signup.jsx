@@ -14,7 +14,12 @@ import PasswordIconClosedHover from "../../assets/icons/eye-orange-primary-close
 import PasswordIconOpenHover from "../../assets/icons/eye-orange-primary-opened.svg";
 import PopUpOneBtn from "../../components/dialogs/PopUpOneBtn";
 
+import { useMediaQuery, useTheme } from "@mui/material";
+
 const Signup = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("desktop"));
+
     const [Company, setCompany] = useState("");
     const [firstName, setFirstName] = useState("");
     const [email, setEmail] = useState("");
@@ -25,6 +30,9 @@ const Signup = () => {
     const [verifyPassword, setVerifyPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [passwordIcon, setPasswordIcon] = useState(PasswordIconOpen);
+    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+    const [repeatPasswordIcon, setRepeatPasswordIcon] =
+        useState(PasswordIconOpen);
     const [rememberMe, setRememberMe] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
@@ -49,6 +57,28 @@ const Signup = () => {
         setPasswordIcon(showPassword ? PasswordIconOpen : PasswordIconClosed);
     };
 
+    // Toggle repeat password visibility
+    const handleRepeatPasswordToggle = () => {
+        setShowRepeatPassword(!showRepeatPassword);
+        setRepeatPasswordIcon(
+            showRepeatPassword ? PasswordIconOpen : PasswordIconClosed
+        );
+    };
+
+    // Change repeat password icon on hover
+    const handleRepeatPasswordIconHover = () => {
+        setRepeatPasswordIcon(
+            showRepeatPassword ? PasswordIconOpenHover : PasswordIconClosedHover
+        );
+    };
+
+    // Revert repeat password icon on hover out
+    const handleRepeatPasswordIconHoverOut = () => {
+        setRepeatPasswordIcon(
+            showRepeatPassword ? PasswordIconOpen : PasswordIconClosed
+        );
+    };
+
     // Toggle "Remember me" checkbox
     const handleRememberMeToggle = () => {
         setRememberMe(!rememberMe);
@@ -66,7 +96,7 @@ const Signup = () => {
     };
 
     return (
-        <main className="bg-main-100 relative h-screen flex flex-col items-center justify-center">
+        <main className="bg-main-100 relative min-h-screen flex flex-col items-center justify-between lg:justify-center">
             <PopUpOneBtn
                 trigger={trigger}
                 setTrigger={setTrigger}
@@ -85,7 +115,7 @@ const Signup = () => {
                     </div>
                 }
             />
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-4 lg:mb-12 mt-8 lg:mt-0">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
             <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg lg:w-full max-w-lg mx-4">
@@ -105,7 +135,7 @@ const Signup = () => {
                         sx={{ mb: "16px", width: "100%" }}
                     />
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid lg:grid-cols-2 lg:gap-4">
                         <TextFieldRegular
                             id="firstName"
                             label="First Name"
@@ -127,7 +157,7 @@ const Signup = () => {
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid lg:grid-cols-2 lg:gap-4">
                         <TextFieldRegular
                             id="employeeId"
                             label="Employee ID"
@@ -140,8 +170,8 @@ const Signup = () => {
 
                         <TextFieldRegular
                             id="department"
-                            label="department"
-                            placeholder="department"
+                            label="Department"
+                            placeholder="Department"
                             value={department}
                             onChange={(e) => setDepartment(e.target.value)}
                             disabled={false}
@@ -178,16 +208,16 @@ const Signup = () => {
                     />
 
                     <TextFieldRegular
-                        id="veifyPassword"
+                        id="verifyPassword"
                         label="Confirm Password"
                         placeholder="Confirm Password"
-                        type={showPassword ? "text" : "password"}
+                        type={showRepeatPassword ? "text" : "password"}
                         value={verifyPassword}
                         onChange={(e) => setVerifyPassword(e.target.value)}
-                        iconRight={passwordIcon}
-                        onClickIconRight={handlePasswordToggle}
-                        onMouseOverIconRight={handlePasswordIconHover}
-                        onMouseOutIconRight={handlePasswordIconHoverOut}
+                        iconRight={repeatPasswordIcon}
+                        onClickIconRight={handleRepeatPasswordToggle}
+                        onMouseOverIconRight={handleRepeatPasswordIconHover}
+                        onMouseOutIconRight={handleRepeatPasswordIconHoverOut}
                         hint="It must be a combination of minimum 8 letters, numbers, and symbols."
                         error={passwordError}
                         disabled={false}
@@ -214,7 +244,7 @@ const Signup = () => {
                         onClick={() => {
                             setTrigger(true);
                         }}
-                        sx={{ width: "calc(100% - 48px)" }}
+                        sx={{ width: "100%" }}
                     >
                         Sign Up
                     </CustomButton>
@@ -229,6 +259,13 @@ const Signup = () => {
                     </Link>
                 </div>
             </div>
+            {isMobile === true && (
+                <div>
+                    <p className="text-neutrals-gray300 text-small2 text-center py-4">
+                        Jigglypuff @ 2024. All rights reserved.
+                    </p>
+                </div>
+            )}
         </main>
     );
 };

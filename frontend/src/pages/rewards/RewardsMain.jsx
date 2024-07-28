@@ -28,7 +28,7 @@ const RewardsMain = () => {
     const [rows, setRows] = useState([]);
     const [rowsRequest, setRowsRequest] = useState([]);
     const [chartIndex, setChartIndex] = useState(3);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleFilterChange = (index) => {
         setChartIndex(index);
@@ -56,7 +56,7 @@ const RewardsMain = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
-                setIsLoading(true);
+                setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -202,7 +202,7 @@ const RewardsMain = () => {
 
     return (
         <>
-            {!isLoading ? (
+            {isLoading ? (
                 <Box
                     sx={{
                         display: "flex",
@@ -231,7 +231,7 @@ const RewardsMain = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
                 >
                     <TopUserBar titleScreen={"Rewards"} />
                     <Breadcrumbs />
@@ -240,7 +240,7 @@ const RewardsMain = () => {
                         filterEnabled={"Annual"}
                         onFilterChange={handleFilterChange}
                     />
-                    <div className="flex row gap-4 mt-4">
+                    <div className="grid min-[950px]:grid-cols-2 gap-4 mt-4">
                         <CardWithTwoStatus
                             title={"Management"}
                             totalNumber={

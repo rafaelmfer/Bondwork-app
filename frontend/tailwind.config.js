@@ -27,6 +27,9 @@ module.exports = {
             screens: {
                 sm: "0px", // Small devices
                 lg: "500px", // Large devices
+
+                // Custom breakpoints
+                custom650: "650px",
             },
         },
         colors: {

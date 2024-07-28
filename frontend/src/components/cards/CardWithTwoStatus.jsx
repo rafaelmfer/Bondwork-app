@@ -72,9 +72,10 @@ const CardWithTwoStatus = ({
                     <Typography
                         variant="small1"
                         color={theme.palette.neutrals.gray300}
-                    >
-                        Compared to Previous Period
-                    </Typography>
+                        dangerouslySetInnerHTML={{
+                            __html: "Compared to<br/>Previous Period",
+                        }}
+                    ></Typography>
                 </Box>
                 <Box
                     display="flex"

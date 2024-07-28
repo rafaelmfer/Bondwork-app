@@ -7,6 +7,7 @@ import {
     useLocation,
     Outlet,
 } from "react-router-dom";
+import { useMediaQuery, useTheme } from "@mui/material";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
 import Onboarding from "./pages/OnBoarding";
@@ -32,12 +33,13 @@ const renderRoutes = (routes) => {
 const Layout = () => {
     const location = useLocation();
     const noSidebarRoutes = ["/login", "/signup", "/"];
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up(650));
 
     return (
         <div className="App">
-            {!noSidebarRoutes.includes(location.pathname) && (
-                <Sidebar profileName={"HR Manager"} />
-            )}
+            {!noSidebarRoutes.includes(location.pathname) &&
+                isDesktop === true && <Sidebar profileName={"HR Manager"} />}
             <Outlet />
         </div>
     );

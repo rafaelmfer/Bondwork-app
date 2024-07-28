@@ -110,14 +110,14 @@ const routes = [
                 hideInSidebar: true, // Don't Show in Sidebar Component
             },
             {
-                path: "/rewards/management",
-                element: <PrivateRoute element={RewardsManagement} />,
-                menuLabel: "Management",
-            },
-            {
                 path: "/rewards/requests",
                 element: <PrivateRoute element={RewardsRequestList} />,
                 menuLabel: "Requests",
+            },
+            {
+                path: "/rewards/management",
+                element: <PrivateRoute element={RewardsManagement} />,
+                menuLabel: "Management",
             },
         ],
     },

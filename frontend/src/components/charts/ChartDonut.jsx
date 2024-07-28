@@ -1,4 +1,5 @@
 import Chart from "react-apexcharts";
+import { getChipColors, formatChipLabel } from "../chip/ChipNumber";
 
 export default function ChartDonut({
     className,
@@ -55,9 +56,6 @@ export default function ChartDonut({
                             fontWeight: 400,
                             color: "#B5B5B5",
                             offsetY: 0,
-                            formatter: function (val) {
-                                return val;
-                            },
                         },
                         total: {
                             show: true,
@@ -96,10 +94,32 @@ export default function ChartDonut({
             enabled: true,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                 const percentage = (series[seriesIndex] / 5) * 100;
+
+                let badge = "";
+                if (seriesIndex === 0) {
+                    const badgeNumber = 3;
+                    const { chipBackground, chipTextColor } =
+                        getChipColors(badgeNumber);
+                    badge = `<div class="tooltip-extra donut" style="background-color: ${chipBackground};
+                        color: ${chipTextColor};">${formatChipLabel(badgeNumber)}%</div>`;
+                } else if (seriesIndex === 1) {
+                    const badgeNumber = 0;
+                    const { chipBackground, chipTextColor } =
+                        getChipColors(badgeNumber);
+                    badge = `<div class="tooltip-extra donut" style="background-color: ${chipBackground};
+                        color: ${chipTextColor};">${formatChipLabel(badgeNumber)}%</div>`;
+                } else {
+                    const badgeNumber = -3;
+                    const { chipBackground, chipTextColor } =
+                        getChipColors(badgeNumber);
+                    badge = `<div class="tooltip-extra donut" style="background-color: ${chipBackground};
+                        color: ${chipTextColor};">${formatChipLabel(badgeNumber)}%</div>`;
+                }
+
                 return `<div class="custom-tooltip donut">
                             <div class="tooltip-header items-center">
                                 <p class="tooltip-percentage text-h3">${percentage.toFixed(1)}%</p>
-                                <div class="tooltip-extra donut">+3%</div>
+                                ${badge}
                             </div>
                             <div class="tooltip-label">${w.globals.labels[seriesIndex]}</div>
                         </div>`;
@@ -162,7 +182,7 @@ export default function ChartDonut({
             <style>
                 {`
                     .custom-tooltip.donut {
-                        width: 170px;
+                        min-width: 170px;
                         background-color: rgba(5, 33, 60, 0.8);
                         color: #FFFFFF;
                         text-align: left;
@@ -184,8 +204,6 @@ export default function ChartDonut({
                     }
 
                     .tooltip-extra.donut {
-                        background-color: #D3F9D8;
-                        color: #4CAF50;
                         border-radius: 12px;
                         padding: 2px 6px;
                         font-size: 16px;

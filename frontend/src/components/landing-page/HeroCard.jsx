@@ -78,6 +78,9 @@ const HeroCard = ({ linkProposal }) => {
                     justifyContent: isDesktop ? "center" : "space-between",
                     flexBasis: isDesktop ? "50%" : "90%",
                     height: "100%",
+                    [theme.breakpoints.up(1440)]: {
+                        padding: "0 64px 0 0",
+                    },
                 }}
             >
                 <Typography

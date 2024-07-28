@@ -133,7 +133,7 @@ function ChartVerticalBar({
                     }
                     
                     .custom-tooltip {
-                        width: 170px;
+                        min-width: 170px;
                         background-color: rgba(5, 33, 60, 0.8);
                         color: #FFFFFF;
                         text-align: left;

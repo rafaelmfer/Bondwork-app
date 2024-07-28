@@ -42,7 +42,7 @@ const ChartNegativeArea = ({ data }) => {
             {
                 name: "Turnover Rate",
                 data: adjustedData,
-                color: "#CA310F",
+                color: "#30BC3E",
             },
             //   {
             //     name: "Positive Series",
@@ -90,8 +90,6 @@ const ChartNegativeArea = ({ data }) => {
             // w: An object that contains all the options and data for the chart.
             enabled: true,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-                const category = w.globals.labels[dataPointIndex];
-                const prefix = seriesIndex === 0 ? "Previous" : "Current";
                 const badgeNumber =
                     seriesIndex === 1
                         ? series[seriesIndex][dataPointIndex] -
@@ -130,7 +128,7 @@ const ChartNegativeArea = ({ data }) => {
                     }
 
                     .custom-tooltip {
-                        width: 170px;
+                        min-width: 170px;
                         background-color: rgba(5, 33, 60, 0.8);
                         color: #FFFFFF;
                         text-align: left;
