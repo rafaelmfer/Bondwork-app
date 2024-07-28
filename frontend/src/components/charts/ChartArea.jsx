@@ -66,8 +66,6 @@ export default function ChartArea({
             // w: An object that contains all the options and data for the chart.
             enabled: true,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-                const category = w.globals.labels[dataPointIndex];
-                const prefix = seriesIndex === 0 ? "Previous" : "Current";
                 const badgeNumber =
                     seriesIndex === 1
                         ? series[seriesIndex][dataPointIndex] -
@@ -110,7 +108,7 @@ export default function ChartArea({
                     }
 
                     .custom-tooltip {
-                        width: 150px;
+                        min-width: 150px;
                         background-color: rgba(5, 33, 60, 0.8);
                         color: #FFFFFF;
                         text-align: left;

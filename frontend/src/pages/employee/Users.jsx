@@ -16,7 +16,7 @@ const Users = () => {
 
     const [users, setUsers] = useState([]);
     const [rows, setRows] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Fetching Rewards
     useEffect(() => {
@@ -39,7 +39,7 @@ const Users = () => {
                 }
                 const data = await res.json();
                 setUsers(data);
-                setIsLoading(true);
+                setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -98,7 +98,7 @@ const Users = () => {
 
     return (
         <>
-            {!isLoading ? (
+            {isLoading ? (
                 <Box
                     sx={{
                         display: "flex",
@@ -127,7 +127,7 @@ const Users = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
                 >
                     <TopUserBar titleScreen={"Employees"} />
                     <Breadcrumbs />

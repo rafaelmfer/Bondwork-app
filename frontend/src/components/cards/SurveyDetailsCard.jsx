@@ -93,7 +93,7 @@ const SurveyDetailsCard = ({
             <Row sx={{ marginBottom: "8px" }}>
                 <Column sx={{ paddingRight: "2rem" }}>
                     <TextContainer>
-                        <TextBlue>Deparment</TextBlue>
+                        <TextBlue>Department</TextBlue>
                         <Typography color={theme.palette.neutrals.black}>
                             {department}
                         </Typography>

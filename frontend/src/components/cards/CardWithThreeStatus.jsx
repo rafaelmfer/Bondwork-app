@@ -1,6 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Card, CardContent, Typography, Button } from "@mui/material";
+import {
+    Box,
+    Card,
+    CardContent,
+    Typography,
+    Button,
+    useMediaQuery,
+} from "@mui/material";
 import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
@@ -26,6 +33,7 @@ const CardWithThreeStatus = ({
     pathButton,
 }) => {
     const navigate = useNavigate();
+    const isDesktop = useMediaQuery(theme.breakpoints.up("desktop"));
 
     const progressValue1 = (number1 * 100) / totalNumber;
     const progressValue2 = (number2 * 100) / totalNumber;
@@ -52,6 +60,7 @@ const CardWithThreeStatus = ({
                                 ...theme.typography.h4,
                                 fontWeight: "bold",
                                 padding: 0,
+                                textAlign: "left",
                                 "&:hover": {
                                     backgroundColor: "transparent",
                                 },
@@ -76,10 +85,12 @@ const CardWithThreeStatus = ({
                     )}
                     <Typography
                         variant="small1"
+                        textAlign={"right"}
                         color={theme.palette.neutrals.gray300}
-                    >
-                        Compared to Previous Period
-                    </Typography>
+                        dangerouslySetInnerHTML={{
+                            __html: "Compared to<br/>Previous Period",
+                        }}
+                    ></Typography>
                 </Box>
                 <Box
                     display="flex"
@@ -112,7 +123,16 @@ const CardWithThreeStatus = ({
                     statusColor3={statusColor3}
                     sx={{ marginBottom: "16px" }}
                 />
-                <Box display="flex" gap={2} flexGrow={1}>
+                <Box
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 1fr)",
+                        gap: "16px",
+                        [theme.breakpoints.down(1200)]: {
+                            gridTemplateColumns: "repeat(2, 1fr)",
+                        },
+                    }}
+                >
                     <StatusCard
                         statusText={statusText1}
                         statusColor={statusColor1}

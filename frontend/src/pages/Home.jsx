@@ -77,27 +77,37 @@ const Home = () => {
     const chartDataSatisfaction = [
         {
             name: "Overall",
-            data: [2.5, 2.9, 2.4, 2.9, 3.2, 3.4, null],
+            data: chartsApi.chart2
+                ? chartsApi.chart2[chartIndex].info.averages[0]
+                : [0],
             color: "#8F0A06",
         },
         {
             name: "Salary",
-            data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
+            data: chartsApi.chart2
+                ? chartsApi.chart2[chartIndex].info.averages[1]
+                : [0],
             color: "#B1D6F9",
         },
         {
             name: "Company Culture",
-            data: [2, 2.3, 2.5, 3, 4.5, 4.1, null],
+            data: chartsApi.chart2
+                ? chartsApi.chart2[chartIndex].info.averages[2]
+                : [0],
             color: "#2774BC",
         },
         {
             name: "Job Role",
-            data: [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
+            data: chartsApi.chart2
+                ? chartsApi.chart2[chartIndex].info.averages[3]
+                : [0],
             color: "#FBD8D8",
         },
         {
             name: "Colleagues",
-            data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
+            data: chartsApi.chart2
+                ? chartsApi.chart2[chartIndex].info.averages[4]
+                : [0],
             color: "#EF6461",
         },
     ];
@@ -133,7 +143,7 @@ const Home = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className=" ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[calc(100vh-80px)]"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[calc(100vh-80px)]"
                 >
                     <TopUserBar titleScreen={"Dashboard"} backIcon={false} />
                     <Breadcrumbs />
@@ -142,7 +152,7 @@ const Home = () => {
                         filterEnabled={"Annual"}
                         onFilterChange={handleFilterChange}
                     />
-                    <div className="flex row gap-4 mt-4">
+                    <div className="grid min-[950px]:grid-cols-2 gap-4 mt-4">
                         <CardTurnoverRate
                             title={"Turnover Rate"}
                             currentRate={currentTurnOverRate}
@@ -150,20 +160,29 @@ const Home = () => {
                             chartData={chartData}
                         />
                         <CardSatisfactionDrivers
-                            overall={3.25}
-                            chipText={-0.2}
+                            overall={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info
+                                          .currentOverall
+                                    : 0
+                            }
+                            chipText={
+                                chartsApi.chart2
+                                    ? chartsApi.chart2[chartIndex].info
+                                          .lastOverall
+                                    : 0
+                            }
                             data={chartDataSatisfaction}
                             labels={
                                 chartsApi.chart2
-                                    ? chartsApi.chart2[chartIndex].info[0]
-                                          .labels
+                                    ? chartsApi.chart2[chartIndex].info.labels
                                     : []
                             }
                         />
                     </div>
-                    <div className="flex row gap-4 mt-6 mb-8">
+                    <div className="grid min-[950px]:grid-cols-2 gap-4 mt-6 mb-8">
                         <CardWithThreeStatus
-                            title={"Recognition"}
+                            title={"Recognition Request"}
                             totalNumber={
                                 chartsApi.chart3
                                     ? chartsApi.chart3[chartIndex].info[0]
@@ -218,7 +237,7 @@ const Home = () => {
                                           .statusCounts.rejectedBadge
                                     : 0
                             }
-                            pathButton={"/recognitions"}
+                            pathButton={"/recognitions/requests"}
                         />
                         <CardWithThreeStatus
                             title={"Rewards Request"}
@@ -276,7 +295,7 @@ const Home = () => {
                                           .statusCounts.rejectedBadge
                                     : 0
                             }
-                            pathButton={"/rewards"}
+                            pathButton={"/rewards/requests"}
                         />
                     </div>
                 </main>

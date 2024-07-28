@@ -30,7 +30,7 @@ const RecognitionMain = () => {
     };
 
     const [dataInd, setData] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [recognitions, setRecognitions] = useState([]); // for the table
 
     // Fetching charts recognitions
@@ -53,8 +53,8 @@ const RecognitionMain = () => {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
                 const data = await res.json();
-                setIsLoading(true);
                 setChartsApi(data);
+                setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
@@ -158,7 +158,7 @@ const RecognitionMain = () => {
 
     return (
         <>
-            {!isLoading ? (
+            {isLoading ? (
                 <Box
                     sx={{
                         display: "flex",
@@ -187,7 +187,7 @@ const RecognitionMain = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
                 >
                     <TopUserBar titleScreen={"Recognition"} />
                     <Breadcrumbs />
@@ -196,7 +196,7 @@ const RecognitionMain = () => {
                         filterEnabled={"Annual"}
                         onFilterChange={handleFilterChange}
                     />
-                    <div className="flex row gap-4 mt-4">
+                    <div className="grid min-[950px]:grid-cols-2 gap-4 mt-4">
                         <CardWithThreeStatus
                             title={"Recognition"}
                             totalNumber={

@@ -14,8 +14,12 @@ import PasswordIconClosedHover from "../../assets/icons/eye-orange-primary-close
 import PasswordIconOpenHover from "../../assets/icons/eye-orange-primary-opened.svg";
 
 import CircularProgress from "@mui/material/CircularProgress";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const Login = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("desktop"));
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -105,8 +109,8 @@ const Login = () => {
     };
 
     return (
-        <main className="bg-main-100 relative h-screen flex flex-col items-center justify-center">
-            <div className="flex justify-center mb-12">
+        <main className="bg-main-100 relative min-h-screen flex flex-col items-center justify-between lg:justify-center">
+            <div className="flex justify-center mb-4 lg:mb-12 mt-8 lg:mt-0">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
             <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg lg:w-full max-w-lg mx-4">
@@ -144,7 +148,7 @@ const Login = () => {
 
                     <div className="flex items-center justify-between mb-6">
                         <label
-                            className="flex items-center gap-2 cursor-pointer"
+                            className="labelSmall text-neutrals-gray300 flex items-center gap-2 cursor-pointer text-small1"
                             onClick={handleRememberMeToggle}
                         >
                             <img
@@ -164,7 +168,7 @@ const Login = () => {
                             Forgot Password?
                         </Link> */}
                         <label
-                            className="text-secondary-main text-small2-medium self-end"
+                            className="text-neutrals-gray300 text-small1"
                             htmlFor=""
                         >
                             Forgot Password?
@@ -205,6 +209,13 @@ const Login = () => {
                     </Link>
                 </div>
             </div>
+            {isMobile === true && (
+                <div>
+                    <p className="text-neutrals-gray300 text-small2 text-center py-4">
+                        Jigglypuff @ 2024. All rights reserved.
+                    </p>
+                </div>
+            )}
         </main>
     );
 };

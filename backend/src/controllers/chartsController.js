@@ -15,7 +15,7 @@ const getDashboardCharts = async (req, res) => {
 
         const [chart1, chart2, chart3, chart4] = await Promise.all([
             turnoverRate(date),
-            averageScoreSurveys(date),
+            scoreCategoriesSurveys(true),
             recognitionsByStatus(date),
             rewardsRequestByStatus(date),
         ]);
@@ -78,7 +78,7 @@ const getSurveysCharts = async (req, res) => {
             surveysManagementByStatus(date),
             satisfactionIndex(date),
             averageScoreSurveys(date),
-            averageScoreSurveys(date),
+            scoreCategoriesSurveys(false),
         ]);
 
         res.status(200).json({
@@ -1322,7 +1322,7 @@ const surveysManagementByStatus = async (date) => {
                         // Check if the survey is within the current period and update the counts
                         if (
                             survey.status === "Ongoing" &&
-                            surveyEndDate <= periodEndDate
+                            surveyEndDate >= periodEndDate
                         ) {
                             acc.ongoing += 1;
                             acc.totalAmount += 1;
@@ -1569,9 +1569,9 @@ const satisfactionIndex = async (date) => {
                     totalEmployeesWithSurveys,
                     totalAverage,
                     percentages: [
-                        promoterPercent * 5,
-                        neutralPercent * 5,
-                        detractorPercent * 5,
+                        Number((promoterPercent * 5).toFixed(2)),
+                        Number((neutralPercent * 5).toFixed(2)),
+                        Number((detractorPercent * 5).toFixed(2)),
                     ],
                 });
             }
@@ -1683,6 +1683,180 @@ const averageScoreSurveys = async (date) => {
         return results;
     } catch (error) {
         console.error("Error fetching average score data:", error);
+        throw new Error(error.message);
+    }
+};
+
+const scoreCategoriesSurveys = async (hasOverall) => {
+    try {
+        const results = [];
+        const unitResults = [];
+
+        let weekAverage = [
+            [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
+            [2, 2.3, 2.5, 3, 4.5, 4.1, null],
+            [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
+            [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
+        ];
+        let monthAverage = [
+            [3, 2.5, 2.7, 3.3],
+            [3, 4.5, 4.1, 4.5],
+            [4.7, 2.6, 3.1, 3.7],
+            [3.6, 2.9, 3.8, 3.4],
+        ];
+        let quarterAverage = [
+            [2, 2.5, null],
+            [3, 3.5, null],
+            [3.7, 3.3, null],
+            [2.6, 3.2, null],
+        ];
+        let annualAverage = [
+            [2.1, 2.5, 2.9],
+            [1.5, 2.7, 3.8],
+            [3.2, 3.3, 3.3],
+            [2.6, 2.9, 4.2],
+        ];
+
+        let currentDayOverall = 0;
+        let lastDayOverall = 0;
+        let currentWeekOverall = 0;
+        let lastWeekOverall = 0;
+        let currentMonthOverall = 0;
+        let lastMonthOverall = 0;
+        let currentQuarterOverall = 0;
+        let lastQuarterOverall = 0;
+
+        if (hasOverall) {
+            const calculateAverage = (values) => {
+                const validValues = values.filter((value) => value !== null);
+                const sum = validValues.reduce((acc, value) => acc + value, 0);
+                return validValues.length
+                    ? Number((sum / validValues.length).toFixed(2))
+                    : null;
+            };
+
+            const calculateOverallAverage = (dataArray) => {
+                const maxLength = Math.max(
+                    ...dataArray.map((arr) => arr.length)
+                );
+                return Array.from({ length: maxLength }, (_, index) =>
+                    calculateAverage(dataArray.map((array) => array[index]))
+                );
+            };
+
+            const getCurrentAndLastOverall = (averageArray) => {
+                const currentOverall =
+                    averageArray[averageArray.length - 1] ??
+                    averageArray[averageArray.length - 2];
+                const lastOverall = averageArray[averageArray.length - 1]
+                    ? averageArray[averageArray.length - 2]
+                    : averageArray[averageArray.length - 3];
+                return {
+                    currentOverall,
+                    lastOverall: Number(
+                        (currentOverall - lastOverall).toFixed(2)
+                    ),
+                };
+            };
+
+            // Average for every period
+            const weekOverallAverage = calculateOverallAverage(weekAverage);
+            const monthOverallAverage = calculateOverallAverage(monthAverage);
+            const quarterOverallAverage =
+                calculateOverallAverage(quarterAverage);
+            const annualOverallAverage = calculateOverallAverage(annualAverage);
+
+            // Add Overall array in first position of the array
+            weekAverage.unshift(weekOverallAverage);
+            monthAverage.unshift(monthOverallAverage);
+            quarterAverage.unshift(quarterOverallAverage);
+            annualAverage.unshift(annualOverallAverage);
+
+            // Calculate current overall and the last overall for every period
+            ({
+                currentOverall: currentDayOverall,
+                lastOverall: lastDayOverall,
+            } = getCurrentAndLastOverall(weekOverallAverage));
+            ({
+                currentOverall: currentWeekOverall,
+                lastOverall: lastWeekOverall,
+            } = getCurrentAndLastOverall(monthOverallAverage));
+            ({
+                currentOverall: currentMonthOverall,
+                lastOverall: lastMonthOverall,
+            } = getCurrentAndLastOverall(quarterOverallAverage));
+            ({
+                currentOverall: currentQuarterOverall,
+                lastOverall: lastQuarterOverall,
+            } = getCurrentAndLastOverall(annualOverallAverage));
+        }
+
+        unitResults.push(
+            {
+                from: "2024-07-29",
+                to: "2024-08-04",
+                currentOverall: currentDayOverall,
+                lastOverall: lastDayOverall,
+                averages: weekAverage,
+                labels: ["29", "30", "31", "1", "2", "3", "4"],
+            },
+            {
+                from: "2024-08-01",
+                to: "2024-08-31",
+                currentOverall: currentWeekOverall,
+                lastOverall: lastWeekOverall,
+                averages: monthAverage,
+                labels: [
+                    "Jul/Week 2",
+                    "Jul/Week 3",
+                    "Jul/Week 4",
+                    "Aug/Week 1",
+                ],
+            },
+            {
+                from: "2024-07-01",
+                to: "2024-09-30",
+                currentOverall: currentMonthOverall,
+                lastOverall: lastMonthOverall,
+                averages: quarterAverage,
+                labels: ["July", "August", "September"],
+            },
+            {
+                from: "2024-01-01",
+                to: "2024-12-31",
+                currentOverall: currentQuarterOverall,
+                lastOverall: lastQuarterOverall,
+                averages: annualAverage,
+                labels: ["Q1", "Q2", "Q3"],
+            }
+        );
+
+        // Response of API
+        results.push(
+            {
+                filter: "Week",
+                info: unitResults[0],
+            },
+            {
+                filter: "Month",
+                info: unitResults[1],
+            },
+            {
+                filter: "Quarter",
+                info: unitResults[2],
+            },
+            {
+                filter: "Annual",
+                info: unitResults[3],
+            }
+        );
+
+        return results;
+    } catch (error) {
+        console.error(
+            "Error fetching average score by categories data:",
+            error
+        );
         throw new Error(error.message);
     }
 };
@@ -1853,7 +2027,7 @@ const generateLabels = (unit, start, end) => {
             }
             break;
         case "month":
-            labels.push("week1", "week2", "week3", "week4");
+            labels.push("Week 1", "Week 2", "Week 3", "Week 4");
             break;
         case "quarter":
             for (let i = 0; i < 3; i++) {

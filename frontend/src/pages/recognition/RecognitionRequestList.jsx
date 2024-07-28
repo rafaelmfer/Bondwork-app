@@ -139,7 +139,7 @@ const RecognitionRequestList = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[calc(100vh-80px)]"
                 >
                     <TopUserBar titleScreen={"Requests"} />
                     <Breadcrumbs />

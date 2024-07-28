@@ -20,10 +20,10 @@ const SurveyMain = () => {
     const { token, isTokenValid } = useAuthToken();
     const navigate = useNavigate();
     // let today = new Date().toISOString().split("T")[0];
-    let today = "2024-07-31";
+    let today = "2024-08-03";
     const [chartsApi, setChartsApi] = useState({});
     const [chartIndex, setChartIndex] = useState(3);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleFilterChange = (index) => {
         setChartIndex(index);
@@ -51,37 +51,14 @@ const SurveyMain = () => {
                 }
                 const data = await res.json();
                 setChartsApi(data);
-                setIsLoading(true);
+                setIsLoading(false);
+                console.log(data);
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
         fetchCharts();
     }, [isTokenValid, token, navigate, today]);
-
-    // Satisfaction Chart Data
-    const chartDataSatisfaction = [
-        {
-            name: "Salary",
-            data: [2.9, 2, 2.7, 3.5, 3.3, 4.5, null],
-            color: "#B1D6F9",
-        },
-        {
-            name: "Company Culture",
-            data: [2, 2.3, 2.5, 3, 4.5, 4.1, null],
-            color: "#2774BC",
-        },
-        {
-            name: "Job Role",
-            data: [4.2, 3.2, 4.7, 2.6, 2.5, 3.1, null],
-            color: "#FBD8D8",
-        },
-        {
-            name: "Colleagues",
-            data: [3.6, 3.6, 2.9, 4.3, 4.3, 2.3, null],
-            color: "#EF6461",
-        },
-    ];
 
     const [surveys, setSurveys] = useState([]);
     // Fetching surveys
@@ -157,7 +134,7 @@ const SurveyMain = () => {
 
     return (
         <>
-            {!isLoading ? (
+            {isLoading ? (
                 <Box
                     sx={{
                         display: "flex",
@@ -186,7 +163,7 @@ const SurveyMain = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className="ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-full"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[130vh]"
                 >
                     <TopUserBar titleScreen={"Surveys"} />
                     <Breadcrumbs />
@@ -195,7 +172,7 @@ const SurveyMain = () => {
                         filterEnabled={"Annual"}
                         onFilterChange={handleFilterChange}
                     />
-                    <Box className="h-full grid grid-cols-2 items-center gap-6 mt-4">
+                    <Box className="h-full grid min-[950px]:grid-cols-2 items-center gap-6 mt-4">
                         <CardWithTwoStatus
                             title={"Management"}
                             totalNumber={
@@ -264,7 +241,7 @@ const SurveyMain = () => {
                     </Box>
 
                     <div
-                        className="h-full grid grid-cols-2 items-center gap-6 mt-6"
+                        className="h-full grid min-[950px]:grid-cols-2 items-center gap-6 mt-6"
                         id="chart"
                     >
                         <div className="chart-area-card h-full bg-main-50 shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
@@ -276,13 +253,13 @@ const SurveyMain = () => {
                                 chartHeight={220}
                                 chartData={
                                     chartsApi.chart3
-                                        ? chartsApi.chart3[chartIndex].info[1]
+                                        ? chartsApi.chart3[chartIndex].info[0]
                                               .averages
                                         : [null, null, null, null, null]
                                 }
                                 labels={
                                     chartsApi.chart3
-                                        ? chartsApi.chart3[chartIndex].info[1]
+                                        ? chartsApi.chart3[chartIndex].info[0]
                                               .labels
                                         : []
                                 }
@@ -296,11 +273,52 @@ const SurveyMain = () => {
                             <ChartLine
                                 className="chart-line-survey-main"
                                 chartHeight={220}
-                                data={chartDataSatisfaction}
+                                data={
+                                    chartsApi.chart4
+                                        ? [
+                                              {
+                                                  name: "Salary",
+                                                  data: chartsApi.chart4
+                                                      ? chartsApi.chart4[
+                                                            chartIndex
+                                                        ].info.averages[0]
+                                                      : [null, 3.3],
+                                                  color: "#B1D6F9",
+                                              },
+                                              {
+                                                  name: "Company Culture",
+                                                  data: chartsApi.chart4
+                                                      ? chartsApi.chart4[
+                                                            chartIndex
+                                                        ].info.averages[1]
+                                                      : [0],
+                                                  color: "#2774BC",
+                                              },
+                                              {
+                                                  name: "Job Role",
+                                                  data: chartsApi.chart4
+                                                      ? chartsApi.chart4[
+                                                            chartIndex
+                                                        ].info.averages[2]
+                                                      : [0],
+                                                  color: "#FBD8D8",
+                                              },
+                                              {
+                                                  name: "Colleagues",
+                                                  data: chartsApi.chart4
+                                                      ? chartsApi.chart4[
+                                                            chartIndex
+                                                        ].info.averages[3]
+                                                      : [0],
+                                                  color: "#EF6461",
+                                              },
+                                          ]
+                                        : []
+                                }
                                 isLegendBottom={false}
                                 labels={
                                     chartsApi.chart4
-                                        ? chartsApi.chart4[chartIndex].info[0]
+                                        ? chartsApi.chart4[chartIndex].info
                                               .labels
                                         : []
                                 }

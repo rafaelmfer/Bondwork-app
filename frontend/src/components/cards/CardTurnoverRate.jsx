@@ -7,10 +7,10 @@ const CardTurnoverRate = ({ title, currentRate, badge, chartData }) => {
     const getChipColors = (badge) => {
         let chipBackground, chipTextColor;
 
-        if (badge > 0) {
+        if (badge < 0) {
             chipBackground = theme.palette.success[100];
             chipTextColor = theme.palette.success[300];
-        } else if (badge < 0) {
+        } else if (badge > 0) {
             chipBackground = theme.palette.error[100];
             chipTextColor = theme.palette.error[300];
         } else {
@@ -64,10 +64,12 @@ const CardTurnoverRate = ({ title, currentRate, badge, chartData }) => {
                     </Typography>
                     <Typography
                         variant="small1"
+                        textAlign={"right"}
                         color={theme.palette.neutrals.gray300}
-                    >
-                        Compared to Previous Period
-                    </Typography>
+                        dangerouslySetInnerHTML={{
+                            __html: "Compared to<br/>Previous Period",
+                        }}
+                    ></Typography>
                 </Box>
                 <Box
                     display="flex"
@@ -91,6 +93,7 @@ const CardTurnoverRate = ({ title, currentRate, badge, chartData }) => {
                                 backgroundColor: chipBackground,
                                 color: chipTextColor,
                                 ml: 1,
+                                height: "20px",
                             }}
                         />
                     </Box>
