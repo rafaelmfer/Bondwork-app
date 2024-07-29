@@ -11,6 +11,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import Sidebar from "./components/Sidebar";
 import routes from "./routes/Routes";
 import Onboarding from "./pages/OnBoarding";
+import FourOhFour from "./pages/FourOhFour";
 
 // Method to recursively create the routes
 const renderRoutes = (routes) => {
@@ -53,6 +54,7 @@ const App = () => {
                     <Route index element={<Onboarding />} />
                     {renderRoutes(routes)}
                 </Route>
+                <Route path="*" element={<FourOhFour />} />
             </Routes>
         </Router>
     );

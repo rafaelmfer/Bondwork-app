@@ -169,6 +169,13 @@ module.exports = {
                     fontWeight: "400",
                 },
             ],
+            h404: ["clamp(5rem, 18vw, 18rem)"],
+            p404: [
+                "clamp(1rem, 2vw, 2rem)",
+                {
+                    lineHeight: "120%",
+                },
+            ],
         },
     },
     plugins: [],
