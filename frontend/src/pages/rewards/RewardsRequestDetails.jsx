@@ -14,12 +14,14 @@ import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
 import { formatDate } from "../../common/commonFunctions";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import PopUpOneBtn from "../../components/dialogs/PopUpOneBtn";
 import Reject from "../../components/dialogs/Reject";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
 import TextFieldArea from "../../components/textfields/TextFieldArea";
 import useAuthToken from "../../common/decodeToken";
 import { Typography, useTheme } from "@mui/material";
+import PopUpTwoBtnRewardRequestApproveBtn from "../../components/dialogs/PopUpTwoBtnRewardRequestApproveBtn";
 
 const RewardsRequestDetails = () => {
     const { token, isTokenValid } = useAuthToken();
@@ -37,6 +39,7 @@ const RewardsRequestDetails = () => {
     const [showPopupApproved, setShowPopupApproved] = useState(false);
     const [surveyInputs, setSurveyInputs] = useState({});
     const [value, setValue] = useState("");
+    const [showDBox, setShowDBox] = useState(false);
 
     const rejectionOptions = [
         "Inappropriate Content",
@@ -99,7 +102,83 @@ const RewardsRequestDetails = () => {
 
     return (
         <main className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[calc(100vh-80px)]">
-            {/* BTN APROVE CLICKED */}
+            <>
+                {showDBox && (
+                    <div
+                        className="popUp z-20 overflow-hidden flex justify-center items-center fixed top-0 left-0 w-full h-lvh backdrop-blur bg-contrastText1/25"
+                        role="dialog"
+                        aria-modal="true"
+                        style={{ background: "#c0c0c057" }}
+                    >
+                        <div
+                            className="popUp-inner relative bg-white w-[342px] rounded-[16px] p-4 flex flex-col justify-between"
+                            style={{
+                                display: "inline-table",
+                                background: "white",
+                            }}
+                        >
+                            <div className="pt-[16px]">
+                                <div className="successTex flex flex-col gap-4 items-center mb-4">
+                                    <img
+                                        src={promptSuccess}
+                                        alt="ok symbol"
+                                        className="w-12 h-12"
+                                    />
+                                    <h3 className="text-h3">Approve</h3>
+                                    <p className="text-p text-center">
+                                        Request has been approved. Approved
+                                        notification will be sent to the
+                                        employees.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="btn-container grid grid-cols-1 gap-4 w-full">
+                                <CustomButton
+                                    buttontype="primary"
+                                    isOutlined
+                                    onClick={() => {
+                                        setShowDBox(false);
+                                        window.location.reload();
+                                    }}
+                                >
+                                    Done
+                                </CustomButton>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </>
+            <PopUpTwoBtnRewardRequestApproveBtn
+                trigger={showPopupApproved}
+                setTrigger={setShowPopupApproved}
+                setDisplay={setDisplay}
+                display={display}
+                setEditable={setEditable}
+                setDescription={setSurveyInputs}
+                setReason={setValue}
+                reason={value}
+                setShowDBox={setShowDBox}
+                description={surveyInputs.description}
+                userId={id}
+                btnApproved={true}
+                endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
+                children={
+                    <div className="successTex flex flex-col gap-4 items-center mb-4">
+                        <img
+                            src={promptSuccess}
+                            alt="ok symbol"
+                            className="w-12 h-12"
+                        />
+                        <h3 className="text-h3">Approve</h3>
+                        <p className="text-p text-center">
+                            Are you sure you want to approve
+                            <br /> this request?
+                        </p>
+                    </div>
+                }
+            />
+            {/* BTN APROVE CLICKED
             <PopUpTwoBtn
                 trigger={showPopupApproved}
                 setTrigger={setShowPopupApproved}
@@ -109,10 +188,11 @@ const RewardsRequestDetails = () => {
                 setDescription={setSurveyInputs}
                 setReason={setValue}
                 reason={value}
+                setShowDBox = {setShowDBox}
                 description={surveyInputs.description}
                 userId={id}
                 btnApproved={true}
-                endPointUrl={`http://localhost:5001/api/rewards/update/${id}/${personId}`}
+                endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center mb-4">
                         <img
@@ -128,11 +208,7 @@ const RewardsRequestDetails = () => {
                     </div>
                 }
 
-                // btnOneText={"Go to Home"}
-                // btnOneOnClick={goToHome}
-                // btnTwoText={"Next"}
-                // btnTwoOnClick={goToNext}
-            />
+            /> */}
             {/* The previous call with two PopUp was working fine */}{" "}
             <Reject
                 trigger={triggerRequest}

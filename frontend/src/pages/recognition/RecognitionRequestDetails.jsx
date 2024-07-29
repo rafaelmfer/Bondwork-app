@@ -12,7 +12,6 @@ import PerfomanceIcon from "../../assets/icons/performance-dark-gray-neutral.svg
 import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
 import { formatDate } from "../../common/commonFunctions";
-import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
 import Reject from "../../components/dialogs/Reject";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
@@ -20,6 +19,7 @@ import TextFieldArea from "../../components/textfields/TextFieldArea";
 import useAuthToken from "../../common/decodeToken";
 
 import { Typography, useTheme } from "@mui/material";
+import PopUpTwoBtnRequestApprove from "../../components/dialogs/PopUpTwoBtnRequestApprove";
 
 const RecognitionRequestDetails = () => {
     const theme = useTheme();
@@ -51,11 +51,15 @@ const RecognitionRequestDetails = () => {
 
     const handleRejectBtn = async (event) => {
         event.preventDefault();
-        console.log("rejeitado");
         setShowPopup(true);
         setMarginBottom(true);
     };
 
+    const functionPopUpTwoBtnRequesApprove = async (event) => {
+        event.preventDefault();
+
+        setShowPopupApproved(true);
+    };
     // Fetch the details of the recognition
     useEffect(() => {
         const fetchData = async () => {
@@ -104,21 +108,13 @@ const RecognitionRequestDetails = () => {
         fetchData();
     }, [id, isTokenValid, token, navigate]);
 
-    useEffect(() => {
-        // Call the API to approve or reject and update the status and the options of dropdown component
-        // setStatus(data.status);
-        // setOptions(optionsArray);
-        // setSelectedOption(optionsArray[0]);
-    });
-
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
 
     return (
         <main className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 min-h-[calc(100vh-80px)]">
-            {/* BTN APROVE CLICKED */}
-            <PopUpTwoBtn
+            <PopUpTwoBtnRequestApprove
                 trigger={showPopupApproved}
                 setTrigger={setShowPopupApproved}
                 setDisplay={setDisplay}
@@ -130,8 +126,7 @@ const RecognitionRequestDetails = () => {
                 description={surveyInputs.description}
                 userId={id}
                 btnApproved={true}
-                endPointUrl={`http://l
-                    ocalhost:5001/api/recognition/update/${id}`}
+                endPointUrl={`${process.env.REACT_APP_API_URL}/api/recognition/update/${id}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center mb-4">
                         <img
@@ -145,14 +140,7 @@ const RecognitionRequestDetails = () => {
                         </p>
                     </div>
                 }
-
-                // btnOneText={"Go to Home"}
-                // btnOneOnClick={goToHome}
-                // btnTwoText={"Next"}
-                // btnTwoOnClick={goToNext}
             />
-
-            {/* BTN RECJECT CLICKED */}
             <Reject
                 trigger={showPopup}
                 setTrigger={setShowPopup}
@@ -200,14 +188,6 @@ const RecognitionRequestDetails = () => {
                                     value={value}
                                     onChange={(e) => {
                                         setValue(e.target.value);
-                                        // if (
-                                        //     e.target.value ===
-                                        //     rejectionOptions[
-                                        //         rejectionOptions.length - 1
-                                        //     ]
-                                        // ) {
-                                        //     setDisplay(true);
-                                        // }
                                     }}
                                 />
 
@@ -449,9 +429,7 @@ const RecognitionRequestDetails = () => {
                     <CustomButton
                         buttontype="primary"
                         buttonVariant="text"
-                        onClick={() => {
-                            setShowPopupApproved(true);
-                        }}
+                        onClick={functionPopUpTwoBtnRequesApprove}
                     >
                         Approve
                     </CustomButton>
