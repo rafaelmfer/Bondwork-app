@@ -11,6 +11,7 @@ import DropdownSelect from "../../components/textfields/TextFieldDropdown";
 import { InputDate } from "../../components/fields/InputDate/InputDate";
 import CustomButton from "../../components/buttons/CustomButton";
 import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
+import PopUpTwoBtnSurveyPublished from "../../components/dialogs/PopUpTwoBtnSurveyPublished";
 import useAuthToken from "../../common/decodeToken";
 import theme from "../../theme/theme";
 
@@ -153,10 +154,9 @@ export function SurveyHtml({ disabled }) {
 
     const handleAddSurvey = async (event) => {
         event.preventDefault();
-        console.log(surveyInputs);
+
         try {
             const result = await addSurvey(surveyInputs);
-            console.log("Survey added successfully", result);
             setShowPopup(true);
         } catch (error) {
             console.error("Error adding survey:", error);
@@ -214,7 +214,7 @@ export function SurveyHtml({ disabled }) {
 
     return (
         <>
-            <PopUpTwoBtn
+            <PopUpTwoBtnSurveyPublished
                 trigger={showPopup}
                 setTrigger={setShowPopup}
                 children={
@@ -230,11 +230,8 @@ export function SurveyHtml({ disabled }) {
                         </p>
                     </div>
                 }
-                btnOneText={"Go to Home"}
-                btnOneOnClick={goToHome}
-                btnTwoText={"Go to the Survey"}
-                btnTwoOnClick={goToSurvey}
             />
+
             <form onSubmit={handleAddSurvey}>
                 <surveyCreationContext.Provider
                     value={{ surveyInputs, setSurveyInputs }}

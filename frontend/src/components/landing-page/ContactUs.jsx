@@ -53,7 +53,7 @@ export default function ContactUs({ id, sx }) {
                     label="Name"
                     id="Name"
                     placeholder="Full name"
-                    value={"" || ""}
+                    value={""}
                     star={true}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
@@ -62,7 +62,7 @@ export default function ContactUs({ id, sx }) {
                     label="Company Name"
                     id="CompanyName"
                     placeholder="Company Name"
-                    value={"" || ""}
+                    value={""}
                     star={true}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
@@ -71,7 +71,7 @@ export default function ContactUs({ id, sx }) {
                     label="Phone"
                     id="CompanyName"
                     placeholder="Phone No."
-                    value={"" || ""}
+                    value={""}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
 
@@ -79,7 +79,7 @@ export default function ContactUs({ id, sx }) {
                     label="Email"
                     id="email"
                     placeholder="Email Address"
-                    value={"" || ""}
+                    value={""}
                     star={true}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
@@ -89,7 +89,7 @@ export default function ContactUs({ id, sx }) {
                     id="description"
                     placeholder="Text here"
                     hint={200}
-                    value={"" || ""}
+                    value={""}
                     sx={{ width: "100%", fontWeight: "bold" }}
                     disabled={false}
                 />
