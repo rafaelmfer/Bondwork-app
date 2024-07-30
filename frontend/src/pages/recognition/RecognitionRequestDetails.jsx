@@ -426,7 +426,24 @@ const RecognitionRequestDetails = () => {
                 <CardDescription
                     sx={{ minHeight: "180px" }}
                     title="Details"
-                    text={recognitionDetails.details || ""}
+                    text={
+                        status === "Rejected" ? (
+                            <span>
+                                <strong>Rejected Reason: </strong>
+                                <span style={{ color: "#CC0C0C" }}>
+                                    <strong>
+                                        {recognitionDetails.reason} -{" "}
+                                    </strong>
+                                    {recognitionDetails.rejectDetails}
+                                </span>
+                                <br />
+                                <br />
+                                {recognitionDetails.details}
+                            </span>
+                        ) : (
+                            ""
+                        )
+                    }
                 />
             </Box>
 

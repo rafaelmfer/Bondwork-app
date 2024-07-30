@@ -1,5 +1,4 @@
 import RewardsIcon from "../../assets/icons/reward-dark-gray-neutral.svg";
-
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
@@ -71,6 +70,7 @@ const RewardsRequestDetails = () => {
 
                 const data = await res.json();
                 setRewardsRequestDetails(data);
+                console.log(data);
 
                 // Create the options array for the DropdownSelect
                 let optionsArray = [
@@ -332,6 +332,29 @@ const RewardsRequestDetails = () => {
                     icon={SupportiveIcon}
                     text={rewardsRequestDetails.category || ""}
                 />
+            </Box>
+            <Box
+                display={"flex"}
+                flexDirection={"row"}
+                gap={"16px"}
+                marginTop={"32px"}
+            >
+                {status === "Rejected" && (
+                    <CardDescription
+                        title="Details"
+                        text={
+                            <>
+                                <strong>Rejected Reason: </strong>
+                                <span style={{ color: "#CC0C0C" }}>
+                                    <strong>
+                                        {`${rewardsRequestDetails.reason} - `}
+                                    </strong>
+                                    {`${rewardsRequestDetails.rejectDetails}`}
+                                </span>
+                            </>
+                        }
+                    />
+                )}
             </Box>
             {status === "Pending" && (
                 <Box
