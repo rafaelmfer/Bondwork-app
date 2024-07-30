@@ -215,6 +215,8 @@ const getRewardRequestDetails = async (req, res) => {
             date: redeem.date,
             category: reward.category,
             pointsCost: reward.pointsCost,
+            reason: redeem.reason,
+            rejectDetails: redeem.rejectDetails,
         };
 
         // Send the reward Request Details as response

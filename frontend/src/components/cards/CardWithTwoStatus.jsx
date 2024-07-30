@@ -47,6 +47,7 @@ const CardWithTwoStatus = ({
                                 ...theme.typography.h4,
                                 fontWeight: "bold",
                                 padding: 0,
+                                textAlign: "left",
                                 "&:hover": {
                                     backgroundColor: "transparent",
                                 },
@@ -72,6 +73,7 @@ const CardWithTwoStatus = ({
                     <Typography
                         variant="small1"
                         color={theme.palette.neutrals.gray300}
+                        textAlign={"right"}
                         dangerouslySetInnerHTML={{
                             __html: "Compared to<br/>Previous Period",
                         }}

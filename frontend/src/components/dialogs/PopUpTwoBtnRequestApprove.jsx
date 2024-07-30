@@ -1,9 +1,8 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../buttons/CustomButton";
 import useAuthToken from "../../common/decodeToken";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
-import closeIcon from "../../assets/icons/close-dark-gray-neutral.svg";
 
 const PopUpTwoBtnRequestApprove = ({
     trigger,
@@ -17,6 +16,8 @@ const PopUpTwoBtnRequestApprove = ({
     // For accesibility ============================
     const closeButtonRef = useRef(null);
     const previousFocusRef = useRef(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (trigger) {
@@ -37,6 +38,12 @@ const PopUpTwoBtnRequestApprove = ({
         };
 
         try {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
+
             const response = await fetch(endPointUrl, {
                 method: "PUT",
                 headers: {

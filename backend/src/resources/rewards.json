@@ -28,7 +28,9 @@
                 "id": 3000,
                 "status": "Rejected",
                 "requestDate": "2023-06-10",
-                "date": "2023-06-29"
+                "date": "2023-06-29",
+                "reason": "Others",
+                "rejectDetails": "Already redeem this a week before"
             }
         ],
         "title": "Yoga Lesson",
@@ -60,7 +62,9 @@
                 "id": 2500,
                 "status": "Rejected",
                 "requestDate": "2024-07-10",
-                "date": "2023-07-14"
+                "date": "2023-07-14",
+                "reason": "Others",
+                "rejectDetails": "Already redeem this a week before."
             }
         ],
         "title": "Free Lunch ($25)",
@@ -96,7 +100,9 @@
                 "id": 3000,
                 "status": "Rejected",
                 "requestDate": "2023-06-10",
-                "date": "2023-06-29"
+                "date": "2023-06-29",
+                "reason": "Others",
+                "rejectDetails": "Already redeem this a week before."
             }
         ],
         "title": "Amazon Gift Card",
@@ -141,7 +147,9 @@
                 "id": 2900,
                 "status": "Rejected",
                 "requestDate": "2023-05-10",
-                "date": "2023-06-01"
+                "date": "2023-06-01",
+                "reason": "Otherss",
+                "rejectDetails": "Already redeem this a week before."
             }
         ],
         "title": "Gym Membership",
@@ -173,7 +181,9 @@
                 "id": 2900,
                 "status": "Rejected",
                 "requestDate": "2024-06-11",
-                "date": "2024-07-02"
+                "date": "2024-07-02",
+                "reason": "Otherss",
+                "rejectDetails": "Already redeem this a week before."
             }
         ],
         "title": "Office Supplies Voucher",
@@ -343,13 +353,17 @@
                 "id": 3100,
                 "status": "Rejected",
                 "requestDate": "2023-07-10",
-                "date": "2023-08-01"
+                "date": "2023-08-01",
+                "reason": "Not Aligned with Reward Criteria",
+                "rejectDetails": "N/A"
             },
             {
                 "id": 2800,
                 "status": "Rejected",
                 "requestDate": "2023-07-10",
-                "date": "2023-08-01"
+                "date": "2023-08-01",
+                "reason": "Not Aligned with Reward Criteria",
+                "rejectDetails": "N/A"
             }
         ],
         "title": "Laptop Upgrade",
@@ -381,7 +395,9 @@
                 "id": 3200,
                 "status": "Rejected",
                 "requestDate": "2024-08-10",
-                "date": "2023-08-25"
+                "date": "2023-08-25",
+                "reason": "Not Aligned with Reward Criteria",
+                "rejectDetails": "N/A"
             }
         ],
         "title": "Home Office Setup",

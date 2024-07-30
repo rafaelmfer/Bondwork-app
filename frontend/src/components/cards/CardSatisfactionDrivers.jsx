@@ -36,7 +36,7 @@ const CardSatisfactionDrivers = ({
                         sx={{
                             textTransform: "none",
                             color: "inherit",
-                            fontSize: "1.25rem",
+                            ...theme.typography.h4,
                             fontWeight: "bold",
                             padding: 0,
                             "&:hover": {
@@ -53,9 +53,10 @@ const CardSatisfactionDrivers = ({
                         variant="small1"
                         textAlign={"right"}
                         color={theme.palette.neutrals.gray300}
-                    >
-                        Compared to Previous Period
-                    </Typography>
+                        dangerouslySetInnerHTML={{
+                            __html: "Compared to<br/>Previous Period",
+                        }}
+                    ></Typography>
                 </Box>
                 <Box
                     display="flex"

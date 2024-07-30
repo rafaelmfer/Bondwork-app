@@ -8,7 +8,7 @@ import {
     Button,
     useMediaQuery,
 } from "@mui/material";
-import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/breadcrumbs-dark-gray-neutral.svg";
+import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/arrow-right-dark-gray-neutral.svg";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
 import LinearProgressMultiColor from "../progressbar/LinearProgressMultiColor";
