@@ -90,6 +90,8 @@ const getOneUser = async (req, res) => {
                         pointsCost: reward.pointsCost,
                         requestDate: redeemEntry.requestDate,
                         status: redeemEntry.status,
+                        reason: redeemEntry.reason,
+                        rejectDetails: redeemEntry.rejectDetails,
                     }));
                 }
                 return [];
