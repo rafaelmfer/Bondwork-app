@@ -1,57 +1,12 @@
 [
     {
-        "recognitionId": 401,
-        "sender": 2300,
-        "receiver": 2400,
-        "dateRequest": "2024-01-15",
-        "date": "2024-01-31",
-        "status": "Rejected",
-        "category": "Performance",
-        "details": "Excellent teamwork and project management skills.",
-        "points": 1000
-    },
-    {
-        "recognitionId": 402,
-        "sender": 2400,
-        "receiver": 2500,
-        "dateRequest": "2024-02-20",
-        "date": "2024-03-10",
-        "status": "Approved",
+        "recognitionId": 458,
+        "details": "Rafael, I wanted to take a moment to recognize your incredible teamwork during our recent IT project. Your dedication to the project and your ability to collaborate effectively with team members were instrumental in ensuring its success. You consistently provided valuable insights and support, which significantly enhanced the project's outcome. Your attention to detail and commitment to excellence were truly commendable. Your problem-solving skills and quick thinking ensured that we stayed on track and met our deadlines. Thank you for being an exceptional team player and for your invaluable contributions to our project.",
+        "sender": 9874,
+        "receiver": 7232,
+        "dateRequest": "2024-07-05",
+        "status": "Pending",
         "category": "Teamwork",
-        "details": "Consistently providing support to the team.",
-        "points": 1000
-    },
-    {
-        "recognitionId": 407,
-        "sender": 2900,
-        "receiver": 2600,
-        "dateRequest": "2023-07-30",
-        "date": "2023-08-11",
-        "status": "Approved",
-        "category": "Performance",
-        "details": "Excellent coding and problem-solving skills.",
-        "points": 1000
-    },
-    {
-        "recognitionId": 408,
-        "sender": 3000,
-        "receiver": 2700,
-        "dateRequest": "2023-08-15",
-        "date": "2023-09-03",
-        "status": "Approved",
-        "category": "Teamwork",
-        "details": "Consistent support to the finance department.",
-        "points": 1000
-    },
-    {
-        "recognitionId": 410,
-        "sender": 3200,
-        "receiver": 2900,
-        "dateRequest": "2023-10-05",
-        "date": "2023-10-29",
-        "status": "Approved",
-        "category": "Performance",
-        "details": "Achieving exceptional results in financial analysis.",
         "points": 1000
     },
     {
@@ -68,14 +23,14 @@
         "rejectDetails": "Did not align with current leadership goals."
     },
     {
-        "recognitionId": 418,
-        "sender": 7232,
-        "receiver": 9874,
-        "dateRequest": "2024-06-12",
-        "date": "2024-06-30",
+        "recognitionId": 435,
+        "sender": 3100,
+        "receiver": 3500,
+        "dateRequest": "2024-07-01",
+        "date": "2024-07-02",
         "status": "Approved",
-        "category": "Teamwork",
-        "details": "I wanted to express my sincere appreciation for your exceptional contributions to our recent project. Your problem-solving abilities and swift responses played a crucial role in helping us meet our deadline with outstanding quality. Thank you for being such a valuable member of our team!",
+        "category": "Performance",
+        "details": "Henry's marketing strategies have significantly boosted our brand.",
         "points": 1000
     },
     {
@@ -89,6 +44,16 @@
         "points": 1000
     },
     {
+        "recognitionId": 473,
+        "details": "Your creative solutions to our latest project challenges were exceptional. Your innovative approach and dedication to excellence have greatly contributed to our success. Your ability to think outside the box and deliver high-quality results is highly valued. Thank you for your outstanding creativity.",
+        "sender": 4000,
+        "receiver": 4010,
+        "status": "Pending",
+        "category": "Teamwork",
+        "dateRequest": "2024-08-02",
+        "points": 1000
+    },
+    {
         "recognitionId": 421,
         "sender": 9874,
         "receiver": 4922,
@@ -96,7 +61,9 @@
         "status": "Rejected",
         "category": "Teamwork",
         "details": "I wanted to express my sincere appreciation for your exceptional contributions to our recent project. Your problem-solving abilities and swift responses played a crucial role in helping us meet our deadline with outstanding quality. Thank you for being such a valuable member of our team!",
-        "points": 1000
+        "points": 1000,
+        "reason": "Duplicate Submission",
+        "rejectDetails": "N/A."
     },
     {
         "recognitionId": 425,
@@ -120,38 +87,16 @@
         "points": 1000
     },
     {
-        "recognitionId": 431,
-        "sender": 2500,
-        "receiver": 3300,
-        "dateRequest": "2024-06-25",
-        "date": "2024-07-01",
-        "status": "Approved",
-        "category": "Teamwork",
-        "details": "Charlotte's collaboration on the recent project was outstanding.",
-        "points": 1000
-    },
-    {
-        "recognitionId": 433,
-        "sender": 3200,
-        "receiver": 3400,
-        "dateRequest": "2024-07-02",
-        "date": "2024-07-05",
-        "status": "Approved",
+        "recognitionId": 426,
+        "sender": 2321,
+        "receiver": 7426,
+        "dateRequest": "2024-06-28",
+        "status": "Pending",
         "category": "Creativity",
-        "details": "Harper's new system implementation was innovative and efficient.",
+        "details": "The innovative solution you developed for the customer service issue has drastically improved our response times and customer satisfaction. Your ability to think outside the box is truly commendable.",
         "points": 1000
     },
-    {
-        "recognitionId": 435,
-        "sender": 3100,
-        "receiver": 3500,
-        "dateRequest": "2024-07-01",
-        "date": "2024-07-02",
-        "status": "Approved",
-        "category": "Performance",
-        "details": "Henry's marketing strategies have significantly boosted our brand.",
-        "points": 1000
-    },
+
     {
         "recognitionId": 406,
         "sender": 2800,
@@ -196,16 +141,6 @@
         "points": 1000,
         "reason": "Others",
         "rejectDetails": "Insufficient evidence provided."
-    },
-    {
-        "recognitionId": 426,
-        "sender": 2321,
-        "receiver": 7426,
-        "dateRequest": "2024-06-28",
-        "status": "Pending",
-        "category": "Creativity",
-        "details": "The innovative solution you developed for the customer service issue has drastically improved our response times and customer satisfaction. Your ability to think outside the box is truly commendable.",
-        "points": 1000
     },
     {
         "recognitionId": 434,
@@ -357,11 +292,23 @@
         "receiver": 2103,
         "dateRequest": "2024-06-30",
         "status": "Rejected",
+        "date": "2024-07-01",
         "category": "Creativity",
         "details": "Your idea to integrate the new software with our existing system was a game-changer. It has enhanced our productivity and efficiency, and we are grateful for your innovative thinking.",
         "points": 1000,
-        "reason": "option one",
-        "rejectDetails": "dadasdsasa"
+        "reason": "Duplicate Submission",
+        "rejectDetails": "N/A."
+    },
+    {
+        "recognitionId": 418,
+        "sender": 7232,
+        "receiver": 9874,
+        "dateRequest": "2024-06-12",
+        "date": "2024-06-30",
+        "status": "Approved",
+        "category": "Teamwork",
+        "details": "I wanted to express my sincere appreciation for your exceptional contributions to our recent project. Your problem-solving abilities and swift responses played a crucial role in helping us meet our deadline with outstanding quality. Thank you for being such a valuable member of our team!",
+        "points": 1000
     },
     {
         "recognitionId": 450,
@@ -371,9 +318,6 @@
         "dateRequest": "2024-01-10",
         "status": "Pending",
         "category": "Teamwork",
-        "date": {
-            "$date": "2024-01-15T00:00:00.000Z"
-        },
         "points": 1000
     },
     {
@@ -384,9 +328,7 @@
         "dateRequest": "2024-02-15",
         "status": "Approved",
         "category": "Creativity",
-        "date": {
-            "$date": "2024-02-20T00:00:00.000Z"
-        },
+        "date": "2024-02-20",
         "points": 1000
     },
     {
@@ -397,9 +339,7 @@
         "dateRequest": "2024-03-05",
         "status": "Approved",
         "category": "Teamwork",
-        "date": {
-            "$date": "2024-03-10T00:00:00.000Z"
-        },
+        "date": "2024-03-10",
         "points": 1000
     },
     {
@@ -410,9 +350,7 @@
         "dateRequest": "2024-04-10",
         "status": "Approved",
         "category": "Leadership",
-        "date": {
-            "$date": "2024-04-15T00:00:00.000Z"
-        },
+        "date": "2024-04-15",
         "points": 1000
     },
     {
@@ -423,9 +361,7 @@
         "dateRequest": "2024-05-20",
         "status": "Approved",
         "category": "Creativity",
-        "date": {
-            "$date": "2024-05-25T00:00:00.000Z"
-        },
+        "date": "2024-05-25",
         "points": 1000
     },
     {
@@ -436,9 +372,7 @@
         "dateRequest": "2024-06-01",
         "status": "Approved",
         "category": "Performance",
-        "date": {
-            "$date": "2024-06-05T00:00:00.000Z"
-        },
+        "date": "2024-06-05",
         "points": 1000
     },
     {
@@ -449,9 +383,7 @@
         "dateRequest": "2024-06-15",
         "status": "Approved",
         "category": "Creativity",
-        "date": {
-            "$date": "2024-06-20T00:00:00.000Z"
-        },
+        "date": "2024-06-20",
         "points": 1000
     },
     {
@@ -462,16 +394,6 @@
         "dateRequest": "2024-07-01",
         "status": "Pending",
         "category": "Leadership",
-        "points": 1000
-    },
-    {
-        "recognitionId": 458,
-        "details": "Rafael, I wanted to take a moment to recognize your incredible teamwork during our recent IT project. Your dedication to the project and your ability to collaborate effectively with team members were instrumental in ensuring its success. You consistently provided valuable insights and support, which significantly enhanced the project's outcome. Your attention to detail and commitment to excellence were truly commendable. Your problem-solving skills and quick thinking ensured that we stayed on track and met our deadlines. Thank you for being an exceptional team player and for your invaluable contributions to our project.",
-        "sender": 9874,
-        "receiver": 7232,
-        "dateRequest": "2024-07-05",
-        "status": "Pending",
-        "category": "Teamwork",
         "points": 1000
     },
     {
@@ -501,9 +423,7 @@
         "receiver": 2300,
         "status": "Pending",
         "category": "Creativity",
-        "dateRequest": {
-            "$date": "2024-08-01T00:00:00.000Z"
-        },
+        "dateRequest": "2024-08-01",
         "points": 1000
     },
     {
@@ -513,9 +433,7 @@
         "receiver": 2700,
         "status": "Pending",
         "category": "Leadership",
-        "dateRequest": {
-            "$date": "2024-07-31T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-31",
         "points": 1000
     },
     {
@@ -525,9 +443,7 @@
         "receiver": 3000,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-08-01T00:00:00.000Z"
-        },
+        "dateRequest": "2024-08-01",
         "points": 1000
     },
     {
@@ -537,9 +453,7 @@
         "receiver": 3200,
         "status": "Pending",
         "category": "Creativity",
-        "dateRequest": {
-            "$date": "2024-07-29T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-29",
         "points": 1000
     },
     {
@@ -549,9 +463,7 @@
         "receiver": 3300,
         "status": "Pending",
         "category": "Performance",
-        "dateRequest": {
-            "$date": "2024-07-28T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-28",
         "points": 1000
     },
     {
@@ -561,9 +473,18 @@
         "receiver": 3400,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-08-02T00:00:00.000Z"
-        },
+        "dateRequest": "2024-08-02",
+        "points": 1000
+    },
+    {
+        "recognitionId": 433,
+        "sender": 3200,
+        "receiver": 3400,
+        "dateRequest": "2024-07-02",
+        "date": "2024-07-05",
+        "status": "Approved",
+        "category": "Creativity",
+        "details": "Harper's new system implementation was innovative and efficient.",
         "points": 1000
     },
     {
@@ -573,9 +494,7 @@
         "receiver": 3500,
         "status": "Pending",
         "category": "Creativity",
-        "dateRequest": {
-            "$date": "2024-07-25T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-25",
         "points": 1000
     },
     {
@@ -585,9 +504,7 @@
         "receiver": 3600,
         "status": "Pending",
         "category": "Leadership",
-        "dateRequest": {
-            "$date": "2024-07-25T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-25",
         "points": 1000
     },
     {
@@ -597,9 +514,18 @@
         "receiver": 3700,
         "status": "Pending",
         "category": "Performance",
-        "dateRequest": {
-            "$date": "2024-07-27T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-27",
+        "points": 1000
+    },
+    {
+        "recognitionId": 431,
+        "sender": 2500,
+        "receiver": 3300,
+        "dateRequest": "2024-06-25",
+        "date": "2024-07-01",
+        "status": "Approved",
+        "category": "Teamwork",
+        "details": "Charlotte's collaboration on the recent project was outstanding.",
         "points": 1000
     },
     {
@@ -609,9 +535,7 @@
         "receiver": 3800,
         "status": "Pending",
         "category": "Creativity",
-        "dateRequest": {
-            "$date": "2024-07-28T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-28",
         "points": 1000
     },
     {
@@ -621,9 +545,7 @@
         "receiver": 3900,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-30T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-30",
         "points": 1000
     },
     {
@@ -633,21 +555,7 @@
         "receiver": 4000,
         "status": "Pending",
         "category": "Performance",
-        "dateRequest": {
-            "$date": "2024-08-01T00:00:00.000Z"
-        },
-        "points": 1000
-    },
-    {
-        "recognitionId": 473,
-        "details": "Your creative solutions to our latest project challenges were exceptional. Your innovative approach and dedication to excellence have greatly contributed to our success. Your ability to think outside the box and deliver high-quality results is highly valued. Thank you for your outstanding creativity.",
-        "sender": 4000,
-        "receiver": 4010,
-        "status": "Pending",
-        "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-08-02T00:00:00.000Z"
-        },
+        "dateRequest": "2024-08-01",
         "points": 1000
     },
     {
@@ -657,9 +565,7 @@
         "receiver": 4020,
         "status": "Pending",
         "category": "Leadership",
-        "dateRequest": {
-            "$date": "2024-07-29T00:00:00.000Z"
-        },
+        "dateRequest": "2024-07-29",
         "points": 1000
     },
     {
@@ -669,10 +575,7 @@
         "receiver": 7232,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-21T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-21",
         "points": 1000
     },
     {
@@ -682,10 +585,7 @@
         "receiver": 9874,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-23T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-23",
         "points": 1000
     },
     {
@@ -695,10 +595,7 @@
         "receiver": 7232,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-25T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-25",
         "points": 1000
     },
     {
@@ -708,10 +605,7 @@
         "receiver": 2300,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-29T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-29",
         "points": 1000
     },
     {
@@ -721,10 +615,7 @@
         "receiver": 9864,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-08-02T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-08-02",
         "points": 1000
     },
     {
@@ -734,10 +625,7 @@
         "receiver": 2400,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-08-01T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-08-01",
         "points": 1000
     },
     {
@@ -747,10 +635,7 @@
         "receiver": 2600,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-30T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-30",
         "points": 1000
     },
     {
@@ -760,10 +645,7 @@
         "receiver": 2800,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-28T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-28",
         "points": 1000
     },
     {
@@ -773,10 +655,7 @@
         "receiver": 3000,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-07-28T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-07-28",
         "points": 1000
     },
     {
@@ -786,10 +665,64 @@
         "receiver": 3200,
         "status": "Pending",
         "category": "Teamwork",
-        "dateRequest": {
-            "$date": "2024-08-01T00:00:00.000Z"
-        },
-        "date": null,
+        "dateRequest": "2024-08-01",
+        "points": 1000
+    },
+    {
+        "recognitionId": 401,
+        "sender": 2300,
+        "receiver": 2400,
+        "dateRequest": "2024-01-15",
+        "date": "2024-01-31",
+        "status": "Rejected",
+        "category": "Performance",
+        "details": "Excellent teamwork and project management skills.",
+        "points": 1000,
+        "reason": "Duplicate Submission",
+        "rejectDetails": "N/A."
+    },
+    {
+        "recognitionId": 402,
+        "sender": 2400,
+        "receiver": 2500,
+        "dateRequest": "2024-02-20",
+        "date": "2024-03-10",
+        "status": "Approved",
+        "category": "Teamwork",
+        "details": "Consistently providing support to the team.",
+        "points": 1000
+    },
+    {
+        "recognitionId": 407,
+        "sender": 2900,
+        "receiver": 2600,
+        "dateRequest": "2023-07-30",
+        "date": "2023-08-11",
+        "status": "Approved",
+        "category": "Performance",
+        "details": "Excellent coding and problem-solving skills.",
+        "points": 1000
+    },
+    {
+        "recognitionId": 408,
+        "sender": 3000,
+        "receiver": 2700,
+        "dateRequest": "2023-08-15",
+        "date": "2023-09-03",
+        "status": "Approved",
+        "category": "Teamwork",
+        "details": "Consistent support to the finance department.",
+        "points": 1000
+    },
+    {
+        "recognitionId": 410,
+        "sender": 3200,
+        "receiver": 2900,
+        "dateRequest": "2023-10-05",
+        "date": "2023-10-29",
+        "status": "Approved",
+        "category": "Performance",
+        "details": "Achieving exceptional results in financial analysis.",
         "points": 1000
     }
 ]

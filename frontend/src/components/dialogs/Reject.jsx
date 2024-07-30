@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../buttons/CustomButton";
 import useAuthToken from "../../common/decodeToken";
 
@@ -12,7 +13,7 @@ const Reject = ({
     endPointUrl,
     children,
 }) => {
-    const { token } = useAuthToken();
+    const { token, isTokenValid } = useAuthToken();
     const [showRejectButton, setShowRejectButton] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
     const [doneIcon, setDoneIcon] = useState(false);
@@ -20,6 +21,8 @@ const Reject = ({
     const closeButtonRef = useRef(null);
     const previousFocusRef = useRef(null);
     const popUpInnerRef = useRef(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (trigger) {
@@ -79,6 +82,12 @@ const Reject = ({
         };
 
         try {
+            if (!isTokenValid) {
+                console.log("Token is invalid or has expired");
+                navigate("/login");
+                return;
+            }
+
             const response = await fetch(endPointUrl, {
                 method: "PUT",
                 headers: {

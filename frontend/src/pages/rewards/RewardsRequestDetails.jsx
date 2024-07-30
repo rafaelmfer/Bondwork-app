@@ -12,8 +12,6 @@ import SupportiveIcon from "../../assets/icons/supportive-dark-gray-neutral.svg"
 import PointsIcon from "../../assets/icons/points-dark-gray-neutral.svg";
 import ProfilePlaceHolder from "../../assets/icons/profile-medium.svg";
 import { formatDate } from "../../common/commonFunctions";
-import PopUpTwoBtn from "../../components/dialogs/PopUpTwoBtn";
-import PopUpOneBtn from "../../components/dialogs/PopUpOneBtn";
 import Reject from "../../components/dialogs/Reject";
 import promptAlert from "../../assets/icons/prompt-alert.svg";
 import promptSuccess from "../../assets/icons/prompt-success.svg";
@@ -73,7 +71,6 @@ const RewardsRequestDetails = () => {
 
                 const data = await res.json();
                 setRewardsRequestDetails(data);
-                console.log(data);
 
                 // Create the options array for the DropdownSelect
                 let optionsArray = [
@@ -178,38 +175,6 @@ const RewardsRequestDetails = () => {
                     </div>
                 }
             />
-            {/* BTN APROVE CLICKED
-            <PopUpTwoBtn
-                trigger={showPopupApproved}
-                setTrigger={setShowPopupApproved}
-                setDisplay={setDisplay}
-                display={display}
-                setEditable={setEditable}
-                setDescription={setSurveyInputs}
-                setReason={setValue}
-                reason={value}
-                setShowDBox = {setShowDBox}
-                description={surveyInputs.description}
-                userId={id}
-                btnApproved={true}
-                endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
-                children={
-                    <div className="successTex flex flex-col gap-4 items-center mb-4">
-                        <img
-                            src={promptSuccess}
-                            alt="ok symbol"
-                            className="w-12 h-12"
-                        />
-                        <h3 className="text-h3">Approve</h3>
-                        <p className="text-p text-center">
-                            Are you sure you want to approve
-                            <br /> this request?
-                        </p>
-                    </div>
-                }
-
-            /> */}
-            {/* The previous call with two PopUp was working fine */}{" "}
             <Reject
                 trigger={triggerRequest}
                 setTrigger={setTriggerRequest}
@@ -409,13 +374,13 @@ const RewardsRequestDetails = () => {
                     text={rewardsRequestDetails.category || ""}
                 />
             </Box>
-            <Box
-                display={"flex"}
-                flexDirection={"row"}
-                gap={"16px"}
-                marginTop={"32px"}
-            >
-                {status === "Rejected" && (
+            {status === "Rejected" && (
+                <Box
+                    display={"flex"}
+                    flexDirection={"row"}
+                    gap={"16px"}
+                    marginTop={"32px"}
+                >
                     <CardDescription
                         title="Details"
                         text={
@@ -430,8 +395,8 @@ const RewardsRequestDetails = () => {
                             </>
                         }
                     />
-                )}
-            </Box>
+                </Box>
+            )}
             {status === "Pending" && (
                 <Box
                     display={"flex"}

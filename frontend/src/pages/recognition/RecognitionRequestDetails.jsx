@@ -421,7 +421,7 @@ const RecognitionRequestDetails = () => {
                                 {recognitionDetails.details}
                             </span>
                         ) : (
-                            ""
+                            recognitionDetails.details
                         )
                     }
                 />

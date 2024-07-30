@@ -242,7 +242,7 @@
             "id": 5
         },
         "jobLevel": "Mid Level",
-        "jobTitle": "UX Strategits",
+        "jobTitle": "UX Strategist",
         "onBoardingDate": "2023-09-01",
         "lastAccess": "2024-07-02",
         "surveys": [
@@ -555,6 +555,187 @@
             "received": [423, 427]
         },
         "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4010,
+        "email": "tomokoOkochi@langara.ca",
+        "hashPassword": "hashedpassword",
+        "firstName": "Tomoko",
+        "lastName": "Okochi ",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Tomoko-L.png?alt=media&token=1600afe1-93ae-48f6-8f9c-e87773466885",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Backend Developer",
+        "onBoardingDate": "2024-02-10",
+        "lastAccess": "2024-07-27",
+        "terminationDate": null,
+        "surveys": [
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-28",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 120,
+                "status": "completed",
+                "date": "2024-05-30",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [474],
+            "received": [473]
+        },
+        "points": 0,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2800,
+        "email": "tyler.higgs@langara.ca",
+        "hashPassword": "hashedpassword",
+        "firstName": "Tyler",
+        "lastName": "Higgs",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Tyle-L.png?alt=media&token=0f908381-689a-4b6f-a583-cace08155adb",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Product Designer",
+        "onBoardingDate": "2023-09-10",
+        "lastAccess": "2024-07-06",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [4, 3, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 107,
+                "status": "sent"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 135,
+                "status": "Completed",
+                "date": "2024-06-16",
+                "answers": [3, 3, 4, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [310, 311, 316],
+        "recognitions": {
+            "sent": [406],
+            "received": [409, 482]
+        },
+        "points": 8000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3100,
+        "email": "paul.b@langara.ca",
+        "hashPassword": "hashedpassword",
+        "firstName": "Paul",
+        "lastName": "Brassard",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Paul-L.png?alt=media&token=ebd6130c-89b0-4c77-a49e-4e3f4691c08a",
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Business Development Manager",
+        "onBoardingDate": "2020-12-05",
+        "lastAccess": "2024-07-09",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 102,
+                "status": "completed",
+                "date": "2024-02-29",
+                "answers": [4, 3, 3, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 109,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [3, 2, 1, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 131,
+                "status": "Completed",
+                "date": "2024-06-18",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 134,
+                "status": "Completed",
+                "date": "2024-05-01",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 108,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [310, 317],
+        "recognitions": {
+            "sent": [409, 435, 484],
+            "received": [412, 434]
+        },
+        "points": 6500,
         "adminRights": false
     },
     {
@@ -906,67 +1087,6 @@
         "adminRights": false
     },
     {
-        "employeeID": 2800,
-        "email": "tyler.higg@langara.ca",
-        "hashPassword": "hashedpassword",
-        "firstName": "Tyler ",
-        "lastName": "Higg",
-        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Tyle-L.png?alt=media&token=0f908381-689a-4b6f-a583-cace08155adb",
-        "department": {
-            "name": "Marketing",
-            "id": 5
-        },
-        "jobLevel": "Senior",
-        "jobTitle": "Product Designer",
-        "onBoardingDate": "2023-09-10",
-        "lastAccess": "2024-07-06",
-        "surveys": [
-            {
-                "id": 100,
-                "status": "sent"
-            },
-            {
-                "id": 113,
-                "status": "completed",
-                "date": "2024-02-10",
-                "answers": [4, 3, 4, 3],
-                "NPS": "Neutral"
-            },
-            {
-                "id": 107,
-                "status": "sent"
-            },
-            {
-                "id": 116,
-                "status": "sent"
-            },
-            {
-                "id": 135,
-                "status": "Completed",
-                "date": "2024-06-16",
-                "answers": [3, 3, 4, 4],
-                "NPS": "Neutral"
-            },
-            {
-                "id": 140,
-                "status": "sent",
-                "answers": []
-            },
-            {
-                "id": 141,
-                "status": "sent",
-                "answers": []
-            }
-        ],
-        "rewards": [310, 311, 316],
-        "recognitions": {
-            "sent": [406],
-            "received": [409, 482]
-        },
-        "points": 8000,
-        "adminRights": false
-    },
-    {
         "employeeID": 2900,
         "email": "olivia.moore@example.com",
         "hashPassword": "hashedpassword",
@@ -1115,86 +1235,6 @@
             "received": [411, 463, 483]
         },
         "points": 4000,
-        "adminRights": false
-    },
-    {
-        "employeeID": 3100,
-        "email": "paul.b@langara.ca",
-        "hashPassword": "hashedpassword",
-        "firstName": "Paul",
-        "lastName": "Brassard",
-        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Paul-L.png?alt=media&token=ebd6130c-89b0-4c77-a49e-4e3f4691c08a",
-        "department": {
-            "name": "Business Development",
-            "id": 4
-        },
-        "jobLevel": "Senior",
-        "jobTitle": "Business Development Manager",
-        "onBoardingDate": "2020-12-05",
-        "lastAccess": "2024-07-09",
-        "surveys": [
-            {
-                "id": 100,
-                "status": "sent"
-            },
-            {
-                "id": 102,
-                "status": "completed",
-                "date": "2024-02-29",
-                "answers": [4, 3, 3, 4],
-                "NPS": "Neutral"
-            },
-            {
-                "id": 104,
-                "status": "sent"
-            },
-            {
-                "id": 109,
-                "status": "sent"
-            },
-            {
-                "id": 113,
-                "status": "completed",
-                "date": "2024-02-10",
-                "answers": [3, 2, 1, 2],
-                "NPS": "Detractor"
-            },
-            {
-                "id": 131,
-                "status": "Completed",
-                "date": "2024-06-18",
-                "answers": [4, 4, 5, 4],
-                "NPS": "Promoter"
-            },
-            {
-                "id": 134,
-                "status": "Completed",
-                "date": "2024-05-01",
-                "answers": [3, 3, 3, 3],
-                "NPS": "Neutral"
-            },
-            {
-                "id": 140,
-                "status": "sent",
-                "answers": []
-            },
-            {
-                "id": 141,
-                "status": "sent",
-                "answers": []
-            },
-            {
-                "id": 108,
-                "status": "sent",
-                "answers": []
-            }
-        ],
-        "rewards": [310, 317],
-        "recognitions": {
-            "sent": [409, 435, 484],
-            "received": [412, 434]
-        },
-        "points": 6500,
         "adminRights": false
     },
     {
@@ -1607,46 +1647,6 @@
         "recognitions": {
             "sent": [473],
             "received": [472]
-        },
-        "points": 0,
-        "adminRights": false
-    },
-    {
-        "employeeID": 4010,
-        "email": "tomokoOkochi@langara.ca",
-        "hashPassword": "hashedpassword",
-        "firstName": "Tomoko",
-        "lastName": "Okochi ",
-        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Tomoko-L.png?alt=media&token=1600afe1-93ae-48f6-8f9c-e87773466885",
-        "department": {
-            "name": "IT",
-            "id": 2
-        },
-        "jobLevel": "Senior",
-        "jobTitle": "Backend Developer",
-        "onBoardingDate": "2024-02-10",
-        "lastAccess": "2024-07-27",
-        "terminationDate": null,
-        "surveys": [
-            {
-                "id": 137,
-                "status": "Completed",
-                "date": "2024-02-28",
-                "answers": [4, 4, 5, 4],
-                "NPS": "Promoter"
-            },
-            {
-                "id": 120,
-                "status": "completed",
-                "date": "2024-05-30",
-                "answers": [4, 4, 4, 4],
-                "NPS": "Promoter"
-            }
-        ],
-        "rewards": [],
-        "recognitions": {
-            "sent": [474],
-            "received": [473]
         },
         "points": 0,
         "adminRights": false
