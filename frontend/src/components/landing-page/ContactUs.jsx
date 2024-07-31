@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import TextFieldArea from "../textfields/TextFieldArea";
 import TextFieldRegular from "../textfields/TextFieldRegular";
@@ -6,6 +7,12 @@ import CustomButton from "../buttons/CustomButton";
 export default function ContactUs({ id, sx }) {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up("desktop"));
+
+    const [name, setName] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [description, setDescription] = useState("");
 
     return (
         <Box
@@ -53,8 +60,9 @@ export default function ContactUs({ id, sx }) {
                     label="Name"
                     id="Name"
                     placeholder="Full name"
-                    value={""}
                     star={true}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
 
@@ -62,7 +70,8 @@ export default function ContactUs({ id, sx }) {
                     label="Company Name"
                     id="CompanyName"
                     placeholder="Company Name"
-                    value={""}
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
                     star={true}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
@@ -71,7 +80,8 @@ export default function ContactUs({ id, sx }) {
                     label="Phone"
                     id="CompanyName"
                     placeholder="Phone No."
-                    value={""}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
 
@@ -79,7 +89,8 @@ export default function ContactUs({ id, sx }) {
                     label="Email"
                     id="email"
                     placeholder="Email Address"
-                    value={""}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     star={true}
                     sx={{ width: "100%", fontWeight: "bold" }}
                 />
@@ -89,7 +100,8 @@ export default function ContactUs({ id, sx }) {
                     id="description"
                     placeholder="Text here"
                     hint={200}
-                    value={""}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     sx={{ width: "100%", fontWeight: "bold" }}
                     disabled={false}
                 />

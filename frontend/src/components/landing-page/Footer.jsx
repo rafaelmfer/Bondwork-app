@@ -72,11 +72,11 @@ export default function Footer({ matches }) {
                     <li>
                         <Typography
                             component="a"
-                            href="#contact"
-                            onClick={(e) => handleClick(e, "contact")}
+                            href="#proposal"
+                            onClick={(e) => handleClick(e, "proposal")}
                             sx={{ ...theme.typography.p, fontWeight: 600 }}
                         >
-                            Demo
+                            Proposal
                         </Typography>
                     </li>
                     <li>

@@ -57,7 +57,7 @@ export default function Onboarding() {
                 matches={isMobile}
                 linkProposal={proposalLink}
                 sx={{
-                    marginTop: isMobile ? "32px" : "80px",
+                    paddingTop: isMobile ? "32px" : "80px",
                     paddingLeft: isMobile ? "16px" : "3%",
                     paddingRight: isMobile ? "16px" : "3%",
                 }}
