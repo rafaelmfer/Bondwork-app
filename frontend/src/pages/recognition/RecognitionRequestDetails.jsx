@@ -35,7 +35,6 @@ const RecognitionRequestDetails = () => {
     const [options, setOptions] = useState([]);
     const [surveyInputs, setSurveyInputs] = useState({});
     const [display, setDisplay] = useState(false);
-    //const [marginBottom, setMarginBottom] = useState(false);
     const [value, setValue] = useState("");
     const [editable, setEditable] = useState("");
 
