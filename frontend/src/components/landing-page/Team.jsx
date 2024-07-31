@@ -5,42 +5,42 @@ const teamMembers = [
     {
         name: "Yuriko Kikuchi",
         role: "Co-PM and Lead Designer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fyuriko.png?alt=media&token=73718df4-831c-4f9c-91b5-3e5e5f4aad2b",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fyuriko.png?alt=media&token=bcad735f-868f-4f15-93ef-1f357d4bb02b",
     },
     {
         name: "MoonYoung Lee",
         role: "UI / UX Designer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fmoonyoung.png?alt=media&token=20b5ab51-f993-490c-837c-50e43f2f79f3",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fmoonyoung.png?alt=media&token=5d66983b-60ef-4d8a-bcc4-b017c5d7f281",
     },
     {
         name: "TzeXuan Yap",
         role: "UI / UX Designer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fshane.png?alt=media&token=a49c2152-44d0-46ab-8a70-8cbeddae89f9",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fshane.png?alt=media&token=44e4c03d-7ba4-4bd3-a332-a5041f05d85f",
     },
     {
         name: "Izabela Nadu",
         role: "UI / UX Designer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fizabela.png?alt=media&token=a3674b5b-9d71-42f7-a346-0e44ff0bff03",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fizabela.png?alt=media&token=c604cb35-e12c-4e45-8123-91d0ae5ba69c",
     },
     {
         name: "Rafael Ferreira",
         role: "PM and Lead Developer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Frafael.png?alt=media&token=24c9b5e0-dcb6-4c74-8577-e59a30c81df4",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Frafael.png?alt=media&token=a2e7f57f-2d82-43dd-ad6c-956056309074",
     },
     {
         name: "Cecilia Lopez",
         role: "Full-stack Developer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fcecilia.png?alt=media&token=b6d3b24c-2277-4285-9fb1-90b158d7aa92",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fcecilia.png?alt=media&token=90f0b0d9-a31e-4631-ab05-6cad2ed9a76e",
     },
     {
         name: "Sidney Kai",
         role: "Full-stack Developer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fsidney.png?alt=media&token=a93bbe54-9035-4494-b013-620557c9161c",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fsidney.png?alt=media&token=1b4b9c89-c6bc-4b3b-9fab-1570bf7e4711",
     },
     {
         name: "YJ Hsu",
         role: "Back-End Developer",
-        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fyj.png?alt=media&token=f2103fa3-a0d1-4d83-8e0f-50910c30f1ac",
+        image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fyj.png?alt=media&token=c482a786-1f15-40eb-9d9e-a63fc4717f85",
     },
 ];
 
