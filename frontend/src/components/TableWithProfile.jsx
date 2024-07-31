@@ -115,6 +115,8 @@ export default function TableWithProfile({
     const [currentPage, setCurrentPage] = useState(1);
     const [selected, setSelected] = useState([]); // State for the selected checkboxes
     const [keysObject, setKeysObject] = useState([]);
+    // State to control the hover state of each row
+    const [hoveredRowId, setHoveredRowId] = useState(null);
     const navigate = useNavigate();
     const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
     let count = 0;
@@ -769,6 +771,7 @@ export default function TableWithProfile({
                 <tbody>
                     {rowsToShow.map((row) => {
                         const isItemSelected = isSelected(row.id);
+                        const isHovered = hoveredRowId === row.id;
                         return (
                             <tr
                                 key={count++}
@@ -790,10 +793,15 @@ export default function TableWithProfile({
                                     }
                                     navigate(finalPath);
                                 }}
+                                onMouseEnter={() => setHoveredRowId(row.id)}
+                                onMouseLeave={() => setHoveredRowId(null)}
                                 style={{
                                     cursor: "pointer",
                                     borderTop: "1px solid #EEEEEE",
-                                    fontSize: "1rem", // TODO: Adjust fontsize together with the <CheckStatus /> fontsize. Should be small2
+                                    fontSize: "1rem",
+                                    boxShadow: isHovered
+                                        ? "0px 4px 8px rgba(0, 0, 0, 0.1)"
+                                        : "none",
                                 }}
                             >
                                 <td
@@ -1152,7 +1160,12 @@ export default function TableWithProfile({
                                                 padding: "0",
                                                 margin: "0 4px",
                                             }}
-                                            aria-label="Example"
+                                            aria-label="Option menu button"
+                                            onClick={(event) => {
+                                                event.stopPropagation();
+                                                alert("Work in progress ...");
+                                                // Add piece of code
+                                            }}
                                         >
                                             <CustomMenuIcon />
                                         </IconButton>

@@ -180,8 +180,10 @@ const RewardsRequestDetails = () => {
                 setTrigger={setTriggerRequest}
                 setEditable={setEditable}
                 setDisplay={setDisplay}
-                reason={value}
-                description={surveyInputs.description}
+                setReason={setValue}
+                setDescription={(desc) =>
+                    setSurveyInputs((prev) => ({ ...prev, description: desc }))
+                }
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center">

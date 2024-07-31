@@ -106,7 +106,7 @@
             }
         ],
         "title": "Amazon Gift Card",
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FGift.jpg?alt=media&token=8b4952a0-4db6-4495-8dfe-bb8ff5347c52",
         "publish": true
     },
     {
@@ -153,7 +153,7 @@
             }
         ],
         "title": "Gym Membership",
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FGym.jpg?alt=media&token=a38cc3ac-d0b0-4010-ad29-b075a25064e9",
         "publish": true
     },
     {
@@ -187,7 +187,6 @@
             }
         ],
         "title": "Office Supplies Voucher",
-        "image": "",
         "publish": true
     },
     {
@@ -234,7 +233,7 @@
             }
         ],
         "title": "Gym Membership",
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FGym.jpg?alt=media&token=a38cc3ac-d0b0-4010-ad29-b075a25064e9",
         "publish": true
     },
     {
@@ -431,7 +430,7 @@
         "publish": true
     },
     {
-        "rewardId": 314,
+        "rewardId": 324,
         "category": "Well-being",
         "details": "Discover new destinations with a $500 travel voucher. Whether you're planning a vacation, a weekend getaway, or a business trip, this voucher can be used for flights, hotels, or car rentals. Enjoy the freedom to choose your own travel dates and destinations. Take advantage of this opportunity to explore the world and create unforgettable memories.",
         "pointsCost": 15000,
@@ -498,7 +497,7 @@
             }
         ],
         "title": "Travel Voucher",
-        "image": "https://example.com/images/travel_voucher.jpg",
+        "image": "",
         "publish": true
     },
     {
@@ -640,7 +639,6 @@
             }
         ],
         "title": "Spa Day Voucher",
-        "image": "https://example.com/images/spa_day_voucher.jpg",
         "publish": true
     },
     {
@@ -711,7 +709,7 @@
             }
         ],
         "title": "Restaurant Gift Card",
-        "image": "https://example.com/images/restaurant_gift_card.jpg",
+        "image": "",
         "publish": true
     }
 ]

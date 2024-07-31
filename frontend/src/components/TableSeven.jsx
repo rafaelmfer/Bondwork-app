@@ -82,6 +82,8 @@ export default function TableSeven({
     const [currentPage, setCurrentPage] = useState(1);
     const [selected, setSelected] = useState([]); // State for the selected checkboxes
     const [keysObject, setKeysObject] = useState([]);
+    // State to control the hover state of each row
+    const [hoveredRowId, setHoveredRowId] = useState(null);
     const navigate = useNavigate();
     const rowsPerPage = parseInt(rowsNumber); // Maximun number of rows per page
     let count = 0; // for key property in rows
@@ -217,15 +219,6 @@ export default function TableSeven({
 
     // State to switch arrow icons
     const [columnState, setColumnState] = useState({});
-    // const handleColumnClick = (columnName) => {
-    //     setColumnState((prevState) => ({
-    //         ...prevState,
-    //         [columnName]: {
-    //             ...prevState[columnName],
-    //             isClicked: !prevState[columnName]?.isClicked,
-    //         },
-    //     }));
-    // };
 
     const handleColumnHover = (columnName, isHovered) => {
         setColumnState((prevState) => ({
@@ -652,6 +645,7 @@ export default function TableSeven({
                 <tbody>
                     {rowsToShow.map((row) => {
                         const isItemSelected = isSelected(row.id);
+                        const isHovered = hoveredRowId === row.id;
                         return (
                             <tr
                                 key={count++}
@@ -673,10 +667,15 @@ export default function TableSeven({
                                     }
                                     navigate(finalPath);
                                 }} // Redirect the user
+                                onMouseEnter={() => setHoveredRowId(row.id)}
+                                onMouseLeave={() => setHoveredRowId(null)}
                                 style={{
                                     cursor: "pointer",
                                     borderTop: "1px solid #EEEEEE",
-                                    fontSize: "1rem", // TODO: Adjust fontsize together with the <CheckStatus /> fontsize
+                                    fontSize: "1rem",
+                                    boxShadow: isHovered
+                                        ? "0px 4px 8px rgba(0, 0, 0, 0.1)"
+                                        : "none",
                                 }}
                             >
                                 <td
@@ -844,7 +843,7 @@ export default function TableSeven({
                                                 padding: "0",
                                                 margin: "0 4px",
                                             }}
-                                            aria-label="Example"
+                                            aria-label="Option menu button"
                                             onClick={(event) => {
                                                 event.stopPropagation();
                                                 alert("Work in progress ...");

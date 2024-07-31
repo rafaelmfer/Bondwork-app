@@ -90,8 +90,8 @@ const SurveyMain = () => {
         "Survey Name",
         "Created In",
         "Expired Date",
-        "Viewed",
         "Completed",
+        "Sent",
         "Status",
     ];
 
@@ -101,8 +101,8 @@ const SurveyMain = () => {
         surveyName,
         createdIn,
         expired,
-        viewed,
         completed,
+        viewed,
         status
     ) {
         return {
@@ -110,8 +110,8 @@ const SurveyMain = () => {
             surveyName,
             createdIn,
             expired,
-            viewed,
             completed,
+            viewed,
             status,
         };
     }
