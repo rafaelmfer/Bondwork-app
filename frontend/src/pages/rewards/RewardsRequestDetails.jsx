@@ -34,7 +34,7 @@ const RewardsRequestDetails = () => {
     const [triggerRequest, setTriggerRequest] = useState(false);
     const [display, setDisplay] = useState(false);
     const [showPopupApproved, setShowPopupApproved] = useState(false);
-    const [surveyInputs, setSurveyInputs] = useState({});
+    const [inputText, setInputText] = useState({});
     const [value, setValue] = useState("");
     const [showDBox, setShowDBox] = useState(false);
 
@@ -152,11 +152,11 @@ const RewardsRequestDetails = () => {
                 setDisplay={setDisplay}
                 display={display}
                 setEditable={setEditable}
-                setDescription={setSurveyInputs}
+                setDescription={setInputText}
                 setReason={setValue}
                 reason={value}
                 setShowDBox={setShowDBox}
-                description={surveyInputs.description}
+                description={inputText.description}
                 userId={id}
                 btnApproved={true}
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
@@ -182,7 +182,7 @@ const RewardsRequestDetails = () => {
                 setDisplay={setDisplay}
                 setReason={setValue}
                 setDescription={(desc) =>
-                    setSurveyInputs((prev) => ({ ...prev, description: desc }))
+                    setInputText((prev) => ({ ...prev, description: desc }))
                 }
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/rewards/update/${id}/${personId}`}
                 children={
@@ -240,17 +240,12 @@ const RewardsRequestDetails = () => {
                                             id="description"
                                             placeholder="Text here"
                                             hint={200}
-                                            value={
-                                                surveyInputs.description || ""
-                                            }
+                                            value={inputText.description || ""}
                                             onChange={(e) => {
-                                                setSurveyInputs(
-                                                    (prevInputs) => ({
-                                                        ...prevInputs,
-                                                        description:
-                                                            e.target.value,
-                                                    })
-                                                );
+                                                setInputText((prevInputs) => ({
+                                                    ...prevInputs,
+                                                    description: e.target.value,
+                                                }));
                                             }}
                                         />
                                     </Box>
@@ -293,8 +288,8 @@ const RewardsRequestDetails = () => {
                                         variant="p"
                                         color={theme.palette.neutrals.black}
                                     >
-                                        {surveyInputs.description
-                                            ? surveyInputs.description
+                                        {inputText.description
+                                            ? inputText.description
                                             : "-"}
                                     </Typography>
                                 </div>

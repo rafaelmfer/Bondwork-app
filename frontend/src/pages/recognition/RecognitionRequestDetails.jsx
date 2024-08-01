@@ -33,7 +33,7 @@ const RecognitionRequestDetails = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [showPopupApproved, setShowPopupApproved] = useState(false);
     const [options, setOptions] = useState([]);
-    const [surveyInputs, setSurveyInputs] = useState({});
+    const [inputText, setInputText] = useState({});
     const [display, setDisplay] = useState(false);
     const [value, setValue] = useState("");
     const [editable, setEditable] = useState("");
@@ -109,10 +109,10 @@ const RecognitionRequestDetails = () => {
                 setDisplay={setDisplay}
                 display={display}
                 setEditable={setEditable}
-                setDescription={setSurveyInputs}
+                setDescription={setInputText}
                 setReason={setValue}
                 reason={value}
-                description={surveyInputs.description}
+                description={inputText.description}
                 userId={id}
                 btnApproved={true}
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/recognition/update/${id}`}
@@ -137,7 +137,7 @@ const RecognitionRequestDetails = () => {
                 setDisplay={setDisplay}
                 setReason={setValue}
                 setDescription={(desc) =>
-                    setSurveyInputs((prev) => ({ ...prev, description: desc }))
+                    setInputText((prev) => ({ ...prev, description: desc }))
                 }
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/recognition/update/${id}`}
                 children={
@@ -195,17 +195,12 @@ const RecognitionRequestDetails = () => {
                                             id="description"
                                             placeholder="Text here"
                                             hint={200}
-                                            value={
-                                                surveyInputs.description || ""
-                                            }
+                                            value={inputText.description || ""}
                                             onChange={(e) => {
-                                                setSurveyInputs(
-                                                    (prevInputs) => ({
-                                                        ...prevInputs,
-                                                        description:
-                                                            e.target.value,
-                                                    })
-                                                );
+                                                setInputText((prevInputs) => ({
+                                                    ...prevInputs,
+                                                    description: e.target.value,
+                                                }));
                                             }}
                                         />
                                     </Box>
@@ -248,8 +243,8 @@ const RecognitionRequestDetails = () => {
                                         variant="p"
                                         color={theme.palette.neutrals.black}
                                     >
-                                        {surveyInputs.description
-                                            ? surveyInputs.description
+                                        {inputText.description
+                                            ? inputText.description
                                             : "-"}
                                     </Typography>
                                 </div>
