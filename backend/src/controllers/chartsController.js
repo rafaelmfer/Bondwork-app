@@ -143,7 +143,7 @@ const getRewardsManagementByStatus = async (req, res) => {
 const getRewardsRequestByStatus = async (req, res) => {
     try {
         const { date } = req.body;
-        const results = rewardsRequestByStatus(date);
+        const results = await rewardsRequestByStatus(date);
 
         res.status(200).json(results);
     } catch (error) {

@@ -1,4 +1,4 @@
-import { TextField, InputAdornment, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
 const Label = styled("label")(({ theme }) => ({
@@ -12,25 +12,7 @@ const BoxImage = () => {
     return <p></p>;
 };
 
-export function AddImage({
-    id,
-    label,
-    iconLabel,
-    iconLeft,
-    onClickIconLeft,
-    iconRight,
-    onClickIconRight,
-    onMouseOverIconRight,
-    onMouseOutIconRight,
-    placeholder,
-    error,
-    hint,
-    disabled,
-    value,
-    type,
-    onChange,
-    sx,
-}) {
+export function AddImage({ id, label, error, disabled, sx }) {
     return (
         <Box
             sx={sx}

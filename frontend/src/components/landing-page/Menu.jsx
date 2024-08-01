@@ -147,7 +147,7 @@ export default function Menu({ matches, linkProposal }) {
                     </Box>
                 </Box>
             ) : (
-                <ul className="flex gap-[25px] items-center">
+                <ul className="flex gap-[25px] items-center text-center">
                     <li>
                         <Typography
                             component="a"
@@ -181,11 +181,11 @@ export default function Menu({ matches, linkProposal }) {
                     <li>
                         <Typography
                             component="a"
-                            href="#contact"
-                            onClick={(e) => handleClick(e, "contact")}
+                            href="#proposal"
+                            onClick={(e) => handleClick(e, "proposal")}
                             sx={{ ...theme.typography.p, fontWeight: 600 }}
                         >
-                            Demo
+                            Proposal
                         </Typography>
                     </li>
                     <li>
@@ -193,7 +193,11 @@ export default function Menu({ matches, linkProposal }) {
                             component="a"
                             href="#contact"
                             onClick={(e) => handleClick(e, "contact")}
-                            sx={{ ...theme.typography.p, fontWeight: 600 }}
+                            sx={{
+                                ...theme.typography.p,
+                                fontWeight: 600,
+                                textAlign: "center",
+                            }}
                         >
                             Contact Us
                         </Typography>
