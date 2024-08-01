@@ -405,7 +405,7 @@ const turnoverRate = async (date) => {
                     );
                 }
 
-                labels.push(`week${monthResults.length + 1}`);
+                labels.push(`Week ${monthResults.length + 1}`);
                 lastWeekTurnoverRate = turnoverRate;
 
                 // Check if the current week contains the requestDate
