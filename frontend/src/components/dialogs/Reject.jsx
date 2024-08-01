@@ -9,7 +9,9 @@ const Reject = ({
     setEditable,
     setDisplay,
     reason,
+    setReason,
     description,
+    setDescription,
     endPointUrl,
     children,
 }) => {
@@ -64,6 +66,20 @@ const Reject = ({
         };
     }, [trigger, setTrigger]);
 
+    // Añadido este useEffect para restablecer los estados cuando se cierra el popup
+    useEffect(() => {
+        if (!trigger) {
+            // Reset states when the popup is closed
+            setShowRejectButton(false);
+            setShowPreview(false);
+            setDoneIcon(false);
+            setEditable("");
+            setDisplay(false);
+            setReason("");
+            setDescription("");
+        }
+    }, [trigger, setEditable, setDisplay, setReason, setDescription]);
+
     const handleNext = () => {
         setShowPreview(true);
         setDisplay(true);
@@ -115,6 +131,19 @@ const Reject = ({
         window.location.reload();
     };
 
+    // Restablecimiento explícito de estados en handleCancel
+    const handleCancel = () => {
+        setShowRejectButton(false);
+        setShowPreview(false);
+        setDoneIcon(false);
+        setEditable("");
+        setDisplay(false);
+        setTrigger(false);
+        // Reset reason and description to default values
+        setReason("");
+        setDescription("");
+    };
+
     return trigger ? (
         <div
             className="popUp z-20 overflow-hidden flex justify-center items-center fixed top-0 left-0 w-full h-lvh backdrop-blur bg-contrastText1/25"
@@ -134,9 +163,7 @@ const Reject = ({
                                 buttontype="secondary"
                                 buttonVariant="text"
                                 isOutlined
-                                onClick={() => {
-                                    setTrigger(false);
-                                }}
+                                onClick={handleCancel}
                             >
                                 Cancel
                             </CustomButton>

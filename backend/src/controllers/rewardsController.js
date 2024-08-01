@@ -228,8 +228,6 @@ const getRewardRequestDetails = async (req, res) => {
 };
 
 const updateRewardRedeem = async (req, res) => {
-    console.log("Abcde");
-
     try {
         const { id, redeem } = req.params;
         const { approve, reason, rejectDetails } = req.body;

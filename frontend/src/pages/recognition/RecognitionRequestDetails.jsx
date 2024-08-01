@@ -33,12 +33,10 @@ const RecognitionRequestDetails = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [showPopupApproved, setShowPopupApproved] = useState(false);
     const [options, setOptions] = useState([]);
-    const [surveyInputs, setSurveyInputs] = useState({});
+    const [inputText, setInputText] = useState({});
     const [display, setDisplay] = useState(false);
-    const [marginBottom, setMarginBottom] = useState(false);
     const [value, setValue] = useState("");
-    const [editable, setEditable] = useState("showReject");
-    const [doneIcon, setDoneIcon] = useState(true);
+    const [editable, setEditable] = useState("");
 
     const rejectionOptions = [
         "Inappropriate Content",
@@ -49,18 +47,11 @@ const RecognitionRequestDetails = () => {
     ];
     const navigate = useNavigate();
 
-    const handleRejectBtn = async (event) => {
-        event.preventDefault();
-        setShowPopup(true);
-        setMarginBottom(true);
-    };
-
     const functionPopUpTwoBtnRequesApprove = async (event) => {
         event.preventDefault();
-
         setShowPopupApproved(true);
     };
-    // Fetch the details of the recognition
+
     useEffect(() => {
         const fetchData = async () => {
             if (!isTokenValid) {
@@ -87,7 +78,6 @@ const RecognitionRequestDetails = () => {
                 const data = await res.json();
                 setRecognitionDetails(data);
 
-                // Create the options array for the DropdownSelect
                 let optionsArray = [
                     `Request Date: ${formatDate(new Date(data.dateRequest))}`,
                 ];
@@ -97,7 +87,6 @@ const RecognitionRequestDetails = () => {
                     );
                 }
 
-                // Update DropdownSelect text after getting the data from API
                 setOptions(optionsArray);
                 setSelectedOption(optionsArray[0]);
                 setStatus(data.status);
@@ -120,10 +109,10 @@ const RecognitionRequestDetails = () => {
                 setDisplay={setDisplay}
                 display={display}
                 setEditable={setEditable}
-                setDescription={setSurveyInputs}
+                setDescription={setInputText}
                 setReason={setValue}
                 reason={value}
-                description={surveyInputs.description}
+                description={inputText.description}
                 userId={id}
                 btnApproved={true}
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/recognition/update/${id}`}
@@ -146,8 +135,10 @@ const RecognitionRequestDetails = () => {
                 setTrigger={setShowPopup}
                 setEditable={setEditable}
                 setDisplay={setDisplay}
-                reason={value}
-                description={surveyInputs.description}
+                setReason={setValue}
+                setDescription={(desc) =>
+                    setInputText((prev) => ({ ...prev, description: desc }))
+                }
                 endPointUrl={`${process.env.REACT_APP_API_URL}/api/recognition/update/${id}`}
                 children={
                     <div className="successTex flex flex-col gap-4 items-center">
@@ -204,17 +195,12 @@ const RecognitionRequestDetails = () => {
                                             id="description"
                                             placeholder="Text here"
                                             hint={200}
-                                            value={
-                                                surveyInputs.description || ""
-                                            }
+                                            value={inputText.description || ""}
                                             onChange={(e) => {
-                                                setSurveyInputs(
-                                                    (prevInputs) => ({
-                                                        ...prevInputs,
-                                                        description:
-                                                            e.target.value,
-                                                    })
-                                                );
+                                                setInputText((prevInputs) => ({
+                                                    ...prevInputs,
+                                                    description: e.target.value,
+                                                }));
                                             }}
                                         />
                                     </Box>
@@ -257,8 +243,8 @@ const RecognitionRequestDetails = () => {
                                         variant="p"
                                         color={theme.palette.neutrals.black}
                                     >
-                                        {surveyInputs.description
-                                            ? surveyInputs.description
+                                        {inputText.description
+                                            ? inputText.description
                                             : "-"}
                                     </Typography>
                                 </div>
@@ -439,7 +425,10 @@ const RecognitionRequestDetails = () => {
                         buttontype="secondary"
                         buttonVariant="text"
                         isOutlined
-                        onClick={handleRejectBtn}
+                        onClick={() => {
+                            setEditable("showReject");
+                            setShowPopup(true);
+                        }}
                     >
                         Reject
                     </CustomButton>

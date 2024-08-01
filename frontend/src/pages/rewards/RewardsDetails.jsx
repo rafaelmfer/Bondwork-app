@@ -6,6 +6,7 @@ import RewardDetailsCard from "../../components/cards/RewardDetailsCard";
 import TableWithProfile from "../../components/TableWithProfile";
 import { formatDate } from "../../common/commonFunctions";
 import useAuthToken from "../../common/decodeToken";
+import placeHolder from "../../assets/place_holders/rewards_placeholder.png";
 
 const RewardsDetails = () => {
     const { token, isTokenValid } = useAuthToken();
@@ -90,11 +91,7 @@ const RewardsDetails = () => {
                 <RewardDetailsCard
                     sx={{ mb: "24px" }}
                     rewardName={data.title}
-                    imageSrc={
-                        data.image
-                            ? data.image
-                            : "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/picture-rewardLunch.jpg?alt=media&token=2a7c7aca-0d6d-41b1-af6c-4b3ab7276ade"
-                    }
+                    imageSrc={data.image ? data.image : placeHolder}
                     statusText={data.status}
                     rewardType={data.category}
                     pointsCost={2000}

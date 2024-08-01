@@ -249,12 +249,7 @@ export function CreateRewardStep({
     }, []);
 
     // TODO: Put all the categories of the rewards
-    const departments = [
-        "Account",
-        "Business Development",
-        "IT",
-        "Human Resources",
-    ];
+    const departments = ["Well-being", "Operational", "Workstyle"];
 
     return (
         <>

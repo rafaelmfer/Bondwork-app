@@ -127,7 +127,7 @@ const Users = () => {
             ) : (
                 <main
                     style={{ animation: "fadeIn 1.5s" }}
-                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background py-2 px-8 h-[calc(100vh-80px)]"
+                    className="custom650:ml-menuMargin mt-[80px] bg-neutrals-background pt-2 pb-4 px-8 h-full"
                 >
                     <TopUserBar titleScreen={"Employees"} />
                     <Breadcrumbs />

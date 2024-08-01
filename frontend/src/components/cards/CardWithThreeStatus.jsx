@@ -1,13 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    Box,
-    Card,
-    CardContent,
-    Typography,
-    Button,
-    useMediaQuery,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography, Button } from "@mui/material";
 import { ReactComponent as ArrowForwardIosIcon } from "../../assets/icons/arrow-right-dark-gray-neutral.svg";
 import StatusCard from "./StatusCard";
 import ChipNumber from "../chip/ChipNumber";
@@ -33,11 +26,6 @@ const CardWithThreeStatus = ({
     pathButton,
 }) => {
     const navigate = useNavigate();
-    const isDesktop = useMediaQuery(theme.breakpoints.up("desktop"));
-
-    const progressValue1 = (number1 * 100) / totalNumber;
-    const progressValue2 = (number2 * 100) / totalNumber;
-    const progressValue3 = (number3 * 100) / totalNumber;
 
     return (
         <Card

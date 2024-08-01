@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, Drawer, List, ListItem } from "@mui/material";
 import CustomButton from "../buttons/CustomButton";
 import logo from "../../assets/icons/logo.svg";
