@@ -208,7 +208,7 @@ const Team = ({ id, sx }) => {
                     image={teamMembers[2].image}
                     linkedIn={teamMembers[2].linkedIn}
                     link={teamMembers[2].link}
-                    gridRow={isDesktop ? "1 / span 4" : "10 / span 4"}
+                    gridRow={isDesktop ? "1 / span 4" : "11 / span 4"}
                     gridColumn={isDesktop ? "3 / 4" : "1 / 2"}
                 />
                 <TeamMember
@@ -217,7 +217,7 @@ const Team = ({ id, sx }) => {
                     image={teamMembers[3].image}
                     linkedIn={teamMembers[3].linkedIn}
                     link={teamMembers[3].link}
-                    gridRow={isDesktop ? "1 / span 4" : "14 / span 4"}
+                    gridRow={isDesktop ? "1 / span 4" : "16 / span 4"}
                     gridColumn={isDesktop ? "4 / 5" : "1 / 2"}
                 />
                 <TeamMember
@@ -244,7 +244,7 @@ const Team = ({ id, sx }) => {
                     image={teamMembers[6].image}
                     linkedIn={teamMembers[6].linkedIn}
                     link={teamMembers[6].link}
-                    gridRow={isDesktop ? "6 / span 4" : "10 / span 4"}
+                    gridRow={isDesktop ? "6 / span 4" : "11 / span 4"}
                     gridColumn={isDesktop ? "3 / 4" : "2 / 3"}
                 />
                 <TeamMember
@@ -253,7 +253,7 @@ const Team = ({ id, sx }) => {
                     image={teamMembers[7].image}
                     linkedIn={teamMembers[7].linkedIn}
                     link={teamMembers[7].link}
-                    gridRow={isDesktop ? "6 / span 4" : "14 / span 4"}
+                    gridRow={isDesktop ? "6 / span 4" : "16 / span 4"}
                     gridColumn={isDesktop ? "4 / 5" : "2 / 3"}
                 />
             </Box>

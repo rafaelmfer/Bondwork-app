@@ -12,13 +12,7 @@ const BoxImage = () => {
     return <p></p>;
 };
 
-export function AddImage({
-    id,
-    label,
-    error,
-    disabled,
-    sx,
-}) {
+export function AddImage({ id, label, error, disabled, sx }) {
     return (
         <Box
             sx={sx}
