@@ -241,49 +241,6 @@ const RewardsMain = () => {
                         onFilterChange={handleFilterChange}
                     />
                     <div className="grid min-[950px]:grid-cols-2 gap-4 mt-4">
-                        <CardWithTwoStatus
-                            title={"Management"}
-                            totalNumber={
-                                chartsApi.chart1
-                                    ? chartsApi.chart1[chartIndex].info[0]
-                                          .totalAmount
-                                    : 0
-                            }
-                            chipPreviousNumberText={
-                                chartsApi.chart1
-                                    ? chartsApi.chart1[chartIndex].info[0]
-                                          .badgeCount
-                                    : 0
-                            }
-                            statusText1={"Ongoing"}
-                            statusColor1={theme.palette.info.main}
-                            number1={
-                                chartsApi.chart1
-                                    ? chartsApi.chart1[chartIndex].info[0]
-                                          .statusCounts.ongoing
-                                    : 0
-                            }
-                            chipText1={
-                                chartsApi.chart1
-                                    ? chartsApi.chart1[chartIndex].info[0]
-                                          .statusCounts.ongoingBadge
-                                    : 0
-                            }
-                            statusText2={"Upcoming"}
-                            statusColor2={theme.palette.warning.main}
-                            number2={
-                                chartsApi.chart1
-                                    ? chartsApi.chart1[chartIndex].info[0]
-                                          .statusCounts.upcoming
-                                    : 0
-                            }
-                            chipText2={
-                                chartsApi.chart1
-                                    ? chartsApi.chart1[chartIndex].info[0]
-                                          .statusCounts.upcomingBadge
-                                    : 0
-                            }
-                        />
                         <CardWithThreeStatus
                             title={"Request"}
                             totalNumber={
@@ -341,6 +298,49 @@ const RewardsMain = () => {
                                     : 0
                             }
                         />
+                        <CardWithTwoStatus
+                            title={"Management"}
+                            totalNumber={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .totalAmount
+                                    : 0
+                            }
+                            chipPreviousNumberText={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .badgeCount
+                                    : 0
+                            }
+                            statusText1={"Ongoing"}
+                            statusColor1={theme.palette.info.main}
+                            number1={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.ongoing
+                                    : 0
+                            }
+                            chipText1={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.ongoingBadge
+                                    : 0
+                            }
+                            statusText2={"Upcoming"}
+                            statusColor2={theme.palette.warning.main}
+                            number2={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.upcoming
+                                    : 0
+                            }
+                            chipText2={
+                                chartsApi.chart1
+                                    ? chartsApi.chart1[chartIndex].info[0]
+                                          .statusCounts.upcomingBadge
+                                    : 0
+                            }
+                        />
                     </div>
 
                     <Divider
@@ -349,23 +349,6 @@ const RewardsMain = () => {
                             marginTop: "32px",
                         }}
                     />
-
-                    <div className="flex flex-col gap-4 mx-[-16px] mt-4">
-                        <TableSeven
-                            title={"Management"}
-                            pathViewAllTo={"/rewards/management"}
-                            pathAddTo={"/rewards/management/addReward"}
-                            pathRowTo={"/rewards/management"}
-                            rows={rows}
-                            columns={columnsTable}
-                            rowsNumber="5"
-                            showLastColumn={false}
-                            showSearch={false}
-                            showCheckboxColumn={false}
-                            showBtnColumn={false}
-                            showPagination={false}
-                        />
-                    </div>
 
                     <div className="flex flex-col gap-4 mx-[-16px] mt-[24px]">
                         <TableWithProfile
@@ -386,6 +369,23 @@ const RewardsMain = () => {
                             showBtnColumn={false}
                             showPagination={false}
                             pathCompound={true}
+                        />
+                    </div>
+
+                    <div className="flex flex-col gap-4 mx-[-16px] mt-4">
+                        <TableSeven
+                            title={"Management"}
+                            pathViewAllTo={"/rewards/management"}
+                            pathAddTo={"/rewards/management/addReward"}
+                            pathRowTo={"/rewards/management"}
+                            rows={rows}
+                            columns={columnsTable}
+                            rowsNumber="5"
+                            showLastColumn={false}
+                            showSearch={false}
+                            showCheckboxColumn={false}
+                            showBtnColumn={false}
+                            showPagination={false}
                         />
                     </div>
                 </main>

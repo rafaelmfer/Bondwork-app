@@ -196,6 +196,7 @@ export default function CardStacked({ dataPrevious, dataCurrent }) {
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
+                border: "none", boxShadow: "0px 0px 6px 2px rgba(0,0,0,0.06)"
             }}
         >
             <CardContent sx={{ px: "24px", pt: "24px" }}>
@@ -213,10 +214,12 @@ export default function CardStacked({ dataPrevious, dataCurrent }) {
                     </Typography>
                     <Typography
                         variant="small1"
+                        textAlign={"right"}
                         color={theme.palette.neutrals.gray300}
-                    >
-                        Compared to Previous Period
-                    </Typography>
+                        dangerouslySetInnerHTML={{
+                            __html: "Compared to<br/>Previous Period",
+                        }}
+                    ></Typography>
                 </Box>
 
                 <ChartVerticalBar

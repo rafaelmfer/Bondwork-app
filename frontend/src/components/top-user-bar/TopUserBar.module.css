@@ -21,11 +21,13 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .topBar {
-        width: 100%;
-    }
-
     .menu {
         display: block;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .topBar {
+        width: 100%;
     }
 }

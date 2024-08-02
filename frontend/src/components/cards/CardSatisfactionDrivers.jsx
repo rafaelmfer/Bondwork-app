@@ -22,6 +22,8 @@ const CardSatisfactionDrivers = ({
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
+                border: "none",
+                boxShadow: "0px 0px 6px 2px rgba(0,0,0,0.06)",
             }}
         >
             <CardContent sx={{ px: "24px", pt: "24px" }}>

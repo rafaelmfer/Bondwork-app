@@ -13,7 +13,6 @@ const CustomButtonStyled = styled(Button)(
         borderRadius: "8px",
         textTransform: "none",
         boxShadow: "none",
-        // boxSizing: "content-box",
         fontFamily: theme.typography.fontFamily,
         ...theme.typography.p,
         "& .MuiButton-startIcon": {
@@ -81,6 +80,56 @@ const CustomButtonStyled = styled(Button)(
     })
 );
 
+/**
+ * CustomButton is a customizable button component using Material-UI.
+ * It supports primary and secondary button types, different button variants, and icon placement.
+ * 
+ * @param {Object} props - The properties passed to the button.
+ * @param {'primary' | 'secondary'} props.buttontype - The type of button. Determines primary or secondary styling.
+ * @param {'text' | 'textIconLeft' | 'textIconRight'} [props.buttonVariant="text"] - The variant of the button. Determines the icon placement relative to the text.
+ * @param {string} [props.iconLeft] - The path to the icon to be displayed on the left of the text. Used only if buttonVariant is "textIconLeft".
+ * @param {string} [props.iconRight] - The path to the icon to be displayed on the right of the text. Used only if buttonVariant is "textIconRight".
+ * @param {boolean} [props.isOutlined=false] - Determines if the button is outlined. Applicable only for secondary buttons.
+ * @param {boolean} [props.isDisabled=false] - Disables the button if true.
+ * @param {function} [props.onClick] - Callback function triggered on button click.
+ * @param {React.ReactNode} [props.children] - The content to be displayed inside the button.
+ * @param {object} [props.sx] - Additional styles to apply to the button.
+ * 
+ * @returns {React.Element} The rendered CustomButton component.
+ * 
+ * @example
+ * ```jsx
+ * import IconNormal from '../../assets/icons/icon.svg'; 
+ * 
+ * <CustomButton
+ *   buttontype="primary"
+ *   buttonVariant="text"
+ *   onClick={() => alert("Primary button clicked!")}
+ * >
+ *   Primary Button
+ * </CustomButton>;
+ * 
+ * <CustomButton
+ *   buttontype="secondary"
+ *   buttonVariant="textIconLeft"
+ *   isOutlined
+ *   iconLeft={IconNormal}
+ *   onClick={() => alert("Secondary outlined button clicked!")}
+ * >
+ *   Secondary Outlined
+ * </CustomButton>;
+ * 
+ * <CustomButton
+ *   buttontype="secondary"
+ *   buttonVariant="textIconRight"
+ *   isOutlined={false}
+ *   iconRight={IconNormal}
+ *   onClick={() => alert("Secondary not outlined button clicked!")}
+ * >
+ *   Secondary Not Outlined
+ * </CustomButton>;
+ * ```
+ */
 const CustomButton = ({
     buttontype, // 'primary' or 'secondary'
     buttonVariant = "text", // 'text', 'textIconLeft', 'textIconRight'
@@ -132,37 +181,3 @@ const CustomButton = ({
 };
 
 export default CustomButton;
-
-/**
- * Example of use of the component
- *
- * import IconNormal from '../../assets/icons/icon.svg'; 
- * 
- *  <CustomButton
-      buttontype="primary"
-      buttonVariant="text"
-      onClick={() => alert("Primary button clicked!")}
-    >
-      Primary Button
-    </CustomButton>;
-
-    <CustomButton
-      buttontype="secondary"
-      buttonVariant="textIconLeft"
-      isOutlined
-      iconLeft={IconNormal}
-      onClick={() => alert("Secondary outlined button clicked!")}
-    >
-      Secondary Outlined
-    </CustomButton>;
-
-    <CustomButton
-      buttontype="secondary"
-      buttonVariant="textIconRight"
-      isOutlined={false}
-      iconRight={IconNormal}
-      onClick={() => alert("Secondary not outlined button clicked!")}
-    >
-      Secondary Not Outlined
-    </CustomButton>;
- */

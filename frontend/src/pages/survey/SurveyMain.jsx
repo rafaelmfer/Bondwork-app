@@ -218,7 +218,7 @@ const SurveyMain = () => {
                         />
 
                         <div className="chart-donut-card bg-main-50 flex flex-col h-full shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
-                            <h4 className="text-h4 text-neutrals-black mb-2">
+                            <h4 className="text-h4 font-bold text-neutrals-black mb-2">
                                 Employee Satisfaction Index
                             </h4>
                             <ChartDonut
@@ -245,7 +245,7 @@ const SurveyMain = () => {
                         id="chart"
                     >
                         <div className="chart-area-card h-full bg-main-50 shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
-                            <h4 className="text-h4 text-neutrals-black mb-2">
+                            <h4 className="text-h4 font-bold text-neutrals-black mb-2">
                                 Average Score Over Time
                             </h4>
                             <ChartArea
@@ -267,7 +267,7 @@ const SurveyMain = () => {
                         </div>
 
                         <div className="chart-line-card h-full bg-main-50 shadow-[0px_0px_6px_2px_rgba(0,0,0,0.06)] p-4 rounded-lg">
-                            <h4 className="text-h4 text-neutrals-black mb-2">
+                            <h4 className="text-h4 font-bold text-neutrals-black mb-2">
                                 Overall Satisfaction Drivers
                             </h4>
                             <ChartLine
