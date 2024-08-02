@@ -438,7 +438,7 @@ export default function TableWithProfile({
                 </Box>
             </Box>
 
-            <table className="mt-[12px] mb-[12px] w-full rounded-[12px] shadow-table">
+            <table className="mt-[12px] mb-[12px] w-full rounded-[12px] shadow-table table-fixed">
                 <caption className="absolute w-px h-px p-0 m-[-1px] overflow-hidden clip-rect(0,0,0,0) whitespace-nowrap border-0">
                     ${title} Results
                 </caption>
@@ -486,7 +486,7 @@ export default function TableWithProfile({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "240px",
+                                width: "220px",
                                 maxWidth: "100%",
                                 padding: "0px",
                             }}
@@ -535,7 +535,7 @@ export default function TableWithProfile({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
-                                    width: "240px",
+                                    width: "220px",
                                     maxWidth: "100%",
                                     padding: "0px",
                                 }}
@@ -608,7 +608,7 @@ export default function TableWithProfile({
                                 backgroundColor: theme.palette.secondary[100],
                                 verticalAlign: "middle",
                                 borderBottom: 0,
-                                width: "150px",
+                                width: "130px",
                                 maxWidth: "190px",
                                 padding: "0px",
                             }}
@@ -642,8 +642,7 @@ export default function TableWithProfile({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
-                                    width: "150px",
-                                    maxWidth: "190px",
+                                    width: "100px",
                                     padding: "0px",
                                 }}
                                 onClick={() =>
@@ -653,7 +652,7 @@ export default function TableWithProfile({
                                 }
                             >
                                 <div
-                                    className="flex items-center"
+                                    className={`flex items-center ${columns[numCol - 2] === "Points" ? "justify-center" : ""}`}
                                     onClick={() => handleColumnClick(5)}
                                     onMouseEnter={() =>
                                         handleColumnHover(5, true)
@@ -683,8 +682,7 @@ export default function TableWithProfile({
                                         theme.palette.secondary[100],
                                     verticalAlign: "middle",
                                     borderBottom: 0,
-                                    width: "150px",
-                                    maxWidth: "190px",
+                                    width: "120px",
                                     padding: "0px",
                                 }}
                                 onClick={() =>
@@ -798,7 +796,6 @@ export default function TableWithProfile({
                                 style={{
                                     cursor: "pointer",
                                     borderTop: "1px solid #EEEEEE",
-                                    fontSize: "1rem",
                                     boxShadow: isHovered
                                         ? "0px 4px 8px rgba(0, 0, 0, 0.1)"
                                         : "none",
@@ -1012,6 +1009,18 @@ export default function TableWithProfile({
                                                           )
                                                       )
                                                     : "     -";
+                                            case "email":
+                                                return (
+                                                    <p className="truncate w-full pr-4">
+                                                        {
+                                                            row[
+                                                                keysObject[
+                                                                    numCol - 3
+                                                                ]
+                                                            ]
+                                                        }
+                                                    </p>
+                                                );
                                             default:
                                                 return row[
                                                     keysObject[numCol - 3]
@@ -1066,9 +1075,22 @@ export default function TableWithProfile({
                                                         )
                                                     );
                                                 case "points":
-                                                    return row[
-                                                        keysObject[numCol - 2]
-                                                    ].toLocaleString();
+                                                    return (
+                                                        <p
+                                                            style={{
+                                                                textAlign:
+                                                                    "right",
+                                                                width: "100px",
+                                                            }}
+                                                        >
+                                                            {row[
+                                                                keysObject[
+                                                                    numCol - 2
+                                                                ]
+                                                            ].toLocaleString()}
+                                                        </p>
+                                                    );
+
                                                 default:
                                                     return row[
                                                         keysObject[numCol - 2]

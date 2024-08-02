@@ -378,7 +378,7 @@ export default function TableSeven({
                 </Box>
             </Box>
 
-            <table className="mt-[12px] mb-[12px] w-full rounded-[12px] shadow-table">
+            <table className="mt-[12px] mb-[12px] w-full rounded-[12px] shadow-table table-fixed">
                 <caption className="absolute w-px h-px p-0 m-[-1px] overflow-hidden clip-rect(0,0,0,0) whitespace-nowrap border-0">
                     ${title} Results
                 </caption>
@@ -707,7 +707,7 @@ export default function TableSeven({
                                 </td>
 
                                 <td>
-                                    <p className="line-clamp-1 pr-4">
+                                    <p className="truncate w-full pr-4">
                                         {row[keysObject[1]]}
                                     </p>
                                 </td>
@@ -798,18 +798,6 @@ export default function TableSeven({
                                                             }
                                                         />
                                                     );
-                                                // case "redeem":
-                                                //     //case "completed":
-                                                //     return (
-                                                //         <p
-                                                //             style={{
-                                                //                 textAlign: "right",
-                                                //                 marginRight: "2rem",
-                                                //             }}
-                                                //         >
-                                                //             {row[keysObject[5]]}
-                                                //         </p>
-                                                //     );
                                                 default:
                                                     return row[keysObject[5]];
                                             }
