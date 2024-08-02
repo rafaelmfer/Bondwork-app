@@ -1,5 +1,6 @@
 import Chart from "react-apexcharts";
 import { getChipColors, formatChipLabel } from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 const ChartNegativeArea = ({ data }) => {
     const referenceValue = 10;
@@ -59,13 +60,11 @@ const ChartNegativeArea = ({ data }) => {
             show: false,
             position: "top",
             horizontalAlign: "right",
-            fontSize: "14px",
-            fontFamily: "Inter",
-            fontWeight: 400,
+            fontSize: "12px",
+            fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+            fontWeight: 500,
             offsetY: -16,
-            labels: {
-                colors: "#8e8da4",
-            },
+            
         },
         xaxis: {
             categories: data.categories,
@@ -77,7 +76,7 @@ const ChartNegativeArea = ({ data }) => {
             labels: {
                 formatter: (value) => value + referenceValue,
                 style: {
-                    colors: "#8e8da4",
+                    colors: theme.palette.neutrals.black,
                 },
                 offsetY: 0,
                 offsetX: 0,

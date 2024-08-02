@@ -1,5 +1,6 @@
 import Chart from "react-apexcharts";
 import { getChipColors, formatChipLabel } from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 export default function ChartDonut({
     className,
@@ -38,6 +39,9 @@ export default function ChartDonut({
             },
             offsetY: 0,
             offsetX: 0,
+            labels: {
+                colors: theme.palette.neutrals.black, // Define a cor da legenda
+            },
         },
         plotOptions: {
             pie: {

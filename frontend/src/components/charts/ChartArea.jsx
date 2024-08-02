@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { getChipColors, formatChipLabel } from "../chip/ChipNumber";
+import theme from "../../theme/theme";
 
 export default function ChartArea({
     className,
@@ -59,6 +60,18 @@ export default function ChartArea({
                 sizeOffset: 2,
             },
         },
+        legend: {
+            show: false,
+            position: "top",
+            horizontalAlign: "right",
+            fontSize: "12px",
+            fontFamily: "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
+            fontWeight: 500,
+            
+            labels: {
+                colors: theme.palette.neutrals.black, // Define a cor da legenda
+            },
+        },
         tooltip: {
             // series: An array of arrays containing the values of all series in the chart.
             // seriesIndex: The index of the current series being processed.
@@ -94,6 +107,11 @@ export default function ChartArea({
             min: 0,
             max: 5,
             tickAmount: 5,
+            labels: {
+                style: {
+                    colors: theme.palette.neutrals.black,
+                },
+            },
         },
     };
 

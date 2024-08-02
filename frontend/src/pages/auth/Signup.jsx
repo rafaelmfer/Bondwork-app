@@ -115,10 +115,10 @@ const Signup = () => {
                     </div>
                 }
             />
-            <div className="flex justify-center mb-4 lg:mb-12 mt-8 lg:mt-0">
+            <div className="flex justify-center mb-4 lg:mb-12 mt-8">
                 <img src={logo} alt="BondWork Logo" className="h-12" />
             </div>
-            <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg lg:w-full max-w-lg mx-4">
+            <div className="bg-neutrals-white px-8 pt-10 pb-6 rounded-2xl shadow-lg lg:w-full max-w-lg mx-4 mb-8">
                 <h1 className="text-center text-h2 mb-6">Sign up</h1>
                 <form
                     className="pb-8 border-b-neutrals-divider border-b"

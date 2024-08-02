@@ -1,4 +1,5 @@
 import Chart from "react-apexcharts";
+import theme from "../../theme/theme";
 
 export default function ChartLineRecognition({ className, chartHeight }) {
     const options = {
@@ -51,6 +52,9 @@ export default function ChartLineRecognition({ className, chartHeight }) {
                 offsetX: -4,
                 offsetY: 0,
             },
+            labels: {
+                colors: theme.palette.neutrals.black,
+            },
         },
         dataLabels: {
             enabled: false,
@@ -86,6 +90,11 @@ export default function ChartLineRecognition({ className, chartHeight }) {
             lines: {
                 show: true,
             },
+            labels: {
+                style: {
+                    colors: theme.palette.neutrals.black,
+                },
+            },
         },
         yaxis: {
             min: 0,
@@ -93,6 +102,11 @@ export default function ChartLineRecognition({ className, chartHeight }) {
             tickAmount: 5,
             lines: {
                 show: true,
+            },
+            labels: {
+                style: {
+                    colors: theme.palette.neutrals.black,
+                },
             },
         },
     };

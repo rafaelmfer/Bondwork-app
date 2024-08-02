@@ -57,7 +57,7 @@ function ChartVerticalBar({
                 minHeight: undefined,
                 maxHeight: 100,
                 style: {
-                    colors: "#0B0A0A",
+                    colors: theme.palette.neutrals.black,
                     fontSize: "12.6px",
                     fontFamily:
                         "IBM Plex Sans, sans-serif, ui-sans-serif, system-ui",
@@ -68,8 +68,10 @@ function ChartVerticalBar({
         },
         yaxis: {
             tickAmount: 4,
-            title: {
-                // text: "number",
+            labels: {
+                style: {
+                    colors: theme.palette.neutrals.black,
+                },
             },
         },
         fill: {
@@ -88,6 +90,9 @@ function ChartVerticalBar({
                 radius: 12,
                 offsetX: -4,
                 offsetY: 0,
+            },
+            labels: {
+                colors: theme.palette.neutrals.black, // Define a cor da legenda
             },
         },
         tooltip: {
@@ -196,7 +201,8 @@ export default function CardStacked({ dataPrevious, dataCurrent }) {
                 flexGrow: 1,
                 flexBasis: 0,
                 borderRadius: 4,
-                border: "none", boxShadow: "0px 0px 6px 2px rgba(0,0,0,0.06)"
+                border: "none",
+                boxShadow: "0px 0px 6px 2px rgba(0,0,0,0.06)",
             }}
         >
             <CardContent sx={{ px: "24px", pt: "24px" }}>

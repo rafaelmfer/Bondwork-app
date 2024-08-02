@@ -1,13 +1,8 @@
 import React from "react";
-import {
-    Box,
-    Typography,
-    IconButton,
-    useMediaQuery,
-    useTheme,
-} from "@mui/material";
-import { ReactComponent as LinkedInIcon } from "../../assets/icons/linkedin.svg";
-import { ReactComponent as Globe } from "../../assets/icons/globe.svg";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import Ripples from "react-ripples";
+import LinkedInIcon from "../../assets/icons/linkedin.svg";
+import Globe from "../../assets/icons/globe.svg";
 
 const teamMembers = [
     {
@@ -22,7 +17,7 @@ const teamMembers = [
         role: "UI / UX Designer",
         image: "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_onboarding%2Fmoonyoung.png?alt=media&token=5d66983b-60ef-4d8a-bcc4-b017c5d7f281",
         linkedIn: "https://www.linkedIn.com/in/moonyoungl",
-        link: "",
+        link: "https://www.moonyounglee.com",
     },
     {
         name: "TzeXuan Yap",
@@ -78,12 +73,6 @@ const TeamMember = ({
     gridColumn,
     sx,
 }) => {
-    const goToLink = (link) => {
-        if (link !== null && link !== "") {
-            window.open(link, "_blank");
-        }
-    };
-
     return (
         <Box
             sx={{
@@ -113,30 +102,26 @@ const TeamMember = ({
                     textAlign: "center",
                 }}
             >
-                <IconButton
-                    aria-label="linkedin"
-                    onClick={() => goToLink(linkedIn)}
-                    sx={{
-                        cursor: "pointer",
-                        width: "48px",
-                        height: "48px",
-                        padding: "12px",
-                    }}
-                >
-                    <LinkedInIcon />
-                </IconButton>
-                <IconButton
-                    aria-label="website"
-                    onClick={() => goToLink(link)}
-                    sx={{
-                        cursor: "pointer",
-                        width: "48px",
-                        height: "48px",
-                        padding: "12px",
-                    }}
-                >
-                    <Globe />
-                </IconButton>
+                <Ripples className="relative inline-block rounded-full unbounded">
+                    <a
+                        aria-label="linkedin"
+                        href={linkedIn ?? "#"}
+                        target="_blank"
+                        className="flex items-center justify-center w-12 h-12 p-3 rounded-full hover:bg-main-100 transition duration-300 ease-in-out"
+                    >
+                        <img src={LinkedInIcon} alt="Linkedin" />
+                    </a>
+                </Ripples>
+                <Ripples className="relative inline-block rounded-full unbounded">
+                    <a
+                        aria-label="linkedin"
+                        href={link ?? "#"}
+                        target="_blank"
+                        className="flex items-center justify-center w-12 h-12 p-3 rounded-full hover:bg-main-100 transition duration-300 ease-in-out"
+                    >
+                        <img src={Globe} alt="Website" />
+                    </a>
+                </Ripples>
             </Box>
         </Box>
     );
