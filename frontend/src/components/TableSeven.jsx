@@ -643,9 +643,9 @@ export default function TableSeven({
                     </tr>
                 </thead>
                 <tbody>
-                    {rowsToShow.map((row) => {
+                    {rowsToShow.map((row, index) => {
                         const isItemSelected = isSelected(row.id);
-                        const isHovered = hoveredRowId === row.id;
+                        const isHovered = hoveredRowId === index;
                         return (
                             <tr
                                 key={count++}
@@ -667,7 +667,7 @@ export default function TableSeven({
                                     }
                                     navigate(finalPath);
                                 }} // Redirect the user
-                                onMouseEnter={() => setHoveredRowId(row.id)}
+                                onMouseEnter={() => setHoveredRowId(index)}
                                 onMouseLeave={() => setHoveredRowId(null)}
                                 style={{
                                     cursor: "pointer",
