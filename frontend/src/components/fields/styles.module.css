@@ -1,0 +1,136 @@
+h2 {
+    font-size: 18px;
+}
+
+.recurrenceLabel,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+.textAreaInput,
+.adjustArrowPadding {
+    border-bottom: 1px solid #c1c7cd !important;
+}
+
+.textField,
+.adjustArrowPadding,
+select {
+    width: 100%;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    background-color: var(--background-color-light);
+    padding: 11px;
+    outline: none;
+    border: none;
+}
+
+.textAreaInput {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.textAreaInput {
+    resize: none;
+    padding: 22px !important;
+}
+
+.surveyFields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    text-align: left;
+}
+
+.adjustArrowPadding {
+    border-bottom: 1px solid #c1c7cd !important;
+}
+
+.adjustArrowPadding {
+    width: 100%;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    background-color: var(--background-color-light);
+    padding: 11px;
+    outline: none;
+    border: none;
+}
+
+.datePicker {
+    width: 100%;
+    background-color: white !important;
+}
+
+/* .paddingDatePicker {
+    background-color: var(--background-color-light);
+    padding: 11px;
+    border-bottom: 1px solid #c1c7cd;
+} */
+
+.recurrenceFields {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+}
+
+.titleIcon {
+    display: flex;
+    gap: 10px;
+}
+
+.allQuestions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.questionSatisfaction {
+    padding: 16px;
+    border: 1px solid var(--border-color-question);
+}
+
+.title20 {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    text-align: left;
+}
+
+.satisfaction {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.individualCheckboxes,
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.individualCheckboxes {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.checkbox {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.hr20 {
+    width: 40px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.roboto14 {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-small);
+    text-align: left;
+}

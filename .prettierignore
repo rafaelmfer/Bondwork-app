@@ -1,0 +1,6 @@
+node_modules/
+build/
+dist/
+.git/
+.github/
+conventional_commits_examples.md

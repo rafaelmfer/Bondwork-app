@@ -1,0 +1,33 @@
+.topBar {
+    position: absolute;
+    background-color: white;
+    width: calc(100% - 272px);
+    height: 80px;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+
+.right_side {
+    display: flex;
+    gap: 10px;
+}
+
+.menu {
+    display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .menu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .topBar {
+        width: 100%;
+    }
+}

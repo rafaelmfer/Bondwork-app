@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+    right: 0;
+}
+
+.react-datepicker__input-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    display: flex !important;
+    align-items: center;
+    padding: 9px 11px;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.react-datepicker__view-calendar-icon input {
+    padding: 0 !important;
+    outline: none;
+    background-color: #f2f4f8;
+}
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+    padding: 0 !important;
+}
+
+.react-datepicker__calendar-icon {
+    width: 2em !important;
+    height: 2em !important;
+}
+
+.apexcharts-toolbar {
+    display: none !important;
+}
+
+body {
+    min-width: 360px;
+}
+
+.landing-page {
+    height: auto;
+}
+
+.slick-arrow.slick-prev {
+    display: none !important;
+}
+
+.slick-arrow.slick-next {
+    display: none !important;
+}

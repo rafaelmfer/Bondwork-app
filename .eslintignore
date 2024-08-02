@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+.git/
+.github/
+conventional_commits_examples.md
+authController.js
+userController.js
+dashboardController.js
+recognitionController.js
+surveyController.js
+chartsController.js
+utils.js

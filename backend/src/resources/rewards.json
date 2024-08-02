@@ -1,0 +1,715 @@
+[
+    {
+        "rewardId": 314,
+        "category": "Well-being",
+        "details": "Experience the rejuvenating benefits of a personalized yoga session tailored to your needs. Whether you're a beginner or seasoned practitioner, this session offers an opportunity to unwind and recharge. You'll learn foundational poses, focus on breath awareness, and explore relaxation techniques to enhance your well-being. Our certified instructor will guide you through a calming practice aimed at improving flexibility, reducing stress, and promoting inner peace. Treat yourself to a session that nurtures both body and mind, leaving you feeling refreshed and revitalized.",
+        "pointsCost": 5000,
+        "status": "Ongoing",
+        "startDate": "2024-04-01",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 9864,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-01"
+            },
+            {
+                "id": 6666,
+                "status": "Pending",
+                "requestDate": "2023-07-10"
+            },
+            {
+                "id": 9874,
+                "status": "Pending",
+                "requestDate": "2024-07-10"
+            },
+            {
+                "id": 3000,
+                "status": "Rejected",
+                "requestDate": "2023-06-10",
+                "date": "2023-06-29",
+                "reason": "Others",
+                "rejectDetails": "Already redeem this a week before"
+            }
+        ],
+        "title": "Yoga Lesson",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FYogaLesson.jpg?alt=media&token=11a488ed-bf91-4ba7-ac33-c83ed8fc4caa",
+        "publish": true
+    },
+    {
+        "rewardId": 312,
+        "category": "Well-being",
+        "details": "Enjoy a delightful dining experience with a complimentary lunch valued at $25. Indulge in a delicious meal of your choice from our menu, featuring a variety of gourmet options to satisfy your palate. Whether you're craving a savory dish or a healthy selection, our restaurant offers a warm and inviting atmosphere perfect for enjoying your meal. Treat yourself to a well-deserved break and savor the flavors, courtesy of our company. Bon appétit!",
+        "pointsCost": 9000,
+        "status": "Finished",
+        "startDate": "2024-01-01",
+        "endDate": "2024-07-30",
+        "redeem": [
+            {
+                "id": 9864,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2023-06-15"
+            },
+            {
+                "id": 6666,
+                "status": "Approved",
+                "requestDate": "2024-06-19",
+                "date": "2023-07-01"
+            },
+            {
+                "id": 2500,
+                "status": "Rejected",
+                "requestDate": "2024-07-10",
+                "date": "2023-07-14",
+                "reason": "Others",
+                "rejectDetails": "Already redeem this a week before."
+            }
+        ],
+        "title": "Free Lunch ($25)",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FFreeLunch20.jpg?alt=media&token=2fe37bc2-3bfa-48ad-9c1c-22fe52ffe056",
+        "publish": true
+    },
+    {
+        "rewardId": 301,
+        "category": "Operational",
+        "details": "Amazon Gift Card",
+        "pointsCost": 5000,
+        "status": "Ongoing",
+        "startDate": "2023-01-01",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 7426,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-01"
+            },
+            {
+                "id": 6666,
+                "status": "Pending",
+                "requestDate": "2023-07-10"
+            },
+            {
+                "id": 3300,
+                "status": "Pending",
+                "requestDate": "2024-07-10"
+            },
+            {
+                "id": 3000,
+                "status": "Rejected",
+                "requestDate": "2023-06-10",
+                "date": "2023-06-29",
+                "reason": "Others",
+                "rejectDetails": "Already redeem this a week before."
+            }
+        ],
+        "title": "Amazon Gift Card",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FGift.jpg?alt=media&token=8b4952a0-4db6-4495-8dfe-bb8ff5347c52",
+        "publish": true
+    },
+    {
+        "rewardId": 302,
+        "category": "Workstyle",
+        "details": "Congratulations! You've earned a well-deserved day of relaxation and rejuvenation. Enjoy a day off to unwind and recharge at your leisure. Whether you choose to explore a new hobby, spend quality time with loved ones, or simply indulge in some self-care, this day is yours to cherish. Take this opportunity to rest, recharge, and return refreshed to continue making a difference. Thank you for your hard work and dedication!",
+        "pointsCost": 7000,
+        "status": "Upcoming",
+        "startDate": "2024-09-01",
+        "endDate": "2024-12-31",
+        "redeem": [],
+        "title": "Extra Day Off",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FTimeOff.jpg?alt=media&token=b186e419-0c5a-43c9-b345-3a3aa5cbda1c",
+        "publish": true
+    },
+    {
+        "rewardId": 303,
+        "category": "Well-being",
+        "details": "Unlock the benefits of fitness with a complimentary membership to Anytime Fitness. Enjoy 24/7 access to state-of-the-art facilities, including cardio and strength training equipment, group fitness classes, and personalized training sessions. Whether you're focusing on strength, endurance, or overall wellness, Anytime Fitness provides a supportive environment to achieve your fitness goals. Take advantage of flexible workout hours that fit your schedule, ensuring you can prioritize your health and well-being whenever it suits you. Elevate your fitness journey with convenience and accessibility at Anytime Fitness, courtesy of our company.",
+        "pointsCost": 10000,
+        "status": "Finished",
+        "startDate": "2023-01-01",
+        "endDate": "2023-12-31",
+        "redeem": [
+            {
+                "id": 4922,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-02"
+            },
+            {
+                "id": 9874,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-04"
+            },
+            {
+                "id": 2900,
+                "status": "Rejected",
+                "requestDate": "2023-05-10",
+                "date": "2023-06-01",
+                "reason": "Otherss",
+                "rejectDetails": "Already redeem this a week before."
+            }
+        ],
+        "title": "Gym Membership",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FGym.jpg?alt=media&token=a38cc3ac-d0b0-4010-ad29-b075a25064e9",
+        "publish": true
+    },
+    {
+        "rewardId": 304,
+        "category": "Operational",
+        "details": "Voucher for office supplies.",
+        "pointsCost": 3000,
+        "status": "Ongoing",
+        "startDate": "2024-01-15",
+        "endDate": "2024-07-15",
+        "redeem": [
+            {
+                "id": 3200,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2024-07-01"
+            },
+            {
+                "id": 3000,
+                "status": "Approved",
+                "requestDate": "2024-06-12",
+                "date": "2024-07-03"
+            },
+            {
+                "id": 2900,
+                "status": "Rejected",
+                "requestDate": "2024-06-11",
+                "date": "2024-07-02",
+                "reason": "Otherss",
+                "rejectDetails": "Already redeem this a week before."
+            }
+        ],
+        "title": "Office Supplies Voucher",
+        "publish": true
+    },
+    {
+        "rewardId": 305,
+        "category": "Workstyle",
+        "details": "Experience the freedom and flexibility of a month-long opportunity to manage your work schedule according to your needs. Enjoy the convenience of adjusting your work hours to accommodate personal commitments, optimize productivity, and achieve a healthy work-life balance. Whether you prefer early mornings, late evenings, or compressed workweeks, this benefit allows you to structure your time effectively. Embrace the flexibility to work when you're most productive and enjoy the benefits of a balanced approach to your professional and personal life.",
+        "pointsCost": 7000,
+        "status": "Upcoming",
+        "startDate": "2024-08-01",
+        "endDate": "2024-12-31",
+        "redeem": [],
+        "title": "Flexible Work Hours",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 306,
+        "category": "Well-being",
+        "details": "Annual gym membership.",
+        "pointsCost": 15000,
+        "status": "Ongoing",
+        "startDate": "2023-06-01",
+        "endDate": "2024-09-01",
+        "redeem": [
+            {
+                "id": 2400,
+                "status": "Pending",
+                "requestDate": "2023-06-10"
+            },
+            {
+                "id": 2500,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            },
+            {
+                "id": 2600,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            },
+            {
+                "id": 3400,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            }
+        ],
+        "title": "Gym Membership",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FGym.jpg?alt=media&token=a38cc3ac-d0b0-4010-ad29-b075a25064e9",
+        "publish": true
+    },
+    {
+        "rewardId": 307,
+        "category": "Operational",
+        "details": "Congratulations! You've earned an additional day to relax, recharge, and enjoy time away from work. Use this extra vacation day to explore new adventures, reconnect with loved ones, or simply indulge in some well-deserved rest. Whether you choose to unwind at home or embark on a getaway, this day is yours to savor. Take this opportunity to refresh your mind, rejuvenate your spirit, and return to work feeling energized and inspired. Thank you for your dedication and hard work!",
+        "pointsCost": 5000,
+        "status": "Ongoing",
+        "startDate": "2023-09-01",
+        "endDate": "2024-09-01",
+        "redeem": [
+            {
+                "id": 9874,
+                "status": "Approved",
+                "requestDate": "2024-02-10",
+                "date": "2024-02-20"
+            },
+            {
+                "id": 2321,
+                "status": "Approved",
+                "requestDate": "2024-05-10",
+                "date": "2024-05-22"
+            },
+            {
+                "id": 2103,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2024-05-22"
+            },
+            {
+                "id": 3400,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2024-05-22"
+            },
+            {
+                "id": 4127,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            },
+            {
+                "id": 4126,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            },
+            {
+                "id": 4125,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            },
+            {
+                "id": 4124,
+                "status": "Pending",
+                "requestDate": "2024-06-10"
+            }
+        ],
+        "title": "Extra Vacation Day",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 308,
+        "category": "Workstyle",
+        "details": "Ergonomic chair for home office.",
+        "pointsCost": 8000,
+        "status": "Finished",
+        "startDate": "2024-04-01",
+        "endDate": "2024-08-01",
+        "redeem": [
+            {
+                "id": 2700,
+                "status": "Approved",
+                "requestDate": "2024-04-10",
+                "date": "2024-05-15"
+            },
+            {
+                "id": 3500,
+                "status": "Approved",
+                "requestDate": "2024-07-10",
+                "date": "2024-08-15"
+            }
+        ],
+        "title": "Ergonomic Chair",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 309,
+        "category": "Well-being",
+        "details": "Wellness retreat weekend.",
+        "pointsCost": 20000,
+        "status": "Upcoming",
+        "startDate": "2024-09-01",
+        "endDate": "2024-12-31",
+        "redeem": [],
+        "title": "Wellness Retreat",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 310,
+        "category": "Operational",
+        "details": "Laptop upgrade.",
+        "pointsCost": 50000,
+        "status": "Finished",
+        "startDate": "2023-03-01",
+        "endDate": "2024-03-01",
+        "redeem": [
+            {
+                "id": 7232,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-07-15"
+            },
+            {
+                "id": 3100,
+                "status": "Rejected",
+                "requestDate": "2023-07-10",
+                "date": "2023-08-01",
+                "reason": "Not Aligned with Reward Criteria",
+                "rejectDetails": "N/A"
+            },
+            {
+                "id": 2800,
+                "status": "Rejected",
+                "requestDate": "2023-07-10",
+                "date": "2023-08-01",
+                "reason": "Not Aligned with Reward Criteria",
+                "rejectDetails": "N/A"
+            }
+        ],
+        "title": "Laptop Upgrade",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 311,
+        "category": "Workstyle",
+        "details": "Transform your workspace with a personalized home office setup designed to enhance your productivity and comfort. Receive everything you need to create an efficient and inspiring environment, including a comfortable ergonomic chair, a spacious desk, adjustable lighting, and essential organizational tools. Whether you're focused on improving your workflow, enhancing communication, or simply creating a more enjoyable work atmosphere, this setup is tailored to meet your professional needs. Enjoy the convenience of working from home with the support of a well-equipped workspace that promotes efficiency and creativity. Elevate your remote work experience and achieve optimal performance, courtesy of company.",
+        "pointsCost": 20000,
+        "status": "Ongoing",
+        "startDate": "2024-05-01",
+        "endDate": "2024-11-01",
+        "redeem": [
+            {
+                "id": 2300,
+                "status": "Approved",
+                "requestDate": "2024-06-10",
+                "date": "2023-07-20"
+            },
+            {
+                "id": 9864,
+                "status": "Approved",
+                "requestDate": "2024-07-10",
+                "date": "2023-08-20"
+            },
+            {
+                "id": 3200,
+                "status": "Rejected",
+                "requestDate": "2024-08-10",
+                "date": "2023-08-25",
+                "reason": "Not Aligned with Reward Criteria",
+                "rejectDetails": "N/A"
+            }
+        ],
+        "title": "Home Office Setup",
+        "image": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_rewards%2FWorkfromHomeEquipment.jpg?alt=media&token=9ac2d31f-8326-45c4-b1d0-47d34c2641f2",
+        "publish": true
+    },
+    {
+        "rewardId": 313,
+        "category": "Operational",
+        "details": "Training course subscription.",
+        "pointsCost": 10000,
+        "status": "Finished",
+        "startDate": "2023-04-01",
+        "endDate": "2024-04-01",
+        "redeem": [
+            {
+                "id": 2321,
+                "status": "Approved",
+                "requestDate": "2023-06-10",
+                "date": "2023-06-20"
+            },
+            {
+                "id": 6666,
+                "status": "Approved",
+                "requestDate": "2023-06-19",
+                "date": "2023-06-29"
+            }
+        ],
+        "title": "Training Course",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 324,
+        "category": "Well-being",
+        "details": "Discover new destinations with a $500 travel voucher. Whether you're planning a vacation, a weekend getaway, or a business trip, this voucher can be used for flights, hotels, or car rentals. Enjoy the freedom to choose your own travel dates and destinations. Take advantage of this opportunity to explore the world and create unforgettable memories.",
+        "pointsCost": 15000,
+        "status": "Ongoing",
+        "startDate": "2024-07-10",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 4100,
+                "status": "Approved",
+                "requestDate": "2024-07-01",
+                "date": "2024-07-05"
+            },
+            {
+                "id": 4110,
+                "status": "Pending",
+                "requestDate": "2024-07-02"
+            },
+            {
+                "id": 4120,
+                "status": "Approved",
+                "requestDate": "2024-07-03",
+                "date": "2024-07-06"
+            },
+            {
+                "id": 4121,
+                "status": "Approved",
+                "requestDate": "2024-07-04",
+                "date": "2024-07-07"
+            },
+            {
+                "id": 4122,
+                "status": "Pending",
+                "requestDate": "2024-07-05"
+            },
+            {
+                "id": 4123,
+                "status": "Approved",
+                "requestDate": "2024-07-06",
+                "date": "2024-07-08"
+            },
+            {
+                "id": 4124,
+                "status": "Approved",
+                "requestDate": "2024-07-07",
+                "date": "2024-07-09"
+            },
+            {
+                "id": 4125,
+                "status": "Pending",
+                "requestDate": "2024-07-08"
+            },
+            {
+                "id": 4126,
+                "status": "Approved",
+                "requestDate": "2024-07-09",
+                "date": "2024-07-10"
+            },
+            {
+                "id": 4127,
+                "status": "Approved",
+                "requestDate": "2024-07-10",
+                "date": "2024-07-11"
+            }
+        ],
+        "title": "Travel Voucher",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 315,
+        "category": "Workstyle",
+        "details": "Upgrade your tech with a $300 electronics gift card. Choose from a wide range of gadgets, including smartphones, tablets, laptops, and accessories. Whether you need new gear for work or play, this gift card offers the flexibility to select the latest tech that suits your needs.",
+        "pointsCost": 10000,
+        "status": "Ongoing",
+        "startDate": "2024-07-12",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 4128,
+                "status": "Approved",
+                "requestDate": "2024-07-11",
+                "date": "2024-07-12"
+            },
+            {
+                "id": 4129,
+                "status": "Pending",
+                "requestDate": "2024-07-12"
+            },
+            {
+                "id": 4130,
+                "status": "Approved",
+                "requestDate": "2024-07-13",
+                "date": "2024-07-14"
+            },
+            {
+                "id": 4131,
+                "status": "Approved",
+                "requestDate": "2024-07-14",
+                "date": "2024-07-15"
+            },
+            {
+                "id": 4132,
+                "status": "Pending",
+                "requestDate": "2024-07-15"
+            },
+            {
+                "id": 4133,
+                "status": "Approved",
+                "requestDate": "2024-07-16",
+                "date": "2024-07-17"
+            },
+            {
+                "id": 4134,
+                "status": "Approved",
+                "requestDate": "2024-07-17",
+                "date": "2024-07-18"
+            },
+            {
+                "id": 6666,
+                "status": "Pending",
+                "requestDate": "2024-07-18"
+            },
+            {
+                "id": 4922,
+                "status": "Approved",
+                "requestDate": "2024-07-19",
+                "date": "2024-07-20"
+            },
+            {
+                "id": 2321,
+                "status": "Approved",
+                "requestDate": "2024-07-20",
+                "date": "2024-07-21"
+            }
+        ],
+        "title": "Electronics Gift Card",
+        "image": "",
+        "publish": true
+    },
+    {
+        "rewardId": 316,
+        "category": "Well-being",
+        "details": "Enjoy a spa day with a $200 spa voucher. Treat yourself to a range of relaxing and rejuvenating treatments, including massages, facials, and body wraps. This voucher allows you to unwind and de-stress, providing a perfect escape from the daily grind.",
+        "pointsCost": 8000,
+        "status": "Ongoing",
+        "startDate": "2024-07-15",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 7426,
+                "status": "Approved",
+                "requestDate": "2024-07-14",
+                "date": "2024-07-15"
+            },
+            {
+                "id": 2103,
+                "status": "Pending",
+                "requestDate": "2024-07-15"
+            },
+            {
+                "id": 2300,
+                "status": "Approved",
+                "requestDate": "2024-07-16",
+                "date": "2024-07-17"
+            },
+            {
+                "id": 2400,
+                "status": "Approved",
+                "requestDate": "2024-07-17",
+                "date": "2024-07-18"
+            },
+            {
+                "id": 2500,
+                "status": "Pending",
+                "requestDate": "2024-07-18"
+            },
+            {
+                "id": 2600,
+                "status": "Approved",
+                "requestDate": "2024-07-19",
+                "date": "2024-07-20"
+            },
+            {
+                "id": 2700,
+                "status": "Approved",
+                "requestDate": "2024-07-20",
+                "date": "2024-07-21"
+            },
+            {
+                "id": 2800,
+                "status": "Pending",
+                "requestDate": "2024-07-21"
+            },
+            {
+                "id": 2900,
+                "status": "Approved",
+                "requestDate": "2024-07-22",
+                "date": "2024-07-23"
+            },
+            {
+                "id": 3000,
+                "status": "Approved",
+                "requestDate": "2024-07-23",
+                "date": "2024-07-24"
+            }
+        ],
+        "title": "Spa Day Voucher",
+        "publish": true
+    },
+    {
+        "rewardId": 317,
+        "category": "Well-being",
+        "details": "Delight in a gourmet dining experience with a $150 restaurant gift card. Choose from a selection of fine dining establishments offering exquisite cuisine and exceptional service. Whether it's a special occasion or a night out, this gift card provides a memorable culinary adventure.",
+        "pointsCost": 7000,
+        "status": "Ongoing",
+        "startDate": "2024-07-18",
+        "endDate": "2024-12-31",
+        "redeem": [
+            {
+                "id": 3100,
+                "status": "Approved",
+                "requestDate": "2024-07-17",
+                "date": "2024-07-18"
+            },
+            {
+                "id": 3200,
+                "status": "Pending",
+                "requestDate": "2024-07-18"
+            },
+            {
+                "id": 3300,
+                "status": "Approved",
+                "requestDate": "2024-07-19",
+                "date": "2024-07-20"
+            },
+            {
+                "id": 3400,
+                "status": "Approved",
+                "requestDate": "2024-07-20",
+                "date": "2024-07-21"
+            },
+            {
+                "id": 3500,
+                "status": "Pending",
+                "requestDate": "2024-07-21"
+            },
+            {
+                "id": 3600,
+                "status": "Approved",
+                "requestDate": "2024-07-22",
+                "date": "2024-07-23"
+            },
+            {
+                "id": 3700,
+                "status": "Approved",
+                "requestDate": "2024-07-23",
+                "date": "2024-07-24"
+            },
+            {
+                "id": 3800,
+                "status": "Pending",
+                "requestDate": "2024-07-24"
+            },
+            {
+                "id": 3900,
+                "status": "Approved",
+                "requestDate": "2024-07-25",
+                "date": "2024-07-26"
+            },
+            {
+                "id": 4000,
+                "status": "Approved",
+                "requestDate": "2024-07-26",
+                "date": "2024-07-27"
+            }
+        ],
+        "title": "Restaurant Gift Card",
+        "image": "",
+        "publish": true
+    }
+]

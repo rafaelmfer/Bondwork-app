@@ -1,0 +1,2400 @@
+[
+    {
+        "employeeID": 7232,
+        "email": "rafael@langara.ca",
+        "hashPassword": "rafaellangara",
+        "firstName": "Rafael",
+        "lastName": "Ferreira",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Rafa-L.png?alt=media&token=90a78db5-7117-4ec8-8434-757c908829ce",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Lead Developer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-05",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-01-20",
+                "answers": [3, 3, 2, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 103,
+                "status": "completed",
+                "date": "2024-03-20",
+                "answers": [5, 4, 5, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 107,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-15",
+                "answers": [3, 4, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 130,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 133,
+                "status": "Completed",
+                "date": "2024-02-10",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 138,
+                "status": "Completed",
+                "date": "2023-11-21",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-07-25",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [310],
+        "recognitions": {
+            "sent": [418, 419, 450, 479],
+            "received": [424, 475, 477]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 9874,
+        "email": "yuriko@langara.ca",
+        "hashPassword": "yurikolangara",
+        "firstName": "Yuriko",
+        "lastName": "Kikuchi",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Yuriko-L.png?alt=media&token=0f9c9874-7772-437a-8e0b-1cf14e880c05",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "UX Designer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-03",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-01-17",
+                "answers": [4, 3, 2, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 107,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-15",
+                "answers": [4, 3, 2, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 133,
+                "status": "Completed",
+                "date": "2024-02-15",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 134,
+                "status": "Completed",
+                "date": "2024-05-09",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 137,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [303, 307],
+        "recognitions": {
+            "sent": [420, 421, 475],
+            "received": [418, 450, 476]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 6666,
+        "email": "moonyoung@langara.ca",
+        "hashPassword": "moonyounglangara",
+        "firstName": "MoonYoung",
+        "lastName": "Lee",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Moon-L.png?alt=media&token=406d1ab4-a6ef-4c58-ada5-5c9d4cbc1366",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "UX/UI Designer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-04",
+        "NPS": "Promoter",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-05",
+                "answers": [5, 3, 4, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 108,
+                "status": "sent"
+            },
+            {
+                "id": 133,
+                "status": "Completed",
+                "date": "2024-02-12",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 134,
+                "status": "Completed",
+                "date": "2024-05-19",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 137,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [301, 312, 313, 315],
+        "recognitions": {
+            "sent": [422, 423, 476],
+            "received": [425]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4922,
+        "email": "izabela@langara.ca",
+        "hashPassword": "izabelalangara",
+        "firstName": "Izabela",
+        "lastName": "Nadu",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Iza-L.png?alt=media&token=06b02063-c734-463a-9028-36babe321bd3",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "UX Strategist",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-02",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-01-20",
+                "answers": [5, 3, 4, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 108,
+                "status": "sent"
+            },
+            {
+                "id": 133,
+                "status": "Completed",
+                "date": "2024-02-22",
+                "answers": [2, 4, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 134,
+                "status": "Completed",
+                "date": "2024-05-25",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-25",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [303, 315],
+        "recognitions": {
+            "sent": [425, 454, 459, 477],
+            "received": [421, 452, 452, 457]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 9864,
+        "email": "yun@langara.ca",
+        "hashPassword": "yunlangara",
+        "firstName": "Yun",
+        "lastName": "Hsu",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-YJ-L.png?alt=media&token=b09699c2-5aa7-4a3a-b03d-dd3358e3b61f",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Backend Developer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-09",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-04",
+                "answers": [3, 2, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 103,
+                "status": "completed",
+                "date": "2024-03-20",
+                "answers": [5, 4, 4, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 130,
+                "status": "Completed",
+                "date": "2024-07-28",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 135,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 138,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-07-29",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [311, 312],
+        "recognitions": {
+            "sent": [424, 455, 461],
+            "received": [420, 460, 479]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2321,
+        "email": "cecilia@langara.ca",
+        "hashPassword": "cecilialangara",
+        "firstName": "Cecilia",
+        "lastName": "Lopez",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Ceci-L.png?alt=media&token=12f6148a-d3dc-4e78-9f33-466dc2803d35",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Full Stack Developer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-07",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-02",
+                "answers": [4, 3, 3, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 103,
+                "status": "completed",
+                "date": "2024-03-20",
+                "answers": [4, 4, 3, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 130,
+                "status": "Completed",
+                "date": "2024-07-28",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-07-26",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [307, 313, 315],
+        "recognitions": {
+            "sent": [426, 462],
+            "received": [422, 454]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 7426,
+        "email": "tzexuan@langara.ca",
+        "hashPassword": "tzexuanlangara",
+        "firstName": "Tzexuan",
+        "lastName": "Shane",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Shane-L.png?alt=media&token=9be6ca1b-2bbe-44d3-9839-e93a8f8f4893",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "User Experience Designer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-01",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-02",
+                "answers": [4, 4, 4, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 108,
+                "status": "completed",
+                "date": "2024-07-20",
+                "answers": [3, 2, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 133,
+                "status": "Completed",
+                "date": "2024-02-10",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-20",
+                "answers": [4, 4, 5, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [301, 316],
+        "recognitions": {
+            "sent": [427, 456, 460, 478],
+            "received": [419, 426, 451, 459]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2103,
+        "email": "shogo@langara.ca",
+        "hashPassword": "shogolangara",
+        "firstName": "Sidney",
+        "lastName": "Kai",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Sidney-L.png?alt=media&token=a1235599-38bf-42ee-ad6e-c818cb4e6c11",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Full Stack Developer",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-07-09",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-02",
+                "answers": [4, 4, 4, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 103,
+                "status": "completed",
+                "date": "2024-03-20",
+                "answers": [5, 4, 4, 5],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-07-21",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [307, 316],
+        "recognitions": {
+            "sent": [],
+            "received": [423, 427]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4010,
+        "email": "tomokoOkochi@langara.ca",
+        "hashPassword": "hashedpassword",
+        "firstName": "Tomoko",
+        "lastName": "Okochi ",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Tomoko-L.png?alt=media&token=1600afe1-93ae-48f6-8f9c-e87773466885",
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Backend Developer",
+        "onBoardingDate": "2024-02-10",
+        "lastAccess": "2024-07-27",
+        "terminationDate": null,
+        "surveys": [
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-28",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 120,
+                "status": "completed",
+                "date": "2024-05-30",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [474],
+            "received": [473]
+        },
+        "points": 0,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2800,
+        "email": "tyler.higgs@langara.ca",
+        "hashPassword": "hashedpassword",
+        "firstName": "Tyler",
+        "lastName": "Higgs",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Tyle-L.png?alt=media&token=0f908381-689a-4b6f-a583-cace08155adb",
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Product Designer",
+        "onBoardingDate": "2023-09-10",
+        "lastAccess": "2024-07-06",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [4, 3, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 107,
+                "status": "sent"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 135,
+                "status": "Completed",
+                "date": "2024-06-16",
+                "answers": [3, 3, 4, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [310, 311, 316],
+        "recognitions": {
+            "sent": [406],
+            "received": [409, 482]
+        },
+        "points": 8000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3100,
+        "email": "paul.b@langara.ca",
+        "hashPassword": "hashedpassword",
+        "firstName": "Paul",
+        "lastName": "Brassard",
+        "profilePicture": "https://firebasestorage.googleapis.com/v0/b/bondwork-dda21.appspot.com/o/pictures_users%2Fpicture-Paul-L.png?alt=media&token=ebd6130c-89b0-4c77-a49e-4e3f4691c08a",
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Business Development Manager",
+        "onBoardingDate": "2020-12-05",
+        "lastAccess": "2024-07-09",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 102,
+                "status": "completed",
+                "date": "2024-02-29",
+                "answers": [4, 3, 3, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 109,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [3, 2, 1, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 131,
+                "status": "Completed",
+                "date": "2024-06-18",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 134,
+                "status": "Completed",
+                "date": "2024-05-01",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 108,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [310, 317],
+        "recognitions": {
+            "sent": [409, 435, 484],
+            "received": [412, 434]
+        },
+        "points": 6500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2300,
+        "email": "john.doe@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "John",
+        "lastName": "Doe",
+        "profilePicture": null,
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Specialist",
+        "onBoardingDate": "2020-01-15",
+        "lastAccess": "2024-07-01",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-02",
+                "answers": [4, 3, 2, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 106,
+                "status": "sent"
+            },
+            {
+                "id": 132,
+                "status": "completed",
+                "date": "2024-04-15",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 136,
+                "status": "completed",
+                "date": "2023-11-17",
+                "answers": [1, 2, 2, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 138,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-15",
+                "answers": [4, 4, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-02",
+                "answers": [4, 2, 4, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [311, 316],
+        "recognitions": {
+            "sent": [401, 411, 480],
+            "received": [404, 405, 461, 478]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2400,
+        "email": "jane.smith@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "profilePicture": null,
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Manager",
+        "onBoardingDate": "2021-03-22",
+        "lastAccess": "2024-07-02",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-01-20",
+                "answers": [3, 3, 2, 2],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 105,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [4, 3, 4, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 132,
+                "status": "completed",
+                "date": "2024-04-15",
+                "answers": [4, 4, 4, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 136,
+                "status": "completed",
+                "date": "2023-11-17",
+                "answers": [1, 2, 1, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 138,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-02",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-15",
+                "answers": [4, 4, 3, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [306, 316],
+        "recognitions": {
+            "sent": [402, 412],
+            "received": [401, 480]
+        },
+        "points": 7000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2500,
+        "email": "robert.brown@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Robert",
+        "lastName": "Brown",
+        "profilePicture": null,
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Assistant",
+        "onBoardingDate": "2024-04-10",
+        "lastAccess": "2024-07-03",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-02",
+                "answers": [4, 3, 4, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": "106",
+                "status": "sent"
+            },
+            {
+                "id": 120,
+                "status": "completed",
+                "date": "2024-05-30",
+                "answers": [4, 3, 4, 4],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 132,
+                "status": "completed",
+                "date": "2024-04-15",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 136,
+                "status": "completed",
+                "date": "2023-11-22",
+                "answers": [3, 3, 2, 2],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 138,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-15",
+                "answers": [3, 3, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-02",
+                "answers": [3, 2, 2, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [306, 312, 316],
+        "recognitions": {
+            "sent": [403, 413, 431, 463, 481],
+            "received": [402, 406, 430]
+        },
+        "points": 3000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2600,
+        "email": "alice.jones@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Alice",
+        "lastName": "Jones",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Software Developer",
+        "onBoardingDate": "2023-01-25",
+        "lastAccess": "2024-07-04",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 103,
+                "status": "sent"
+            },
+            {
+                "id": 107,
+                "status": "sent"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 135,
+                "status": "Completed",
+                "date": "2024-06-14",
+                "answers": [2, 1, 1, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-07-25",
+                "answers": [3, 2, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [306, 316],
+        "recognitions": {
+            "sent": [404],
+            "received": [403, 407, 481]
+        },
+        "points": 4500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2700,
+        "email": "michael.white@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Michael",
+        "lastName": "White",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "IT Manager",
+        "onBoardingDate": "2020-11-18",
+        "lastAccess": "2024-07-05",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 103,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [3, 3, 3, 2],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 107,
+                "status": "sent"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 135,
+                "status": "Completed",
+                "date": "2024-06-19",
+                "answers": [2, 1, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-07-25",
+                "answers": [3, 2, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [308, 316],
+        "recognitions": {
+            "sent": [407, 464, 482],
+            "received": [408, 462]
+        },
+        "points": 6000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 2900,
+        "email": "olivia.moore@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Olivia",
+        "lastName": "Moore",
+        "profilePicture": null,
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
+        "jobLevel": "Management",
+        "jobTitle": "Finance Manager",
+        "onBoardingDate": "2022-04-20",
+        "lastAccess": "2024-07-07",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 102,
+                "status": "completed",
+                "date": "2024-01-20",
+                "answers": [3, 1, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 105,
+                "status": "sent"
+            },
+            {
+                "id": 109,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [3, 3, 2, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 135,
+                "status": "Completed",
+                "date": "2024-06-14",
+                "answers": [3, 4, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-20",
+                "answers": [3, 2, 2, 2],
+                "NPS": "Netral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [303, 304, 316],
+        "recognitions": {
+            "sent": [407, 483],
+            "received": [410]
+        },
+        "points": 5500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3000,
+        "email": "liam.taylor@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Liam",
+        "lastName": "Taylor",
+        "profilePicture": null,
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Accountant",
+        "onBoardingDate": "2023-03-15",
+        "lastAccess": "2024-07-08",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 102,
+                "status": "completed",
+                "date": "2024-02-29",
+                "answers": [4, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 106,
+                "status": "sent"
+            },
+            {
+                "id": 109,
+                "status": "sent"
+            },
+            {
+                "id": 116,
+                "status": "sent"
+            },
+            {
+                "id": 135,
+                "status": "Completed",
+                "date": "2024-06-07",
+                "answers": [3, 3, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-20",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Netral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [301, 304, 316],
+        "recognitions": {
+            "sent": [408],
+            "received": [411, 463, 483]
+        },
+        "points": 4000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3200,
+        "email": "james.jackson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "James",
+        "lastName": "Jackson",
+        "profilePicture": null,
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Executive",
+        "jobTitle": "Chief Business Officer",
+        "onBoardingDate": "2021-07-20",
+        "lastAccess": "2024-07-10",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 102,
+                "status": "sent"
+            },
+            {
+                "id": 113,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [4, 3, 2, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 131,
+                "status": "Completed",
+                "date": "2024-06-18",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 134,
+                "status": "Completed",
+                "date": "2024-05-01",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 108,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [304, 311, 317],
+        "recognitions": {
+            "sent": [410, 433, 465],
+            "received": [413, 432, 464, 484]
+        },
+        "points": 7500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3300,
+        "email": "charlotte.johnson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Charlotte",
+        "lastName": "Johnson",
+        "profilePicture": null,
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Assistant",
+        "onBoardingDate": "2023-05-15",
+        "lastAccess": "2024-07-01",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "sent"
+            },
+            {
+                "id": 103,
+                "status": "completed",
+                "date": "2024-03-15",
+                "answers": [4, 3, 2, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 131,
+                "status": "completed",
+                "date": "2024-06-20",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 136,
+                "status": "completed",
+                "date": "2023-11-17",
+                "answers": [1, 2, 2, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-03",
+                "answers": [2, 2, 1, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-02",
+                "answers": [2, 2, 2, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 108,
+                "status": "completed",
+                "date": "2024-07-20",
+                "answers": [3, 3, 4, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [301, 317],
+        "recognitions": {
+            "sent": [430, 466],
+            "received": [431, 465]
+        },
+        "points": 3000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3400,
+        "email": "harper.brown@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Harper",
+        "lastName": "Brown",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Junior",
+        "jobTitle": "Junior Developer",
+        "onBoardingDate": "2023-11-05",
+        "lastAccess": "2024-07-03",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-05",
+                "answers": [3, 2, 3, 2],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 104,
+                "status": "sent"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [306, 307, 317],
+        "recognitions": {
+            "sent": [432, 467],
+            "received": [433, 466]
+        },
+        "points": 4500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3500,
+        "email": "henry.evans@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Henry",
+        "lastName": "Evans",
+        "profilePicture": null,
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Specialist",
+        "onBoardingDate": "2023-09-25",
+        "lastAccess": "2024-07-02",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [4, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 131,
+                "status": "Completed",
+                "date": "2024-06-18",
+                "answers": [4, 4, 5, 4],
+                "NPS": "Promoter"
+            },
+            {
+                "id": 136,
+                "status": "completed",
+                "date": "2023-11-17",
+                "answers": [1, 2, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 108,
+                "status": "sent"
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-15",
+                "answers": [3, 3, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-02",
+                "answers": [4, 4, 5, 5],
+                "NPS": "Promoter"
+            }
+        ],
+        "rewards": [308, 317],
+        "recognitions": {
+            "sent": [434, 468],
+            "received": [435, 467]
+        },
+        "points": 6000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3600,
+        "email": "amelia.thomas@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Amelia",
+        "lastName": "Thomas",
+        "profilePicture": null,
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Management",
+        "jobTitle": "Sales Manager",
+        "onBoardingDate": "2023-06-10",
+        "lastAccess": "2024-06-30",
+        "surveys": [
+            {
+                "id": 100,
+                "status": "completed",
+                "date": "2024-02-10",
+                "answers": [3, 3, 4, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [317],
+        "recognitions": {
+            "received": [468],
+            "sent": [469]
+        },
+        "points": 100,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3700,
+        "email": "lucas.martin@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Lucas",
+        "lastName": "Martin",
+        "profilePicture": null,
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
+        "jobLevel": "Junior",
+        "jobTitle": "Junior Accountant",
+        "onBoardingDate": "2023-09-01",
+        "lastAccess": "2024-06-29",
+        "terminationDate": "2024-07-01",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 1, 1, 2],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [317],
+        "recognitions": {
+            "sent": [470],
+            "received": [469]
+        },
+        "points": 0,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3800,
+        "email": "mason.lee@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Mason",
+        "lastName": "Lee",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "System Analyst",
+        "onBoardingDate": "2023-09-10",
+        "lastAccess": "2024-06-18",
+        "terminationDate": "2024-06-28",
+        "surveys": [
+            {
+                "id": 137,
+                "status": "Completed",
+                "date": "2024-02-28",
+                "answers": [2, 2, 2, 2],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [317],
+        "recognitions": {
+            "sent": [471],
+            "received": [470]
+        },
+        "points": 100,
+        "adminRights": false
+    },
+    {
+        "employeeID": 3900,
+        "email": "ella.white@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Ella",
+        "lastName": "White",
+        "profilePicture": null,
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Brand Manager",
+        "onBoardingDate": "2023-10-10",
+        "lastAccess": "2024-02-09",
+        "terminationDate": "2024-02-10",
+        "surveys": [
+            {
+                "id": 137,
+                "status": "completed",
+                "date": "2024-02-02",
+                "answers": [2, 2, 2, 2],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [317],
+        "recognitions": {
+            "sent": [472],
+            "received": [471]
+        },
+        "points": 0,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4000,
+        "email": "logan.harris@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Logan",
+        "lastName": "Harris",
+        "profilePicture": null,
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Junior",
+        "jobTitle": "Business Analyst",
+        "onBoardingDate": "2023-11-05",
+        "lastAccess": "2024-01-20",
+        "terminationDate": "2023-12-10",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 2, 1, 2],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [317],
+        "recognitions": {
+            "sent": [473],
+            "received": [472]
+        },
+        "points": 0,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4020,
+        "email": "michael.baker@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Michael",
+        "lastName": "Baker",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Senior Developer",
+        "onBoardingDate": "2022-11-15",
+        "lastAccess": "2024-07-01",
+        "terminationDate": "2023-09-01",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 2, 1, 2],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": [474]
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4030,
+        "email": "olivia.smith@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Olivia",
+        "lastName": "Smith",
+        "profilePicture": null,
+        "department": {
+            "name": "Human Resources",
+            "id": 1
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "HR Specialist",
+        "onBoardingDate": "2023-02-10",
+        "lastAccess": "2024-07-05",
+        "terminationDate": "2023-10-15",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-15",
+                "answers": [3, 2, 2, 1],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4040,
+        "email": "emma.wilson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Emma",
+        "lastName": "Wilson",
+        "profilePicture": null,
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Marketing Intern",
+        "onBoardingDate": "2023-05-01",
+        "lastAccess": "2024-07-03",
+        "terminationDate": "2023-11-30",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 2, 2, 1],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 2000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4050,
+        "email": "william.jones@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "William",
+        "lastName": "Jones",
+        "profilePicture": null,
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
+        "jobLevel": "Junior",
+        "jobTitle": "Research Assistant",
+        "onBoardingDate": "2023-01-15",
+        "lastAccess": "2024-07-01",
+        "terminationDate": "2023-07-10",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 2, 2, 1],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4070,
+        "email": "james.martin@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "James",
+        "lastName": "Martin",
+        "profilePicture": null,
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Executive",
+        "jobTitle": "Business Analyst",
+        "onBoardingDate": "2023-03-01",
+        "lastAccess": "2024-07-08",
+        "terminationDate": "2023-11-30",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-09",
+                "answers": [3, 2, 1, 2],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 6000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4080,
+        "email": "isabella.clark@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Isabella",
+        "lastName": "Clark",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "System Analyst",
+        "onBoardingDate": "2023-04-15",
+        "lastAccess": "2024-07-09",
+        "terminationDate": "2024-08-01",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 2, 2, 1],
+                "NPS": "Detractor"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 5500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4090,
+        "email": "ethan.davis@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Ethan",
+        "lastName": "Davis",
+        "profilePicture": null,
+        "department": {
+            "name": "Human Resources",
+            "id": 1
+        },
+        "jobLevel": "Junior",
+        "jobTitle": "HR Assistant",
+        "onBoardingDate": "2023-06-01",
+        "lastAccess": "2024-07-08",
+        "surveys": [
+            {
+                "id": 130,
+                "status": "completed",
+                "date": "2024-07-21",
+                "answers": [3, 2, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 132,
+                "status": "completed",
+                "date": "2024-04-15",
+                "answers": [2, 2, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 139,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 2500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4100,
+        "email": "mia.thompson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Mia",
+        "lastName": "Thompson",
+        "profilePicture": null,
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Marketing Specialist",
+        "onBoardingDate": "2022-10-15",
+        "lastAccess": "2024-07-09",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-25",
+                "answers": [3, 2, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 140,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 141,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 108,
+                "status": "completed",
+                "date": "2024-07-20",
+                "answers": [3, 3, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 120,
+                "status": "sent",
+                "answers": []
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4200,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4110,
+        "email": "noah.walker@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Noah",
+        "lastName": "Walker",
+        "profilePicture": null,
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Research Intern",
+        "onBoardingDate": "2023-01-25",
+        "lastAccess": "2024-07-10",
+        "surveys": [
+            {
+                "id": 139,
+                "status": "completed",
+                "date": "2023-02-20",
+                "answers": [3, 2, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 108,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 120,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-03",
+                "answers": [2, 2, 2, 2],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-02",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4120,
+        "email": "ava.harris@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Ava",
+        "lastName": "Harris",
+        "profilePicture": null,
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Production Manager",
+        "onBoardingDate": "2021-11-01",
+        "lastAccess": "2024-07-08",
+        "surveys": [
+            {
+                "id": 132,
+                "status": "completed",
+                "date": "2024-04-15",
+                "answers": [2, 2, 2, 1],
+                "NPS": "Detractor"
+            },
+            {
+                "id": 138,
+                "status": "Completed",
+                "date": "2023-11-16",
+                "answers": [3, 3, 3, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 120,
+                "status": "sent",
+                "answers": []
+            },
+            {
+                "id": 140,
+                "status": "Completed",
+                "date": "2024-08-03",
+                "answers": [3, 4, 4, 3],
+                "NPS": "Neutral"
+            },
+            {
+                "id": 141,
+                "status": "Completed",
+                "date": "2024-08-01",
+                "answers": [3, 4, 4, 3],
+                "NPS": "Neutral"
+            }
+        ],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4800,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4121,
+        "email": "oliver.smith@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Oliver",
+        "lastName": "Smith",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Software Engineer",
+        "onBoardingDate": "2024-02-15",
+        "lastAccess": "2024-07-08",
+        "surveys": [],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3200,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4122,
+        "email": "sophia.brown@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Sophia",
+        "lastName": "Brown",
+        "profilePicture": null,
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Marketing Analyst",
+        "onBoardingDate": "2024-03-10",
+        "lastAccess": "2024-07-09",
+        "surveys": [],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3500,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4123,
+        "email": "liam.jones@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Liam",
+        "lastName": "Jones",
+        "profilePicture": null,
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Financial Analyst",
+        "onBoardingDate": "2024-04-01",
+        "lastAccess": "2024-07-10",
+        "surveys": [],
+        "rewards": [],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4800,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4124,
+        "email": "emma.miller@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Emma",
+        "lastName": "Miller",
+        "profilePicture": null,
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Research Scientist",
+        "onBoardingDate": "2024-05-05",
+        "lastAccess": "2024-07-11",
+        "surveys": [],
+        "rewards": [307],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4125,
+        "email": "logan.wilson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Logan",
+        "lastName": "Wilson",
+        "profilePicture": null,
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Production Assistant",
+        "onBoardingDate": "2024-02-20",
+        "lastAccess": "2024-07-12",
+        "surveys": [],
+        "rewards": [307],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 2800,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4126,
+        "email": "ava.moore@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Ava",
+        "lastName": "Moore",
+        "profilePicture": null,
+        "department": {
+            "name": "Human Resources",
+            "id": 1
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "HR Specialist",
+        "onBoardingDate": "2024-06-10",
+        "lastAccess": "2024-07-13",
+        "surveys": [],
+        "rewards": [307],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3100,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4127,
+        "email": "ethan.taylor@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Ethan",
+        "lastName": "Taylor",
+        "profilePicture": null,
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Business Analyst",
+        "onBoardingDate": "2024-03-25",
+        "lastAccess": "2024-07-14",
+        "surveys": [],
+        "rewards": [307],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4600,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4128,
+        "email": "amelia.anderson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Amelia",
+        "lastName": "Anderson",
+        "profilePicture": null,
+        "department": {
+            "name": "IT",
+            "id": 2
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Systems Administrator",
+        "onBoardingDate": "2024-07-01",
+        "lastAccess": "2024-07-15",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 2900,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4129,
+        "email": "james.martinez@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "James",
+        "lastName": "Martinez",
+        "profilePicture": null,
+        "department": {
+            "name": "Marketing",
+            "id": 5
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Content Strategist",
+        "onBoardingDate": "2024-04-20",
+        "lastAccess": "2024-07-16",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3600,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4130,
+        "email": "sophia.hernandez@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Sophia",
+        "lastName": "Hernandez",
+        "profilePicture": null,
+        "department": {
+            "name": "Production",
+            "id": 7
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Production Engineer",
+        "onBoardingDate": "2024-05-15",
+        "lastAccess": "2024-07-17",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 5000,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4131,
+        "email": "michael.thomas@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Michael",
+        "lastName": "Thomas",
+        "profilePicture": null,
+        "department": {
+            "name": "Human Resources",
+            "id": 1
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Recruitment Specialist",
+        "onBoardingDate": "2024-06-05",
+        "lastAccess": "2024-07-18",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 2700,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4132,
+        "email": "emma.jackson@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Emma",
+        "lastName": "Jackson",
+        "profilePicture": null,
+        "department": {
+            "name": "R&D",
+            "id": 6
+        },
+        "jobLevel": "Mid Level",
+        "jobTitle": "Lab Technician",
+        "onBoardingDate": "2024-07-10",
+        "lastAccess": "2024-07-19",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3100,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4133,
+        "email": "jackson.white@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Jackson",
+        "lastName": "White",
+        "profilePicture": null,
+        "department": {
+            "name": "Accounting & Finance",
+            "id": 3
+        },
+        "jobLevel": "Senior",
+        "jobTitle": "Accountant",
+        "onBoardingDate": "2024-03-15",
+        "lastAccess": "2024-07-20",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 4900,
+        "adminRights": false
+    },
+    {
+        "employeeID": 4134,
+        "email": "mason.harris@example.com",
+        "hashPassword": "hashedpassword",
+        "firstName": "Mason",
+        "lastName": "Harris",
+        "profilePicture": null,
+        "department": {
+            "name": "Business Development",
+            "id": 4
+        },
+        "jobLevel": "Entry Level",
+        "jobTitle": "Sales Associate",
+        "onBoardingDate": "2024-02-28",
+        "lastAccess": "2024-07-21",
+        "surveys": [],
+        "rewards": [315],
+        "recognitions": {
+            "sent": [],
+            "received": []
+        },
+        "points": 3400,
+        "adminRights": false
+    }
+]

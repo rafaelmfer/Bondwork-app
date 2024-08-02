@@ -1,0 +1,789 @@
+[
+    {
+        "surveyId": 100,
+        "name": "Employee Satisfaction Survey",
+        "departments": [
+            "IT",
+            "Accounting & Finance",
+            "Business Development",
+            "Marketing",
+            "R&D",
+            "Production"
+        ],
+        "departmentId": [2, 3, 4, 5, 6, 7],
+        "jobLevel": ["Executive", "Senior", "Mid Level", "Entry Level"],
+        "startDate": "2024-01-15",
+        "endDate": "2024-02-15",
+        "status": "Finished",
+        "recurrence": "Quarterly",
+        "points": 150,
+        "completed": [
+            7232, 9874, 6666, 4922, 9864, 2321, 7426, 2103, 2300, 2400, 2500,
+            3400, 3500, 3600
+        ],
+        "sent": [
+            7232, 9874, 6666, 4922, 9864, 2321, 7426, 2103, 2300, 2400, 2500,
+            2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600
+        ],
+        "description": "We invite you to participate in our Employee Satisfaction Survey. The goal is to assess your satisfaction with salary, company culture, your job role, and interactions with colleagues. Your honest feedback is crucial for us to improve our workplace and create a better environment for everyone. Please take a moment to reflect on these areas and provide your thoughtful responses. Thank you for your time and input.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 102,
+        "name": "Product Development Feedback",
+        "departments": ["Product Development", "R&D"],
+        "jobLevel": ["Executive", "Senior", "Management", "Mid Level"],
+        "startDate": "2024-02-01",
+        "endDate": "2024-03-01",
+        "status": "Finished",
+        "recurrence": "Monthly",
+        "points": 120,
+        "departmentId": [3, 4],
+        "completed": [2900, 3000, 3100],
+        "sent": [2900, 3000, 3100, 3200],
+        "description": "To gather feedback on new product development processes.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 103,
+        "name": "IT Systems Efficiency Survey",
+        "departments": ["IT"],
+        "jobLevel": ["Senior", "Mid Level"],
+        "startDate": "2024-03-05",
+        "endDate": "2024-08-05",
+        "status": "Ongoing",
+        "recurrence": "Monthly",
+        "points": 100,
+        "departmentId": [2],
+        "completed": [7232, 9864, 2321, 2103, 3300],
+        "sent": [7232, 9864, 2321, 2103, 2600, 2700, 3300],
+        "description": "To assess the efficiency and performance of IT systems.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 104,
+        "name": "Marketing Campaign Effectiveness",
+        "departments": ["Marketing", "Business Development"],
+        "jobLevel": ["Senior", "Management", "Mid Level"],
+        "startDate": "2024-09-01",
+        "endDate": "2024-09-30",
+        "status": "Upcoming",
+        "recurrence": "Monthly",
+        "points": 130,
+        "departmentId": [4, 5],
+        "completed": [],
+        "sent": [3100, 9874, 6666, 4922, 7426, 3400],
+        "description": "To measure the effectiveness of recent marketing campaigns.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 105,
+        "name": "Annual Performance Review",
+        "departments": ["Accounting & Finance", "Production"],
+        "jobLevel": ["Executive", "Senior", "Management"],
+        "startDate": "2024-12-01",
+        "endDate": "2024-12-31",
+        "status": "Upcoming",
+        "recurrence": "Annually",
+        "points": 200,
+        "departmentId": [3, 7],
+        "completed": [],
+        "sent": [2400, 2900],
+        "description": "Annual performance review for all employees.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 106,
+        "name": "Work Environment Survey",
+        "departments": ["Accounting & Finance", "Production"],
+        "jobLevel": ["Mid Level", "Entry Level"],
+        "startDate": "2024-09-01",
+        "endDate": "2024-09-30",
+        "status": "Upcoming",
+        "recurrence": "Quarterly",
+        "points": 140,
+        "departmentId": [3, 7],
+        "completed": [],
+        "sent": [2300, 2500, 3000],
+        "description": "To gather feedback on the work environment and facilities.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 107,
+        "name": "Leadership Assessment",
+        "departments": ["IT", "Marketing", "Accounting & Finance"],
+        "jobLevel": ["Executive", "Senior"],
+        "startDate": "2024-11-01",
+        "endDate": "2024-11-30",
+        "status": "Upcoming",
+        "recurrence": "Annually",
+        "points": 160,
+        "departmentId": [2, 3, 5],
+        "completed": [],
+        "sent": [7232, 9874],
+        "description": "To assess the leadership skills and effectiveness of managers.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 108,
+        "name": "Customer Satisfaction Survey",
+        "departments": ["Marketing", "R&D", "Business Development"],
+        "jobLevel": ["Management", "Mid Level"],
+        "startDate": {
+            "$date": "2024-07-15T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-08-15T00:00:00.000Z"
+        },
+        "status": "Ongoing",
+        "recurrence": "Quarterly",
+        "points": 170,
+        "departmentId": [6, 5, 4],
+        "completed": [7426, 4100, 3300],
+        "sent": [6666, 4922, 7426, 4100, 3300, 3500, 4110, 3100, 3200],
+        "description": "To measure customer satisfaction with recent interactions.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 109,
+        "name": "Training Needs Analysis",
+        "departments": ["Accounting & Finance", "Business Development"],
+        "jobLevel": ["Senior", "Management", "Mid Level"],
+        "startDate": "2024-09-01",
+        "endDate": "2024-09-30",
+        "status": "Upcoming",
+        "recurrence": "Annually",
+        "points": 180,
+        "departmentId": [3, 4],
+        "completed": [],
+        "sent": [2900, 3000, 3100],
+        "description": "To identify training needs across departments.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 110,
+        "name": "Employee Engagement Survey",
+        "departments": ["IT", "Accounting & Finance"],
+        "jobLevel": ["Management", "Mid Level"],
+        "startDate": "2024-10-01",
+        "endDate": "2024-10-31",
+        "status": "Draft",
+        "recurrence": "Annually",
+        "points": 190,
+        "departmentId": [2, 3],
+        "completed": [],
+        "sent": [],
+        "description": "To gauge employee engagement and satisfaction.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": false
+    },
+    {
+        "surveyId": 112,
+        "name": "Work-life Balance Survey",
+        "departments": ["Marketing", "Production"],
+        "jobLevel": ["Mid Level", "Entry Level"],
+        "startDate": "2024-12-01",
+        "endDate": "2024-12-31",
+        "status": "Upcoming",
+        "recurrence": "Annually",
+        "points": 150,
+        "departmentId": [5, 7],
+        "completed": [],
+        "sent": [6666, 4922, 7426, 2300, 2400, 2500],
+        "description": "To assess employees' work-life balance.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 113,
+        "name": "Diversity and Inclusion Survey",
+        "departments": [
+            "IT",
+            "Marketing",
+            "Accounting & Finance",
+            "Business Development",
+            "Marketing",
+            "Production"
+        ],
+        "jobLevel": ["Executive", "Senior", "Management"],
+        "startDate": "2024-01-31",
+        "endDate": "2024-02-28",
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 160,
+        "departmentId": [2, 3, 4, 5, 7],
+        "completed": [7232, 9874, 2700, 2800, 2900, 3100, 3200, 2400],
+        "sent": [7232, 9874, 2700, 2800, 2900, 3100, 3200, 2400],
+        "description": "To measure the effectiveness of diversity and inclusion initiatives.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 114,
+        "name": "Health and Safety Survey",
+        "departments": ["Production"],
+        "jobLevel": ["Mid Level", "Entry Level"],
+        "startDate": "2024-08-01",
+        "endDate": "2024-09-15",
+        "status": "Draft",
+        "recurrence": "Quarterly",
+        "points": 130,
+        "departmentId": [7],
+        "completed": [],
+        "sent": [],
+        "description": "To ensure health and safety protocols are being followed.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": false
+    },
+    {
+        "surveyId": 115,
+        "name": "New Product Launch Feedback",
+        "departments": ["Marketing", "Business Development"],
+        "jobLevel": ["Management", "Mid Level"],
+        "startDate": "2024-08-20",
+        "endDate": "2024-09-20",
+        "status": "Draft",
+        "recurrence": "Quarterly",
+        "points": 170,
+        "departmentId": [4, 5],
+        "completed": [],
+        "sent": [],
+        "description": "To gather feedback on the recent product launch.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": false
+    },
+    {
+        "surveyId": 116,
+        "name": "IT Security Awareness",
+        "departments": ["IT", "Accounting & Finance"],
+        "jobLevel": ["Senior", "Management", "Mid Level", "Entry Level"],
+        "startDate": "2024-10-01",
+        "endDate": "2024-10-31",
+        "status": "Upcoming",
+        "recurrence": "Annually",
+        "points": 150,
+        "departmentId": [2, 7],
+        "completed": [],
+        "sent": [7232, 9864, 2321, 2103, 2600, 2700, 2800, 2900, 3000],
+        "description": "To assess employees' awareness of IT security practices.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 117,
+        "name": "Customer Service Feedback",
+        "departments": ["Marketing", "Business Development"],
+        "jobLevel": ["Mid Level", "Entry Level"],
+        "startDate": "2024-11-01",
+        "endDate": "2024-11-15",
+        "status": "Draft",
+        "recurrence": "Quarterly",
+        "points": 140,
+        "departmentId": [4, 5],
+        "completed": [],
+        "sent": [],
+        "description": "To gather feedback on customer service interactions.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": false
+    },
+    {
+        "surveyId": 118,
+        "name": "Innovation and Creativity Survey",
+        "departments": ["R&D"],
+        "jobLevel": ["Management", "Mid Level"],
+        "startDate": "2024-12-01",
+        "endDate": "2024-12-31",
+        "status": "Draft",
+        "recurrence": "Annually",
+        "points": 200,
+        "departmentId": [6],
+        "completed": [],
+        "sent": [],
+        "description": "To assess the level of innovation and creativity within the teams.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": false
+    },
+    {
+        "surveyId": 119,
+        "name": "Sales Performance Review",
+        "departments": ["Business Development", "Marketing"],
+        "jobLevel": ["Senior", "Mid Level"],
+        "startDate": "2024-09-01",
+        "endDate": "2024-09-30",
+        "status": "Draft",
+        "recurrence": "Quarterly",
+        "points": 180,
+        "departmentId": [5, 6],
+        "completed": [],
+        "sent": [],
+        "description": "To review the performance of the sales team.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": false
+    },
+    {
+        "surveyId": 120,
+        "name": "Employee Onboarding Experience",
+        "departments": [
+            "IT",
+            "Accounting & Finance",
+            "Business Development",
+            "Marketing",
+            "R&D",
+            "Production"
+        ],
+        "departmentId": [2, 3, 4, 5, 6, 7],
+        "jobLevel": ["Entry Level"],
+        "startDate": "2024-05-01",
+        "endDate": "2024-06-30",
+        "status": "Finished",
+        "recurrence": "Quarterly",
+        "points": 110,
+        "completed": [2500, 4010],
+        "sent": [2500, 4010, 4120, 4110, 4100],
+        "description": "To gather feedback on the onboarding experience of new employees.",
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 130,
+        "name": "Remote Work Effectiveness",
+        "description": "To evaluate the effectiveness of remote work policies.",
+        "jobLevel": ["Executive", "Senior"],
+        "startDate": {
+            "$date": "2024-07-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-07-31T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 200,
+        "departments": ["IT", "Human Resources"],
+        "departmentId": [2, 1],
+        "completed": [4090, 9864, 2321],
+        "sent": [7232, 9864, 2321, 4090],
+        "questions": [
+            "How satisfied are you with remote work policies?",
+            "How effectively do you feel you can collaborate remotely?",
+            "Do you feel you have the necessary tools for remote work?",
+            "What challenges do you face with remote work?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 131,
+        "name": "Team Collaboration Survey",
+        "description": "To measure the effectiveness of team collaboration.",
+        "jobLevel": ["Mid Level", "Entry Level"],
+        "startDate": {
+            "$date": "2024-06-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-06-30T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Quarterly",
+        "points": 150,
+        "departments": ["R&D", "Business Development"],
+        "departmentId": [6, 4],
+        "completed": [3300, 3500, 3100, 3200],
+        "sent": [3300, 3500, 3100, 3200],
+        "questions": [
+            "How well do you collaborate with your team?",
+            "What tools do you use for team collaboration?",
+            "How can team collaboration be improved?",
+            "Are there any challenges you face when collaborating?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 132,
+        "name": "Employee Wellness Survey",
+        "description": "To assess the wellness and health of employees.",
+        "jobLevel": ["Entry Level", "Mid Level"],
+        "startDate": {
+            "$date": "2024-04-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-04-30T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 170,
+        "departments": ["Human Resources", "Production"],
+        "departmentId": [1, 7],
+        "completed": [4090, 2300, 2400, 2500, 4120],
+        "sent": [4090, 2300, 2400, 2500, 4120],
+        "questions": [
+            "How would you rate your overall health?",
+            "Do you feel the company supports your wellness?",
+            "What wellness programs would you like to see?",
+            "How can we improve your work-life balance?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 133,
+        "name": "Technology Usage Survey",
+        "description": "To understand the usage and satisfaction with company technology.",
+        "jobLevel": ["Executive", "Senior", "Mid Level"],
+        "startDate": {
+            "$date": "2024-02-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-02-28T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 180,
+        "departments": ["IT", "Marketing"],
+        "departmentId": [2, 5],
+        "completed": [7232, 9874, 6666, 4922, 7426],
+        "sent": [7232, 9874, 6666, 4922, 7426],
+        "questions": [
+            "How satisfied are you with the technology provided by the company?",
+            "What additional technology do you need?",
+            "Do you face any issues with current technology?",
+            "How can we improve technology usage?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 134,
+        "name": "Career Development Survey",
+        "description": "To assess the career development opportunities within the company.",
+        "jobLevel": ["Mid Level", "Senior"],
+        "startDate": {
+            "$date": "2024-05-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-05-31T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 190,
+        "departments": ["Business Development", "Marketing"],
+        "departmentId": [4, 5],
+        "completed": [3100, 3200, 9874, 6666, 4922],
+        "sent": [3100, 3200, 9874, 6666, 4922],
+        "questions": [
+            "How satisfied are you with your career development?",
+            "What career development programs would you like to see?",
+            "Do you feel supported in your career growth?",
+            "What can be improved in career development?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 135,
+        "name": "Productivity Survey",
+        "description": "To measure productivity levels across departments.",
+        "jobLevel": ["Mid Level", "Entry Level"],
+        "startDate": {
+            "$date": "2024-06-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-06-30T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Quarterly",
+        "points": 160,
+        "departments": ["IT", "Accounting & Finance"],
+        "departmentId": [2, 3],
+        "completed": [2600, 2700, 2800, 2900, 3000],
+        "sent": [9864, 2600, 2700, 2800, 2900, 3000],
+        "questions": [
+            "How would you rate your productivity?",
+            "What factors affect your productivity?",
+            "How can we improve your productivity?",
+            "Do you have the tools you need to be productive?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 136,
+        "name": "Innovation Feedback Survey",
+        "description": "To gather feedback on innovation within the company.",
+        "jobLevel": ["Senior", "Management"],
+        "startDate": {
+            "$date": "2023-11-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2023-11-30T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 170,
+        "departments": ["R&D", "Production"],
+        "departmentId": [6, 7],
+        "completed": [3300, 3500, 2300, 2400, 2500],
+        "sent": [3300, 3500, 2300, 2400, 2500],
+        "questions": [
+            "How satisfied are you with the level of innovation?",
+            "What innovative ideas do you have?",
+            "Do you feel supported in your innovative efforts?",
+            "How can we foster more innovation?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 137,
+        "name": "Customer Service Feedback",
+        "description": "To assess the effectiveness of customer service practices.",
+        "jobLevel": ["Entry Level", "Mid Level"],
+        "startDate": {
+            "$date": "2024-02-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-03-01T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Quarterly",
+        "points": 180,
+        "departments": ["Marketing", "Accounting & Finance"],
+        "departmentId": [5, 3],
+        "completed": [4010, 3900, 3800, 4922, 7426, 3000, 2900],
+        "sent": [9874, 6666, 4922, 7426, 3000, 2900, 4010, 3900, 3800],
+        "questions": [
+            "How would you rate our customer service?",
+            "What can be improved in customer service?",
+            "Do you feel you have the tools to provide excellent service?",
+            "What training do you need for better customer service?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 138,
+        "name": "Sustainability Practices Survey",
+        "description": "To evaluate the sustainability practices within the company.",
+        "jobLevel": ["Senior", "Management"],
+        "startDate": {
+            "$date": "2023-11-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2023-10-01T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 190,
+        "departments": ["Production", "IT"],
+        "departmentId": [7, 2],
+        "completed": [4120, 7232],
+        "sent": [2300, 2400, 2500, 4120, 7232],
+        "questions": [
+            "How satisfied are you with the company's sustainability efforts?",
+            "What sustainability initiatives would you like to see?",
+            "Do you feel supported in sustainability efforts?",
+            "How can we improve our sustainability practices?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 139,
+        "name": "Employee Benefits Satisfaction Survey",
+        "description": "To assess employee satisfaction with benefits provided.",
+        "jobLevel": ["Entry Level", "Mid Level"],
+        "startDate": {
+            "$date": "2023-02-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2023-03-01T00:00:00.000Z"
+        },
+        "status": "Finished",
+        "recurrence": "Annually",
+        "points": 200,
+        "departments": ["Human Resources", "Marketing"],
+        "departmentId": [1, 2, 3, 4, 5, 6, 7],
+        "completed": [
+            4110, 4100, 4080, 4070, 4050, 4040, 4030, 4020, 4000, 3700
+        ],
+        "sent": [
+            4090, 4110, 4100, 4080, 4070, 4050, 4040, 4030, 4020, 4000, 3700
+        ],
+        "questions": [
+            "How satisfied are you with the benefits package?",
+            "What benefits would you like to see added?",
+            "Do you feel the benefits meet your needs?",
+            "How can we improve the benefits package?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 140,
+        "name": "Employee Satisfaction Survey",
+        "description": "We invite you to participate in our Employee Satisfaction Survey. The goal is to assess your satisfaction with salary, company culture, your job role, and interactions with colleagues. Your honest feedback is crucial for us to improve our workplace and create a better environment for everyone. Please take a moment to reflect on these areas and provide your thoughtful responses. Thank you for your time and input.",
+        "jobLevel": ["Executive", "Senior", "Mid Level", "Entry Level"],
+        "startDate": {
+            "$date": "2024-07-15T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-08-15T00:00:00.000Z"
+        },
+        "status": "Ongoing",
+        "recurrence": "Quarterly",
+        "points": 150,
+        "departments": [
+            "IT",
+            "Accounting & Finance",
+            "Business Development",
+            "Marketing",
+            "R&D",
+            "Production"
+        ],
+        "departmentId": [2, 3, 4, 5, 6, 7],
+        "completed": [7232, 9864, 2321, 2103, 2600, 2700],
+        "sent": [
+            7232, 9864, 2321, 2103, 2600, 2700, 2800, 3400, 2900, 3000, 3100,
+            3200, 9874, 6666, 4922, 7426, 4100, 3300, 3500, 4110, 2300, 2400,
+            2500, 4120
+        ],
+        "questions": [
+            "How satisfied are you with your current salary and benefits package?",
+            "How satisfied are you with the company culture?",
+            "How satisfied are you with your job role and responsibilities?",
+            "How satisfied are you with the level of collaboration and support with your colleagues?"
+        ],
+        "publish": true
+    },
+    {
+        "surveyId": 141,
+        "name": "Sustainability Practices Survey",
+        "description": "To evaluate the sustainability practices within the company.",
+        "jobLevel": ["Senior", "Management"],
+        "startDate": {
+            "$date": "2024-08-01T00:00:00.000Z"
+        },
+        "endDate": {
+            "$date": "2024-09-01T00:00:00.000Z"
+        },
+        "status": "Ongoing",
+        "recurrence": "Annually",
+        "points": 190,
+        "departments": [
+            "IT",
+            "Accounting & Finance",
+            "Business Development",
+            "Marketing",
+            "R&D",
+            "Production"
+        ],
+        "departmentId": [2, 3, 4, 5, 6, 7],
+        "completed": [3300, 3500, 4110, 2300, 2400, 2500, 4120],
+        "sent": [
+            7232, 9864, 2321, 2103, 2600, 2700, 2800, 3400, 2900, 3000, 3100,
+            3200, 9874, 6666, 4922, 7426, 4100, 3300, 3500, 4110, 2300, 2400,
+            2500, 4120
+        ],
+        "questions": [
+            "How satisfied are you with the company's sustainability efforts?",
+            "What sustainability initiatives would you like to see?",
+            "Do you feel supported in sustainability efforts?",
+            "How can we improve our sustainability practices?"
+        ],
+        "publish": true
+    }
+]
