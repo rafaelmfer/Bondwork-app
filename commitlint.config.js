@@ -24,7 +24,7 @@ module.exports = {
     },
     parserPreset: {
         parserOpts: {
-            headerPattern: /^(\w+): \[P2-\d+\] (.+)$/,
+            headerPattern: /^(\w+): (.+)$/,
             headerCorrespondence: ["type", "ticket", "subject"],
         },
     },
