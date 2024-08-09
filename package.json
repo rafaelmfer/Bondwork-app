@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "setup": "npm install && cd frontend && npm install && cd .. && cd backend && npm install && cd ..",
         "start": "concurrently \"npm run start --prefix backend\" \"npm run start --prefix frontend\"",
         "build": "npm run build --prefix frontend && npm run start --prefix backend",
         "test": "concurrently \"npm test --prefix backend\" \"npm test --prefix frontend\"",
